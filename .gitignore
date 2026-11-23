@@ -1,0 +1,16 @@
+# Base de données locale
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs & fichiers temporaires
+*.log
+out.txt
+git_*.txt
+
+# Variables d'environnement
+.env
+.env.local
+
+# Dépendances éventuelles
+node_modules/
