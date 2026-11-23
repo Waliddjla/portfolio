@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio de Walid Djellali - SAP Functional Analyst & Full Stack Software Engineer. Spécialiste SAP S/4HANA (PM & MM), Node.js, TypeScript et React." />
+  <meta name="author" content="Walid Djellali" />
+  <title>Walid Djellali | SAP Functional Analyst & Full Stack Software Engineer</title>
+
+  <!-- Google Fonts : Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- React 18 & ReactDOM -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- Babel Standalone (Support JSX) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Styles personnalisés -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen antialiased selection:bg-blue-500 selection:text-white">
+
+  <!-- Point de montage React -->
+  <div id="root">
+    <!-- Écran de chargement initial fluide -->
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+      <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-extrabold text-lg shadow-lg shadow-blue-500/30 animate-bounce mb-4">
+        WD
+      </div>
+      <p class="text-sm font-semibold text-slate-500 dark:text-slate-400">
+        Chargement du portfolio de Walid Djellali...
+      </p>
+    </div>
+  </div>
+
+  <!-- Application React -->
+  <script src="js/featured-projects.js"></script>
+  <script type="text/babel" src="js/app.jsx"></script>
+</body>
+</html>
