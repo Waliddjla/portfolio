@@ -12,6 +12,15 @@
 
 const { useState, useEffect, useMemo } = React;
 
+// Module i18n (chargé via js/i18n.js) avec repli si absent
+const I18N = window.I18N || {
+  normalize: () => "fr",
+  t: k => k,
+  bi: v => v,
+  content: { profile: {}, experiences: [], education: [], sapSteps: [] },
+  localizeData: d => d
+};
+
 const fallbackData = {
   profile: {
     name: "Walid Djellali",
@@ -204,6 +213,35 @@ function App() {
   const [data, setData] = useState(fallbackData);
   const [isDbConnected, setIsDbConnected] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  // Langue du site : "fr" ou "en" (persistée, bilingue FR/EN)
+  const [lang, setLang] = useState(() => localStorage.getItem("portfolio-lang") || "fr");
+
+  const toggleLang = () => {
+    const next = lang === "fr" ? "en" : "fr";
+    setLang(next);
+    localStorage.setItem("portfolio-lang", next);
+    document.documentElement.setAttribute("lang", next);
+  };
+
+  const t = key => I18N.t(key, lang);
+  // Données localisées (bio, expériences, formations...) selon la langue active
+  const viewData = useMemo(() => I18N.localizeData(data, lang), [data, lang]);
+  // Étapes du workflow SAP traduites
+  const sapSteps = useMemo(
+    () => sapWorkflowSteps.map((step, idx) => {
+      const cs = I18N.content.sapSteps[idx];
+      if (!cs) return step;
+      return Object.assign({}, step, {
+        title: cs.title[lang] || step.title,
+        subtitle: cs.subtitle[lang] || step.subtitle,
+        description: cs.description[lang] || step.description,
+        roleTitle: cs.roleTitle[lang] || step.roleTitle,
+        roleDesc: cs.roleDesc[lang] || step.roleDesc,
+        deliverables: (cs.deliverables || []).map(d => d[lang])
+      });
+    }),
+    [lang]
+  );
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
@@ -254,6 +292,11 @@ function App() {
   // Formulaire de contact public
   const [formState, setFormState] = useState({ name: "", email: "", subject: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // 0. Synchroniser l'attribut lang du document avec la langue active
+  useEffect(() => {
+    document.documentElement.setAttribute("lang", lang);
+  }, [lang]);
 
   // 1. Initialiser le thème Dark / Light
   useEffect(() => {
@@ -587,7 +630,7 @@ function App() {
             </span>
             <div className="flex flex-col shrink-0">
               <span className="font-extrabold tracking-tight text-base sm:text-lg text-slate-900 dark:text-white leading-tight whitespace-nowrap">
-                {data.profile.name}
+                {viewData.profile.name}
               </span>
               <span className="text-[11px] sm:text-xs text-blue-600 dark:text-blue-400 font-semibold whitespace-nowrap">
                 SAP Analyst & Full-Stack
@@ -598,26 +641,26 @@ function App() {
           {/* Navigation Desktop */}
           <nav className="hidden xl:flex items-center gap-5 2xl:gap-7 text-sm font-medium shrink-0">
             <a href="#experience" className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors whitespace-nowrap">
-              Parcours
+              {t('nav.experience')}
             </a>
             <a href="#sap-workflow" className="flex items-center gap-1.5 text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-all whitespace-nowrap">
               <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
-              <span>Workflow SAP</span>
+              <span>{t('nav.sapWorkflow')}</span>
             </a>
             <a href="#skills" className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors whitespace-nowrap">
-              Compétences
+              {t('nav.skills')}
             </a>
             <a href="#projects" className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors whitespace-nowrap">
-              Projets
+              {t('nav.projects')}
             </a>
             <a href="#github-explorer" className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors whitespace-nowrap">
-              Hub GitHub
+              {t('nav.github')}
             </a>
             <a href="#education" className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors whitespace-nowrap">
-              Formations
+              {t('nav.education')}
             </a>
             <a href="#contact" className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors whitespace-nowrap">
-              Contact
+              {t('nav.contact')}
             </a>
           </nav>
 
@@ -626,7 +669,7 @@ function App() {
             
             {/* LinkedIn */}
             <a 
-              href={data.profile.linkedin}
+              href={viewData.profile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               title="Consulter le profil LinkedIn de Walid"
@@ -636,7 +679,7 @@ function App() {
 
             {/* GitHub */}
             <a 
-              href={data.profile.github}
+              href={viewData.profile.github}
               target="_blank"
               rel="noopener noreferrer"
               title="Explorer le GitHub de Walid (@Waliddjla)"
@@ -650,7 +693,7 @@ function App() {
               title="Consulter et imprimer le CV en PDF"
               className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-100 transition-all shrink-0 whitespace-nowrap">
               <i data-lucide="file-text" className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400"></i>
-              <span>Mon CV</span>
+              <span>{t('nav.cv')}</span>
             </button>
 
             {/* Bouton Espace Administration SQLite */}
@@ -667,8 +710,18 @@ function App() {
               title="Base SQLite native connectée"
               className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-2 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 shrink-0">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span className="whitespace-nowrap">SQLite Actif</span>
+              <span className="whitespace-nowrap">{t('nav.sqlite')}</span>
             </div>
+
+            {/* Sélecteur de langue FR / EN */}
+            <button
+              onClick={toggleLang}
+              aria-label="Changer la langue / Change language"
+              title={lang === "fr" ? "Switch to English" : "Passer en français"}
+              className="h-9 sm:h-10 px-2.5 sm:px-3 rounded-xl flex items-center justify-center gap-1 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shrink-0">
+              <i data-lucide="languages" className="w-4 h-4"></i>
+              <span className="text-xs font-extrabold uppercase">{lang}</span>
+            </button>
 
             {/* Thème */}
             <button
@@ -693,59 +746,59 @@ function App() {
         {mobileMenuOpen && (
           <div className="xl:hidden px-4 pt-3 pb-6 glass border-b border-slate-200 dark:border-slate-800 flex flex-col gap-2 max-h-[calc(100vh-5.5rem)] overflow-y-auto animate-fade-in shadow-2xl">
             <a href="#about" onClick={() => setMobileMenuOpen(false)} className="px-3.5 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between">
-              <span>À propos</span>
+              <span>{t('mobile.about')}</span>
               <i data-lucide="chevron-right" className="w-4 h-4 text-slate-400"></i>
             </a>
             <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="px-3.5 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between">
-              <span>Parcours Professionnel</span>
+              <span>{t('mobile.experience')}</span>
               <i data-lucide="chevron-right" className="w-4 h-4 text-slate-400"></i>
             </a>
             <a href="#sap-workflow" onClick={() => setMobileMenuOpen(false)} className="px-3.5 py-2.5 rounded-xl text-sm font-semibold text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 flex items-center justify-between">
               <span className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
-                <span>Workflow Métier SAP S/4HANA</span>
+                <span>{t('mobile.sapWorkflow')}</span>
               </span>
               <i data-lucide="chevron-right" className="w-4 h-4 text-blue-500"></i>
             </a>
             <a href="#skills" onClick={() => setMobileMenuOpen(false)} className="px-3.5 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between">
-              <span>Compétences Clés</span>
+              <span>{t('mobile.skills')}</span>
               <i data-lucide="chevron-right" className="w-4 h-4 text-slate-400"></i>
             </a>
             <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="px-3.5 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between">
-              <span>Projets Détaillés ({data.projects.length})</span>
+              <span>{t('mobile.projects')} ({viewData.projects.length})</span>
               <i data-lucide="chevron-right" className="w-4 h-4 text-slate-400"></i>
             </a>
             <a href="#github-explorer" onClick={() => setMobileMenuOpen(false)} className="px-3.5 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between">
-              <span>Hub GitHub (@Waliddjla)</span>
+              <span>{t('mobile.github')}</span>
               <i data-lucide="chevron-right" className="w-4 h-4 text-slate-400"></i>
             </a>
             <a href="#education" onClick={() => setMobileMenuOpen(false)} className="px-3.5 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between">
-              <span>Formations & Certifications</span>
+              <span>{t('mobile.education')}</span>
               <i data-lucide="chevron-right" className="w-4 h-4 text-slate-400"></i>
             </a>
             <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="px-3.5 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between">
-              <span>Contact</span>
+              <span>{t('mobile.contact')}</span>
               <i data-lucide="chevron-right" className="w-4 h-4 text-slate-400"></i>
             </a>
             
             <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-2">
-              <a href={data.profile.linkedin} target="_blank" rel="noopener noreferrer" className="flex-1 py-2.5 text-center rounded-xl text-xs font-bold bg-[#0A66C2] text-white flex items-center justify-center gap-1.5 shadow-sm">
+              <a href={viewData.profile.linkedin} target="_blank" rel="noopener noreferrer" className="flex-1 py-2.5 text-center rounded-xl text-xs font-bold bg-[#0A66C2] text-white flex items-center justify-center gap-1.5 shadow-sm">
                 <i data-lucide="linkedin" className="w-4 h-4"></i>
                 <span>LinkedIn</span>
               </a>
-              <a href={data.profile.github} target="_blank" rel="noopener noreferrer" className="flex-1 py-2.5 text-center rounded-lg text-xs font-bold bg-slate-900 dark:bg-slate-800 text-white flex items-center justify-center gap-1.5 shadow-sm">
+              <a href={viewData.profile.github} target="_blank" rel="noopener noreferrer" className="flex-1 py-2.5 text-center rounded-lg text-xs font-bold bg-slate-900 dark:bg-slate-800 text-white flex items-center justify-center gap-1.5 shadow-sm">
                 <i data-lucide="github" className="w-4 h-4"></i>
                 <span>GitHub</span>
               </a>
               <button onClick={() => { setMobileMenuOpen(false); setCvModalOpen(true); }} className="flex-1 py-2.5 text-center rounded-xl text-xs font-bold bg-indigo-600 text-white flex items-center justify-center gap-1.5 shadow-sm">
                 <i data-lucide="file-text" className="w-4 h-4"></i>
-                <span>CV (PDF)</span>
+                <span>{t('mobile.cvPdf')}</span>
               </button>
             </div>
             <button onClick={() => { setMobileMenuOpen(false); openAdminModal(); }} className="mt-1 px-3 py-2.5 rounded-xl text-xs font-bold bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800 flex items-center justify-between">
               <span className="flex items-center gap-2">
                 <i data-lucide="shield" className="w-4 h-4 text-amber-500"></i>
-                <span>Console d'Administration Portfolio</span>
+                <span>{t('mobile.adminConsole')}</span>
               </span>
               <i data-lucide="lock" className="w-4 h-4"></i>
             </button>
@@ -764,45 +817,45 @@ function App() {
           {/* Badge disponibilité */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/80 mb-6 animate-float shadow-sm">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-            <span>{data.profile.availability}</span>
+            <span>{viewData.profile.availability}</span>
           </div>
 
           {/* Titre Principal */}
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1] mb-5">
-            {data.profile.name}
+            {viewData.profile.name}
           </h1>
 
           {/* Double Compétence */}
           <div className="inline-block px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl bg-gradient-to-r from-blue-100 via-indigo-100 to-purple-100 dark:from-blue-950/60 dark:via-indigo-950/60 dark:to-purple-950/60 text-blue-900 dark:text-blue-200 font-extrabold text-sm sm:text-lg md:text-2xl mb-6 shadow-sm border border-blue-200/50 dark:border-blue-800/50 max-w-full">
-            <span className="block sm:inline">SAP Functional Analyst</span>
+            <span className="block sm:inline">{t('hero.titleLine1')}</span>
             <span className="hidden sm:inline text-blue-400 mx-2">|</span>
-            <span className="block sm:inline">Full Stack Software Engineer</span>
+            <span className="block sm:inline">{t('hero.titleLine2')}</span>
           </div>
 
           {/* Bio */}
           <p className="text-sm sm:text-base md:text-lg lg:text-xl font-normal text-slate-600 dark:text-slate-300 max-w-3xl mb-8 leading-relaxed px-2">
-            {data.profile.bio}
+            {viewData.profile.bio}
           </p>
 
           {/* Coordonnées & Liens directs */}
           <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-xs sm:text-sm mb-10 max-w-full px-2">
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300">
               <i data-lucide="map-pin" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-500 shrink-0"></i>
-              <span>{data.profile.location}</span>
+              <span>{viewData.profile.location}</span>
             </div>
-            <a href={`tel:${data.profile.phone}`} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300 hover:text-emerald-600 transition-colors">
+            <a href={`tel:${viewData.profile.phone}`} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300 hover:text-emerald-600 transition-colors">
               <i data-lucide="phone" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500 shrink-0"></i>
-              <span>{data.profile.phone}</span>
+              <span>{viewData.profile.phone}</span>
             </a>
-            <a href={`mailto:${data.profile.email}`} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
+            <a href={`mailto:${viewData.profile.email}`} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
               <i data-lucide="mail" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-500 shrink-0"></i>
-              <span>{data.profile.email}</span>
+              <span>{viewData.profile.email}</span>
             </a>
-            <a href={data.profile.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-[#0A66C2] dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all">
+            <a href={viewData.profile.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-[#0A66C2] dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all">
               <i data-lucide="linkedin" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0A66C2] shrink-0"></i>
               <span className="font-semibold truncate max-w-[170px] sm:max-w-none">linkedin.com/in/waliddjellali</span>
             </a>
-            <a href={data.profile.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:scale-105 transition-all">
+            <a href={viewData.profile.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:scale-105 transition-all">
               <i data-lucide="github" className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"></i>
               <span className="font-semibold truncate max-w-[130px] sm:max-w-none">github.com/Waliddjla</span>
             </a>
@@ -811,12 +864,12 @@ function App() {
           {/* Boutons d'action */}
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-8 w-full max-w-3xl px-2">
             <a
-              href={data.profile.linkedin}
+              href={viewData.profile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-[#0A66C2] hover:bg-[#004182] text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-105 transition-all flex items-center justify-center gap-2">
               <i data-lucide="linkedin" className="w-4 h-4 sm:w-5 sm:h-5"></i>
-              <span>Me contacter sur LinkedIn</span>
+              <span>{t('hero.linkedinBtn')}</span>
               <i data-lucide="external-link" className="w-3.5 h-3.5 opacity-75"></i>
             </a>
 
@@ -824,21 +877,21 @@ function App() {
               onClick={() => setCvModalOpen(true)}
               className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-105 transition-all flex items-center justify-center gap-2">
               <i data-lucide="file-text" className="w-4 h-4 sm:w-5 sm:h-5"></i>
-              <span>Consulter mon CV (PDF)</span>
+              <span>{t('hero.cvBtn')}</span>
             </button>
 
             <a
               href="#projects"
               className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all flex items-center justify-center gap-2">
               <i data-lucide="layers" className="w-4 h-4 sm:w-5 sm:h-5"></i>
-              <span>Découvrir les Projets ({data.projects.length})</span>
+              <span>{t('hero.projectsBtn')} ({viewData.projects.length})</span>
             </a>
 
             <a
               href="#sap-workflow"
               className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-semibold glass hover:bg-slate-200/60 dark:hover:bg-slate-800/60 text-slate-800 dark:text-slate-100 transition-all flex items-center justify-center gap-2">
               <i data-lucide="cpu" className="w-4 h-4 sm:w-5 sm:h-5"></i>
-              <span>Workflow SAP S/4HANA</span>
+              <span>{t('hero.sapBtn')}</span>
             </a>
           </div>
 
@@ -853,18 +906,18 @@ function App() {
           
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400 mb-2 block">
-              Expérience Professionnelle
+              {t('exp.badge')}
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              Parcours & Réalisations Métier
+              {t('exp.title')}
             </h2>
             <p className="mt-3 text-slate-600 dark:text-slate-400">
-              Expérience confirmée alliant la maîtrise fonctionnelle des processus SAP et le développement d'applications critiques.
+              {t('exp.subtitle')}
             </p>
           </div>
 
           <div className="space-y-8">
-            {data.experiences.map((exp, idx) => (
+            {viewData.experiences.map((exp, idx) => (
               <div 
                 key={exp.id || idx}
                 className="p-8 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 card-hover transition-all">
@@ -913,19 +966,19 @@ function App() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-900 mb-3">
               <i data-lucide="cpu" className="w-3.5 h-3.5"></i>
-              <span>Cycle de Vie Industriel & ERP</span>
+              <span>{lang === 'fr' ? 'Cycle de Vie Industriel & ERP' : 'Industrial Lifecycle & ERP'}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              Simulateur de Processus SAP S/4HANA (PM & MM)
+              {lang === 'fr' ? 'Simulateur de Processus SAP S/4HANA (PM & MM)' : 'SAP S/4HANA Process Simulator (PM & MM)'}
             </h2>
             <p className="mt-3 text-slate-600 dark:text-slate-400">
-              Découvrez pas à pas comment Walid orchestre la maintenance préventive, l'approvisionnement des pièces, l'étalonnage et la clôture financière dans SAP.
+              {lang === 'fr' ? "Découvrez pas à pas comment Walid orchestre la maintenance préventive, l'approvisionnement des pièces, l'étalonnage et la clôture financière dans SAP." : "Discover step by step how Walid orchestrates preventive maintenance, spare parts procurement, calibration and financial closing in SAP."}
             </p>
           </div>
 
           {/* Grille des étapes */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 mb-8">
-            {sapWorkflowSteps.map((step, idx) => {
+            {sapSteps.map((step, idx) => {
               const isActive = activeSapStep === idx;
               const isLastOdd = idx === 4;
               return (
@@ -960,7 +1013,7 @@ function App() {
 
           {/* Détail de l'étape active */}
           {(() => {
-            const current = sapWorkflowSteps[activeSapStep];
+            const current = sapSteps[activeSapStep];
             return (
               <div className="p-6 sm:p-10 rounded-3xl glass border border-blue-500/30 shadow-2xl space-y-6 animate-fade-in">
                 
@@ -984,13 +1037,13 @@ function App() {
 
                   <div className="flex items-center justify-between sm:justify-start gap-2 self-stretch sm:self-auto shrink-0 pt-2 sm:pt-0">
                     <button
-                      onClick={() => setActiveSapStep((activeSapStep - 1 + sapWorkflowSteps.length) % sapWorkflowSteps.length)}
+                      onClick={() => setActiveSapStep((activeSapStep - 1 + sapSteps.length) % sapSteps.length)}
                       className="flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-bold glass hover:bg-slate-200 dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-1.5">
                       <i data-lucide="chevron-left" className="w-4 h-4"></i>
                       <span>Précédent</span>
                     </button>
                     <button
-                      onClick={() => setActiveSapStep((activeSapStep + 1) % sapWorkflowSteps.length)}
+                      onClick={() => setActiveSapStep((activeSapStep + 1) % sapSteps.length)}
                       className="flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 transition-all flex items-center justify-center gap-1.5">
                       <span>Suivant</span>
                       <i data-lucide="chevron-right" className="w-4 h-4"></i>
@@ -1396,7 +1449,7 @@ function App() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {data.education.map((edu, idx) => (
+            {viewData.education.map((edu, idx) => (
               <div key={edu.id || idx} className="p-7 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 flex flex-col card-hover">
                 <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4">
                   <i data-lucide="graduation-cap" className="w-5 h-5"></i>
@@ -1443,7 +1496,7 @@ function App() {
             {/* Coordonnées */}
             <div className="lg:col-span-5 space-y-4">
               <a 
-                href={data.profile.linkedin}
+                href={viewData.profile.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-6 rounded-3xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/80 flex items-center justify-between card-hover group transition-all">
@@ -1460,7 +1513,7 @@ function App() {
               </a>
 
               <a 
-                href={data.profile.github}
+                href={viewData.profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-6 rounded-3xl bg-slate-200/60 dark:bg-slate-800/60 border border-slate-300 dark:border-slate-700/80 flex items-center justify-between card-hover group transition-all">
@@ -1479,15 +1532,15 @@ function App() {
               <div className="p-6 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 space-y-3 text-xs sm:text-sm">
                 <div className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
                   <i data-lucide="map-pin" className="w-4 h-4 text-rose-500 shrink-0"></i>
-                  <span>{data.profile.location}</span>
+                  <span>{viewData.profile.location}</span>
                 </div>
                 <div className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
                   <i data-lucide="mail" className="w-4 h-4 text-blue-500 shrink-0"></i>
-                  <span>{data.profile.email}</span>
+                  <span>{viewData.profile.email}</span>
                 </div>
                 <div className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
                   <i data-lucide="phone" className="w-4 h-4 text-emerald-500 shrink-0"></i>
-                  <span>{data.profile.phone}</span>
+                  <span>{viewData.profile.phone}</span>
                 </div>
               </div>
             </div>
@@ -1569,7 +1622,7 @@ function App() {
             </span>
             <div>
               <span className="font-extrabold text-slate-900 dark:text-white block text-sm">
-                {data.profile.name}
+                {viewData.profile.name}
               </span>
               <span className="text-xs text-slate-500 dark:text-slate-400">
                 © {new Date().getFullYear()} Walid Djellali. Tous droits réservés.
@@ -1578,17 +1631,17 @@ function App() {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-5 text-sm text-slate-600 dark:text-slate-400">
-            <a href={data.profile.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1.5 transition-colors font-medium">
+            <a href={viewData.profile.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1.5 transition-colors font-medium">
               <i data-lucide="linkedin" className="w-4 h-4 text-[#0A66C2]"></i>
               <span>LinkedIn</span>
             </a>
-            <a href={data.profile.github} target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5 transition-colors font-medium">
+            <a href={viewData.profile.github} target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5 transition-colors font-medium">
               <i data-lucide="github" className="w-4 h-4"></i>
               <span>GitHub</span>
             </a>
             <button onClick={() => setCvModalOpen(true)} className="hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1.5 transition-colors font-medium">
               <i data-lucide="file-text" className="w-4 h-4 text-indigo-500"></i>
-              <span>CV (PDF)</span>
+              <span>{t('mobile.cvPdf')}</span>
             </button>
             <button onClick={openAdminModal} className="hover:text-amber-600 dark:hover:text-amber-400 flex items-center gap-1.5 transition-colors font-bold text-amber-600 dark:text-amber-400">
               <i data-lucide="shield" className="w-4 h-4"></i>
@@ -1959,7 +2012,7 @@ function App() {
                           <span>Changement Rapide du Statut de Disponibilité</span>
                         </h4>
                         <p className="text-xs text-slate-500">
-                          Statut actuel : <strong className="text-blue-600 dark:text-blue-400">{data.profile.availability}</strong>
+                          Statut actuel : <strong className="text-blue-600 dark:text-blue-400">{viewData.profile.availability}</strong>
                         </p>
                         <div className="flex flex-wrap gap-2 pt-1">
                           {[
@@ -2335,7 +2388,7 @@ function App() {
                 </span>
                 <div>
                   <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">
-                    Curriculum Vitae — {data.profile.name}
+                    Curriculum Vitae — {viewData.profile.name}
                   </h3>
                   <p className="text-xs text-slate-500 dark:text-slate-400">
                     Format professionnel prêt à l'impression ou sauvegarde PDF
@@ -2363,21 +2416,21 @@ function App() {
               <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
                   <h2 className="text-2xl font-black text-slate-900 dark:text-white">
-                    {data.profile.name}
+                    {viewData.profile.name}
                   </h2>
                   <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mt-1">
-                    {data.profile.title}
+                    {viewData.profile.title}
                   </p>
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                    {data.profile.location} • {data.profile.phone} • {data.profile.email}
+                    {viewData.profile.location} • {viewData.profile.phone} • {viewData.profile.email}
                   </p>
                 </div>
                 <div className="flex flex-col gap-1.5 text-xs">
-                  <a href={data.profile.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0A66C2] dark:text-blue-400 hover:underline flex items-center gap-1 font-semibold">
+                  <a href={viewData.profile.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0A66C2] dark:text-blue-400 hover:underline flex items-center gap-1 font-semibold">
                     <i data-lucide="linkedin" className="w-3.5 h-3.5"></i>
                     <span>linkedin.com/in/waliddjellali</span>
                   </a>
-                  <a href={data.profile.github} target="_blank" rel="noopener noreferrer" className="text-slate-700 dark:text-slate-300 hover:underline flex items-center gap-1 font-semibold">
+                  <a href={viewData.profile.github} target="_blank" rel="noopener noreferrer" className="text-slate-700 dark:text-slate-300 hover:underline flex items-center gap-1 font-semibold">
                     <i data-lucide="github" className="w-3.5 h-3.5"></i>
                     <span>github.com/Waliddjla</span>
                   </a>
@@ -2386,19 +2439,19 @@ function App() {
 
               <div>
                 <h4 className="text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">
-                  Synthèse Professionnelle
+                  {t('cv.summary')}
                 </h4>
                 <p className="text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                  {data.profile.bio}
+                  {viewData.profile.bio}
                 </p>
               </div>
 
               <div>
                 <h4 className="text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3">
-                  Parcours Professionnel
+                  {t('cv.experiences')}
                 </h4>
                 <div className="space-y-4">
-                  {data.experiences.map((exp, idx) => (
+                  {viewData.experiences.map((exp, idx) => (
                     <div key={idx} className="border-l-2 border-blue-500 pl-4 py-0.5">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs sm:text-sm">
                         <span className="font-bold text-slate-900 dark:text-white">{exp.role} — <span className="text-blue-600 dark:text-blue-400">{exp.company}</span></span>
@@ -2415,7 +2468,7 @@ function App() {
 
               <div>
                 <h4 className="text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">
-                  Compétences & Outils
+                  {t('cv.skills')}
                 </h4>
                 <div className="flex flex-wrap gap-1.5 text-xs">
                   {data.skills.map((s, idx) => (
@@ -2431,7 +2484,7 @@ function App() {
                   Formations & Certifications
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {data.education.map((edu, idx) => (
+                  {viewData.education.map((edu, idx) => (
                     <div key={idx} className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 text-xs">
                       <span className="font-bold text-blue-600 dark:text-blue-400 block">{edu.period}</span>
                       <strong className="text-slate-900 dark:text-white block mt-0.5">{edu.degree}</strong>
@@ -2445,12 +2498,12 @@ function App() {
 
             <div className="pt-4 border-t border-slate-200 dark:border-slate-800 mt-4 flex items-center justify-between text-xs text-slate-500 shrink-0">
               <div className="flex items-center gap-3">
-                <a href={data.profile.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0A66C2] hover:underline flex items-center gap-1 font-semibold">
+                <a href={viewData.profile.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0A66C2] hover:underline flex items-center gap-1 font-semibold">
                   <i data-lucide="linkedin" className="w-3.5 h-3.5"></i>
                   <span>Profil LinkedIn</span>
                 </a>
                 <span>•</span>
-                <a href={data.profile.github} target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center gap-1 font-semibold text-slate-700 dark:text-slate-300">
+                <a href={viewData.profile.github} target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center gap-1 font-semibold text-slate-700 dark:text-slate-300">
                   <i data-lucide="github" className="w-3.5 h-3.5"></i>
                   <span>GitHub @Waliddjla</span>
                 </a>
