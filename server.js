@@ -378,7 +378,7 @@ const server = http.createServer(async (req, res) => {
   // SERVEUR DE FICHIERS STATIQUES (Frontend)
   // ==========================================
   const publicPath = pathname === '/' ? '/index.html' : pathname;
-  if (publicPath !== '/index.html' && !/^\/(?:css|js)\/[\w.-]+\.(?:css|js|jsx)$/.test(publicPath)) {
+  if (publicPath !== '/index.html' && !/^\/(?:css|js|img|images)\/[\w.-]+\.(?:css|js|jsx|png|jpe?g|webp|svg|ico)$/i.test(publicPath) && publicPath !== '/favicon.ico') {
     res.writeHead(404);
     res.end();
     return;

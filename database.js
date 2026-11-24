@@ -158,10 +158,15 @@ function initDatabase() {
   try { db.exec("ALTER TABLE projects ADD COLUMN features TEXT;"); } catch (e) {}
   try { db.exec("ALTER TABLE projects ADD COLUMN case_study TEXT;"); } catch (e) {}
   try { db.exec("ALTER TABLE messages ADD COLUMN read INTEGER DEFAULT 0;"); } catch (e) {}
-  addTranslationColumns('profile', ['title_en', 'bio_en', 'availability_en', 'location_en']);
+  addTranslationColumns('profile', ['title_en', 'bio_en', 'availability_en', 'location_en', 'avatar']);
   addTranslationColumns('experiences', ['role_en', 'description_en', 'bullets_en', 'period_en']);
   addTranslationColumns('education', ['degree_en', 'details_en']);
   addTranslationColumns('projects', projectTranslationFields);
+
+  // Mettre à jour l'avatar de profil
+  try {
+    db.prepare(`UPDATE profile SET avatar = COALESCE(avatar, '/img/walid.jpg') WHERE id = 1`).run();
+  } catch (e) {}
 
   // Seeder le profil s'il n'existe pas
   const profileCount = db.prepare('SELECT COUNT(*) as count FROM profile').get().count;
@@ -707,7 +712,7 @@ function deleteMessage(id) {
 // Mise à jour des informations du profil (Administration)
 function updateProfile(fields) {
   const editable = [
-    'title', 'location', 'email', 'phone', 'bio', 'availability',
+    'title', 'location', 'email', 'phone', 'bio', 'availability', 'avatar',
     'title_en', 'location_en', 'bio_en', 'availability_en'
   ];
   const assignments = editable.map(field => `${field} = COALESCE(?, ${field})`).join(', ');

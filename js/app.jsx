@@ -737,145 +737,13 @@ const fallbackData = {
     linkedin: "https://www.linkedin.com/in/waliddjellali/",
     github: "https://github.com/Waliddjla",
     bio: "Analyste fonctionnel SAP et ingénieur logiciel diplômé d’un Master en informatique. Expérience confirmée dans le déploiement d’ERP SAP S/4HANA (PM & MM), l’administration de systèmes IT et le développement Full-Stack (Node.js, TypeScript, React). Combine rigueur analytique métier et maîtrise technique pour concevoir des solutions numériques pratiques et pérennes.",
-    availability: "Disponible pour opportunités SAP & Développement Full-Stack"
+    availability: "Disponible pour opportunités SAP & Développement Full-Stack",
+    avatar: "/img/walid.jpg"
   },
-  experiences: [
-    {
-      id: 1,
-      role: "SAP Functional Analyst",
-      company: "Orionlab",
-      role_en: "SAP Functional Analyst",
-      description_en: "Support and integration of SAP S/4HANA 2023 processes, with a focus on Plant Maintenance (PM) and Materials Management (MM).",
-      bullets_en: [
-        "Handle SAP S/4HANA functional activities, lead the PM module and support users across MM workflows.",
-        "Work with engineering, validation and the SAP implementation partner to clarify specifications and review the PM Business Blueprint (BBP).",
-        "Validate and cleanse equipment and functional location master data before migration, correcting formats, hierarchies and references.",
-        "Manage preventive maintenance, calibration, qualifications, task lists and work order scheduling.",
-        "Coordinate maintenance order forms and integrate QM inspection characteristics with business teams.",
-        "Administer user authorizations and Fiori roles, and develop internal applications to digitize workflows."
-      ],
-      period: "Poste actuel",
-      period_en: "Current position",
-      description: "Support et intégration des processus SAP S/4HANA 2023 avec focus Plant Maintenance (PM) et Materials Management (MM).",
-      bullets: [
-        "Prise en charge des activités fonctionnelles SAP S/4HANA, pilotage du module PM et support utilisateurs sur les flux MM.",
-        "Collaboration avec l'ingénierie, la validation et l'intégrateur SAP pour clarifier les exigences de maintenance et réviser le Business Blueprint (BBP) PM.",
-        "Revue et validation des données de base (Equipment, Functional Locations) avant migration (détection des erreurs de longueur, hiérarchies et références manquantes).",
-        "Participation à la planification de la maintenance préventive, calibration, qualifications, gammes d'opérations (Task Lists) et ordonnancement des ordres de travail.",
-        "Coordination des besoins d'impression d'ordres de maintenance et des caractéristiques QM avec les équipes métier.",
-        "Support à l'administration des utilisateurs SAP, habilitations de rôles et accès Fiori ; développement d'applications internes de digitalisation."
-      ]
-    },
-    {
-      id: 2,
-      role: "IT Systems Engineer",
-      company: "ACG SIM SPA",
-      role_en: "IT Systems Engineer",
-      description_en: "IT systems management and security, with contributions to an SAP ERP rollout.",
-      bullets_en: [
-        "Administered and maintained IT systems, managed backups and ensured infrastructure integrity and security.",
-        "Contributed to SAP ERP implementation and support, aligning business needs with system capabilities.",
-        "Diagnosed hardware and software issues, optimized infrastructure and developed internal software solutions."
-      ],
-      period: "2024",
-      description: "Gestion, sécurisation des systèmes d'information et contribution au déploiement ERP SAP.",
-      bullets: [
-        "Administration et maintien en condition opérationnelle des systèmes IT, gestion de la sécurité, des sauvegardes et de l'intégrité du parc.",
-        "Contribution à l'implémentation et au support de l'ERP SAP pour aligner les besoins métiers avec les processus système.",
-        "Diagnostic des dysfonctionnements matériels et logiciels, optimisation de l'infrastructure et développement de solutions logicielles internes."
-      ]
-    },
-    {
-      id: 3,
-      role: "Full Stack Software Engineer",
-      company: "SARL Ide-Net Géolocalisation",
-      role_en: "Full Stack Software Engineer",
-      description_en: "Designed and developed IoT tracking and fleet telematics platforms.",
-      bullets_en: [
-        "Designed and developed geolocation and fleet tracking platforms using Node.js and TypeScript REST APIs.",
-        "Integrated GPS devices and CAN units into tracking systems, and optimized backend algorithms and queries.",
-        "Worked closely with cross-functional teams to translate operational requirements into reliable software features."
-      ],
-      period: "2023 – 2024",
-      description: "Conception et développement de plateformes de suivi et géolocalisation IoT / télématique.",
-      bullets: [
-        "Conception et développement de plateformes de géolocalisation et de suivi de flotte avec APIs REST en Node.js et TypeScript.",
-        "Intégration d'appareils GPS et de boîtiers CAN dans les solutions de tracking, optimisation des algorithmes backend et des requêtes SQL.",
-        "Collaboration étroite avec des équipes pluridisciplinaires pour traduire les exigences opérationnelles en fonctionnalités logicielles robustes."
-      ]
-    },
-    {
-      id: 4,
-      role: "IT Engineer – Network and Support",
-      company: "SARL Gesco Climatisation",
-      role_en: "IT Engineer – Network and Support",
-      description_en: "Network infrastructure administration, user support and IT deployments.",
-      bullets_en: [
-        "Administered and monitored network infrastructure, resolved system and network incidents, and provided help desk support.",
-        "Contributed to infrastructure improvements and strategic IT deployments."
-      ],
-      period: "2023",
-      description: "Administration de l'infrastructure réseau, support utilisateur et déploiements IT.",
-      bullets: [
-        "Administration et supervision de l'infrastructure réseau, résolution des incidents systèmes/réseau et assistance support utilisateurs (helpdesk).",
-        "Participation aux améliorations d'infrastructures et aux déploiements informatiques stratégiques."
-      ]
-    }
-  ],
-  skills: [
-    { category: "SAP & ERP", name: "SAP S/4HANA 2023" },
-    { category: "SAP & ERP", name: "SAP PM (Plant Maintenance)" },
-    { category: "SAP & ERP", name: "SAP MM (Materials Management)" },
-    { category: "SAP & ERP", name: "SAP Fiori" },
-    { category: "SAP & ERP", name: "Business Blueprint (BBP)" },
-    { category: "SAP & ERP", name: "Preventive Maintenance & Calibration" },
-    { category: "SAP & ERP", name: "Master Data Migration" },
-    { category: "Frontend", name: "React" },
-    { category: "Frontend", name: "Next.js" },
-    { category: "Frontend", name: "TypeScript" },
-    { category: "Frontend", name: "JavaScript (ES6+)" },
-    { category: "Frontend", name: "Tailwind CSS" },
-    { category: "Frontend", name: "HTML5 / CSS3 / Bootstrap" },
-    { category: "Backend & Languages", name: "Node.js" },
-    { category: "Backend & Languages", name: "REST APIs" },
-    { category: "Backend & Languages", name: "PHP / Laravel" },
-    { category: "Backend & Languages", name: "Python / Django" },
-    { category: "Backend & Languages", name: "Java" },
-    { category: "Databases & Systems", name: "SQLite" },
-    { category: "Databases & Systems", name: "MySQL" },
-    { category: "Databases & Systems", name: "SQL Server" },
-    { category: "Databases & Systems", name: "MongoDB" },
-    { category: "Databases & Systems", name: "Docker & Linux Ubuntu" },
-    { category: "Databases & Systems", name: "Windows Server" },
-    { category: "Databases & Systems", name: "Cisco Networking (CCNA)" }
-  ],
+  experiences: [],
+  skills: [],
   projects: window.featuredProjects || [],
-  education: [
-    {
-      degree: "Master en Informatique (Informatique Parallèle et Embarquée)",
-      degree_en: "Master’s Degree in Computer Science (Parallel and Embedded Computing)",
-      details_en: "Distributed systems, parallel processing, high-performance computing and embedded systems.",
-      institution: "Université d'Oran 1 Ahmed Ben Bella",
-      period: "2020 – 2022",
-      details: "Systèmes distribués, calcul parallèle haute performance, systèmes embarqués et algorithmes avancés."
-    },
-    {
-      degree: "Licence en Systèmes Informatiques",
-      degree_en: "Bachelor’s Degree in Computer Systems",
-      details_en: "Algorithms, software engineering, computer networks, databases and modeling.",
-      institution: "Université d'Oran 1 Ahmed Ben Bella",
-      period: "2016 – 2020",
-      details: "Fondements du génie logiciel, réseaux, bases de données relationnelles, systèmes d'exploitation."
-    },
-    {
-      degree: "Certification Cisco CCNA v7 (Réseaux & Routage)",
-      degree_en: "Cisco CCNA v7 Certification (Networking and Routing)",
-      details_en: "Switch and router configuration, IP protocols, VLANs, OSPF routing and network security.",
-      institution: "Cisco Networking Academy",
-      period: "2023",
-      details: "Configuration de commutateurs/routeurs Cisco, adressage IP, VLAN, routage OSPF et sécurité réseau."
-    }
-  ],
+  education: [],
   sap_modules: [
     {
       id: "pm",
@@ -1143,6 +1011,24 @@ function App() {
       window.lucide.createIcons();
     }
   });
+
+  // ── Scroll-reveal global — IntersectionObserver ──────────────────
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.10, rootMargin: '0px 0px -48px 0px' }
+    );
+    const targets = document.querySelectorAll('.reveal, .reveal-left, .reveal-scale');
+    targets.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, [data]);
 
   const toastTimeout = useRef(null);
   useEffect(() => () => clearTimeout(toastTimeout.current), []);
@@ -1434,9 +1320,13 @@ function App() {
 
           {/* Logo & Identité */}
           <a href="#hero" className="flex items-center gap-2.5 sm:gap-3 group shrink-0 py-1">
-            <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-pink-500 flex items-center justify-center text-white font-extrabold text-base sm:text-lg shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform shrink-0">
-              WD
-            </span>
+            <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden ring-2 ring-blue-500/40 shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform shrink-0 bg-slate-200 dark:bg-slate-800">
+              <img
+                src={data.profile.avatar || "/img/walid.jpg"}
+                alt={data.profile.name}
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
             <div className="flex flex-col shrink-0">
               <span className="font-extrabold tracking-tight text-base sm:text-lg text-slate-900 dark:text-white leading-tight whitespace-nowrap">
                 {data.profile.name}
@@ -1598,9 +1488,22 @@ function App() {
             <span>{tr(data.profile, "availability") || t.hero.badge}</span>
           </div>
 
+          {/* Photo de Profil */}
+          <div className="relative mb-6 group">
+            <div className="absolute -inset-1.5 bg-gradient-to-tr from-blue-600 via-indigo-600 to-pink-500 rounded-full blur-lg opacity-70 group-hover:opacity-100 transition duration-500 animate-pulse-glow"></div>
+            <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 rounded-full p-1.5 bg-white dark:bg-slate-900 shadow-2xl ring-4 ring-blue-500/20 overflow-hidden">
+              <img
+                src={data.profile.avatar || "/img/walid.jpg"}
+                alt={data.profile.name}
+                className="w-full h-full object-cover object-top rounded-full group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="absolute bottom-2 right-3 w-5 h-5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full shadow-md" title="Disponible pour opportunités"></div>
+          </div>
+
           {/* Titre Principal */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1] mb-5">
-            {data.profile.name}
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-5">
+            <span className="name-shimmer">{data.profile.name}</span>
           </h1>
 
           {/* Double Compétence */}
@@ -1643,7 +1546,7 @@ function App() {
               href={data.profile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-[#0A66C2] hover:bg-[#004182] text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-105 transition-all flex items-center justify-center gap-2">
+              className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-[#0A66C2] hover:bg-[#004182] text-white shadow-lg shadow-blue-500/25 btn-magnetic flex items-center justify-center gap-2">
               <LinkedInIcon className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>{t.hero.contact_linkedin}</span>
               <Icon name="external-link" className="w-3.5 h-3.5 opacity-75" />
@@ -1651,7 +1554,7 @@ function App() {
 
             <button
               onClick={() => setCvModalOpen(true)}
-              className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-105 transition-all flex items-center justify-center gap-2">
+              className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-indigo-500/25 btn-magnetic flex items-center justify-center gap-2">
               <Icon name="file-text" className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>{t.hero.view_resume}</span>
             </button>
@@ -1680,7 +1583,7 @@ function App() {
       <section id="experience" className="py-24 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="reveal text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400 mb-2 block">
               {t.experience.badge}
             </span>
@@ -1692,11 +1595,11 @@ function App() {
             </p>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-8 stagger-children">
             {data.experiences.map((exp, idx) => (
               <div
                 key={exp.id || idx}
-                className="p-8 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 card-hover transition-all">
+                className="reveal-left p-8 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 card-hover transition-all">
 
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                   <div>
@@ -1740,7 +1643,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* En-tête de la section */}
-          <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="reveal text-center max-w-3xl mx-auto mb-14">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-900 mb-3">
               <Icon name="layers" className="w-3.5 h-3.5" />
               <span>{t.sap.badge}</span>
@@ -1790,7 +1693,7 @@ function App() {
           </div>
 
           {/* Grille des Modules SAP (Boucle dynamique SQLite Database First) */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 stagger-children">
             {sapModules
               .filter(m => selectedSapModule === "all" || selectedSapModule === m.id)
               .map((mod) => {
@@ -1823,7 +1726,7 @@ function App() {
                 return (
                   <div
                     key={mod.id}
-                    className={`p-6 sm:p-7 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between transition-all duration-300 shadow-xl shadow-slate-900/5 hover:-translate-y-1 ${cardBorder}`}
+                    className={`reveal-scale p-6 sm:p-7 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between transition-all duration-300 shadow-xl shadow-slate-900/5 hover:-translate-y-1 ${cardBorder}`}
                   >
                     <div>
                       {/* En-tête de la carte */}
@@ -1909,7 +1812,7 @@ function App() {
             </div>
 
             {/* Les 5 étapes du flux, en une ligne fluide */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 relative">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 relative stagger-children">
               {sapFlow.map((step, idx) => {
                 const stepLabel = tr(step, "label");
                 const stepNote = tr(step, "note");
@@ -1917,7 +1820,7 @@ function App() {
                 return (
                   <div
                     key={step.id || idx}
-                    className="p-4 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between relative group hover:border-blue-500/50 transition-all shadow-sm"
+                    className="reveal p-4 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between relative group hover:border-blue-500/50 transition-all shadow-sm"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-2">
@@ -1950,7 +1853,7 @@ function App() {
       <section id="skills" className="py-24 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="reveal text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400 mb-2 block">
               {t.skills.badge}
             </span>
@@ -1959,10 +1862,10 @@ function App() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
 
             {t.skill_groups.map(group => (
-              <div key={group.category} className={`p-7 rounded-3xl glass border card-hover ${group.frame}`}>
+              <div key={group.category} className={`reveal-scale p-7 rounded-3xl glass border card-hover ${group.frame}`}>
                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 ${group.badge}`}>
                   <Icon name={group.icon} className="w-6 h-6" />
                 </div>
@@ -1988,7 +1891,7 @@ function App() {
       <section id="projects" className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="reveal text-center max-w-3xl mx-auto mb-12">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-900 mb-3">
               <Icon name="layers" className="w-3.5 h-3.5" />
               <span>{t.projects.badge}</span>
@@ -2023,7 +1926,8 @@ function App() {
               return (
                 <article
                   key={p.id || idx}
-                  className="fade-in card-hover rounded-3xl overflow-hidden glass border border-slate-200/80 dark:border-slate-800 flex flex-col group">
+                  style={{ transitionDelay: `${idx * 90}ms` }}
+                  className="reveal card-hover rounded-3xl overflow-hidden glass border border-slate-200/80 dark:border-slate-800 flex flex-col group">
 
                   {/* Image & Badge */}
                   <div className="relative h-60 overflow-hidden bg-slate-900">
@@ -2125,7 +2029,7 @@ function App() {
       <section id="github-explorer" className="py-24 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="reveal text-center max-w-3xl mx-auto mb-12">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 mb-3">
               <GitHubIcon className="w-3.5 h-3.5" />
               <span>{t.repos.badge}</span>
@@ -2181,7 +2085,7 @@ function App() {
                 href={repo.html_url || `https://github.com/Waliddjla/${repo.name}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-6 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 hover:border-blue-500/50 flex flex-col justify-between card-hover group transition-all">
+                className="reveal p-6 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 hover:border-blue-500/50 flex flex-col justify-between card-hover group transition-all">
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <span className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
@@ -2231,7 +2135,7 @@ function App() {
       <section id="education" className="py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="reveal text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400 mb-2 block">
               {t.education.badge}
             </span>
@@ -2240,9 +2144,9 @@ function App() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 stagger-children">
             {data.education.map((edu, idx) => (
-              <div key={edu.id || idx} className="p-7 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 flex flex-col card-hover">
+              <div key={edu.id || idx} className="reveal-scale p-7 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 flex flex-col card-hover">
                 <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4">
                   <Icon name="graduation-cap" className="w-5 h-5" />
                 </div>
@@ -2271,7 +2175,7 @@ function App() {
       <section id="contact" className="py-24 bg-slate-100/60 dark:bg-slate-900/40 border-t border-slate-200/60 dark:border-slate-800/60">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="reveal text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400 mb-2 block">
               {t.contact.badge}
             </span>
@@ -2409,9 +2313,13 @@ function App() {
       <footer className="border-t border-slate-200 dark:border-slate-800 py-12 bg-white/40 dark:bg-slate-950/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div className="flex items-center gap-3">
-            <span className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center font-extrabold text-sm shadow-md shadow-blue-500/20">
-              WD
-            </span>
+            <div className="w-10 h-10 rounded-xl overflow-hidden ring-1 ring-blue-500/40 shadow-md shadow-blue-500/20 shrink-0 bg-slate-200 dark:bg-slate-800">
+              <img
+                src={data.profile.avatar || "/img/walid.jpg"}
+                alt={data.profile.name}
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
             <div>
               <span className="font-extrabold text-slate-900 dark:text-white block text-sm">
                 {data.profile.name}
@@ -3292,16 +3200,25 @@ function App() {
             <div className="flex-1 overflow-y-auto pr-2 space-y-6 text-slate-800 dark:text-slate-200 text-sm cv-print-container">
 
               <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <div>
-                  <h2 className="text-2xl font-black text-slate-900 dark:text-white">
-                    {data.profile.name}
-                  </h2>
-                  <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mt-1">
-                    {tr(data.profile, "title")}
-                  </p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                    {profileLocation} • {data.profile.phone} • {data.profile.email}
-                  </p>
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-blue-500/40 shadow-md shrink-0 bg-slate-200 dark:bg-slate-700">
+                    <img
+                      src={data.profile.avatar || "/img/walid.jpg"}
+                      alt={data.profile.name}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-black text-slate-900 dark:text-white">
+                      {data.profile.name}
+                    </h2>
+                    <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mt-1">
+                      {tr(data.profile, "title")}
+                    </p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                      {profileLocation} • {data.profile.phone} • {data.profile.email}
+                    </p>
+                  </div>
                 </div>
                 <div className="flex flex-col gap-1.5 text-xs">
                   <a href={data.profile.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0A66C2] dark:text-blue-400 hover:underline flex items-center gap-1 font-semibold">
