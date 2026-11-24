@@ -319,5 +319,281 @@ const featuredProjects = [
   }
 ];
 
+const englishProjects = {
+  101: {
+    title_en: "My Orion — Integrated IT Management & SAP Operations Platform",
+    tagline_en: "Centralized IT governance, SAP S/4HANA incident tracking, and traceability for industrial equipment.",
+    description_en: "Enterprise platform for IT tickets and SAP PM/MM workflows, Kanban planning for engineering tasks, IT asset mapping, and purchasing and sales tracking with full traceability.",
+    category_label_en: "Full-Stack & IT Management",
+    repository_note_en: "Enterprise project covering production architecture and operational modules.",
+    features_en: [
+      "Centralized tracking of IT tickets and SAP PM/MM incidents with SLAs and dynamic prioritization",
+      "Real-time Kanban board for scheduling interventions and technical sprints",
+      "Automated IT inventory, workstation assignments, and asset handover history",
+      "Purchasing and maintenance order traceability synchronized with SAP workflows",
+      "Granular role-based access control (RBAC) with audit logging for critical actions",
+      "Built-in knowledge base and documentation for IT operating procedures"
+    ],
+    case_study_en: {
+      client: "Orionlab / Pharmaceutical Manufacturing & IT",
+      role: "Lead Full-Stack Developer & SAP Business Analyst",
+      period: "2024 - 2025",
+      kpis: [
+        { label_en: "Incident resolution time" },
+        { label_en: "Tracked assets" },
+        { label_en: "System availability" }
+      ],
+      context: "As IT support requests and interactions with SAP S/4HANA grew, the company needed one platform to coordinate maintenance, allocate equipment, and track tickets in line with GxP standards.",
+      architecture: "The multi-tier architecture uses a TypeScript client built with React and Ant Design, a modular Express REST backend with Sequelize, and a relational MySQL database. PowerShell scripts automate interactions with local infrastructure and Windows services.",
+      challenges: [
+        "Reconcile ticket data with SAP S/4HANA functional location and equipment hierarchies.",
+        "Maintain strict traceability and regulatory compliance through tamper-resistant audit trails.",
+        "Optimize response times for dynamic filtering across thousands of assets and activity logs."
+      ],
+      solution: "Implemented indexing and caching middleware, normalized relational schemas with strict foreign keys, and provided a bilingual FR/EN interface for field and administrative teams.",
+      impact: "Eliminated informal requests via messaging, achieved 100% traceability of assigned workstations, and accelerated coordination between technical teams and SAP administrators."
+    }
+  },
+  102: {
+    title_en: "Restaurant POS — Nesto (Offline-First POS & Cloud Sync)",
+    tagline_en: "Point-of-sale system for high-volume restaurants with 100% offline operation and bidirectional cloud synchronization.",
+    description_en: "Full point-of-sale solution featuring a fast, resilient Electron desktop app, touchscreen ordering, automatic kitchen and bar ticket printing, and a Fastify cloud API with a management analytics dashboard.",
+    category_label_en: "Desktop & Cloud Architecture",
+    repository_note_en: "Hybrid architecture designed for high availability in food service.",
+    features_en: [
+      "Standalone offline operation that continues through Internet outages",
+      "Touchscreen ordering with variants, add-ons, and meal deals",
+      "Simultaneous print routing to the kitchen and bar via the ESC/POS thermal printing protocol",
+      "Automatic incremental synchronization across nodes when connectivity returns",
+      "Split payments across cash, card, and loyalty cards, with end-of-day Z reports",
+      "Web dashboard for managers with sales reports, average order value, and inventory tracking"
+    ],
+    case_study_en: {
+      client: "Restaurants & Franchises",
+      role: "Software Architect & Lead Developer",
+      period: "2024",
+      kpis: [
+        { label_en: "Checkout time" },
+        { label_en: "Network outage tolerance" },
+        { label_en: "Local response time" }
+      ],
+      context: "Internet outages cannot interrupt ordering or kitchen operations. The client needed a fast terminal that could process payments locally and centralize statistics for management.",
+      architecture: "The offline-first Electron terminal uses React and embedded SQLite, with local transaction writes in microseconds. A background worker sends data in batches to a Fastify and PostgreSQL cloud API once connectivity returns.",
+      challenges: [
+        "Resolve data conflicts deterministically during asynchronous synchronization across registers.",
+        "Communicate reliably with thermal receipt printers over serial, USB, and LAN connections using ESC/POS frames.",
+        "Keep the interface responsive during peaks of 300+ orders per hour."
+      ],
+      solution: "Implemented idempotent events with vector timestamps, a hardware connection pool monitored by heartbeats, and optimized React state management to avoid unnecessary renders.",
+      impact: "Recorded zero service interruptions during network outages, improved checkout speed by 35% at peak times, and provided consolidated real-time financial reporting for owners."
+    }
+  },
+  107: {
+    title_en: "SAP-Tools — Windows Fleet Automation & Auditing Suite",
+    tagline_en: "Deployment automation, live hardware inventory, and security hardening for industrial Windows fleets.",
+    description_en: "Distributed administration toolkit built with Ansible, WinRM, and PowerShell for comprehensive remote hardware and software audits, silent deployment of business applications, and security hardening without end-user interruption.",
+    category_label_en: "DevOps & IT Infrastructure",
+    repository_note_en: "Administration toolkit designed for industrial and pharmaceutical environments.",
+    features_en: [
+      "Automated agentless hardware and software inventory via WinRM",
+      "Silent bulk deployment of software suites, certificates, and SAP GUI clients",
+      "Security compliance audit reports and detection of outdated software versions",
+      "Ansible playbook execution via interactive operator menus for support technicians",
+      "Centralized patch management and compliance monitoring for factory workstations"
+    ],
+    case_study_en: {
+      client: "Industrial Infrastructure & SAP Workstations",
+      role: "Systems & Automation Engineer",
+      period: "2024",
+      kpis: [
+        { label_en: "Fleet audit time" },
+        { label_en: "Managed workstations" },
+        { label_en: "Compliance rate" }
+      ],
+      context: "Manual maintenance of a distributed fleet connected to manufacturing stations and SAP terminals caused delays and inconsistent software versions. The team needed fast orchestration with minimal disruption.",
+      architecture: "A Linux Docker controller hosts Ansible playbooks and Python orchestration scripts. WinRM uses HTTPS/TLS to communicate with Windows servers and workstations.",
+      challenges: [
+        "Handle firewall traversal and Kerberos / Active Directory permissions while maintaining security.",
+        "Support Windows 10, Windows 11, and Windows Server 2016 through 2022.",
+        "Prevent regressions and avoid unexpected restarts on production machines."
+      ],
+      solution: "Used idempotent PowerShell scripts that validate target state before changes, centralized dynamic inventories, and generated HTML and CSV reports for IT management.",
+      impact: "Reduced inventory time from 3 days to under 20 minutes, eliminated security gaps linked to outdated software, and standardized the fleet."
+    }
+  },
+  103: {
+    title_en: "HSE Platform — Health, Safety & Environment",
+    tagline_en: "Web platform for digitizing industrial safety protocols, managing risks, and conducting environmental audits.",
+    description_en: "Enterprise application for submitting incident and near-miss reports, tracking corrective actions (CAPA), maintaining regulatory compliance matrices, and generating management reports automatically.",
+    category_label_en: "HSE Business Application",
+    repository_note_en: "Industrial compliance and risk prevention solution.",
+    features_en: [
+      "Incident and near-miss reporting with photographic evidence",
+      "Occupational risk and severity assessment matrix aligned with ISO 14001 / 45001",
+      "Corrective and preventive action (CAPA) plans with email reminders and milestones",
+      "One-click generation of Excel audit reports and summary presentations",
+      "Multilingual interface for field teams in French, English, and Arabic",
+      "Visual dashboards for key indicators, including frequency and severity rates"
+    ],
+    case_study_en: {
+      client: "Industrial Sites & Production Units",
+      role: "Full-Stack Developer & Business Process Modeler",
+      period: "2023 - 2024",
+      kpis: [
+        { label_en: "Incident reporting time" },
+        { label_en: "CAPA closure rate" },
+        { label_en: "Administrative time saved", value_en: "15h / week" }
+      ],
+      context: "Incident reports and risk management relied on separate spreadsheets and paper forms, delaying responses to hazards and complicating quality certification audits.",
+      architecture: "Responsive React application with Tailwind CSS and Recharts. An Express REST backend uses JWT authentication and Joi schema validation, with MySQL transactions to protect audit data integrity.",
+      challenges: [
+        "Make mobile data entry easy for shop-floor operators while collecting reliable structured data.",
+        "Preserve layout and content when exporting complex Excel workbooks and signed PDF forms.",
+        "Calculate incident statistics in real time for the HSE committee."
+      ],
+      solution: "Designed a guided form with lightweight offline support, integrated styled Excel workbook generation with ExcelJS, and cached monthly indicators.",
+      impact: "Improved response times to equipment issues, increased field team participation, and passed ISO compliance audits without reservations."
+    }
+  },
+  104: {
+    title_en: "DoctorSIM — Occupational Health & Workplace Clinic System",
+    tagline_en: "Digital management of fitness-for-work examinations, workplace clinic care, and employee health trends.",
+    description_en: "Secure occupational health records with scheduling for periodic and pre-employment examinations, workplace exemptions and fitness decisions, clinic care scheduling, and anonymized health statistics.",
+    category_label_en: "Occupational Health & GDPR",
+    repository_note_en: "System designed to meet occupational health confidentiality requirements.",
+    features_en: [
+      "Electronic health records with medical history, vaccinations, and job-specific contraindications",
+      "Scheduling and automatic reminders for mandatory pre-employment, return-to-work, and annual examinations",
+      "Daily nursing care logs and tracking of pharmacy stock usage",
+      "Immediate generation of signed fitness-for-work certificates with QR code verification",
+      "Strict segregation of confidential medical records from HR data",
+      "Epidemiological statistics and analysis of high-risk roles for preventive care"
+    ],
+    case_study_en: {
+      client: "Occupational Health Service & Human Resources",
+      role: "Lead Full-Stack Developer",
+      period: "2024",
+      kpis: [
+        { label_en: "Examinations up to date" },
+        { label_en: "Certificate generation time", value_en: "3 seconds" },
+        { label_en: "Security & medical confidentiality" }
+      ],
+      context: "Tracking hundreds of employees required a reliable way to anticipate fitness certificate renewals and keep confidential medical information out of HR workflows.",
+      architecture: "Modular React and TypeScript frontend with a Node.js / Express API, encryption for sensitive medical fields, and role-based access for clinicians, nurses, and HR administrators.",
+      challenges: [
+        "Comply with rules governing personal health data.",
+        "Automate examination scheduling for high-risk roles involving heights, chemicals, or noise.",
+        "Generate secure, tamper-resistant PDF forms."
+      ],
+      solution: "Implemented AES encryption at rest for diagnoses, an anonymized HR interface showing only fit or unfit status, and browser-based vector PDF generation.",
+      impact: "Eliminated overdue examinations, made emergency care fully traceable, and eased labor inspection reviews."
+    }
+  },
+  108: {
+    title_en: "IoT Platform for Fleet Tracking & Telematics",
+    tagline_en: "Real-time ingestion from GPS devices and industrial CAN modules for vehicle tracking and fuel-efficient driving.",
+    description_en: "High-precision telematics system developed at Ide-Net. Processes packet streams from hundreds of GPS/CAN devices, monitors fuel consumption and harsh braking, and provides geofencing and real-time mapping.",
+    category_label_en: "Node.js, IoT & Telematics",
+    repository_note_en: "Developed in an industrial setting at SARL Ide-Net Géolocalisation.",
+    features_en: [
+      "High-throughput TCP/UDP ingestion server for binary GPS frames and CAN bus signals",
+      "Microsecond decoding of vehicle parameters including speed, RPM, fuel level, and temperature",
+      "Geofencing with immediate alerts for zone exits and speeding",
+      "Real-time interactive maps with detailed trip history",
+      "Automated fuel consumption, eco-driving score, and engine idling reports",
+      "Containerized distributed architecture built to scale across customers"
+    ],
+    case_study_en: {
+      client: "SARL Ide-Net Géolocalisation / Logistics Fleets",
+      role: "Full-Stack Software & IoT Systems Engineer",
+      period: "2023 - 2024",
+      kpis: [
+        { label_en: "Data ingestion throughput", value_en: "10 000+ frames/min" },
+        { label_en: "Customer fuel savings" },
+        { label_en: "Map display latency" }
+      ],
+      context: "Carriers and fleet managers needed continuous visibility into vehicle locations, mechanical condition, and fuel consumption to reduce costs and protect cargo.",
+      architecture: "An asynchronous Node.js ingestion pipeline listens on low-level network sockets. A TypeScript binary parser and optimized PostgreSQL time-series storage back the REST API used by an interactive Leaflet map.",
+      challenges: [
+        "Handle network outages in coverage gaps by buffering frames on the onboard device.",
+        "Parse high-volume traffic from Teltonika, Ruptela, and Queclink devices without blocking ingestion.",
+        "Run efficient point-in-polygon calculations for complex geofence alerts."
+      ],
+      solution: "Used asynchronous Node.js Streams, spatial indexes and optimized geographic queries, and durable queues to prevent telemetry loss.",
+      impact: "Tracked hundreds of vehicles around the clock, demonstrated an 18% reduction in fuel spending through eco-driving, and shortened response times to delivery incidents."
+    }
+  },
+  109: {
+    title_en: "AI & Irrigation Forecasting — Master's Research in Data Science & IoT",
+    tagline_en: "Machine learning model that estimates optimal crop water needs through evapotranspiration.",
+    description_en: "Computer science master's research project using machine learning trained on weather time series covering temperature, humidity, wind, and sunshine to predict reference evapotranspiration (ET0) and automate precision irrigation.",
+    category_label_en: "Python, AI & Agronomy",
+    repository_note_en: "Master's capstone project in Parallel and Embedded Computing.",
+    features_en: [
+      "Reference evapotranspiration (ET0) calculation using the FAO-56 Penman-Monteith equation",
+      "Training and comparison of regression models including Random Forest, SVR, and Gradient Boosting",
+      "Historical weather data pipeline for cleaning, outlier imputation, and normalization",
+      "Forecasting of irrigation schedules to conserve water",
+      "Statistical visualization of climate correlations and analysis of feature importance"
+    ],
+    case_study_en: {
+      client: "University of Oran 1 / Embedded Systems & AI Research",
+      role: "Computer Science Researcher & AI Developer",
+      period: "2022",
+      kpis: [
+        { label_en: "Prediction R²" },
+        { label_en: "Simulated water savings" },
+        { label_en: "Inference time" }
+      ],
+      context: "Growing water stress called for irrigation strategies that maximize crop yields and preserve groundwater. Fixed irrigation schedules waste substantial amounts of water.",
+      architecture: "Python data pipeline using Pandas and NumPy for weather feature engineering, Scikit-Learn for predictive modeling and evaluation, and Seaborn and Matplotlib for performance reporting.",
+      challenges: [
+        "Address missing and discontinuous solar sensor readings in raw datasets.",
+        "Model the nonlinear interaction of temperature and relative humidity in evaporation.",
+        "Keep the model small enough to run on a low-power IoT irrigation microcontroller."
+      ],
+      solution: "Optimized a Random Forest ensemble through cross-validation, reduced inputs to the most accessible weather variables, and calibrated the model against field agronomic data.",
+      impact: "The computer science master's project earned a distinction, predicted water requirements with an R² of 0.94, and demonstrated potential water savings of over 30%."
+    }
+  },
+  110: {
+    title_en: "Walid Dashboard — Administration & Analytics",
+    tagline_en: "Responsive business dashboard with dynamic charts, KPI widgets, and modern state management.",
+    description_en: "React and Tailwind CSS administration app with real-time performance charts, multi-criteria filters, user profile management, and sortable, paginated data tables.",
+    category_label_en: "React & Analytics UI",
+    repository_note_en: "Open-source repository available on the @Waliddjla GitHub profile.",
+    features_en: [
+      "KPI widgets with percentage progress and visual trend indicators",
+      "Interactive sales and operations charts with custom tooltips",
+      "Searchable data table with column sorting and pagination",
+      "Responsive interface for phones, tablets, and large screens with dark mode"
+    ],
+    case_study_en: {
+      client: "Personal Project & Technical Showcase",
+      role: "Frontend Engineer",
+      period: "2023",
+      kpis: [
+        { label_en: "Google Lighthouse score" },
+        { label_en: "Mobile compatibility" },
+        { label_en: "No heavyweight dependencies", value_en: "Optimized" }
+      ],
+      context: "A usability and user experience demonstration for ERP and CRM dashboards.",
+      architecture: "React function components with useMemo and useCallback hooks, Tailwind CSS utility layouts, and high-speed SVG chart rendering.",
+      challenges: ["Maintain smooth 60 FPS rendering while charts update dynamically."],
+      solution: "Optimized the DOM tree, extracted reusable UI components, and built modular light and dark themes.",
+      impact: "Provides a design system reference for internal business projects and monitoring applications."
+    }
+  }
+};
+
+for (const project of featuredProjects) {
+  const translation = englishProjects[project.id];
+  translation.case_study_en.kpis = translation.case_study_en.kpis.map((kpi, index) => {
+    const { value, icon } = project.case_study.kpis[index];
+    return { ...kpi, value, icon };
+  });
+  Object.assign(project, translation);
+}
+
 if (typeof module !== "undefined" && module.exports) module.exports = featuredProjects;
 if (typeof window !== "undefined") window.featuredProjects = featuredProjects;

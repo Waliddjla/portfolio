@@ -1,4 +1,5 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+// Generated from app.jsx.
+"use strict";
 /**
  * app.jsx
  * Application React 18 pour le Portfolio Dynamique de Walid Djellali
@@ -10,2899 +11,2194 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
  * - Explorateur de code GitHub
  * - CV interactif prêt à l'impression / export PDF
  */
-
-const {
-  useState,
-  useEffect,
-  useMemo
-} = React;
-const fallbackData = {
-  profile: {
-    name: "Walid Djellali",
-    title: "SAP Functional Analyst | Full Stack Software Engineer",
-    location: "Oran, Algérie",
-    email: "walidjellali32@gmail.com",
-    phone: "+213 676 958 671",
-    linkedin: "https://www.linkedin.com/in/waliddjellali/",
-    github: "https://github.com/Waliddjla",
-    bio: "Analyste fonctionnel SAP et ingénieur logiciel diplômé d’un Master en informatique. Expérience confirmée dans le déploiement d’ERP SAP S/4HANA (PM & MM), l’administration de systèmes IT et le développement Full-Stack (Node.js, TypeScript, React). Combine rigueur analytique métier et maîtrise technique pour concevoir des solutions numériques pratiques et pérennes.",
-    availability: "Disponible pour opportunités SAP & Développement Full-Stack"
-  },
-  experiences: [{
-    id: 1,
-    role: "SAP Functional Analyst",
-    company: "Orionlab",
-    period: "Poste actuel",
-    description: "Support et intégration des processus SAP S/4HANA 2023 avec focus Plant Maintenance (PM) et Materials Management (MM).",
-    bullets: ["Prise en charge des activités fonctionnelles SAP S/4HANA, pilotage du module PM et support utilisateurs sur les flux MM.", "Collaboration avec l'ingénierie, la validation et l'intégrateur SAP pour clarifier les exigences de maintenance et réviser le Business Blueprint (BBP) PM.", "Revue et validation des données de base (Equipment, Functional Locations) avant migration (détection des erreurs de longueur, hiérarchies et références manquantes).", "Participation à la planification de la maintenance préventive, calibration, qualifications, gammes d'opérations (Task Lists) et ordonnancement des ordres de travail.", "Coordination des besoins d'impression d'ordres de maintenance et des caractéristiques QM avec les équipes métier.", "Support à l'administration des utilisateurs SAP, habilitations de rôles et accès Fiori ; développement d'applications internes de digitalisation."]
-  }, {
-    id: 2,
-    role: "IT Systems Engineer",
-    company: "ACG SIM SPA",
-    period: "2024",
-    description: "Gestion, sécurisation des systèmes d'information et contribution au déploiement ERP SAP.",
-    bullets: ["Administration et maintien en condition opérationnelle des systèmes IT, gestion de la sécurité, des sauvegardes et de l'intégrité du parc.", "Contribution à l'implémentation et au support de l'ERP SAP pour aligner les besoins métiers avec les processus système.", "Diagnostic des dysfonctionnements matériels et logiciels, optimisation de l'infrastructure et développement de solutions logicielles internes."]
-  }, {
-    id: 3,
-    role: "Full Stack Software Engineer",
-    company: "SARL Ide-Net Géolocalisation",
-    period: "2023 – 2024",
-    description: "Conception et développement de plateformes de suivi et géolocalisation IoT / télématique.",
-    bullets: ["Conception et développement de plateformes de géolocalisation et de suivi de flotte avec APIs REST en Node.js et TypeScript.", "Intégration d'appareils GPS et de boîtiers CAN dans les solutions de tracking, optimisation des algorithmes backend et des requêtes SQL.", "Collaboration étroite avec des équipes pluridisciplinaires pour traduire les exigences opérationnelles en fonctionnalités logicielles robustes."]
-  }, {
-    id: 4,
-    role: "IT Engineer – Network and Support",
-    company: "SARL Gesco Climatisation",
-    period: "2023",
-    description: "Administration de l'infrastructure réseau, support utilisateur et déploiements IT.",
-    bullets: ["Administration et supervision de l'infrastructure réseau, résolution des incidents systèmes/réseau et assistance support utilisateurs (helpdesk).", "Participation aux améliorations d'infrastructures et aux déploiements informatiques stratégiques."]
-  }],
-  skills: [{
-    category: "SAP & ERP",
-    name: "SAP S/4HANA 2023"
-  }, {
-    category: "SAP & ERP",
-    name: "SAP PM (Plant Maintenance)"
-  }, {
-    category: "SAP & ERP",
-    name: "SAP MM (Materials Management)"
-  }, {
-    category: "SAP & ERP",
-    name: "SAP Fiori"
-  }, {
-    category: "SAP & ERP",
-    name: "Business Blueprint (BBP)"
-  }, {
-    category: "SAP & ERP",
-    name: "Preventive Maintenance & Calibration"
-  }, {
-    category: "SAP & ERP",
-    name: "Master Data Migration"
-  }, {
-    category: "Frontend",
-    name: "React"
-  }, {
-    category: "Frontend",
-    name: "Next.js"
-  }, {
-    category: "Frontend",
-    name: "TypeScript"
-  }, {
-    category: "Frontend",
-    name: "JavaScript (ES6+)"
-  }, {
-    category: "Frontend",
-    name: "Tailwind CSS"
-  }, {
-    category: "Frontend",
-    name: "HTML5 / CSS3 / Bootstrap"
-  }, {
-    category: "Backend & Languages",
-    name: "Node.js"
-  }, {
-    category: "Backend & Languages",
-    name: "REST APIs"
-  }, {
-    category: "Backend & Languages",
-    name: "PHP / Laravel"
-  }, {
-    category: "Backend & Languages",
-    name: "Python / Django"
-  }, {
-    category: "Backend & Languages",
-    name: "Java"
-  }, {
-    category: "Databases & Systems",
-    name: "SQLite"
-  }, {
-    category: "Databases & Systems",
-    name: "MySQL"
-  }, {
-    category: "Databases & Systems",
-    name: "SQL Server"
-  }, {
-    category: "Databases & Systems",
-    name: "MongoDB"
-  }, {
-    category: "Databases & Systems",
-    name: "Docker & Linux Ubuntu"
-  }, {
-    category: "Databases & Systems",
-    name: "Windows Server"
-  }, {
-    category: "Databases & Systems",
-    name: "Cisco Networking (CCNA)"
-  }],
-  projects: window.featuredProjects || [],
-  education: [{
-    degree: "Master en Informatique (Informatique Parallèle et Embarquée)",
-    institution: "Université d'Oran 1 Ahmed Ben Bella",
-    period: "2020 – 2022",
-    details: "Systèmes distribués, calcul parallèle haute performance, systèmes embarqués et algorithmes avancés."
-  }, {
-    degree: "Licence en Systèmes Informatiques",
-    institution: "Université d'Oran 1 Ahmed Ben Bella",
-    period: "2016 – 2020",
-    details: "Fondements du génie logiciel, réseaux, bases de données relationnelles, systèmes d'exploitation."
-  }, {
-    degree: "Certification Cisco CCNA v7 (Réseaux & Routage)",
-    institution: "Cisco Networking Academy",
-    period: "2023",
-    details: "Configuration de commutateurs/routeurs Cisco, adressage IP, VLAN, routage OSPF et sécurité réseau."
-  }]
+const { useState, useEffect, useLayoutEffect, useRef } = React;
+function Icon({ name, className }) {
+    const container = useRef(null);
+    useLayoutEffect(() => {
+        const placeholder = document.createElement("i");
+        placeholder.dataset.lucide = name;
+        placeholder.className = className;
+        container.current.replaceChildren(placeholder);
+    }, [name, className]);
+    return React.createElement("span", { ref: container, className: "inline-flex shrink-0", "aria-hidden": "true" });
+}
+// Composants d'icônes SVG haute définition pour LinkedIn et GitHub
+const LinkedInIcon = ({ className = "w-4 h-4" }) => (React.createElement("svg", { className: className, fill: "currentColor", viewBox: "0 0 24 24", "aria-hidden": "true" },
+    React.createElement("path", { d: "M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.6 1.6 0 0 0-1.6 1.6 1.6 1.6 0 0 0 1.6 1.6 1.6 1.6 0 0 0 1.6-1.6 1.6 1.6 0 0 0-1.6-1.6Z" })));
+const GitHubIcon = ({ className = "w-4 h-4" }) => (React.createElement("svg", { className: className, fill: "currentColor", viewBox: "0 0 24 24", "aria-hidden": "true" },
+    React.createElement("path", { fillRule: "evenodd", clipRule: "evenodd", d: "M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" })));
+// Dictionnaire bilingue Français / Anglais (i18n)
+const translations = {
+    fr: {
+        nav: {
+            journey: "Parcours",
+            sap: "Modules SAP",
+            skills: "Compétences",
+            projects: "Projets",
+            github: "Hub GitHub",
+            education: "Formations",
+            contact: "Contact",
+            resume: "Mon CV",
+            admin: "Admin",
+            sqlite_active: "SQLite Actif"
+        },
+        hero: {
+            header_role: "Analyste SAP & Full-Stack",
+            badge: "Disponible pour opportunités SAP & Développement Full-Stack",
+            contact_linkedin: "Me contacter sur LinkedIn",
+            view_resume: "Consulter mon CV (PDF)",
+            explore_projects: "Explorer mes Projets"
+        },
+        sap: {
+            badge: "Intégration ERP SAP S/4HANA",
+            title: "Modules SAP Intégrés : PM • MM • QM",
+            subtitle: "Présentation des modules SAP S/4HANA intégrés et déployés par Walid dans le cadre de ses missions chez Orion Lab et ACG SIM.",
+            all_modules: "Tous les modules",
+            module_prefix: "Module",
+            role_orion: "Rôle chez Orion Lab",
+            role_acg: "Rôle chez ACG SIM",
+            flow_title: "Flux d'intégration, en une ligne",
+            flow_subtitle: "Communication transversale continue entre PM, MM et QM",
+            flow_badge: "Flux Inter-Modules SAP"
+        },
+        skills: {
+            names: {
+                "Preventive Maintenance & Calibration": "Maintenance préventive et étalonnage",
+                "Master Data Migration": "Migration des données de base",
+                "Migration & Master Data": "Migration et données de base"
+            },
+            badge: "Stack Technique & Métier",
+            title: "Compétences Clés & Expertise"
+        },
+        projects: {
+            badge: "Portfolio & Réalisations",
+            title: "Projets Phares & Applications Métier"
+        },
+        common: {
+            linkedin: "LinkedIn",
+            github: "GitHub",
+            close: "Fermer",
+            delete: "Supprimer",
+            cancel: "Annuler",
+            edit: "Modifier",
+            resume: "CV (PDF)",
+            top: "Haut",
+            linkedin_profile: "Profil LinkedIn",
+            github_repositories: "Dépôts GitHub",
+            copyright: "Tous droits réservés."
+        },
+        navigation: {
+            linkedin: "Consulter le profil LinkedIn de Walid",
+            github: "Explorer le GitHub de Walid (@Waliddjla)",
+            resume: "Consulter et imprimer le CV en PDF",
+            admin: "Console d'Administration du Portfolio",
+            database: "Base SQLite native connectée",
+            theme: "Basculer le thème",
+            menu: "Ouvrir le menu",
+            language: "Langue / Language",
+            language_toggle: "Switch to English"
+        },
+        experience: {
+            badge: "Expérience Professionnelle",
+            title: "Parcours & Réalisations Métier",
+            subtitle: "Expérience confirmée alliant la maîtrise fonctionnelle des processus SAP et le développement d'applications critiques."
+        },
+        education: {
+            badge: "Diplômes & Certifications",
+            title: "Formation Académique & Accréditations"
+        },
+        portfolio: {
+            subtitle: "Chaque projet intègre une analyse technique approfondie : contexte industriel, architecture système, défis surmontés et indicateurs de performance (KPIs).",
+            case_study: "Étude de cas",
+            detail: "Détails & Architecture",
+            code: "Code source",
+            sap: "Modules SAP Intégrés"
+        },
+        repos: {
+            descriptions: {
+                "Waliddjla": "README de profil",
+                "portfolio": "Portfolio de Walid Djellali",
+                "connect-walid": "Jeu de connexion réalisé en React",
+                "quizz": "Quiz simple en HTML et CSS",
+                "walid": "Application web d’information sur la connexion Wi-Fi",
+                "brookly": "Conception UX pour une librairie",
+                "master-project": "Prévision d’un plan d’irrigation par intelligence artificielle à partir de l’évapotranspiration",
+                "authentification": "Projet d’authentification en JavaScript, HTML et CSS",
+                "mpi-matrix-multiplication": "Multiplication de matrices avec MPI"
+            },
+            badge: "Écosystème Open Source",
+            title: "Explorateur de Code GitHub (@Waliddjla)",
+            subtitle: "Recherchez et filtrez en direct parmi l'ensemble des dépôts créés par Walid Djellali sur GitHub.",
+            search: "Rechercher un dépôt (react, dashboard, api, iot...)...",
+            open: "Explorer le code",
+            all: "Voir l'ensemble des dépôts sur GitHub (@Waliddjla)",
+            untagged: "Projet",
+            description: "Dépôt de développement hébergé sur le profil de Walid Djellali."
+        },
+        contact: {
+            badge: "Opportunités & Missions",
+            title: "Prendre Contact avec Walid",
+            subtitle: "Disponible pour échanger sur des opportunités en intégration SAP S/4HANA (PM & MM) ou en développement Full-Stack.",
+            name: "Votre Nom / Entreprise *",
+            email: "Votre Email *",
+            subject: "Objet de votre demande",
+            message: "Message détaillé *",
+            name_placeholder: "Ex: Direction IT / Recruteur",
+            email_placeholder: "nom@entreprise.com",
+            subject_placeholder: "Opportunité SAP S/4HANA / Projet Full-Stack...",
+            message_placeholder: "Présentez brièvement vos besoins ou le poste envisagé...",
+            sending: "Enregistrement dans SQLite...",
+            send: "Envoyer le message"
+        },
+        modal: {
+            certified: "Étude de cas certifiée",
+            kpis: "Indicateurs de Performance Clés (KPIs)",
+            client: "Client / Organisation :",
+            role: "Rôle de Walid :",
+            period: "Période :",
+            context: "Contexte & Enjeux Métier",
+            architecture: "Architecture Technique & Flux de Données",
+            features: "Fonctionnalités Majeures Développées",
+            challenges: "Défis Complexes & Résolutions Techniques",
+            solution: "Approche & Résolution :",
+            impact: "Impact Opérationnel & Valeur Ajoutée",
+            technologies: "Technologies & Outils Employés",
+            source: "Explorer le code source"
+        },
+        admin: {
+            mobile: "Console d'Administration Portfolio",
+            title: "Console d'Administration",
+            lock: "Verrouiller",
+            logout: "Se déconnecter",
+            online: "En ligne",
+            subtitle: "Gestion directe de la base de données SQLite (portfolio.db)",
+            private: "Espace Réservé à Walid Djellali",
+            instructions: "Veuillez saisir le code PIN d'administration pour gérer vos messages, votre statut de disponibilité et vos projets SQLite.",
+            pin: "Code PIN d’accès",
+            unlock: "Déverrouiller la Console",
+            messages: "Messages Reçus",
+            projects: "Projets Enregistrés",
+            db_size: "Taille BDD SQLite",
+            runtime: "Moteur Node.js",
+            quick: "Changement Rapide du Statut de Disponibilité",
+            current: "Statut actuel :",
+            refresh: "Actualiser",
+            empty_inbox: "Aucun message dans la table SQLite pour le moment.",
+            recent: "Récemment",
+            reply: "Répondre par email",
+            reply_subject: "Votre message",
+            mark_read: "Marquer lu",
+            mark_unread: "Marquer non-lu",
+            profile_title: "Titre Professionnel",
+            availability: "Statut de Disponibilité",
+            phone: "Téléphone",
+            email: "Email",
+            location: "Localisation",
+            bio: "Bio / Résumé de Présentation",
+            save_profile: "Enregistrer les Modifications dans SQLite",
+            add_project: "Ajouter un Projet",
+            new_project: "Ajouter un Nouveau Projet",
+            edit_project: "Modifier le Projet",
+            project_title: "Titre du Projet",
+            category: "Catégorie",
+            category_label: "Label Catégorie",
+            tagline: "Phrase d'accroche (Tagline)",
+            description: "Description",
+            image: "Image URL",
+            github_link: "Lien GitHub",
+            demo_link: "Lien Démo",
+            tags: "Technologies (séparées par virgule)",
+            features: "Fonctionnalités clés (1 par ligne)",
+            category_example: "Ex: Full-Stack & IT Management",
+            tagline_example: "Une phrase résumant l'impact du projet...",
+            features_example: "Fonctionnalité 1\nFonctionnalité 2",
+            save: "Enregistrer dans SQLite",
+            inbox: "Boîte de Réception",
+            catalog: "Catalogue des Projets SQLite",
+            db_messages: "messages dans portfolio.db",
+            size_unit: "Ko",
+            overview: "Vue d'ensemble",
+            profile_tab: "Profil & Disponibilité",
+            projects_tab: "Gestion des Projets"
+        },
+        cv: {
+            title: "Curriculum Vitae",
+            subtitle: "Format professionnel prêt à l'impression ou sauvegarde PDF",
+            print: "Imprimer / PDF",
+            summary: "Synthèse Professionnelle",
+            experience: "Parcours Professionnel",
+            skills: "Compétences & Outils",
+            education: "Formations & Certifications"
+        },
+        toasts: {
+            confirm_message: id => `Confirmer la suppression du message #${id} ?`,
+            message_deleted: id => `🗑️ Message #${id} supprimé.`,
+            confirm_project: title => `Supprimer le projet « ${title} » de la base SQLite ?`,
+            project_deleted: title => `🗑️ Projet « ${title} » supprimé de SQLite.`,
+            status_saved: status => `🟢 Statut mis à jour : ${status.fr}`,
+            login: "🔓 Authentification réussie ! Bienvenue dans l'administration.",
+            logout: "Verrouillage de l'espace administration.",
+            session_expired: "Session expirée. Reconnectez-vous.",
+            invalid_pin: "Code PIN incorrect.",
+            login_limit: "Trop de tentatives. Réessayez plus tard.",
+            login_error: "Erreur de connexion au serveur.",
+            message_error: "Erreur lors de la suppression du message.",
+            profile_saved: "✅ Profil et disponibilité mis à jour dans SQLite !",
+            profile_error: "Erreur lors de la mise à jour du profil.",
+            project_delete_error: "Erreur lors de la suppression du projet.",
+            project_save_error: "Erreur lors de l'enregistrement du projet.",
+            project_updated: "✅ Projet modifié dans SQLite.",
+            project_added: "✅ Projet ajouté dans SQLite.",
+            contact_sent: "✅ Message enregistré dans la base SQLite ! Walid vous répondra sous 24h.",
+            contact_error: "Impossible d’envoyer le message. Réessayez."
+        },
+        nav_items: [
+            {
+                anchor: "experience",
+                label: "Parcours",
+                icon: "briefcase"
+            },
+            {
+                anchor: "sap-workflow",
+                label: "Modules SAP",
+                icon: "workflow"
+            },
+            {
+                anchor: "skills",
+                label: "Compétences",
+                icon: "layers"
+            },
+            {
+                anchor: "projects",
+                label: "Projets",
+                icon: "folder-code"
+            },
+            {
+                anchor: "github-explorer",
+                label: "Hub GitHub",
+                icon: "github"
+            },
+            {
+                anchor: "education",
+                label: "Formations",
+                icon: "graduation-cap"
+            },
+            {
+                anchor: "contact",
+                label: "Contact",
+                icon: "mail"
+            }
+        ],
+        skill_groups: [
+            {
+                category: "SAP & ERP",
+                label: "SAP & Processus ERP",
+                icon: "cpu",
+                frame: "border-blue-500/20",
+                badge: "bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400",
+                pill: "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300"
+            },
+            {
+                category: "Frontend",
+                label: "Frontend & React",
+                icon: "layout",
+                frame: "border-indigo-500/20",
+                badge: "bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400",
+                pill: "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300"
+            },
+            {
+                category: "Backend & Languages",
+                label: "Backend & APIs",
+                icon: "server",
+                frame: "border-purple-500/20",
+                badge: "bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400",
+                pill: "bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300"
+            },
+            {
+                category: "Databases & Systems",
+                label: "Bases de Données & Réseau",
+                icon: "database",
+                frame: "border-emerald-500/20",
+                badge: "bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400",
+                pill: "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300"
+            }
+        ],
+        project_filters: [
+            {
+                id: "all",
+                label: "Tous les projets"
+            },
+            {
+                id: "software",
+                label: "Full-Stack & Systèmes"
+            },
+            {
+                id: "sap",
+                label: "SAP & Infrastructure"
+            },
+            {
+                id: "data",
+                label: "Data Science & IA"
+            },
+            {
+                id: "react",
+                label: "React & UI"
+            }
+        ],
+        repo_filters: [
+            {
+                id: "all",
+                label: "Tous"
+            },
+            {
+                id: "javascript",
+                label: "JavaScript"
+            },
+            {
+                id: "html",
+                label: "HTML/CSS"
+            },
+            {
+                id: "python",
+                label: "Python"
+            }
+        ]
+    },
+    en: {
+        nav: {
+            journey: "Experience",
+            sap: "SAP Modules",
+            skills: "Skills",
+            projects: "Projects",
+            github: "GitHub Hub",
+            education: "Education",
+            contact: "Contact",
+            resume: "My Resume",
+            admin: "Admin",
+            sqlite_active: "SQLite Active"
+        },
+        hero: {
+            header_role: "SAP Analyst & Full-Stack",
+            badge: "Available for SAP & Full-Stack Development opportunities",
+            contact_linkedin: "Contact me on LinkedIn",
+            view_resume: "View my Resume (PDF)",
+            explore_projects: "Explore my Projects"
+        },
+        sap: {
+            badge: "SAP S/4HANA ERP Integration",
+            title: "Integrated SAP Modules: PM • MM • QM",
+            subtitle: "Overview of SAP S/4HANA modules integrated and deployed by Walid during his missions at Orion Lab and ACG SIM.",
+            all_modules: "All modules",
+            module_prefix: "Module",
+            role_orion: "Role at Orion Lab",
+            role_acg: "Role at ACG SIM",
+            flow_title: "Integration flow, in a single line",
+            flow_subtitle: "Continuous transversal communication between PM, MM, and QM",
+            flow_badge: "SAP Inter-Module Flow"
+        },
+        skills: {
+            names: {
+                "Maintenance Préventive & Ordres de Travail": "Preventive Maintenance & Work Orders"
+            },
+            badge: "Technical & Functional Stack",
+            title: "Key Skills & Expertise"
+        },
+        projects: {
+            badge: "Portfolio & Deliverables",
+            title: "Featured Projects & Business Apps"
+        },
+        common: {
+            linkedin: "LinkedIn",
+            github: "GitHub",
+            close: "Close",
+            delete: "Delete",
+            cancel: "Cancel",
+            edit: "Edit",
+            resume: "Résumé (PDF)",
+            top: "Back to top",
+            linkedin_profile: "LinkedIn profile",
+            github_repositories: "GitHub repositories",
+            copyright: "All rights reserved."
+        },
+        navigation: {
+            linkedin: "View Walid’s LinkedIn profile",
+            github: "Explore Walid’s GitHub (@Waliddjla)",
+            resume: "View and print the résumé as PDF",
+            admin: "Portfolio administration console",
+            database: "Connected to SQLite",
+            theme: "Toggle theme",
+            menu: "Open menu",
+            language: "Language / Langue",
+            language_toggle: "Passer en français"
+        },
+        experience: {
+            badge: "Professional experience",
+            title: "Career & Business Achievements",
+            subtitle: "Experience spanning functional SAP process expertise and the development of business-critical applications."
+        },
+        education: {
+            badge: "Degrees & Certifications",
+            title: "Education & Credentials"
+        },
+        portfolio: {
+            subtitle: "Each project includes an in-depth technical analysis covering industry context, system architecture, engineering challenges and key performance indicators.",
+            case_study: "Case study",
+            detail: "Details & Architecture",
+            code: "Source code",
+            sap: "Integrated SAP Modules"
+        },
+        repos: {
+            descriptions: {
+                "Waliddjla": "Profile README",
+                "portfolio": "Walid Djellali’s portfolio",
+                "connect-walid": "Connect game built with React",
+                "quizz": "Simple quiz built with HTML and CSS",
+                "walid": "Web app for Wi-Fi connection information",
+                "brookly": "UX design for a bookstore",
+                "master-project": "AI-based irrigation scheduling using evapotranspiration",
+                "authentification": "Authentication project using JavaScript, HTML and CSS",
+                "mpi-matrix-multiplication": "Matrix multiplication using MPI"
+            },
+            badge: "Open Source Ecosystem",
+            title: "GitHub Code Explorer (@Waliddjla)",
+            subtitle: "Search and filter repositories created by Walid Djellali on GitHub.",
+            search: "Search repositories (React, dashboard, API, IoT…)",
+            open: "Explore the code",
+            all: "View all repositories on GitHub (@Waliddjla)",
+            untagged: "Project",
+            description: "Development repository hosted on Walid Djellali’s GitHub profile."
+        },
+        contact: {
+            badge: "Opportunities & Engagements",
+            title: "Get in touch with Walid",
+            subtitle: "Available to discuss opportunities in SAP S/4HANA integration (PM & MM) or full-stack development.",
+            name: "Your name / Company *",
+            email: "Your email *",
+            subject: "Subject",
+            message: "Message *",
+            name_placeholder: "E.g. IT department / Recruiter",
+            email_placeholder: "name@company.com",
+            subject_placeholder: "SAP S/4HANA opportunity / Full-stack project…",
+            message_placeholder: "Briefly describe your needs or the role…",
+            sending: "Sending…",
+            send: "Send message"
+        },
+        modal: {
+            certified: "Certified case study",
+            kpis: "Key Performance Indicators (KPIs)",
+            client: "Client / Organization:",
+            role: "Walid’s role:",
+            period: "Period:",
+            context: "Business Context & Objectives",
+            architecture: "Technical Architecture & Data Flows",
+            features: "Key Features",
+            challenges: "Engineering Challenges & Solutions",
+            solution: "Approach & Resolution:",
+            impact: "Operational Impact & Business Value",
+            technologies: "Technologies & Tools",
+            source: "Explore the source code"
+        },
+        admin: {
+            mobile: "Portfolio administration console",
+            title: "Administration console",
+            lock: "Lock",
+            logout: "Sign out",
+            online: "Online",
+            subtitle: "Manage the SQLite database (portfolio.db)",
+            private: "Private area for Walid Djellali",
+            instructions: "Enter the administrator PIN to manage your messages, availability and projects.",
+            pin: "Access PIN",
+            unlock: "Unlock console",
+            messages: "Received messages",
+            projects: "Saved projects",
+            db_size: "SQLite database size",
+            runtime: "Node.js runtime",
+            quick: "Quick availability update",
+            current: "Current status:",
+            refresh: "Refresh",
+            empty_inbox: "No messages yet.",
+            recent: "Recently",
+            reply: "Reply by email",
+            reply_subject: "Your message",
+            mark_read: "Mark as read",
+            mark_unread: "Mark as unread",
+            profile_title: "Professional title",
+            availability: "Availability status",
+            phone: "Phone",
+            email: "Email",
+            location: "Location",
+            bio: "Bio / Professional summary",
+            save_profile: "Save profile changes to SQLite",
+            add_project: "Add project",
+            new_project: "Add a new project",
+            edit_project: "Edit project",
+            project_title: "Project title",
+            category: "Category",
+            category_label: "Category label",
+            tagline: "Tagline",
+            description: "Description",
+            image: "Image URL",
+            github_link: "GitHub link",
+            demo_link: "Demo link",
+            tags: "Technologies (comma-separated)",
+            features: "Key features (one per line)",
+            category_example: "E.g. Full-Stack & IT Management",
+            tagline_example: "A sentence summarizing the project’s impact…",
+            features_example: "Feature 1\nFeature 2",
+            save: "Save to SQLite",
+            inbox: "Inbox",
+            catalog: "SQLite project catalog",
+            db_messages: "messages in portfolio.db",
+            size_unit: "KB",
+            overview: "Overview",
+            profile_tab: "Profile & Availability",
+            projects_tab: "Project Management"
+        },
+        cv: {
+            title: "Résumé",
+            subtitle: "Professional layout ready for printing or saving as PDF",
+            print: "Print / PDF",
+            summary: "Professional Summary",
+            experience: "Professional Experience",
+            skills: "Skills & Tools",
+            education: "Education & Certifications"
+        },
+        toasts: {
+            confirm_message: id => `Delete message #${id}?`,
+            message_deleted: id => `🗑️ Message #${id} deleted.`,
+            confirm_project: title => `Delete the project “${title}” from SQLite?`,
+            project_deleted: title => `🗑️ Project “${title}” deleted from SQLite.`,
+            status_saved: status => `🟢 Status updated: ${status.en}`,
+            login: "🔓 Signed in successfully.",
+            logout: "Administration console locked.",
+            session_expired: "Session expired. Please sign in again.",
+            invalid_pin: "Incorrect PIN.",
+            login_limit: "Too many attempts. Try again later.",
+            login_error: "Unable to connect to the server.",
+            message_error: "Could not delete the message.",
+            profile_saved: "✅ Profile and availability saved to SQLite.",
+            profile_error: "Could not update the profile.",
+            project_delete_error: "Could not delete the project.",
+            project_save_error: "Could not save the project.",
+            project_updated: "✅ Project updated in SQLite.",
+            project_added: "✅ Project added to SQLite.",
+            contact_sent: "✅ Message received. Walid will get back to you within 24 hours.",
+            contact_error: "Could not send the message. Please try again."
+        },
+        nav_items: [
+            {
+                anchor: "experience",
+                label: "Experience",
+                icon: "briefcase"
+            },
+            {
+                anchor: "sap-workflow",
+                label: "SAP Modules",
+                icon: "workflow"
+            },
+            {
+                anchor: "skills",
+                label: "Skills",
+                icon: "layers"
+            },
+            {
+                anchor: "projects",
+                label: "Projects",
+                icon: "folder-code"
+            },
+            {
+                anchor: "github-explorer",
+                label: "GitHub Hub",
+                icon: "github"
+            },
+            {
+                anchor: "education",
+                label: "Education",
+                icon: "graduation-cap"
+            },
+            {
+                anchor: "contact",
+                label: "Contact",
+                icon: "mail"
+            }
+        ],
+        skill_groups: [
+            {
+                category: "SAP & ERP",
+                label: "SAP & ERP Processes",
+                icon: "cpu",
+                frame: "border-blue-500/20",
+                badge: "bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400",
+                pill: "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300"
+            },
+            {
+                category: "Frontend",
+                label: "Frontend & React",
+                icon: "layout",
+                frame: "border-indigo-500/20",
+                badge: "bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400",
+                pill: "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300"
+            },
+            {
+                category: "Backend & Languages",
+                label: "Backend & APIs",
+                icon: "server",
+                frame: "border-purple-500/20",
+                badge: "bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400",
+                pill: "bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300"
+            },
+            {
+                category: "Databases & Systems",
+                label: "Databases & Networking",
+                icon: "database",
+                frame: "border-emerald-500/20",
+                badge: "bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400",
+                pill: "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300"
+            }
+        ],
+        project_filters: [
+            {
+                id: "all",
+                label: "All projects"
+            },
+            {
+                id: "software",
+                label: "Full-Stack & Systems"
+            },
+            {
+                id: "sap",
+                label: "SAP & Infrastructure"
+            },
+            {
+                id: "data",
+                label: "Data Science & AI"
+            },
+            {
+                id: "react",
+                label: "React & UI"
+            }
+        ],
+        repo_filters: [
+            {
+                id: "all",
+                label: "All"
+            },
+            {
+                id: "javascript",
+                label: "JavaScript"
+            },
+            {
+                id: "html",
+                label: "HTML/CSS"
+            },
+            {
+                id: "python",
+                label: "Python"
+            }
+        ]
+    }
 };
-
-// Étapes clés du cycle de maintenance industrielle SAP S/4HANA (PM & MM)
-const sapWorkflowSteps = [{
-  step: "01",
-  id: "notification",
-  title: "Avis de Maintenance (PM)",
-  subtitle: "Notification & Qualification",
-  icon: "clipboard-list",
-  badge: "IW21 / Fiori PM",
-  color: "from-blue-600 to-cyan-600",
-  fioriApp: "Create Maintenance Notification",
-  description: "Détection des anomalies opérationnelles, création de l'avis de panne, qualification du degré d'urgence et affectation au poste technique concerné.",
-  roleTitle: "Expertise Fonctionnelle de Walid :",
-  roleDesc: "Paramétrage des types d'avis de maintenance (M1, M2, M3), hiérarchisation des priorités, structuration fine des Postes Techniques (Functional Locations) et validation des données de base Équipements.",
-  deliverables: ["Structure BBP des avis PM", "Catalogues de pannes & causes", "Contrôle qualité des Master Data"]
-}, {
-  step: "02",
-  id: "order",
-  title: "Ordre de Travail & Pièces (MM)",
-  subtitle: "Planification & Approvisionnement",
-  icon: "wrench",
-  badge: "IW31 / IW32 / MM",
-  color: "from-indigo-600 to-blue-600",
-  fioriApp: "Manage Maintenance Orders",
-  description: "Planification des opérations d'intervention, allocation des techniciens et réservation des composants et pièces de rechange via le module Materials Management (MM).",
-  roleTitle: "Expertise Fonctionnelle de Walid :",
-  roleDesc: "Configuration des gammes d'opérations (Task Lists), ordonnancement des ordres de travail, coordination avec le flux MM pour la disponibilité et la sortie des articles en stock ou achats.",
-  deliverables: ["Gammes d'opérations pré-configurées", "Flux de réservation MM", "Formulaires d'impression des ordres"]
-}, {
-  step: "03",
-  id: "calibration",
-  title: "Maintenance Préventive & Étalonnage",
-  subtitle: "Métrologie & Réglementation",
-  icon: "gauge",
-  badge: "IP02 / IP10 / S/4HANA",
-  color: "from-violet-600 to-purple-600",
-  fioriApp: "Maintenance Plans & Scheduling",
-  description: "Programmation des cycles périodiques d'entretien préventif et étalonnage des équipements de mesure et instruments critiques (secteur pharmaceutique et industriel).",
-  roleTitle: "Expertise Fonctionnelle de Walid :",
-  roleDesc: "Implémentation chez Orionlab des plans de maintenance préventive et protocoles d'étalonnage. Définition des points de mesure, compteurs d'usure et suivi des périodicités réglementaires.",
-  deliverables: ["Plans d'entretien préventif", "Points de mesure & tolérances", "Conformité d'étalonnage"]
-}, {
-  step: "04",
-  id: "qm",
-  title: "Exécution & Contrôle Qualité (QM)",
-  subtitle: "Confirmation & Métrologie",
-  icon: "check-circle-2",
-  badge: "IW41 / QE51N / QM",
-  color: "from-emerald-600 to-teal-600",
-  fioriApp: "Confirm Maintenance Jobs & QM Lots",
-  description: "Intervention sur site, confirmation des temps de travaux, relevé des compteurs et contrôle des caractéristiques de qualité métrologiques.",
-  roleTitle: "Expertise Fonctionnelle de Walid :",
-  roleDesc: "Intégration du module QM pour valider les caractéristiques techniques après intervention, contrôle des écarts de mesure et validation des fiches de pointage d'heures.",
-  deliverables: ["Pointage horaire techniciens", "Lots de contrôle QM validés", "Rapports de métrologie"]
-}, {
-  step: "05",
-  id: "teco",
-  title: "Clôture Technique (TECO) & Analytique",
-  subtitle: "Finalisation & Contrôle de Gestion",
-  icon: "file-check-2",
-  badge: "TECO / KO88 / Fiori",
-  color: "from-amber-600 to-orange-600",
-  fioriApp: "Technical Completion (TECO) & Cost Settlement",
-  description: "Attribution du statut TECO (Technically Completed), clôture technique, imputation des coûts réels à la comptabilité analytique (CO) et archivage d'historique.",
-  roleTitle: "Expertise Fonctionnelle de Walid :",
-  roleDesc: "Validation du flux de clôture TECO, réconciliation des coûts de maintenance, calcul des indicateurs de performance (MTBF, MTTR) et alimentation des tableaux de bord Fiori.",
-  deliverables: ["Imputation des coûts analytiques (CO)", "Historique complet des équipements", "Indicateurs de fiabilité & MTBF/MTTR"]
-}];
+const availabilityOptions = [
+    {
+        fr: "Disponible pour opportunités SAP & Développement Full-Stack",
+        en: "Available for SAP & full-stack development opportunities"
+    },
+    {
+        fr: "En poste chez Orionlab (À l'écoute d'opportunités)",
+        en: "Currently at Orionlab (open to opportunities)"
+    },
+    {
+        fr: "Disponible pour missions d'ingénierie & Consulting",
+        en: "Available for engineering and consulting engagements"
+    }
+];
+const fallbackData = {
+    profile: {
+        name: "Walid Djellali",
+        title: "SAP Functional Analyst | Full Stack Software Engineer",
+        title_en: "SAP Functional Analyst | Full Stack Software Engineer",
+        location: "Oran, Algérie",
+        location_en: "Oran, Algeria",
+        availability_en: "Available for SAP and full-stack development opportunities",
+        bio_en: "SAP Functional Analyst and Software Engineer with a Master’s degree in Computer Science. Experienced in SAP S/4HANA deployments (PM and MM), IT systems administration and full-stack development (Node.js, TypeScript, React). Combines business analysis with technical expertise to design maintainable digital solutions.",
+        email: "walidjellali32@gmail.com",
+        phone: "+213 676 958 671",
+        linkedin: "https://www.linkedin.com/in/waliddjellali/",
+        github: "https://github.com/Waliddjla",
+        bio: "Analyste fonctionnel SAP et ingénieur logiciel diplômé d’un Master en informatique. Expérience confirmée dans le déploiement d’ERP SAP S/4HANA (PM & MM), l’administration de systèmes IT et le développement Full-Stack (Node.js, TypeScript, React). Combine rigueur analytique métier et maîtrise technique pour concevoir des solutions numériques pratiques et pérennes.",
+        availability: "Disponible pour opportunités SAP & Développement Full-Stack"
+    },
+    experiences: [
+        {
+            id: 1,
+            role: "SAP Functional Analyst",
+            company: "Orionlab",
+            role_en: "SAP Functional Analyst",
+            description_en: "Support and integration of SAP S/4HANA 2023 processes, with a focus on Plant Maintenance (PM) and Materials Management (MM).",
+            bullets_en: [
+                "Handle SAP S/4HANA functional activities, lead the PM module and support users across MM workflows.",
+                "Work with engineering, validation and the SAP implementation partner to clarify specifications and review the PM Business Blueprint (BBP).",
+                "Validate and cleanse equipment and functional location master data before migration, correcting formats, hierarchies and references.",
+                "Manage preventive maintenance, calibration, qualifications, task lists and work order scheduling.",
+                "Coordinate maintenance order forms and integrate QM inspection characteristics with business teams.",
+                "Administer user authorizations and Fiori roles, and develop internal applications to digitize workflows."
+            ],
+            period: "Poste actuel",
+            period_en: "Current position",
+            description: "Support et intégration des processus SAP S/4HANA 2023 avec focus Plant Maintenance (PM) et Materials Management (MM).",
+            bullets: [
+                "Prise en charge des activités fonctionnelles SAP S/4HANA, pilotage du module PM et support utilisateurs sur les flux MM.",
+                "Collaboration avec l'ingénierie, la validation et l'intégrateur SAP pour clarifier les exigences de maintenance et réviser le Business Blueprint (BBP) PM.",
+                "Revue et validation des données de base (Equipment, Functional Locations) avant migration (détection des erreurs de longueur, hiérarchies et références manquantes).",
+                "Participation à la planification de la maintenance préventive, calibration, qualifications, gammes d'opérations (Task Lists) et ordonnancement des ordres de travail.",
+                "Coordination des besoins d'impression d'ordres de maintenance et des caractéristiques QM avec les équipes métier.",
+                "Support à l'administration des utilisateurs SAP, habilitations de rôles et accès Fiori ; développement d'applications internes de digitalisation."
+            ]
+        },
+        {
+            id: 2,
+            role: "IT Systems Engineer",
+            company: "ACG SIM SPA",
+            role_en: "IT Systems Engineer",
+            description_en: "IT systems management and security, with contributions to an SAP ERP rollout.",
+            bullets_en: [
+                "Administered and maintained IT systems, managed backups and ensured infrastructure integrity and security.",
+                "Contributed to SAP ERP implementation and support, aligning business needs with system capabilities.",
+                "Diagnosed hardware and software issues, optimized infrastructure and developed internal software solutions."
+            ],
+            period: "2024",
+            description: "Gestion, sécurisation des systèmes d'information et contribution au déploiement ERP SAP.",
+            bullets: [
+                "Administration et maintien en condition opérationnelle des systèmes IT, gestion de la sécurité, des sauvegardes et de l'intégrité du parc.",
+                "Contribution à l'implémentation et au support de l'ERP SAP pour aligner les besoins métiers avec les processus système.",
+                "Diagnostic des dysfonctionnements matériels et logiciels, optimisation de l'infrastructure et développement de solutions logicielles internes."
+            ]
+        },
+        {
+            id: 3,
+            role: "Full Stack Software Engineer",
+            company: "SARL Ide-Net Géolocalisation",
+            role_en: "Full Stack Software Engineer",
+            description_en: "Designed and developed IoT tracking and fleet telematics platforms.",
+            bullets_en: [
+                "Designed and developed geolocation and fleet tracking platforms using Node.js and TypeScript REST APIs.",
+                "Integrated GPS devices and CAN units into tracking systems, and optimized backend algorithms and queries.",
+                "Worked closely with cross-functional teams to translate operational requirements into reliable software features."
+            ],
+            period: "2023 – 2024",
+            description: "Conception et développement de plateformes de suivi et géolocalisation IoT / télématique.",
+            bullets: [
+                "Conception et développement de plateformes de géolocalisation et de suivi de flotte avec APIs REST en Node.js et TypeScript.",
+                "Intégration d'appareils GPS et de boîtiers CAN dans les solutions de tracking, optimisation des algorithmes backend et des requêtes SQL.",
+                "Collaboration étroite avec des équipes pluridisciplinaires pour traduire les exigences opérationnelles en fonctionnalités logicielles robustes."
+            ]
+        },
+        {
+            id: 4,
+            role: "IT Engineer – Network and Support",
+            company: "SARL Gesco Climatisation",
+            role_en: "IT Engineer – Network and Support",
+            description_en: "Network infrastructure administration, user support and IT deployments.",
+            bullets_en: [
+                "Administered and monitored network infrastructure, resolved system and network incidents, and provided help desk support.",
+                "Contributed to infrastructure improvements and strategic IT deployments."
+            ],
+            period: "2023",
+            description: "Administration de l'infrastructure réseau, support utilisateur et déploiements IT.",
+            bullets: [
+                "Administration et supervision de l'infrastructure réseau, résolution des incidents systèmes/réseau et assistance support utilisateurs (helpdesk).",
+                "Participation aux améliorations d'infrastructures et aux déploiements informatiques stratégiques."
+            ]
+        }
+    ],
+    skills: [
+        { category: "SAP & ERP", name: "SAP S/4HANA 2023" },
+        { category: "SAP & ERP", name: "SAP PM (Plant Maintenance)" },
+        { category: "SAP & ERP", name: "SAP MM (Materials Management)" },
+        { category: "SAP & ERP", name: "SAP Fiori" },
+        { category: "SAP & ERP", name: "Business Blueprint (BBP)" },
+        { category: "SAP & ERP", name: "Preventive Maintenance & Calibration" },
+        { category: "SAP & ERP", name: "Master Data Migration" },
+        { category: "Frontend", name: "React" },
+        { category: "Frontend", name: "Next.js" },
+        { category: "Frontend", name: "TypeScript" },
+        { category: "Frontend", name: "JavaScript (ES6+)" },
+        { category: "Frontend", name: "Tailwind CSS" },
+        { category: "Frontend", name: "HTML5 / CSS3 / Bootstrap" },
+        { category: "Backend & Languages", name: "Node.js" },
+        { category: "Backend & Languages", name: "REST APIs" },
+        { category: "Backend & Languages", name: "PHP / Laravel" },
+        { category: "Backend & Languages", name: "Python / Django" },
+        { category: "Backend & Languages", name: "Java" },
+        { category: "Databases & Systems", name: "SQLite" },
+        { category: "Databases & Systems", name: "MySQL" },
+        { category: "Databases & Systems", name: "SQL Server" },
+        { category: "Databases & Systems", name: "MongoDB" },
+        { category: "Databases & Systems", name: "Docker & Linux Ubuntu" },
+        { category: "Databases & Systems", name: "Windows Server" },
+        { category: "Databases & Systems", name: "Cisco Networking (CCNA)" }
+    ],
+    projects: window.featuredProjects || [],
+    education: [
+        {
+            degree: "Master en Informatique (Informatique Parallèle et Embarquée)",
+            degree_en: "Master’s Degree in Computer Science (Parallel and Embedded Computing)",
+            details_en: "Distributed systems, parallel processing, high-performance computing and embedded systems.",
+            institution: "Université d'Oran 1 Ahmed Ben Bella",
+            period: "2020 – 2022",
+            details: "Systèmes distribués, calcul parallèle haute performance, systèmes embarqués et algorithmes avancés."
+        },
+        {
+            degree: "Licence en Systèmes Informatiques",
+            degree_en: "Bachelor’s Degree in Computer Systems",
+            details_en: "Algorithms, software engineering, computer networks, databases and modeling.",
+            institution: "Université d'Oran 1 Ahmed Ben Bella",
+            period: "2016 – 2020",
+            details: "Fondements du génie logiciel, réseaux, bases de données relationnelles, systèmes d'exploitation."
+        },
+        {
+            degree: "Certification Cisco CCNA v7 (Réseaux & Routage)",
+            degree_en: "Cisco CCNA v7 Certification (Networking and Routing)",
+            details_en: "Switch and router configuration, IP protocols, VLANs, OSPF routing and network security.",
+            institution: "Cisco Networking Academy",
+            period: "2023",
+            details: "Configuration de commutateurs/routeurs Cisco, adressage IP, VLAN, routage OSPF et sécurité réseau."
+        }
+    ],
+    sap_modules: [
+        {
+            id: "pm",
+            code: "PM",
+            title: "Plant Maintenance",
+            title_en: "Plant Maintenance",
+            icon: "wrench",
+            color: "blue",
+            summary: "Maintenance des équipements : avis, ordres de travail, plans préventifs, gammes.",
+            summary_en: "Equipment maintenance: notifications, work orders, preventive plans, task lists.",
+            orion: [
+                "Revue du Business Blueprint (BBP) PM avec l'intégrateur SAP",
+                "Validation des données de base (Equipment, Functional Locations) avant migration",
+                "Planification préventive, calibration, Task Lists et ordonnancement des OT",
+                "Modèle d'impression des avis et ordres de maintenance"
+            ],
+            orion_en: [
+                "Review of the PM Business Blueprint (BBP) with the SAP systems integrator",
+                "Validation of master data (Equipment, Functional Locations) prior to migration",
+                "Preventive maintenance scheduling, calibration, Task Lists, and work order dispatching",
+                "Layout design for maintenance notifications and work order printouts"
+            ],
+            acg: [
+                "Support au déploiement SAP S/4HANA dans les processus de maintenance",
+                "Gestion des utilisateurs, rôles et accès Fiori"
+            ],
+            acg_en: [
+                "Support for SAP S/4HANA rollout across maintenance business processes",
+                "Management of user authorizations, role assignments, and SAP Fiori access"
+            ]
+        },
+        {
+            id: "mm",
+            code: "MM",
+            title: "Materials Management",
+            title_en: "Materials Management",
+            icon: "package",
+            color: "indigo",
+            summary: "Articles, stocks, réservations, demandes d'achat et commandes.",
+            summary_en: "Materials, inventory, reservations, purchase requisitions, and purchase orders.",
+            orion: [
+                "Support utilisateurs sur les flux MM (pièces de rechange, réservations)",
+                "Lien entre ordres PM et disponibilité des pièces en magasin"
+            ],
+            orion_en: [
+                "Key-user support on MM flows (spare parts management, stock reservations)",
+                "Cross-functional alignment between PM work orders and warehouse stock availability"
+            ],
+            acg: [
+                "Contribution à l'implémentation de l'ERP SAP côté approvisionnement",
+                "Tableau de bord achats (SAPAN / DA Analyse) alimenté par OData SAP"
+            ],
+            acg_en: [
+                "Active contribution to SAP ERP implementation on procurement & inventory workflows",
+                "Procurement & purchasing analytics dashboard powered by SAP OData services"
+            ]
+        },
+        {
+            id: "qm",
+            code: "QM",
+            title: "Quality Management",
+            title_en: "Quality Management",
+            icon: "gauge",
+            color: "emerald",
+            summary: "Lots de contrôle, caractéristiques, étalonnage et décision d'utilisation.",
+            summary_en: "Inspection lots, master inspection characteristics, calibration, and usage decision.",
+            orion: [
+                "Coordination des caractéristiques QM avec les équipes métier",
+                "Articulation calibration / métrologie avec les plans d'entretien PM"
+            ],
+            orion_en: [
+                "Coordination of Master Inspection Characteristics (MIC) with business teams",
+                "Seamless alignment between calibration / metrology and PM preventive maintenance plans"
+            ],
+            acg: [
+                "Alignement des besoins qualité avec les processus SAP"
+            ],
+            acg_en: [
+                "Alignment of quality compliance requirements with SAP standard processes"
+            ]
+        }
+    ],
+    sap_flow: [
+        { step_number: "01", label: "Avis PM", label_en: "PM Notification", note: "Panne ou besoin signalé", note_en: "Breakdown or need reported" },
+        { step_number: "02", label: "Ordre PM", label_en: "PM Order", note: "Réservation / achat de pièces (MM)", note_en: "Spare parts reservation / purchasing (MM)" },
+        { step_number: "03", label: "Plan préventif PM", label_en: "Preventive Plan (PM)", note: "Déclenche les lots de contrôle (QM)", note_en: "Triggers inspection lots (QM)" },
+        { step_number: "04", label: "Exécution", label_en: "Execution", note: "Sortie de pièces (MM) + mesures (QM)", note_en: "Goods issue (MM) + measurements (QM)" },
+        { step_number: "05", label: "Clôture TECO", label_en: "TECO & Settlement", note: "Décision d'utilisation (QM)", note_en: "Usage decision (QM) & settlement" }
+    ]
+};
 function App() {
-  const [data, setData] = useState(fallbackData);
-  const [isDbConnected, setIsDbConnected] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [toastMessage, setToastMessage] = useState(null);
-
-  // Modal d'Étude de Cas Détaillée pour les projets
-  const [selectedProjectModal, setSelectedProjectModal] = useState(null);
-
-  // Nouveautés interactives : Modal CV, Explorateur GitHub et Workflow SAP
-  const [cvModalOpen, setCvModalOpen] = useState(false);
-  const [githubRepos, setGithubRepos] = useState([]);
-  const [repoSearchQuery, setRepoSearchQuery] = useState("");
-  const [repoLanguageFilter, setRepoLanguageFilter] = useState("all");
-  const [activeSapStep, setActiveSapStep] = useState(0);
-
-  // Espace d'Administration SQLite
-  const [adminModalOpen, setAdminModalOpen] = useState(false);
-  const [isAdminAuth, setIsAdminAuth] = useState(() => {
-    return sessionStorage.getItem("walid_admin_auth") === "true";
-  });
-  const [adminPinInput, setAdminPinInput] = useState("");
-  const [adminPinError, setAdminPinError] = useState("");
-  const [adminTab, setAdminTab] = useState("stats"); // 'stats', 'inbox', 'profile', 'projects'
-  const [adminStats, setAdminStats] = useState(null);
-  const [messagesList, setMessagesList] = useState([]);
-  const [editingProfileForm, setEditingProfileForm] = useState({
-    title: "",
-    availability: "",
-    bio: "",
-    phone: "",
-    email: "",
-    location: ""
-  });
-  const [projectFormModalOpen, setProjectFormModalOpen] = useState(false);
-  const [editingProject, setEditingProject] = useState(null);
-  const [projectFormData, setProjectFormData] = useState({
-    title: "",
-    category: "software",
-    category_label: "Full-Stack",
-    tagline: "",
-    description: "",
-    image: "",
-    tags: "",
-    github_url: "",
-    demo_url: "",
-    features: ""
-  });
-
-  // Formulaire de contact public
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // 1. Initialiser le thème Dark / Light
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("portfolio-theme");
-    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialDark = savedTheme === "dark" || !savedTheme && systemDark;
-    setIsDarkMode(initialDark);
-    if (initialDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, []);
-  const toggleTheme = () => {
-    const nextDark = !isDarkMode;
-    setIsDarkMode(nextDark);
-    if (nextDark) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("portfolio-theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("portfolio-theme", "light");
-    }
-  };
-
-  // 2. Charger les données du portfolio depuis SQLite
-  const fetchPortfolio = () => {
-    fetch("/api/portfolio").then(res => {
-      if (!res.ok) throw new Error("API non accessible");
-      return res.json();
-    }).then(apiData => {
-      if (apiData && apiData.profile) {
-        setData(apiData);
-        setIsDbConnected(true);
-        setEditingProfileForm({
-          title: apiData.profile.title || "",
-          availability: apiData.profile.availability || "",
-          bio: apiData.profile.bio || "",
-          phone: apiData.profile.phone || "",
-          email: apiData.profile.email || "",
-          location: apiData.profile.location || ""
+    const [data, setData] = useState(fallbackData);
+    const [isDbConnected, setIsDbConnected] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState("all");
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [toastMessage, setToastMessage] = useState(null);
+    // Gestion bilingue Français (fr) / Anglais (en)
+    const [lang, setLang] = useState(() => {
+        try {
+            return localStorage.getItem("portfolio_lang") === "en" ? "en" : "fr";
+        }
+        catch (e) {
+            return "fr";
+        }
+    });
+    const toggleLang = () => {
+        const next = lang === "fr" ? "en" : "fr";
+        setLang(next);
+        try {
+            localStorage.setItem("portfolio_lang", next);
+        }
+        catch (e) { }
+    };
+    const isEn = lang === "en";
+    const t = translations[lang] || translations.fr;
+    const languageToggle = (React.createElement("button", { type: "button", onClick: toggleLang, title: t.navigation.language_toggle, "aria-label": t.navigation.language_toggle, className: "px-2.5 py-2 rounded-xl text-xs font-bold bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300" }, isEn ? "EN" : "FR"));
+    const tr = (obj, key) => (isEn && obj?.[`${key}_en`]) || obj?.[key];
+    const trList = (obj, key) => {
+        const translated = isEn && obj?.[`${key}_en`];
+        return Array.isArray(translated) && translated.length ? translated : (obj?.[key] || []);
+    };
+    const profileLocation = tr(data.profile, "location");
+    const skillName = (skill) => {
+        return Object.hasOwn(t.skills.names, skill.name) ? t.skills.names[skill.name] : skill.name;
+    };
+    const experiencePeriod = (exp) => tr(exp, "period");
+    useEffect(() => {
+        document.documentElement.lang = lang;
+    }, [lang]);
+    // Données SAP dynamiques (Loop Database First)
+    const sapModules = (data.sap_modules && data.sap_modules.length > 0)
+        ? data.sap_modules
+        : (fallbackData.sap_modules || []);
+    const sapFlow = (data.sap_flow && data.sap_flow.length > 0)
+        ? data.sap_flow
+        : (fallbackData.sap_flow || []);
+    // Modal d'Étude de Cas Détaillée pour les projets
+    const [selectedProjectModal, setSelectedProjectModal] = useState(null);
+    const caseStudy = tr(selectedProjectModal, "case_study");
+    const modalFeatures = trList(selectedProjectModal, "features");
+    // Nouveautés interactives : Modal CV, Explorateur GitHub et Workflow SAP
+    const [cvModalOpen, setCvModalOpen] = useState(false);
+    const [githubRepos, setGithubRepos] = useState([]);
+    const [repoSearchQuery, setRepoSearchQuery] = useState("");
+    const [repoLanguageFilter, setRepoLanguageFilter] = useState("all");
+    const [selectedSapModule, setSelectedSapModule] = useState("all");
+    // Espace d'Administration SQLite
+    const [adminModalOpen, setAdminModalOpen] = useState(false);
+    const [adminToken, setAdminToken] = useState(() => sessionStorage.getItem("portfolio_admin_token"));
+    const isAdminAuth = Boolean(adminToken);
+    const [adminPinInput, setAdminPinInput] = useState("");
+    const [adminPinError, setAdminPinError] = useState("");
+    const [adminTab, setAdminTab] = useState("stats"); // 'stats', 'inbox', 'profile', 'projects'
+    const [adminStats, setAdminStats] = useState(null);
+    const [messagesList, setMessagesList] = useState([]);
+    const [editingProfileForm, setEditingProfileForm] = useState({
+        title: "",
+        title_en: "",
+        availability: "",
+        availability_en: "",
+        bio: "",
+        bio_en: "",
+        phone: "",
+        email: "",
+        location: "",
+        location_en: ""
+    });
+    const [projectFormModalOpen, setProjectFormModalOpen] = useState(false);
+    const [editingProject, setEditingProject] = useState(null);
+    const [projectFormData, setProjectFormData] = useState({});
+    // Formulaire de contact public
+    const [formState, setFormState] = useState({ name: "", email: "", subject: "", message: "" });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    // 1. Initialiser le thème Dark / Light
+    useEffect(() => {
+        const savedTheme = localStorage.getItem("portfolio-theme");
+        const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const initialDark = savedTheme === "dark" || (!savedTheme && systemDark);
+        setIsDarkMode(initialDark);
+        if (initialDark) {
+            document.documentElement.classList.add("dark");
+        }
+        else {
+            document.documentElement.classList.remove("dark");
+        }
+    }, []);
+    const toggleTheme = () => {
+        const nextDark = !isDarkMode;
+        setIsDarkMode(nextDark);
+        if (nextDark) {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("portfolio-theme", "dark");
+        }
+        else {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("portfolio-theme", "light");
+        }
+    };
+    // 2. Charger les données du portfolio depuis SQLite
+    const fetchPortfolio = () => {
+        fetch("/api/portfolio")
+            .then(res => {
+            if (!res.ok)
+                throw new Error("API non accessible");
+            return res.json();
+        })
+            .then(apiData => {
+            if (apiData && apiData.profile) {
+                setData(apiData);
+                setIsDbConnected(true);
+                setEditingProfileForm({
+                    title: apiData.profile.title || "",
+                    title_en: apiData.profile.title_en || "",
+                    availability: apiData.profile.availability || "",
+                    availability_en: apiData.profile.availability_en || "",
+                    bio: apiData.profile.bio || "",
+                    bio_en: apiData.profile.bio_en || "",
+                    phone: apiData.profile.phone || "",
+                    email: apiData.profile.email || "",
+                    location: apiData.profile.location || "",
+                    location_en: apiData.profile.location_en || ""
+                });
+            }
+        })
+            .catch(() => {
+            setIsDbConnected(false);
         });
-      }
-    }).catch(() => {
-      setIsDbConnected(false);
-    });
-  };
-  useEffect(() => {
-    fetchPortfolio();
-  }, []);
-
-  // 3. Charger la liste complète des dépôts GitHub (@Waliddjla)
-  useEffect(() => {
-    fetch("/api/github-repos").then(res => res.json()).then(repos => {
-      if (Array.isArray(repos) && repos.length > 0) {
-        setGithubRepos(repos);
-      }
-    }).catch(() => {});
-  }, []);
-
-  // Réinitialiser les icônes Lucide à chaque re-render
-  useEffect(() => {
-    if (window.lucide) {
-      window.lucide.createIcons();
-    }
-  });
-  const showToast = msg => {
-    setToastMessage(msg);
-    setTimeout(() => {
-      setToastMessage(null);
-    }, 4500);
-  };
-
-  // Charger les stats administratives et messages
-  const fetchAdminData = () => {
-    fetch("/api/admin/stats").then(res => res.json()).then(stats => setAdminStats(stats)).catch(() => {});
-    fetch("/api/messages").then(res => res.json()).then(msgs => setMessagesList(msgs || [])).catch(() => {});
-  };
-  const handleAdminLogin = e => {
-    e.preventDefault();
-    setAdminPinError("");
-    fetch("/api/admin/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        pin: adminPinInput
-      })
-    }).then(res => res.json()).then(resData => {
-      if (resData.success) {
-        setIsAdminAuth(true);
-        sessionStorage.setItem("walid_admin_auth", "true");
-        setAdminPinInput("");
-        fetchAdminData();
-        showToast("🔓 Authentification réussie ! Bienvenue dans l'administration.");
-      } else {
-        setAdminPinError(resData.error || "Code PIN incorrect.");
-      }
-    }).catch(() => {
-      setAdminPinError("Erreur de connexion au serveur.");
-    });
-  };
-  const handleAdminLogout = () => {
-    setIsAdminAuth(false);
-    sessionStorage.removeItem("walid_admin_auth");
-    showToast("Verrouillage de l'espace administration.");
-  };
-  const openAdminModal = () => {
-    setAdminModalOpen(true);
-    if (isAdminAuth) {
-      fetchAdminData();
-    }
-  };
-
-  // Actions d'administration : Suppression de message
-  const handleDeleteMessage = async id => {
-    if (!confirm(`Confirmer la suppression du message #${id} ?`)) return;
-    try {
-      const res = await fetch(`/api/messages/${id}`, {
-        method: "DELETE"
-      });
-      if (res.ok) {
-        setMessagesList(prev => prev.filter(m => m.id !== id));
-        fetchAdminData();
-        showToast(`🗑️ Message #${id} supprimé.`);
-      }
-    } catch (err) {
-      showToast("Erreur lors de la suppression du message.");
-    }
-  };
-
-  // Marquer un message comme lu
-  const handleToggleMessageRead = async (id, currentRead) => {
-    try {
-      const nextState = currentRead ? 0 : 1;
-      const res = await fetch(`/api/messages/${id}/read`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          read: nextState
+    };
+    useEffect(() => {
+        fetchPortfolio();
+    }, []);
+    // 3. Charger la liste complète des dépôts GitHub (@Waliddjla)
+    useEffect(() => {
+        fetch("/api/github-repos")
+            .then(res => res.json())
+            .then(repos => {
+            if (Array.isArray(repos) && repos.length > 0) {
+                setGithubRepos(repos);
+            }
         })
-      });
-      if (res.ok) {
-        setMessagesList(prev => prev.map(m => m.id === id ? {
-          ...m,
-          read: nextState
-        } : m));
-        fetchAdminData();
-      }
-    } catch (err) {}
-  };
-
-  // Mettre à jour le profil
-  const handleSaveProfile = async e => {
-    e.preventDefault();
-    try {
-      const res = await fetch("/api/admin/profile", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(editingProfileForm)
-      });
-      const resData = await res.json();
-      if (resData.success) {
-        fetchPortfolio();
-        fetchAdminData();
-        showToast("✅ Profil et disponibilité mis à jour dans SQLite !");
-      }
-    } catch (err) {
-      showToast("Erreur lors de la mise à jour du profil.");
-    }
-  };
-
-  // Changer rapidement la disponibilité
-  const handleQuickAvailabilityChange = async newStatus => {
-    try {
-      const res = await fetch("/api/admin/profile", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          availability: newStatus
-        })
-      });
-      if (res.ok) {
-        setEditingProfileForm(prev => ({
-          ...prev,
-          availability: newStatus
-        }));
-        fetchPortfolio();
-        fetchAdminData();
-        showToast(`🟢 Statut mis à jour : "${newStatus}"`);
-      }
-    } catch (e) {}
-  };
-
-  // Supprimer un projet
-  const handleDeleteProject = async (id, title) => {
-    if (!confirm(`Supprimer le projet "${title}" de la base SQLite ?`)) return;
-    try {
-      const res = await fetch(`/api/admin/projects/${id}`, {
-        method: "DELETE"
-      });
-      if (res.ok) {
-        fetchPortfolio();
-        fetchAdminData();
-        showToast(`🗑️ Projet "${title}" supprimé de SQLite.`);
-      }
-    } catch (e) {
-      showToast("Erreur lors de la suppression du projet.");
-    }
-  };
-
-  // Sauvegarder un projet (ajout ou édition)
-  const handleSaveProjectForm = async e => {
-    e.preventDefault();
-    try {
-      const isEdit = !!editingProject;
-      const endpoint = isEdit ? `/api/admin/projects/${editingProject.id}` : "/api/admin/projects";
-      const method = isEdit ? "PUT" : "POST";
-      const res = await fetch(endpoint, {
-        method,
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(projectFormData)
-      });
-      const json = await res.json();
-      if (json.success) {
-        fetchPortfolio();
-        fetchAdminData();
+            .catch(() => { });
+    }, []);
+    // Réinitialiser les icônes Lucide à chaque re-render
+    useEffect(() => {
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+    });
+    const toastTimeout = useRef(null);
+    useEffect(() => () => clearTimeout(toastTimeout.current), []);
+    const showToast = (key, ...args) => {
+        setToastMessage({ key, args });
+        clearTimeout(toastTimeout.current);
+        toastTimeout.current = setTimeout(() => {
+            setToastMessage(null);
+        }, 4500);
+    };
+    const toastLabel = toastMessage && t.toasts[toastMessage.key];
+    // Charger les stats administratives et messages
+    const clearAdminSession = () => {
+        setAdminToken(null);
+        sessionStorage.removeItem("portfolio_admin_token");
+        setAdminStats(null);
+        setMessagesList([]);
         setProjectFormModalOpen(false);
         setEditingProject(null);
-        showToast(`✅ Projet ${isEdit ? "modifié" : "ajouté"} avec succès dans SQLite !`);
-      }
-    } catch (e) {
-      showToast("Erreur lors de l'enregistrement du projet.");
-    }
-  };
-  const openNewProjectForm = () => {
-    setEditingProject(null);
-    setProjectFormData({
-      title: "",
-      category: "software",
-      category_label: "Full-Stack",
-      tagline: "",
-      description: "",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-      tags: "React, Node.js, SQLite",
-      github_url: "https://github.com/Waliddjla",
-      demo_url: "",
-      features: "Gestion centralisée\nTableaux de bord\nArchitecture modulaire"
-    });
-    setProjectFormModalOpen(true);
-  };
-  const openEditProjectForm = p => {
-    setEditingProject(p);
-    setProjectFormData({
-      title: p.title || "",
-      category: p.category || "software",
-      category_label: p.category_label || "Full-Stack",
-      tagline: p.tagline || "",
-      description: p.description || "",
-      image: p.image || "",
-      tags: Array.isArray(p.tags) ? p.tags.join(", ") : p.tags || "",
-      github_url: p.github_url || "",
-      demo_url: p.demo_url || "",
-      features: Array.isArray(p.features) ? p.features.join("\n") : p.features || ""
-    });
-    setProjectFormModalOpen(true);
-  };
-
-  // Soumission du formulaire de contact public
-  const handleFormSubmit = async e => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formState)
-      });
-      if (res.ok) {
-        showToast("✅ Message enregistré dans la base SQLite ! Walid vous répondra sous 24h.");
-        setFormState({
-          name: "",
-          email: "",
-          subject: "",
-          message: ""
+    };
+    const adminFetch = async (url, options = {}) => {
+        const res = await fetch(url, {
+            ...options,
+            headers: { ...options.headers, Authorization: `Bearer ${adminToken}` }
         });
-      } else {
-        throw new Error();
-      }
-    } catch (err) {
-      showToast("✅ Message envoyé avec succès !");
-      setFormState({
-        name: "",
-        email: "",
-        subject: "",
-        message: ""
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  // Filtrage des projets
-  const filteredProjects = selectedCategory === "all" ? data.projects : data.projects.filter(p => p.category === selectedCategory);
-
-  // Filtrage des dépôts GitHub réels
-  const filteredGithubRepos = githubRepos.filter(repo => {
-    const matchesSearch = repo.name.toLowerCase().includes(repoSearchQuery.toLowerCase()) || repo.description && repo.description.toLowerCase().includes(repoSearchQuery.toLowerCase());
-    const matchesLang = repoLanguageFilter === "all" || repo.language && repo.language.toLowerCase() === repoLanguageFilter.toLowerCase();
-    return matchesSearch && matchesLang;
-  });
-  return /*#__PURE__*/_jsxs("div", {
-    className: "min-h-screen flex flex-col bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300",
-    children: [/*#__PURE__*/_jsxs("header", {
-      className: "sticky top-0 z-40 glass border-b border-slate-200/60 dark:border-slate-800/80 transition-colors",
-      children: [/*#__PURE__*/_jsxs("div", {
-        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3",
-        children: [/*#__PURE__*/_jsxs("a", {
-          href: "#hero",
-          className: "flex items-center gap-2.5 sm:gap-3 group shrink-0 py-1",
-          children: [/*#__PURE__*/_jsx("span", {
-            className: "w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-pink-500 flex items-center justify-center text-white font-extrabold text-base sm:text-lg shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform shrink-0",
-            children: "WD"
-          }), /*#__PURE__*/_jsxs("div", {
-            className: "flex flex-col shrink-0",
-            children: [/*#__PURE__*/_jsx("span", {
-              className: "font-extrabold tracking-tight text-base sm:text-lg text-slate-900 dark:text-white leading-tight whitespace-nowrap",
-              children: data.profile.name
-            }), /*#__PURE__*/_jsx("span", {
-              className: "text-[11px] sm:text-xs text-blue-600 dark:text-blue-400 font-semibold whitespace-nowrap",
-              children: "SAP Analyst & Full-Stack"
-            })]
-          })]
-        }), /*#__PURE__*/_jsxs("nav", {
-          className: "hidden xl:flex items-center gap-5 2xl:gap-7 text-sm font-medium shrink-0",
-          children: [/*#__PURE__*/_jsx("a", {
-            href: "#experience",
-            className: "text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors whitespace-nowrap",
-            children: "Parcours"
-          }), /*#__PURE__*/_jsxs("a", {
-            href: "#sap-workflow",
-            className: "flex items-center gap-1.5 text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-all whitespace-nowrap",
-            children: [/*#__PURE__*/_jsx("span", {
-              className: "w-2 h-2 rounded-full bg-blue-600 animate-ping"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "Workflow SAP"
-            })]
-          }), /*#__PURE__*/_jsx("a", {
-            href: "#skills",
-            className: "text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors whitespace-nowrap",
-            children: "Compétences"
-          }), /*#__PURE__*/_jsx("a", {
-            href: "#projects",
-            className: "text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors whitespace-nowrap",
-            children: "Projets"
-          }), /*#__PURE__*/_jsx("a", {
-            href: "#github-explorer",
-            className: "text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors whitespace-nowrap",
-            children: "Hub GitHub"
-          }), /*#__PURE__*/_jsx("a", {
-            href: "#education",
-            className: "text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors whitespace-nowrap",
-            children: "Formations"
-          }), /*#__PURE__*/_jsx("a", {
-            href: "#contact",
-            className: "text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors whitespace-nowrap",
-            children: "Contact"
-          })]
-        }), /*#__PURE__*/_jsxs("div", {
-          className: "flex items-center gap-1.5 sm:gap-2 shrink-0",
-          children: [/*#__PURE__*/_jsx("a", {
-            href: data.profile.linkedin,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            title: "Consulter le profil LinkedIn de Walid",
-            className: "w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-blue-50 dark:bg-blue-950/60 text-[#0A66C2] dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all shrink-0",
-            children: /*#__PURE__*/_jsx("i", {
-              "data-lucide": "linkedin",
-              className: "w-4 h-4 sm:w-4.5 sm:h-4.5"
-            })
-          }), /*#__PURE__*/_jsx("a", {
-            href: data.profile.github,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            title: "Explorer le GitHub de Walid (@Waliddjla)",
-            className: "w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:scale-105 transition-all shrink-0",
-            children: /*#__PURE__*/_jsx("i", {
-              "data-lucide": "github",
-              className: "w-4 h-4 sm:w-4.5 sm:h-4.5"
-            })
-          }), /*#__PURE__*/_jsxs("button", {
-            onClick: () => setCvModalOpen(true),
-            title: "Consulter et imprimer le CV en PDF",
-            className: "hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-100 transition-all shrink-0 whitespace-nowrap",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "file-text",
-              className: "w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "Mon CV"
-            })]
-          }), /*#__PURE__*/_jsxs("button", {
-            onClick: openAdminModal,
-            title: "Console d'Administration du Portfolio",
-            className: "inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-bold bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-800 hover:bg-amber-100 dark:hover:bg-amber-900/40 transition-all shrink-0 shadow-sm",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "shield",
-              className: "w-3.5 h-3.5 text-amber-600 dark:text-amber-400"
-            }), /*#__PURE__*/_jsx("span", {
-              className: "hidden md:inline whitespace-nowrap",
-              children: "Admin"
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            title: "Base SQLite native connectée",
-            className: "hidden lg:inline-flex items-center gap-1.5 px-2.5 py-2 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 shrink-0",
-            children: [/*#__PURE__*/_jsx("span", {
-              className: "w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
-            }), /*#__PURE__*/_jsx("span", {
-              className: "whitespace-nowrap",
-              children: "SQLite Actif"
-            })]
-          }), /*#__PURE__*/_jsx("button", {
-            onClick: toggleTheme,
-            "aria-label": "Basculer le thème",
-            className: "w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shrink-0",
-            children: /*#__PURE__*/_jsx("i", {
-              "data-lucide": isDarkMode ? "sun" : "moon",
-              className: "w-4 h-4"
-            })
-          }), /*#__PURE__*/_jsx("button", {
-            onClick: () => setMobileMenuOpen(!mobileMenuOpen),
-            "aria-label": "Ouvrir le menu",
-            className: "xl:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shrink-0",
-            children: /*#__PURE__*/_jsx("i", {
-              "data-lucide": mobileMenuOpen ? "x" : "menu",
-              className: "w-5 h-5"
-            })
-          })]
-        })]
-      }), mobileMenuOpen && /*#__PURE__*/_jsxs("div", {
-        className: "xl:hidden px-4 pt-3 pb-6 glass border-b border-slate-200 dark:border-slate-800 flex flex-col gap-2 max-h-[calc(100vh-5.5rem)] overflow-y-auto animate-fade-in shadow-2xl",
-        children: [/*#__PURE__*/_jsxs("a", {
-          href: "#about",
-          onClick: () => setMobileMenuOpen(false),
-          className: "px-3.5 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between",
-          children: [/*#__PURE__*/_jsx("span", {
-            children: "À propos"
-          }), /*#__PURE__*/_jsx("i", {
-            "data-lucide": "chevron-right",
-            className: "w-4 h-4 text-slate-400"
-          })]
-        }), /*#__PURE__*/_jsxs("a", {
-          href: "#experience",
-          onClick: () => setMobileMenuOpen(false),
-          className: "px-3.5 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between",
-          children: [/*#__PURE__*/_jsx("span", {
-            children: "Parcours Professionnel"
-          }), /*#__PURE__*/_jsx("i", {
-            "data-lucide": "chevron-right",
-            className: "w-4 h-4 text-slate-400"
-          })]
-        }), /*#__PURE__*/_jsxs("a", {
-          href: "#sap-workflow",
-          onClick: () => setMobileMenuOpen(false),
-          className: "px-3.5 py-2.5 rounded-xl text-sm font-semibold text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 flex items-center justify-between",
-          children: [/*#__PURE__*/_jsxs("span", {
-            className: "flex items-center gap-2",
-            children: [/*#__PURE__*/_jsx("span", {
-              className: "w-2 h-2 rounded-full bg-blue-600 animate-ping"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "Workflow Métier SAP S/4HANA"
-            })]
-          }), /*#__PURE__*/_jsx("i", {
-            "data-lucide": "chevron-right",
-            className: "w-4 h-4 text-blue-500"
-          })]
-        }), /*#__PURE__*/_jsxs("a", {
-          href: "#skills",
-          onClick: () => setMobileMenuOpen(false),
-          className: "px-3.5 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between",
-          children: [/*#__PURE__*/_jsx("span", {
-            children: "Compétences Clés"
-          }), /*#__PURE__*/_jsx("i", {
-            "data-lucide": "chevron-right",
-            className: "w-4 h-4 text-slate-400"
-          })]
-        }), /*#__PURE__*/_jsxs("a", {
-          href: "#projects",
-          onClick: () => setMobileMenuOpen(false),
-          className: "px-3.5 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between",
-          children: [/*#__PURE__*/_jsxs("span", {
-            children: ["Projets Détaillés (", data.projects.length, ")"]
-          }), /*#__PURE__*/_jsx("i", {
-            "data-lucide": "chevron-right",
-            className: "w-4 h-4 text-slate-400"
-          })]
-        }), /*#__PURE__*/_jsxs("a", {
-          href: "#github-explorer",
-          onClick: () => setMobileMenuOpen(false),
-          className: "px-3.5 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between",
-          children: [/*#__PURE__*/_jsx("span", {
-            children: "Hub GitHub (@Waliddjla)"
-          }), /*#__PURE__*/_jsx("i", {
-            "data-lucide": "chevron-right",
-            className: "w-4 h-4 text-slate-400"
-          })]
-        }), /*#__PURE__*/_jsxs("a", {
-          href: "#education",
-          onClick: () => setMobileMenuOpen(false),
-          className: "px-3.5 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between",
-          children: [/*#__PURE__*/_jsx("span", {
-            children: "Formations & Certifications"
-          }), /*#__PURE__*/_jsx("i", {
-            "data-lucide": "chevron-right",
-            className: "w-4 h-4 text-slate-400"
-          })]
-        }), /*#__PURE__*/_jsxs("a", {
-          href: "#contact",
-          onClick: () => setMobileMenuOpen(false),
-          className: "px-3.5 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between",
-          children: [/*#__PURE__*/_jsx("span", {
-            children: "Contact"
-          }), /*#__PURE__*/_jsx("i", {
-            "data-lucide": "chevron-right",
-            className: "w-4 h-4 text-slate-400"
-          })]
-        }), /*#__PURE__*/_jsxs("div", {
-          className: "pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-2",
-          children: [/*#__PURE__*/_jsxs("a", {
-            href: data.profile.linkedin,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "flex-1 py-2.5 text-center rounded-xl text-xs font-bold bg-[#0A66C2] text-white flex items-center justify-center gap-1.5 shadow-sm",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "linkedin",
-              className: "w-4 h-4"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "LinkedIn"
-            })]
-          }), /*#__PURE__*/_jsxs("a", {
-            href: data.profile.github,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "flex-1 py-2.5 text-center rounded-lg text-xs font-bold bg-slate-900 dark:bg-slate-800 text-white flex items-center justify-center gap-1.5 shadow-sm",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "github",
-              className: "w-4 h-4"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "GitHub"
-            })]
-          }), /*#__PURE__*/_jsxs("button", {
-            onClick: () => {
-              setMobileMenuOpen(false);
-              setCvModalOpen(true);
-            },
-            className: "flex-1 py-2.5 text-center rounded-xl text-xs font-bold bg-indigo-600 text-white flex items-center justify-center gap-1.5 shadow-sm",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "file-text",
-              className: "w-4 h-4"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "CV (PDF)"
-            })]
-          })]
-        }), /*#__PURE__*/_jsxs("button", {
-          onClick: () => {
-            setMobileMenuOpen(false);
-            openAdminModal();
-          },
-          className: "mt-1 px-3 py-2.5 rounded-xl text-xs font-bold bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800 flex items-center justify-between",
-          children: [/*#__PURE__*/_jsxs("span", {
-            className: "flex items-center gap-2",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "shield",
-              className: "w-4 h-4 text-amber-500"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "Console d'Administration Portfolio"
-            })]
-          }), /*#__PURE__*/_jsx("i", {
-            "data-lucide": "lock",
-            className: "w-4 h-4"
-          })]
-        })]
-      })]
-    }), /*#__PURE__*/_jsxs("section", {
-      id: "hero",
-      className: "relative pt-20 pb-24 md:pt-28 md:pb-32 overflow-hidden",
-      children: [/*#__PURE__*/_jsx("div", {
-        className: "absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-blue-500/20 via-indigo-500/15 to-purple-500/20 blur-[130px] rounded-full pointer-events-none -z-10"
-      }), /*#__PURE__*/_jsxs("div", {
-        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center",
-        children: [/*#__PURE__*/_jsxs("div", {
-          className: "inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/80 mb-6 animate-float shadow-sm",
-          children: [/*#__PURE__*/_jsx("span", {
-            className: "w-2 h-2 rounded-full bg-emerald-500 animate-ping"
-          }), /*#__PURE__*/_jsx("span", {
-            children: data.profile.availability
-          })]
-        }), /*#__PURE__*/_jsx("h1", {
-          className: "text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1] mb-5",
-          children: data.profile.name
-        }), /*#__PURE__*/_jsxs("div", {
-          className: "inline-block px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl bg-gradient-to-r from-blue-100 via-indigo-100 to-purple-100 dark:from-blue-950/60 dark:via-indigo-950/60 dark:to-purple-950/60 text-blue-900 dark:text-blue-200 font-extrabold text-sm sm:text-lg md:text-2xl mb-6 shadow-sm border border-blue-200/50 dark:border-blue-800/50 max-w-full",
-          children: [/*#__PURE__*/_jsx("span", {
-            className: "block sm:inline",
-            children: "SAP Functional Analyst"
-          }), /*#__PURE__*/_jsx("span", {
-            className: "hidden sm:inline text-blue-400 mx-2",
-            children: "|"
-          }), /*#__PURE__*/_jsx("span", {
-            className: "block sm:inline",
-            children: "Full Stack Software Engineer"
-          })]
-        }), /*#__PURE__*/_jsx("p", {
-          className: "text-sm sm:text-base md:text-lg lg:text-xl font-normal text-slate-600 dark:text-slate-300 max-w-3xl mb-8 leading-relaxed px-2",
-          children: data.profile.bio
-        }), /*#__PURE__*/_jsxs("div", {
-          className: "flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-xs sm:text-sm mb-10 max-w-full px-2",
-          children: [/*#__PURE__*/_jsxs("div", {
-            className: "flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "map-pin",
-              className: "w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-500 shrink-0"
-            }), /*#__PURE__*/_jsx("span", {
-              children: data.profile.location
-            })]
-          }), /*#__PURE__*/_jsxs("a", {
-            href: `tel:${data.profile.phone}`,
-            className: "flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300 hover:text-emerald-600 transition-colors",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "phone",
-              className: "w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500 shrink-0"
-            }), /*#__PURE__*/_jsx("span", {
-              children: data.profile.phone
-            })]
-          }), /*#__PURE__*/_jsxs("a", {
-            href: `mailto:${data.profile.email}`,
-            className: "flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "mail",
-              className: "w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-500 shrink-0"
-            }), /*#__PURE__*/_jsx("span", {
-              children: data.profile.email
-            })]
-          }), /*#__PURE__*/_jsxs("a", {
-            href: data.profile.linkedin,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-[#0A66C2] dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "linkedin",
-              className: "w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0A66C2] shrink-0"
-            }), /*#__PURE__*/_jsx("span", {
-              className: "font-semibold truncate max-w-[170px] sm:max-w-none",
-              children: "linkedin.com/in/waliddjellali"
-            })]
-          }), /*#__PURE__*/_jsxs("a", {
-            href: data.profile.github,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:scale-105 transition-all",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "github",
-              className: "w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"
-            }), /*#__PURE__*/_jsx("span", {
-              className: "font-semibold truncate max-w-[130px] sm:max-w-none",
-              children: "github.com/Waliddjla"
-            })]
-          })]
-        }), /*#__PURE__*/_jsxs("div", {
-          className: "flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-8 w-full max-w-3xl px-2",
-          children: [/*#__PURE__*/_jsxs("a", {
-            href: data.profile.linkedin,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-[#0A66C2] hover:bg-[#004182] text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-105 transition-all flex items-center justify-center gap-2",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "linkedin",
-              className: "w-4 h-4 sm:w-5 sm:h-5"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "Me contacter sur LinkedIn"
-            }), /*#__PURE__*/_jsx("i", {
-              "data-lucide": "external-link",
-              className: "w-3.5 h-3.5 opacity-75"
-            })]
-          }), /*#__PURE__*/_jsxs("button", {
-            onClick: () => setCvModalOpen(true),
-            className: "w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-105 transition-all flex items-center justify-center gap-2",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "file-text",
-              className: "w-4 h-4 sm:w-5 sm:h-5"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "Consulter mon CV (PDF)"
-            })]
-          }), /*#__PURE__*/_jsxs("a", {
-            href: "#projects",
-            className: "w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all flex items-center justify-center gap-2",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "layers",
-              className: "w-4 h-4 sm:w-5 sm:h-5"
-            }), /*#__PURE__*/_jsxs("span", {
-              children: ["Découvrir les Projets (", data.projects.length, ")"]
-            })]
-          }), /*#__PURE__*/_jsxs("a", {
-            href: "#sap-workflow",
-            className: "w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-semibold glass hover:bg-slate-200/60 dark:hover:bg-slate-800/60 text-slate-800 dark:text-slate-100 transition-all flex items-center justify-center gap-2",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "cpu",
-              className: "w-4 h-4 sm:w-5 sm:h-5"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "Workflow SAP S/4HANA"
-            })]
-          })]
-        })]
-      })]
-    }), /*#__PURE__*/_jsx("section", {
-      id: "experience",
-      className: "py-24 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60",
-      children: /*#__PURE__*/_jsxs("div", {
-        className: "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8",
-        children: [/*#__PURE__*/_jsxs("div", {
-          className: "text-center max-w-3xl mx-auto mb-16",
-          children: [/*#__PURE__*/_jsx("span", {
-            className: "text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400 mb-2 block",
-            children: "Expérience Professionnelle"
-          }), /*#__PURE__*/_jsx("h2", {
-            className: "text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight",
-            children: "Parcours & Réalisations Métier"
-          }), /*#__PURE__*/_jsx("p", {
-            className: "mt-3 text-slate-600 dark:text-slate-400",
-            children: "Expérience confirmée alliant la maîtrise fonctionnelle des processus SAP et le développement d'applications critiques."
-          })]
-        }), /*#__PURE__*/_jsx("div", {
-          className: "space-y-8",
-          children: data.experiences.map((exp, idx) => /*#__PURE__*/_jsxs("div", {
-            className: "p-8 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 card-hover transition-all",
-            children: [/*#__PURE__*/_jsxs("div", {
-              className: "flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4",
-              children: [/*#__PURE__*/_jsx("div", {
-                children: /*#__PURE__*/_jsxs("h3", {
-                  className: "text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2",
-                  children: [/*#__PURE__*/_jsx("span", {
-                    children: exp.role
-                  }), /*#__PURE__*/_jsxs("span", {
-                    className: "text-blue-600 dark:text-blue-400 font-extrabold",
-                    children: ["@ ", exp.company]
-                  })]
-                })
-              }), /*#__PURE__*/_jsxs("span", {
-                className: "inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-bold bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 w-fit",
-                children: [/*#__PURE__*/_jsx("i", {
-                  "data-lucide": "calendar",
-                  className: "w-3.5 h-3.5"
-                }), /*#__PURE__*/_jsx("span", {
-                  children: exp.period
-                })]
-              })]
-            }), /*#__PURE__*/_jsx("p", {
-              className: "text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-6 leading-relaxed italic",
-              children: exp.description
-            }), /*#__PURE__*/_jsx("ul", {
-              className: "space-y-3",
-              children: exp.bullets.map((bullet, bIdx) => /*#__PURE__*/_jsxs("li", {
-                className: "flex items-start gap-3 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed",
-                children: [/*#__PURE__*/_jsx("span", {
-                  className: "w-5 h-5 rounded-lg bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 mt-0.5",
-                  children: /*#__PURE__*/_jsx("i", {
-                    "data-lucide": "check",
-                    className: "w-3.5 h-3.5"
-                  })
-                }), /*#__PURE__*/_jsx("span", {
-                  children: bullet
-                })]
-              }, bIdx))
-            })]
-          }, exp.id || idx))
-        })]
-      })
-    }), /*#__PURE__*/_jsx("section", {
-      id: "sap-workflow",
-      className: "py-24",
-      children: /*#__PURE__*/_jsxs("div", {
-        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
-        children: [/*#__PURE__*/_jsxs("div", {
-          className: "text-center max-w-3xl mx-auto mb-16",
-          children: [/*#__PURE__*/_jsxs("div", {
-            className: "inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-900 mb-3",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "cpu",
-              className: "w-3.5 h-3.5"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "Cycle de Vie Industriel & ERP"
-            })]
-          }), /*#__PURE__*/_jsx("h2", {
-            className: "text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight",
-            children: "Simulateur de Processus SAP S/4HANA (PM & MM)"
-          }), /*#__PURE__*/_jsx("p", {
-            className: "mt-3 text-slate-600 dark:text-slate-400",
-            children: "Découvrez pas à pas comment Walid orchestre la maintenance préventive, l'approvisionnement des pièces, l'étalonnage et la clôture financière dans SAP."
-          })]
-        }), /*#__PURE__*/_jsx("div", {
-          className: "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 mb-8",
-          children: sapWorkflowSteps.map((step, idx) => {
-            const isActive = activeSapStep === idx;
-            const isLastOdd = idx === 4;
-            return /*#__PURE__*/_jsxs("button", {
-              onClick: () => setActiveSapStep(idx),
-              className: `p-4 rounded-2xl text-left transition-all relative overflow-hidden flex flex-col justify-between border ${isActive ? "bg-white dark:bg-slate-900 border-blue-500 shadow-xl shadow-blue-500/10 ring-2 ring-blue-500/40" : "glass border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700"} ${isLastOdd ? "col-span-2 sm:col-span-1" : ""}`,
-              children: [/*#__PURE__*/_jsxs("div", {
-                className: "flex items-center justify-between mb-3",
-                children: [/*#__PURE__*/_jsx("span", {
-                  className: `text-xs font-black tracking-wider px-2 py-0.5 rounded-lg ${isActive ? "bg-blue-600 text-white" : "bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400"}`,
-                  children: step.step
-                }), /*#__PURE__*/_jsx("i", {
-                  "data-lucide": step.icon,
-                  className: `w-4 h-4 ${isActive ? "text-blue-600 dark:text-blue-400" : "text-slate-400"}`
-                })]
-              }), /*#__PURE__*/_jsxs("div", {
-                children: [/*#__PURE__*/_jsx("h4", {
-                  className: "text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-tight",
-                  children: step.title
-                }), /*#__PURE__*/_jsx("span", {
-                  className: "text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 block truncate",
-                  children: step.subtitle
-                })]
-              })]
-            }, step.id);
-          })
-        }), (() => {
-          const current = sapWorkflowSteps[activeSapStep];
-          return /*#__PURE__*/_jsxs("div", {
-            className: "p-6 sm:p-10 rounded-3xl glass border border-blue-500/30 shadow-2xl space-y-6 animate-fade-in",
-            children: [/*#__PURE__*/_jsxs("div", {
-              className: "flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200/70 dark:border-slate-800",
-              children: [/*#__PURE__*/_jsxs("div", {
-                children: [/*#__PURE__*/_jsxs("div", {
-                  className: "flex items-center gap-2 mb-2",
-                  children: [/*#__PURE__*/_jsxs("span", {
-                    className: "text-xs font-black px-2.5 py-0.5 rounded-lg bg-blue-600 text-white",
-                    children: ["Étape ", current.step, " / 05"]
-                  }), /*#__PURE__*/_jsx("span", {
-                    className: "px-3 py-1 rounded-xl text-xs font-semibold bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300",
-                    children: current.badge
-                  })]
-                }), /*#__PURE__*/_jsx("h3", {
-                  className: "text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white",
-                  children: current.title
-                }), /*#__PURE__*/_jsx("p", {
-                  className: "text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2",
-                  children: current.description
-                })]
-              }), /*#__PURE__*/_jsxs("div", {
-                className: "flex items-center justify-between sm:justify-start gap-2 self-stretch sm:self-auto shrink-0 pt-2 sm:pt-0",
-                children: [/*#__PURE__*/_jsxs("button", {
-                  onClick: () => setActiveSapStep((activeSapStep - 1 + sapWorkflowSteps.length) % sapWorkflowSteps.length),
-                  className: "flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-bold glass hover:bg-slate-200 dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-1.5",
-                  children: [/*#__PURE__*/_jsx("i", {
-                    "data-lucide": "chevron-left",
-                    className: "w-4 h-4"
-                  }), /*#__PURE__*/_jsx("span", {
-                    children: "Précédent"
-                  })]
-                }), /*#__PURE__*/_jsxs("button", {
-                  onClick: () => setActiveSapStep((activeSapStep + 1) % sapWorkflowSteps.length),
-                  className: "flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 transition-all flex items-center justify-center gap-1.5",
-                  children: [/*#__PURE__*/_jsx("span", {
-                    children: "Suivant"
-                  }), /*#__PURE__*/_jsx("i", {
-                    "data-lucide": "chevron-right",
-                    className: "w-4 h-4"
-                  })]
-                })]
-              })]
-            }), /*#__PURE__*/_jsxs("div", {
-              className: "grid grid-cols-1 lg:grid-cols-12 gap-8 pt-2",
-              children: [/*#__PURE__*/_jsxs("div", {
-                className: "lg:col-span-7 space-y-4",
-                children: [/*#__PURE__*/_jsxs("div", {
-                  className: "flex items-start gap-3",
-                  children: [/*#__PURE__*/_jsx("div", {
-                    className: "w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 mt-1",
-                    children: /*#__PURE__*/_jsx("i", {
-                      "data-lucide": "user-check",
-                      className: "w-5 h-5"
-                    })
-                  }), /*#__PURE__*/_jsxs("div", {
-                    children: [/*#__PURE__*/_jsx("h4", {
-                      className: "text-sm font-bold text-slate-900 dark:text-white",
-                      children: current.roleTitle
-                    }), /*#__PURE__*/_jsx("p", {
-                      className: "text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-1 leading-relaxed",
-                      children: current.roleDesc
-                    })]
-                  })]
-                }), /*#__PURE__*/_jsxs("div", {
-                  className: "p-4 rounded-2xl bg-blue-50/70 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60 flex items-center gap-3",
-                  children: [/*#__PURE__*/_jsx("i", {
-                    "data-lucide": "terminal",
-                    className: "w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0"
-                  }), /*#__PURE__*/_jsxs("div", {
-                    className: "text-xs",
-                    children: [/*#__PURE__*/_jsx("span", {
-                      className: "font-bold text-blue-900 dark:text-blue-200",
-                      children: "Application SAP Fiori associée : "
-                    }), /*#__PURE__*/_jsx("code", {
-                      className: "text-blue-600 dark:text-blue-400 font-mono font-bold",
-                      children: current.fioriApp
-                    })]
-                  })]
-                })]
-              }), /*#__PURE__*/_jsxs("div", {
-                className: "lg:col-span-5 bg-white/60 dark:bg-slate-900/60 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800",
-                children: [/*#__PURE__*/_jsxs("h5", {
-                  className: "text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2",
-                  children: [/*#__PURE__*/_jsx("i", {
-                    "data-lucide": "file-check",
-                    className: "w-4 h-4 text-emerald-500"
-                  }), /*#__PURE__*/_jsx("span", {
-                    children: "Livrables & Paramétrage Fonctionnel"
-                  })]
-                }), /*#__PURE__*/_jsx("ul", {
-                  className: "space-y-2",
-                  children: current.deliverables.map((del, dIdx) => /*#__PURE__*/_jsxs("li", {
-                    className: "flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300",
-                    children: [/*#__PURE__*/_jsx("span", {
-                      className: "w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"
-                    }), /*#__PURE__*/_jsx("span", {
-                      children: del
-                    })]
-                  }, dIdx))
-                })]
-              })]
-            })]
-          });
-        })()]
-      })
-    }), /*#__PURE__*/_jsx("section", {
-      id: "skills",
-      className: "py-24 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60",
-      children: /*#__PURE__*/_jsxs("div", {
-        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
-        children: [/*#__PURE__*/_jsxs("div", {
-          className: "text-center max-w-3xl mx-auto mb-16",
-          children: [/*#__PURE__*/_jsx("span", {
-            className: "text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400 mb-2 block",
-            children: "Stack Technique & Métier"
-          }), /*#__PURE__*/_jsx("h2", {
-            className: "text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight",
-            children: "Compétences Clés & Expertise"
-          })]
-        }), /*#__PURE__*/_jsxs("div", {
-          className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6",
-          children: [/*#__PURE__*/_jsxs("div", {
-            className: "p-7 rounded-3xl glass border border-blue-500/20 card-hover",
-            children: [/*#__PURE__*/_jsx("div", {
-              className: "w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-5",
-              children: /*#__PURE__*/_jsx("i", {
-                "data-lucide": "cpu",
-                className: "w-6 h-6"
-              })
-            }), /*#__PURE__*/_jsx("h3", {
-              className: "text-lg font-bold text-slate-900 dark:text-white mb-4",
-              children: "SAP & Processus ERP"
-            }), /*#__PURE__*/_jsx("div", {
-              className: "flex flex-wrap gap-2",
-              children: data.skills.filter(s => s.category.includes("SAP")).map((s, i) => /*#__PURE__*/_jsx("span", {
-                className: "px-3 py-1 rounded-xl text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300",
-                children: s.name
-              }, i))
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            className: "p-7 rounded-3xl glass border border-indigo-500/20 card-hover",
-            children: [/*#__PURE__*/_jsx("div", {
-              className: "w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-5",
-              children: /*#__PURE__*/_jsx("i", {
-                "data-lucide": "layout",
-                className: "w-6 h-6"
-              })
-            }), /*#__PURE__*/_jsx("h3", {
-              className: "text-lg font-bold text-slate-900 dark:text-white mb-4",
-              children: "Frontend & React"
-            }), /*#__PURE__*/_jsx("div", {
-              className: "flex flex-wrap gap-2",
-              children: data.skills.filter(s => s.category === "Frontend").map((s, i) => /*#__PURE__*/_jsx("span", {
-                className: "px-3 py-1 rounded-xl text-xs font-semibold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300",
-                children: s.name
-              }, i))
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            className: "p-7 rounded-3xl glass border border-purple-500/20 card-hover",
-            children: [/*#__PURE__*/_jsx("div", {
-              className: "w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-5",
-              children: /*#__PURE__*/_jsx("i", {
-                "data-lucide": "server",
-                className: "w-6 h-6"
-              })
-            }), /*#__PURE__*/_jsx("h3", {
-              className: "text-lg font-bold text-slate-900 dark:text-white mb-4",
-              children: "Backend & APIs"
-            }), /*#__PURE__*/_jsx("div", {
-              className: "flex flex-wrap gap-2",
-              children: data.skills.filter(s => s.category.includes("Backend")).map((s, i) => /*#__PURE__*/_jsx("span", {
-                className: "px-3 py-1 rounded-xl text-xs font-semibold bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300",
-                children: s.name
-              }, i))
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            className: "p-7 rounded-3xl glass border border-emerald-500/20 card-hover",
-            children: [/*#__PURE__*/_jsx("div", {
-              className: "w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-5",
-              children: /*#__PURE__*/_jsx("i", {
-                "data-lucide": "database",
-                className: "w-6 h-6"
-              })
-            }), /*#__PURE__*/_jsx("h3", {
-              className: "text-lg font-bold text-slate-900 dark:text-white mb-4",
-              children: "Bases de Données & Réseau"
-            }), /*#__PURE__*/_jsx("div", {
-              className: "flex flex-wrap gap-2",
-              children: data.skills.filter(s => s.category.includes("Databases")).map((s, i) => /*#__PURE__*/_jsx("span", {
-                className: "px-3 py-1 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300",
-                children: s.name
-              }, i))
-            })]
-          })]
-        })]
-      })
-    }), /*#__PURE__*/_jsx("section", {
-      id: "projects",
-      className: "py-24",
-      children: /*#__PURE__*/_jsxs("div", {
-        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
-        children: [/*#__PURE__*/_jsxs("div", {
-          className: "text-center max-w-3xl mx-auto mb-12",
-          children: [/*#__PURE__*/_jsxs("div", {
-            className: "inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-900 mb-3",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "layers",
-              className: "w-3.5 h-3.5"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "Ingénierie Logicielle & Métier"
-            })]
-          }), /*#__PURE__*/_jsx("h2", {
-            className: "text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight",
-            children: "Projets Réalisés & Études de Cas Détaillées"
-          }), /*#__PURE__*/_jsx("p", {
-            className: "mt-3 text-slate-600 dark:text-slate-400",
-            children: "Chaque projet intègre une analyse technique approfondie : contexte industriel, architecture système, défis surmontés et indicateurs de performance (KPIs)."
-          })]
-        }), /*#__PURE__*/_jsx("div", {
-          className: "flex flex-wrap justify-center items-center gap-2 mb-12",
-          children: [{
-            id: "all",
-            label: `Tous les projets (${data.projects.length})`
-          }, {
-            id: "software",
-            label: "Full-Stack & Systèmes"
-          }, {
-            id: "sap",
-            label: "SAP & Infrastructure"
-          }, {
-            id: "data",
-            label: "Data Science & IA"
-          }, {
-            id: "react",
-            label: "React & UI"
-          }].map(cat => /*#__PURE__*/_jsx("button", {
-            onClick: () => setSelectedCategory(cat.id),
-            className: `px-4 py-2 rounded-xl text-sm font-semibold transition-all ${selectedCategory === cat.id ? "bg-blue-600 text-white shadow-md shadow-blue-500/25" : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800"}`,
-            children: cat.label
-          }, cat.id))
-        }), /*#__PURE__*/_jsx("div", {
-          className: "grid grid-cols-1 md:grid-cols-2 gap-8",
-          children: filteredProjects.map((p, idx) => {
-            const hasCaseStudy = !!p.case_study;
-            return /*#__PURE__*/_jsxs("article", {
-              className: "fade-in card-hover rounded-3xl overflow-hidden glass border border-slate-200/80 dark:border-slate-800 flex flex-col group",
-              children: [/*#__PURE__*/_jsxs("div", {
-                className: "relative h-60 overflow-hidden bg-slate-900",
-                children: [/*#__PURE__*/_jsx("img", {
-                  src: p.image,
-                  alt: p.title,
-                  className: "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105",
-                  loading: "lazy"
-                }), /*#__PURE__*/_jsx("div", {
-                  className: "absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"
-                }), /*#__PURE__*/_jsxs("div", {
-                  className: "absolute top-4 left-4 flex flex-wrap gap-2",
-                  children: [/*#__PURE__*/_jsx("span", {
-                    className: "text-xs font-bold px-3 py-1.5 rounded-xl backdrop-blur-md bg-blue-600/90 text-white shadow-sm",
-                    children: p.category_label || p.category
-                  }), hasCaseStudy && /*#__PURE__*/_jsxs("span", {
-                    className: "text-xs font-bold px-2.5 py-1.5 rounded-xl backdrop-blur-md bg-amber-500/90 text-white flex items-center gap-1 shadow-sm",
-                    children: [/*#__PURE__*/_jsx("i", {
-                      "data-lucide": "sparkles",
-                      className: "w-3 h-3"
-                    }), /*#__PURE__*/_jsx("span", {
-                      children: "Étude de cas"
-                    })]
-                  })]
-                })]
-              }), /*#__PURE__*/_jsxs("div", {
-                className: "p-7 flex-1 flex flex-col justify-between",
-                children: [/*#__PURE__*/_jsxs("div", {
-                  children: [/*#__PURE__*/_jsx("h3", {
-                    className: "text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-500 transition-colors",
-                    children: p.title
-                  }), p.tagline && /*#__PURE__*/_jsxs("p", {
-                    className: "text-xs font-semibold text-blue-600 dark:text-blue-400 mb-3 italic",
-                    children: ["\"", p.tagline, "\""]
-                  }), /*#__PURE__*/_jsx("p", {
-                    className: "text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6",
-                    children: p.description
-                  }), p.case_study && p.case_study.kpis && /*#__PURE__*/_jsx("div", {
-                    className: "grid grid-cols-3 gap-2 mb-6 p-3 rounded-2xl bg-blue-50/70 dark:bg-blue-950/30 border border-blue-200/60 dark:border-blue-900/40",
-                    children: p.case_study.kpis.map((kpi, kIdx) => /*#__PURE__*/_jsxs("div", {
-                      className: "text-center",
-                      children: [/*#__PURE__*/_jsx("span", {
-                        className: "text-xs font-black text-blue-600 dark:text-blue-400 block",
-                        children: kpi.value
-                      }), /*#__PURE__*/_jsx("span", {
-                        className: "text-[10px] text-slate-500 dark:text-slate-400 block truncate",
-                        children: kpi.label
-                      })]
-                    }, kIdx))
-                  }), /*#__PURE__*/_jsx("div", {
-                    className: "flex flex-wrap gap-1.5 mb-6",
-                    children: (p.tags || []).slice(0, 6).map((tag, tIdx) => /*#__PURE__*/_jsx("span", {
-                      className: "text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300",
-                      children: tag
-                    }, tIdx))
-                  })]
-                }), /*#__PURE__*/_jsxs("div", {
-                  className: "flex flex-wrap items-center justify-between gap-3 pt-5 border-t border-slate-200/60 dark:border-slate-800",
-                  children: [/*#__PURE__*/_jsxs("button", {
-                    onClick: () => setSelectedProjectModal(p),
-                    className: "inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/25 hover:shadow-blue-500/40 transition-all",
-                    children: [/*#__PURE__*/_jsx("i", {
-                      "data-lucide": "sparkles",
-                      className: "w-4 h-4"
-                    }), /*#__PURE__*/_jsx("span", {
-                      children: "Détails & Architecture"
-                    })]
-                  }), /*#__PURE__*/_jsxs("a", {
-                    href: p.github_url,
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    className: "inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold glass hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 transition-all",
-                    children: [/*#__PURE__*/_jsx("i", {
-                      "data-lucide": "github",
-                      className: "w-4 h-4"
-                    }), /*#__PURE__*/_jsx("span", {
-                      children: "Code source"
-                    }), /*#__PURE__*/_jsx("i", {
-                      "data-lucide": "external-link",
-                      className: "w-3 h-3 opacity-60"
-                    })]
-                  })]
-                })]
-              })]
-            }, p.id || idx);
-          })
-        })]
-      })
-    }), /*#__PURE__*/_jsx("section", {
-      id: "github-explorer",
-      className: "py-24 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60",
-      children: /*#__PURE__*/_jsxs("div", {
-        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
-        children: [/*#__PURE__*/_jsxs("div", {
-          className: "text-center max-w-3xl mx-auto mb-12",
-          children: [/*#__PURE__*/_jsxs("div", {
-            className: "inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 mb-3",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "github",
-              className: "w-3.5 h-3.5"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "Écosystème Open Source"
-            })]
-          }), /*#__PURE__*/_jsx("h2", {
-            className: "text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight",
-            children: "Explorateur de Code GitHub (@Waliddjla)"
-          }), /*#__PURE__*/_jsx("p", {
-            className: "mt-3 text-slate-600 dark:text-slate-400",
-            children: "Recherchez et filtrez en direct parmi l'ensemble des dépôts créés par Walid Djellali sur GitHub."
-          })]
-        }), /*#__PURE__*/_jsxs("div", {
-          className: "max-w-3xl mx-auto mb-10 flex flex-col md:flex-row gap-3 sm:gap-4 items-stretch md:items-center",
-          children: [/*#__PURE__*/_jsxs("div", {
-            className: "relative flex-1",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "search",
-              className: "w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
-            }), /*#__PURE__*/_jsx("input", {
-              type: "text",
-              value: repoSearchQuery,
-              onChange: e => setRepoSearchQuery(e.target.value),
-              placeholder: "Rechercher un dépôt (react, dashboard, api, iot...)...",
-              className: "w-full pl-11 pr-10 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
-            }), repoSearchQuery && /*#__PURE__*/_jsx("button", {
-              onClick: () => setRepoSearchQuery(""),
-              className: "absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1",
-              children: /*#__PURE__*/_jsx("i", {
-                "data-lucide": "x",
-                className: "w-4 h-4"
-              })
-            })]
-          }), /*#__PURE__*/_jsx("div", {
-            className: "flex flex-wrap gap-1.5 sm:gap-2 justify-center shrink-0",
-            children: [{
-              id: "all",
-              label: "Tous"
-            }, {
-              id: "javascript",
-              label: "JavaScript"
-            }, {
-              id: "html",
-              label: "HTML/CSS"
-            }, {
-              id: "python",
-              label: "Python"
-            }].map(lang => /*#__PURE__*/_jsx("button", {
-              onClick: () => setRepoLanguageFilter(lang.id),
-              className: `px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${repoLanguageFilter === lang.id ? "bg-blue-600 text-white shadow-md shadow-blue-500/25" : "glass text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50"}`,
-              children: lang.label
-            }, lang.id))
-          })]
-        }), /*#__PURE__*/_jsx("div", {
-          className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6",
-          children: filteredGithubRepos.slice(0, 9).map((repo, rIdx) => /*#__PURE__*/_jsxs("a", {
-            href: repo.html_url || `https://github.com/Waliddjla/${repo.name}`,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "p-6 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 hover:border-blue-500/50 flex flex-col justify-between card-hover group transition-all",
-            children: [/*#__PURE__*/_jsxs("div", {
-              children: [/*#__PURE__*/_jsxs("div", {
-                className: "flex items-center justify-between mb-3",
-                children: [/*#__PURE__*/_jsx("span", {
-                  className: "w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center",
-                  children: /*#__PURE__*/_jsx("i", {
-                    "data-lucide": "folder-git-2",
-                    className: "w-4 h-4"
-                  })
-                }), /*#__PURE__*/_jsx("span", {
-                  className: "text-xs px-2.5 py-0.5 rounded-full font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400",
-                  children: repo.language || "Projet"
-                })]
-              }), /*#__PURE__*/_jsx("h4", {
-                className: "text-base font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-2",
-                children: repo.name
-              }), /*#__PURE__*/_jsx("p", {
-                className: "text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2 mb-4",
-                children: repo.description || "Dépôt de développement hébergé sur le profil de Walid Djellali."
-              })]
-            }), /*#__PURE__*/_jsxs("div", {
-              className: "flex items-center justify-between pt-3 border-t border-slate-200/60 dark:border-slate-800/80 text-xs text-slate-500 dark:text-slate-400",
-              children: [/*#__PURE__*/_jsxs("span", {
-                className: "flex items-center gap-1 font-semibold text-blue-600 dark:text-blue-400",
-                children: [/*#__PURE__*/_jsx("span", {
-                  children: "Explorer le code"
-                }), /*#__PURE__*/_jsx("i", {
-                  "data-lucide": "external-link",
-                  className: "w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
-                })]
-              }), /*#__PURE__*/_jsx("span", {
-                children: "@Waliddjla"
-              })]
-            })]
-          }, rIdx))
-        }), /*#__PURE__*/_jsx("div", {
-          className: "mt-12 text-center",
-          children: /*#__PURE__*/_jsxs("a", {
-            href: "https://github.com/Waliddjla",
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl text-sm font-bold bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:opacity-95 shadow-md shadow-slate-900/10 hover:scale-105 transition-all",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "github",
-              className: "w-4 h-4"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "Voir l'ensemble des dépôts sur GitHub (@Waliddjla)"
-            }), /*#__PURE__*/_jsx("i", {
-              "data-lucide": "arrow-up-right",
-              className: "w-4 h-4"
-            })]
-          })
-        })]
-      })
-    }), /*#__PURE__*/_jsx("section", {
-      id: "education",
-      className: "py-24",
-      children: /*#__PURE__*/_jsxs("div", {
-        className: "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8",
-        children: [/*#__PURE__*/_jsxs("div", {
-          className: "text-center max-w-3xl mx-auto mb-16",
-          children: [/*#__PURE__*/_jsx("span", {
-            className: "text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400 mb-2 block",
-            children: "Diplômes & Certifications"
-          }), /*#__PURE__*/_jsx("h2", {
-            className: "text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight",
-            children: "Formation Académique & Accréditations"
-          })]
-        }), /*#__PURE__*/_jsx("div", {
-          className: "grid grid-cols-1 md:grid-cols-3 gap-6",
-          children: data.education.map((edu, idx) => /*#__PURE__*/_jsxs("div", {
-            className: "p-7 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 flex flex-col card-hover",
-            children: [/*#__PURE__*/_jsx("div", {
-              className: "w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4",
-              children: /*#__PURE__*/_jsx("i", {
-                "data-lucide": "graduation-cap",
-                className: "w-5 h-5"
-              })
-            }), /*#__PURE__*/_jsx("span", {
-              className: "text-xs font-bold text-blue-600 dark:text-blue-400 mb-1",
-              children: edu.period
-            }), /*#__PURE__*/_jsx("h3", {
-              className: "text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug",
-              children: edu.degree
-            }), /*#__PURE__*/_jsx("p", {
-              className: "text-xs font-semibold text-slate-500 dark:text-slate-400 mb-3",
-              children: edu.institution
-            }), /*#__PURE__*/_jsx("p", {
-              className: "text-xs text-slate-600 dark:text-slate-300 mt-auto leading-relaxed",
-              children: edu.details
-            })]
-          }, edu.id || idx))
-        })]
-      })
-    }), /*#__PURE__*/_jsx("section", {
-      id: "contact",
-      className: "py-24 bg-slate-100/60 dark:bg-slate-900/40 border-t border-slate-200/60 dark:border-slate-800/60",
-      children: /*#__PURE__*/_jsxs("div", {
-        className: "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8",
-        children: [/*#__PURE__*/_jsxs("div", {
-          className: "text-center max-w-3xl mx-auto mb-16",
-          children: [/*#__PURE__*/_jsx("span", {
-            className: "text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400 mb-2 block",
-            children: "Opportunités & Missions"
-          }), /*#__PURE__*/_jsx("h2", {
-            className: "text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight",
-            children: "Prendre Contact avec Walid"
-          }), /*#__PURE__*/_jsx("p", {
-            className: "mt-3 text-slate-600 dark:text-slate-400",
-            children: "Disponible pour échanger sur des opportunités en intégration SAP S/4HANA (PM & MM) ou en développement Full-Stack."
-          })]
-        }), /*#__PURE__*/_jsxs("div", {
-          className: "grid grid-cols-1 lg:grid-cols-12 gap-8 items-start",
-          children: [/*#__PURE__*/_jsxs("div", {
-            className: "lg:col-span-5 space-y-4",
-            children: [/*#__PURE__*/_jsxs("a", {
-              href: data.profile.linkedin,
-              target: "_blank",
-              rel: "noopener noreferrer",
-              className: "p-6 rounded-3xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/80 flex items-center justify-between card-hover group transition-all",
-              children: [/*#__PURE__*/_jsxs("div", {
-                className: "flex items-center gap-4",
-                children: [/*#__PURE__*/_jsx("div", {
-                  className: "w-12 h-12 rounded-2xl bg-[#0A66C2] text-white flex items-center justify-center shrink-0 shadow-md",
-                  children: /*#__PURE__*/_jsx("i", {
-                    "data-lucide": "linkedin",
-                    className: "w-6 h-6"
-                  })
-                }), /*#__PURE__*/_jsxs("div", {
-                  children: [/*#__PURE__*/_jsx("h4", {
-                    className: "text-base font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors",
-                    children: "Profil LinkedIn"
-                  }), /*#__PURE__*/_jsx("span", {
-                    className: "text-xs text-blue-700 dark:text-blue-300 font-medium",
-                    children: "/in/waliddjellali"
-                  })]
-                })]
-              }), /*#__PURE__*/_jsx("i", {
-                "data-lucide": "arrow-up-right",
-                className: "w-5 h-5 text-blue-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-              })]
-            }), /*#__PURE__*/_jsxs("a", {
-              href: data.profile.github,
-              target: "_blank",
-              rel: "noopener noreferrer",
-              className: "p-6 rounded-3xl bg-slate-200/60 dark:bg-slate-800/60 border border-slate-300 dark:border-slate-700/80 flex items-center justify-between card-hover group transition-all",
-              children: [/*#__PURE__*/_jsxs("div", {
-                className: "flex items-center gap-4",
-                children: [/*#__PURE__*/_jsx("div", {
-                  className: "w-12 h-12 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center shrink-0 shadow-md",
-                  children: /*#__PURE__*/_jsx("i", {
-                    "data-lucide": "github",
-                    className: "w-6 h-6"
-                  })
-                }), /*#__PURE__*/_jsxs("div", {
-                  children: [/*#__PURE__*/_jsx("h4", {
-                    className: "text-base font-bold text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors",
-                    children: "Dépôts GitHub"
-                  }), /*#__PURE__*/_jsx("span", {
-                    className: "text-xs text-slate-600 dark:text-slate-300 font-medium",
-                    children: "@Waliddjla"
-                  })]
-                })]
-              }), /*#__PURE__*/_jsx("i", {
-                "data-lucide": "arrow-up-right",
-                className: "w-5 h-5 text-slate-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-              })]
-            }), /*#__PURE__*/_jsxs("div", {
-              className: "p-6 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 space-y-3 text-xs sm:text-sm",
-              children: [/*#__PURE__*/_jsxs("div", {
-                className: "flex items-center gap-3 text-slate-700 dark:text-slate-300",
-                children: [/*#__PURE__*/_jsx("i", {
-                  "data-lucide": "map-pin",
-                  className: "w-4 h-4 text-rose-500 shrink-0"
-                }), /*#__PURE__*/_jsx("span", {
-                  children: data.profile.location
-                })]
-              }), /*#__PURE__*/_jsxs("div", {
-                className: "flex items-center gap-3 text-slate-700 dark:text-slate-300",
-                children: [/*#__PURE__*/_jsx("i", {
-                  "data-lucide": "mail",
-                  className: "w-4 h-4 text-blue-500 shrink-0"
-                }), /*#__PURE__*/_jsx("span", {
-                  children: data.profile.email
-                })]
-              }), /*#__PURE__*/_jsxs("div", {
-                className: "flex items-center gap-3 text-slate-700 dark:text-slate-300",
-                children: [/*#__PURE__*/_jsx("i", {
-                  "data-lucide": "phone",
-                  className: "w-4 h-4 text-emerald-500 shrink-0"
-                }), /*#__PURE__*/_jsx("span", {
-                  children: data.profile.phone
-                })]
-              })]
-            })]
-          }), /*#__PURE__*/_jsx("div", {
-            className: "lg:col-span-7",
-            children: /*#__PURE__*/_jsxs("form", {
-              onSubmit: handleFormSubmit,
-              className: "p-8 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 space-y-5",
-              children: [/*#__PURE__*/_jsxs("div", {
-                className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
-                children: [/*#__PURE__*/_jsxs("div", {
-                  children: [/*#__PURE__*/_jsx("label", {
-                    className: "block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5",
-                    children: "Votre Nom / Entreprise *"
-                  }), /*#__PURE__*/_jsx("input", {
-                    type: "text",
-                    required: true,
-                    value: formState.name,
-                    onChange: e => setFormState({
-                      ...formState,
-                      name: e.target.value
-                    }),
-                    placeholder: "Ex: Direction IT / Recruteur",
-                    className: "w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  })]
-                }), /*#__PURE__*/_jsxs("div", {
-                  children: [/*#__PURE__*/_jsx("label", {
-                    className: "block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5",
-                    children: "Votre Email *"
-                  }), /*#__PURE__*/_jsx("input", {
-                    type: "email",
-                    required: true,
-                    value: formState.email,
-                    onChange: e => setFormState({
-                      ...formState,
-                      email: e.target.value
-                    }),
-                    placeholder: "nom@entreprise.com",
-                    className: "w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  })]
-                })]
-              }), /*#__PURE__*/_jsxs("div", {
-                children: [/*#__PURE__*/_jsx("label", {
-                  className: "block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5",
-                  children: "Objet de votre demande"
-                }), /*#__PURE__*/_jsx("input", {
-                  type: "text",
-                  value: formState.subject,
-                  onChange: e => setFormState({
-                    ...formState,
-                    subject: e.target.value
-                  }),
-                  placeholder: "Opportunité SAP S/4HANA / Projet Full-Stack...",
-                  className: "w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                })]
-              }), /*#__PURE__*/_jsxs("div", {
-                children: [/*#__PURE__*/_jsx("label", {
-                  className: "block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5",
-                  children: "Message détaillé *"
-                }), /*#__PURE__*/_jsx("textarea", {
-                  rows: 4,
-                  required: true,
-                  value: formState.message,
-                  onChange: e => setFormState({
-                    ...formState,
-                    message: e.target.value
-                  }),
-                  placeholder: "Présentez brièvement vos besoins ou le poste envisagé...",
-                  className: "w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                })]
-              }), /*#__PURE__*/_jsxs("button", {
-                type: "submit",
-                disabled: isSubmitting,
-                className: "w-full py-3.5 rounded-2xl text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/25 transition-all flex items-center justify-center gap-2",
-                children: [/*#__PURE__*/_jsx("i", {
-                  "data-lucide": "send",
-                  className: "w-4 h-4"
-                }), /*#__PURE__*/_jsx("span", {
-                  children: isSubmitting ? "Enregistrement dans SQLite..." : "Envoyer le message"
-                })]
-              })]
-            })
-          })]
-        })]
-      })
-    }), /*#__PURE__*/_jsx("footer", {
-      className: "border-t border-slate-200 dark:border-slate-800 py-12 bg-white/40 dark:bg-slate-950/40",
-      children: /*#__PURE__*/_jsxs("div", {
-        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left",
-        children: [/*#__PURE__*/_jsxs("div", {
-          className: "flex items-center gap-3",
-          children: [/*#__PURE__*/_jsx("span", {
-            className: "w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center font-extrabold text-sm shadow-md shadow-blue-500/20",
-            children: "WD"
-          }), /*#__PURE__*/_jsxs("div", {
-            children: [/*#__PURE__*/_jsx("span", {
-              className: "font-extrabold text-slate-900 dark:text-white block text-sm",
-              children: data.profile.name
-            }), /*#__PURE__*/_jsxs("span", {
-              className: "text-xs text-slate-500 dark:text-slate-400",
-              children: ["© ", new Date().getFullYear(), " Walid Djellali. Tous droits réservés."]
-            })]
-          })]
-        }), /*#__PURE__*/_jsxs("div", {
-          className: "flex flex-wrap items-center justify-center gap-5 text-sm text-slate-600 dark:text-slate-400",
-          children: [/*#__PURE__*/_jsxs("a", {
-            href: data.profile.linkedin,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1.5 transition-colors font-medium",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "linkedin",
-              className: "w-4 h-4 text-[#0A66C2]"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "LinkedIn"
-            })]
-          }), /*#__PURE__*/_jsxs("a", {
-            href: data.profile.github,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5 transition-colors font-medium",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "github",
-              className: "w-4 h-4"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "GitHub"
-            })]
-          }), /*#__PURE__*/_jsxs("button", {
-            onClick: () => setCvModalOpen(true),
-            className: "hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1.5 transition-colors font-medium",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "file-text",
-              className: "w-4 h-4 text-indigo-500"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "CV (PDF)"
-            })]
-          }), /*#__PURE__*/_jsxs("button", {
-            onClick: openAdminModal,
-            className: "hover:text-amber-600 dark:hover:text-amber-400 flex items-center gap-1.5 transition-colors font-bold text-amber-600 dark:text-amber-400",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "shield",
-              className: "w-4 h-4"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "Console d'Administration"
-            })]
-          }), /*#__PURE__*/_jsxs("a", {
-            href: "#hero",
-            className: "hover:text-blue-600 flex items-center gap-1 transition-colors font-medium",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "arrow-up",
-              className: "w-4 h-4"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "Haut"
-            })]
-          })]
-        })]
-      })
-    }), selectedProjectModal && /*#__PURE__*/_jsx("div", {
-      className: "fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in no-print",
-      children: /*#__PURE__*/_jsxs("div", {
-        className: "w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[92vh] flex flex-col",
-        children: [/*#__PURE__*/_jsxs("div", {
-          className: "flex items-start justify-between pb-4 border-b border-slate-200 dark:border-slate-800 shrink-0 gap-4",
-          children: [/*#__PURE__*/_jsxs("div", {
-            children: [/*#__PURE__*/_jsxs("div", {
-              className: "flex items-center gap-2 mb-2",
-              children: [/*#__PURE__*/_jsx("span", {
-                className: "px-3 py-1 rounded-xl text-xs font-bold bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300",
-                children: selectedProjectModal.category_label || selectedProjectModal.category
-              }), selectedProjectModal.case_study && /*#__PURE__*/_jsxs("span", {
-                className: "px-2.5 py-1 rounded-xl text-xs font-bold bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 flex items-center gap-1",
-                children: [/*#__PURE__*/_jsx("i", {
-                  "data-lucide": "award",
-                  className: "w-3.5 h-3.5"
-                }), /*#__PURE__*/_jsx("span", {
-                  children: "Étude de cas certifiée"
-                })]
-              })]
-            }), /*#__PURE__*/_jsx("h3", {
-              className: "text-xl sm:text-2xl font-black text-slate-900 dark:text-white",
-              children: selectedProjectModal.title
-            }), selectedProjectModal.tagline && /*#__PURE__*/_jsx("p", {
-              className: "text-xs sm:text-sm text-blue-600 dark:text-blue-400 font-semibold mt-1",
-              children: selectedProjectModal.tagline
-            })]
-          }), /*#__PURE__*/_jsx("button", {
-            onClick: () => setSelectedProjectModal(null),
-            className: "w-9 h-9 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all shrink-0",
-            children: /*#__PURE__*/_jsx("i", {
-              "data-lucide": "x",
-              className: "w-4 h-4"
-            })
-          })]
-        }), /*#__PURE__*/_jsxs("div", {
-          className: "flex-1 overflow-y-auto pr-1 sm:pr-2 py-4 space-y-6 text-sm text-slate-700 dark:text-slate-300",
-          children: [/*#__PURE__*/_jsxs("div", {
-            className: "relative h-48 sm:h-64 rounded-2xl overflow-hidden bg-slate-900",
-            children: [/*#__PURE__*/_jsx("img", {
-              src: selectedProjectModal.image,
-              alt: selectedProjectModal.title,
-              className: "w-full h-full object-cover"
-            }), /*#__PURE__*/_jsx("div", {
-              className: "absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-5",
-              children: /*#__PURE__*/_jsx("p", {
-                className: "text-xs sm:text-sm text-white font-medium drop-shadow-md",
-                children: selectedProjectModal.description
-              })
-            })]
-          }), selectedProjectModal.case_study && selectedProjectModal.case_study.kpis && /*#__PURE__*/_jsxs("div", {
-            children: [/*#__PURE__*/_jsxs("h4", {
-              className: "text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3 flex items-center gap-1.5",
-              children: [/*#__PURE__*/_jsx("i", {
-                "data-lucide": "trending-up",
-                className: "w-4 h-4"
-              }), /*#__PURE__*/_jsx("span", {
-                children: "Indicateurs de Performance Clés (KPIs)"
-              })]
-            }), /*#__PURE__*/_jsx("div", {
-              className: "grid grid-cols-1 sm:grid-cols-3 gap-3",
-              children: selectedProjectModal.case_study.kpis.map((kpi, kIdx) => /*#__PURE__*/_jsxs("div", {
-                className: "p-4 rounded-2xl bg-blue-50/70 dark:bg-blue-950/40 border border-blue-200/70 dark:border-blue-900/60 flex items-center gap-3",
-                children: [/*#__PURE__*/_jsx("div", {
-                  className: "w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold shrink-0 shadow-sm",
-                  children: /*#__PURE__*/_jsx("i", {
-                    "data-lucide": kpi.icon || "activity",
-                    className: "w-5 h-5"
-                  })
-                }), /*#__PURE__*/_jsxs("div", {
-                  children: [/*#__PURE__*/_jsx("span", {
-                    className: "text-lg font-black text-slate-900 dark:text-white block",
-                    children: kpi.value
-                  }), /*#__PURE__*/_jsx("span", {
-                    className: "text-xs text-slate-500 dark:text-slate-400",
-                    children: kpi.label
-                  })]
-                })]
-              }, kIdx))
-            })]
-          }), selectedProjectModal.case_study && /*#__PURE__*/_jsxs("div", {
-            className: "p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 space-y-2",
-            children: [/*#__PURE__*/_jsxs("div", {
-              className: "flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400 pb-2 border-b border-slate-200 dark:border-slate-800",
-              children: [/*#__PURE__*/_jsxs("span", {
-                children: [/*#__PURE__*/_jsx("strong", {
-                  children: "Client / Organisation :"
-                }), " ", selectedProjectModal.case_study.client]
-              }), /*#__PURE__*/_jsxs("span", {
-                children: [/*#__PURE__*/_jsx("strong", {
-                  children: "Rôle de Walid :"
-                }), " ", selectedProjectModal.case_study.role]
-              }), /*#__PURE__*/_jsxs("span", {
-                children: [/*#__PURE__*/_jsx("strong", {
-                  children: "Période :"
-                }), " ", selectedProjectModal.case_study.period]
-              })]
-            }), /*#__PURE__*/_jsx("h4", {
-              className: "text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white pt-1",
-              children: "Contexte & Enjeux Métier"
-            }), /*#__PURE__*/_jsx("p", {
-              className: "text-xs sm:text-sm leading-relaxed",
-              children: selectedProjectModal.case_study.context
-            })]
-          }), selectedProjectModal.case_study && selectedProjectModal.case_study.architecture && /*#__PURE__*/_jsxs("div", {
-            className: "p-5 rounded-2xl bg-blue-50/40 dark:bg-blue-950/20 border border-blue-200/60 dark:border-blue-900/40 space-y-2",
-            children: [/*#__PURE__*/_jsxs("h4", {
-              className: "text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 flex items-center gap-1.5",
-              children: [/*#__PURE__*/_jsx("i", {
-                "data-lucide": "cpu",
-                className: "w-4 h-4"
-              }), /*#__PURE__*/_jsx("span", {
-                children: "Architecture Technique & Flux de Données"
-              })]
-            }), /*#__PURE__*/_jsx("p", {
-              className: "text-xs sm:text-sm leading-relaxed",
-              children: selectedProjectModal.case_study.architecture
-            })]
-          }), selectedProjectModal.features && selectedProjectModal.features.length > 0 && /*#__PURE__*/_jsxs("div", {
-            children: [/*#__PURE__*/_jsxs("h4", {
-              className: "text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white mb-3 flex items-center gap-1.5",
-              children: [/*#__PURE__*/_jsx("i", {
-                "data-lucide": "check-circle-2",
-                className: "w-4 h-4 text-emerald-500"
-              }), /*#__PURE__*/_jsx("span", {
-                children: "Fonctionnalités Majeures Développées"
-              })]
-            }), /*#__PURE__*/_jsx("div", {
-              className: "grid grid-cols-1 sm:grid-cols-2 gap-2.5",
-              children: selectedProjectModal.features.map((feat, fIdx) => /*#__PURE__*/_jsxs("div", {
-                className: "p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 flex items-start gap-2.5 text-xs sm:text-sm",
-                children: [/*#__PURE__*/_jsx("i", {
-                  "data-lucide": "chevron-right",
-                  className: "w-4 h-4 text-blue-500 shrink-0 mt-0.5"
-                }), /*#__PURE__*/_jsx("span", {
-                  children: feat
-                })]
-              }, fIdx))
-            })]
-          }), selectedProjectModal.case_study && selectedProjectModal.case_study.challenges && /*#__PURE__*/_jsxs("div", {
-            className: "space-y-3",
-            children: [/*#__PURE__*/_jsxs("h4", {
-              className: "text-xs font-black uppercase tracking-wider text-amber-600 dark:text-amber-400 flex items-center gap-1.5",
-              children: [/*#__PURE__*/_jsx("i", {
-                "data-lucide": "alert-circle",
-                className: "w-4 h-4"
-              }), /*#__PURE__*/_jsx("span", {
-                children: "Défis Complexes & Résolutions Techniques"
-              })]
-            }), /*#__PURE__*/_jsx("div", {
-              className: "space-y-2",
-              children: selectedProjectModal.case_study.challenges.map((chal, cIdx) => /*#__PURE__*/_jsxs("div", {
-                className: "p-3.5 rounded-xl bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40 text-xs sm:text-sm flex items-start gap-2.5",
-                children: [/*#__PURE__*/_jsx("span", {
-                  className: "w-5 h-5 rounded-full bg-amber-500 text-white font-bold flex items-center justify-center shrink-0 text-[10px] mt-0.5",
-                  children: cIdx + 1
-                }), /*#__PURE__*/_jsx("span", {
-                  children: chal
-                })]
-              }, cIdx))
-            }), selectedProjectModal.case_study.solution && /*#__PURE__*/_jsxs("div", {
-              className: "p-4 rounded-xl bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/40 text-xs sm:text-sm",
-              children: [/*#__PURE__*/_jsx("strong", {
-                className: "text-emerald-800 dark:text-emerald-300 block mb-1",
-                children: "Approche & Résolution :"
-              }), /*#__PURE__*/_jsx("p", {
-                children: selectedProjectModal.case_study.solution
-              })]
-            })]
-          }), selectedProjectModal.case_study && selectedProjectModal.case_study.impact && /*#__PURE__*/_jsxs("div", {
-            className: "p-5 rounded-2xl bg-slate-900 text-white dark:bg-slate-800/80 border border-slate-800 space-y-2",
-            children: [/*#__PURE__*/_jsxs("h4", {
-              className: "text-xs font-black uppercase tracking-wider text-blue-400 flex items-center gap-1.5",
-              children: [/*#__PURE__*/_jsx("i", {
-                "data-lucide": "zap",
-                className: "w-4 h-4 text-amber-400"
-              }), /*#__PURE__*/_jsx("span", {
-                children: "Impact Opérationnel & Valeur Ajoutée"
-              })]
-            }), /*#__PURE__*/_jsx("p", {
-              className: "text-xs sm:text-sm leading-relaxed text-slate-200",
-              children: selectedProjectModal.case_study.impact
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            children: [/*#__PURE__*/_jsx("h4", {
-              className: "text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2",
-              children: "Technologies & Outils Employés"
-            }), /*#__PURE__*/_jsx("div", {
-              className: "flex flex-wrap gap-1.5",
-              children: (selectedProjectModal.tags || []).map((t, idx) => /*#__PURE__*/_jsx("span", {
-                className: "px-3 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-semibold",
-                children: t
-              }, idx))
-            })]
-          })]
-        }), /*#__PURE__*/_jsxs("div", {
-          className: "pt-4 border-t border-slate-200 dark:border-slate-800 shrink-0 flex items-center justify-between gap-3",
-          children: [/*#__PURE__*/_jsxs("a", {
-            href: selectedProjectModal.github_url,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:opacity-90 transition-all",
-            children: [/*#__PURE__*/_jsx("i", {
-              "data-lucide": "github",
-              className: "w-4 h-4"
-            }), /*#__PURE__*/_jsx("span", {
-              children: "Explorer le code source"
-            }), /*#__PURE__*/_jsx("i", {
-              "data-lucide": "external-link",
-              className: "w-3.5 h-3.5 opacity-60"
-            })]
-          }), /*#__PURE__*/_jsx("button", {
-            onClick: () => setSelectedProjectModal(null),
-            className: "px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all",
-            children: "Fermer"
-          })]
-        })]
-      })
-    }), adminModalOpen && /*#__PURE__*/_jsx("div", {
-      className: "fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in no-print",
-      children: /*#__PURE__*/_jsxs("div", {
-        className: "w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[92vh] flex flex-col",
-        children: [/*#__PURE__*/_jsxs("div", {
-          className: "flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 shrink-0",
-          children: [/*#__PURE__*/_jsxs("div", {
-            className: "flex items-center gap-3",
-            children: [/*#__PURE__*/_jsx("div", {
-              className: "w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center shadow-md shadow-amber-500/25",
-              children: /*#__PURE__*/_jsx("i", {
-                "data-lucide": "shield",
-                className: "w-5 h-5"
-              })
-            }), /*#__PURE__*/_jsxs("div", {
-              children: [/*#__PURE__*/_jsxs("h3", {
-                className: "text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2",
-                children: [/*#__PURE__*/_jsx("span", {
-                  children: "Console d'Administration"
-                }), isAdminAuth && /*#__PURE__*/_jsx("span", {
-                  className: "text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-bold",
-                  children: "En ligne"
-                })]
-              }), /*#__PURE__*/_jsx("p", {
-                className: "text-xs text-slate-500 dark:text-slate-400",
-                children: "Gestion directe de la base de données SQLite (portfolio.db)"
-              })]
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            className: "flex items-center gap-2",
-            children: [isAdminAuth && /*#__PURE__*/_jsxs("button", {
-              onClick: handleAdminLogout,
-              title: "Se déconnecter",
-              className: "px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-rose-50 hover:text-rose-600 transition-all flex items-center gap-1.5",
-              children: [/*#__PURE__*/_jsx("i", {
-                "data-lucide": "log-out",
-                className: "w-3.5 h-3.5"
-              }), /*#__PURE__*/_jsx("span", {
-                children: "Verrouiller"
-              })]
-            }), /*#__PURE__*/_jsx("button", {
-              onClick: () => setAdminModalOpen(false),
-              className: "w-9 h-9 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-600 dark:text-slate-300",
-              children: /*#__PURE__*/_jsx("i", {
-                "data-lucide": "x",
-                className: "w-4 h-4"
-              })
-            })]
-          })]
-        }), !isAdminAuth ? /*#__PURE__*/_jsxs("div", {
-          className: "flex-1 flex flex-col items-center justify-center py-10 px-4 text-center max-w-md mx-auto",
-          children: [/*#__PURE__*/_jsx("div", {
-            className: "w-16 h-16 rounded-3xl bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-5 shadow-lg shadow-amber-500/10",
-            children: /*#__PURE__*/_jsx("i", {
-              "data-lucide": "lock",
-              className: "w-8 h-8"
-            })
-          }), /*#__PURE__*/_jsx("h4", {
-            className: "text-xl font-bold text-slate-900 dark:text-white mb-2",
-            children: "Espace Réservé à Walid Djellali"
-          }), /*#__PURE__*/_jsx("p", {
-            className: "text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-6",
-            children: "Veuillez saisir le code PIN d'administration pour gérer vos messages, votre statut de disponibilité et vos projets SQLite."
-          }), /*#__PURE__*/_jsxs("form", {
-            onSubmit: handleAdminLogin,
-            className: "w-full space-y-4",
-            children: [/*#__PURE__*/_jsxs("div", {
-              children: [/*#__PURE__*/_jsx("input", {
-                type: "password",
-                autoFocus: true,
-                required: true,
-                value: adminPinInput,
-                onChange: e => setAdminPinInput(e.target.value),
-                placeholder: "Code PIN d'accès (ex: walid2025)",
-                className: "w-full text-center px-4 py-3 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-base focus:outline-none focus:ring-2 focus:ring-amber-500 tracking-widest"
-              }), adminPinError && /*#__PURE__*/_jsx("p", {
-                className: "text-xs font-semibold text-rose-500 mt-2",
-                children: adminPinError
-              }), /*#__PURE__*/_jsxs("p", {
-                className: "text-[11px] text-slate-400 mt-2",
-                children: ["💡 Indice d'accès : ", /*#__PURE__*/_jsx("code", {
-                  children: "walid2025"
-                })]
-              })]
-            }), /*#__PURE__*/_jsxs("button", {
-              type: "submit",
-              className: "w-full py-3.5 rounded-2xl text-sm font-bold bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-500/25 transition-all flex items-center justify-center gap-2",
-              children: [/*#__PURE__*/_jsx("i", {
-                "data-lucide": "key",
-                className: "w-4 h-4"
-              }), /*#__PURE__*/_jsx("span", {
-                children: "Déverrouiller la Console"
-              })]
-            })]
-          })]
-        }) :
-        /*#__PURE__*/
-        /* Si AUTHENTIFIÉ : Dashboard avec Onglets */
-        _jsxs("div", {
-          className: "flex-1 flex flex-col min-h-0 pt-4",
-          children: [/*#__PURE__*/_jsx("div", {
-            className: "flex flex-wrap gap-2 border-b border-slate-200 dark:border-slate-800 pb-3 shrink-0",
-            children: [{
-              id: "stats",
-              label: "Vue d'ensemble",
-              icon: "activity"
-            }, {
-              id: "inbox",
-              label: `Messages SQLite (${messagesList.length})`,
-              icon: "mail"
-            }, {
-              id: "profile",
-              label: "Profil & Disponibilité",
-              icon: "user-cog"
-            }, {
-              id: "projects",
-              label: `Gestion des Projets (${data.projects.length})`,
-              icon: "folder-plus"
-            }].map(tab => /*#__PURE__*/_jsxs("button", {
-              onClick: () => setAdminTab(tab.id),
-              className: `px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${adminTab === tab.id ? "bg-amber-500 text-white shadow-md shadow-amber-500/25" : "glass text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"}`,
-              children: [/*#__PURE__*/_jsx("i", {
-                "data-lucide": tab.icon,
-                className: "w-3.5 h-3.5"
-              }), /*#__PURE__*/_jsx("span", {
-                children: tab.label
-              })]
-            }, tab.id))
-          }), /*#__PURE__*/_jsxs("div", {
-            className: "flex-1 overflow-y-auto py-5 pr-1 space-y-6",
-            children: [adminTab === "stats" && /*#__PURE__*/_jsxs("div", {
-              className: "space-y-6",
-              children: [/*#__PURE__*/_jsxs("div", {
-                className: "grid grid-cols-2 sm:grid-cols-4 gap-3",
-                children: [/*#__PURE__*/_jsxs("div", {
-                  className: "p-4 rounded-2xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60",
-                  children: [/*#__PURE__*/_jsx("span", {
-                    className: "text-xs text-blue-600 dark:text-blue-400 font-bold block",
-                    children: "Messages Reçus"
-                  }), /*#__PURE__*/_jsx("span", {
-                    className: "text-2xl font-black text-slate-900 dark:text-white mt-1 block",
-                    children: adminStats ? adminStats.messagesCount : messagesList.length
-                  })]
-                }), /*#__PURE__*/_jsxs("div", {
-                  className: "p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/60",
-                  children: [/*#__PURE__*/_jsx("span", {
-                    className: "text-xs text-emerald-600 dark:text-emerald-400 font-bold block",
-                    children: "Projets Enregistrés"
-                  }), /*#__PURE__*/_jsx("span", {
-                    className: "text-2xl font-black text-slate-900 dark:text-white mt-1 block",
-                    children: adminStats ? adminStats.projectsCount : data.projects.length
-                  })]
-                }), /*#__PURE__*/_jsxs("div", {
-                  className: "p-4 rounded-2xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-900/60",
-                  children: [/*#__PURE__*/_jsx("span", {
-                    className: "text-xs text-purple-600 dark:text-purple-400 font-bold block",
-                    children: "Taille BDD SQLite"
-                  }), /*#__PURE__*/_jsx("span", {
-                    className: "text-2xl font-black text-slate-900 dark:text-white mt-1 block",
-                    children: adminStats ? `${adminStats.dbSizeKb} Ko` : "68 Ko"
-                  })]
-                }), /*#__PURE__*/_jsxs("div", {
-                  className: "p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60",
-                  children: [/*#__PURE__*/_jsx("span", {
-                    className: "text-xs text-amber-600 dark:text-amber-400 font-bold block",
-                    children: "Moteur Node.js"
-                  }), /*#__PURE__*/_jsx("span", {
-                    className: "text-2xl font-black text-slate-900 dark:text-white mt-1 block",
-                    children: adminStats ? adminStats.nodeVersion : "v24"
-                  })]
-                })]
-              }), /*#__PURE__*/_jsxs("div", {
-                className: "p-5 rounded-2xl glass border border-slate-200 dark:border-slate-800 space-y-3",
-                children: [/*#__PURE__*/_jsxs("h4", {
-                  className: "text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5",
-                  children: [/*#__PURE__*/_jsx("i", {
-                    "data-lucide": "radio",
-                    className: "w-4 h-4 text-emerald-500 animate-pulse"
-                  }), /*#__PURE__*/_jsx("span", {
-                    children: "Changement Rapide du Statut de Disponibilité"
-                  })]
-                }), /*#__PURE__*/_jsxs("p", {
-                  className: "text-xs text-slate-500",
-                  children: ["Statut actuel : ", /*#__PURE__*/_jsx("strong", {
-                    className: "text-blue-600 dark:text-blue-400",
-                    children: data.profile.availability
-                  })]
-                }), /*#__PURE__*/_jsx("div", {
-                  className: "flex flex-wrap gap-2 pt-1",
-                  children: ["Disponible pour opportunités SAP & Développement Full-Stack", "En poste chez Orionlab (À l'écoute d'opportunités)", "Disponible pour missions d'ingénierie & Consulting"].map((st, i) => /*#__PURE__*/_jsx("button", {
-                    onClick: () => handleQuickAvailabilityChange(st),
-                    className: "px-3.5 py-2 rounded-xl text-xs font-bold glass hover:bg-emerald-50 dark:hover:bg-emerald-950/50 hover:text-emerald-600 transition-all",
-                    children: st
-                  }, i))
-                })]
-              })]
-            }), adminTab === "inbox" && /*#__PURE__*/_jsxs("div", {
-              className: "space-y-4",
-              children: [/*#__PURE__*/_jsxs("div", {
-                className: "flex items-center justify-between pb-2",
-                children: [/*#__PURE__*/_jsxs("h4", {
-                  className: "text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white",
-                  children: ["Boîte de Réception (", messagesList.length, " messages dans portfolio.db)"]
-                }), /*#__PURE__*/_jsxs("button", {
-                  onClick: fetchAdminData,
-                  className: "px-3 py-1.5 rounded-xl text-xs font-bold glass hover:bg-slate-200 dark:hover:bg-slate-800 flex items-center gap-1",
-                  children: [/*#__PURE__*/_jsx("i", {
-                    "data-lucide": "refresh-cw",
-                    className: "w-3 h-3"
-                  }), /*#__PURE__*/_jsx("span", {
-                    children: "Actualiser"
-                  })]
-                })]
-              }), messagesList.length === 0 ? /*#__PURE__*/_jsx("div", {
-                className: "p-8 text-center text-slate-500 text-xs",
-                children: "Aucun message dans la table SQLite pour le moment."
-              }) : messagesList.map(msg => /*#__PURE__*/_jsxs("div", {
-                className: `p-4 rounded-2xl border transition-all ${msg.read ? "bg-slate-50/70 dark:bg-slate-800/40 border-slate-200 dark:border-slate-800" : "bg-blue-50/80 dark:bg-blue-950/30 border-blue-300 dark:border-blue-900/60 shadow-sm"}`,
-                children: [/*#__PURE__*/_jsxs("div", {
-                  className: "flex items-center justify-between text-xs mb-2",
-                  children: [/*#__PURE__*/_jsxs("span", {
-                    className: "font-bold text-slate-900 dark:text-white",
-                    children: [msg.name, " • ", /*#__PURE__*/_jsx("span", {
-                      className: "text-blue-600 dark:text-blue-400",
-                      children: msg.email
-                    })]
-                  }), /*#__PURE__*/_jsx("span", {
-                    className: "text-slate-400",
-                    children: msg.created_at || "Récemment"
-                  })]
-                }), /*#__PURE__*/_jsx("h5", {
-                  className: "text-sm font-bold text-slate-800 dark:text-slate-100 mb-1",
-                  children: msg.subject
-                }), /*#__PURE__*/_jsx("p", {
-                  className: "text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-3 whitespace-pre-wrap",
-                  children: msg.message
-                }), /*#__PURE__*/_jsxs("div", {
-                  className: "flex items-center justify-between pt-2 border-t border-slate-200/60 dark:border-slate-800 text-xs",
-                  children: [/*#__PURE__*/_jsxs("div", {
-                    className: "flex items-center gap-2",
-                    children: [/*#__PURE__*/_jsxs("a", {
-                      href: `mailto:${msg.email}?subject=Re: ${encodeURIComponent(msg.subject || 'Votre message')}`,
-                      className: "px-3 py-1 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold flex items-center gap-1",
-                      children: [/*#__PURE__*/_jsx("i", {
-                        "data-lucide": "reply",
-                        className: "w-3 h-3"
-                      }), /*#__PURE__*/_jsx("span", {
-                        children: "Répondre par email"
-                      })]
-                    }), /*#__PURE__*/_jsx("button", {
-                      onClick: () => handleToggleMessageRead(msg.id, msg.read),
-                      className: "px-3 py-1 rounded-lg glass text-slate-700 dark:text-slate-300 hover:bg-slate-200 font-semibold",
-                      children: msg.read ? "Marquer non-lu" : "Marquer lu"
-                    })]
-                  }), /*#__PURE__*/_jsxs("button", {
-                    onClick: () => handleDeleteMessage(msg.id),
-                    className: "px-3 py-1 rounded-lg text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/50 font-bold flex items-center gap-1",
-                    children: [/*#__PURE__*/_jsx("i", {
-                      "data-lucide": "trash-2",
-                      className: "w-3 h-3"
-                    }), /*#__PURE__*/_jsx("span", {
-                      children: "Supprimer"
-                    })]
-                  })]
-                })]
-              }, msg.id))]
-            }), adminTab === "profile" && /*#__PURE__*/_jsxs("form", {
-              onSubmit: handleSaveProfile,
-              className: "space-y-4",
-              children: [/*#__PURE__*/_jsxs("div", {
-                className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
-                children: [/*#__PURE__*/_jsxs("div", {
-                  children: [/*#__PURE__*/_jsx("label", {
-                    className: "block text-xs font-bold mb-1",
-                    children: "Titre Professionnel"
-                  }), /*#__PURE__*/_jsx("input", {
-                    type: "text",
-                    value: editingProfileForm.title,
-                    onChange: e => setEditingProfileForm({
-                      ...editingProfileForm,
-                      title: e.target.value
-                    }),
-                    className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm"
-                  })]
-                }), /*#__PURE__*/_jsxs("div", {
-                  children: [/*#__PURE__*/_jsx("label", {
-                    className: "block text-xs font-bold mb-1",
-                    children: "Statut de Disponibilité"
-                  }), /*#__PURE__*/_jsx("input", {
-                    type: "text",
-                    value: editingProfileForm.availability,
-                    onChange: e => setEditingProfileForm({
-                      ...editingProfileForm,
-                      availability: e.target.value
-                    }),
-                    className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm"
-                  })]
-                })]
-              }), /*#__PURE__*/_jsxs("div", {
-                className: "grid grid-cols-1 sm:grid-cols-3 gap-4",
-                children: [/*#__PURE__*/_jsxs("div", {
-                  children: [/*#__PURE__*/_jsx("label", {
-                    className: "block text-xs font-bold mb-1",
-                    children: "Téléphone"
-                  }), /*#__PURE__*/_jsx("input", {
-                    type: "text",
-                    value: editingProfileForm.phone,
-                    onChange: e => setEditingProfileForm({
-                      ...editingProfileForm,
-                      phone: e.target.value
-                    }),
-                    className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm"
-                  })]
-                }), /*#__PURE__*/_jsxs("div", {
-                  children: [/*#__PURE__*/_jsx("label", {
-                    className: "block text-xs font-bold mb-1",
-                    children: "Email"
-                  }), /*#__PURE__*/_jsx("input", {
-                    type: "email",
-                    value: editingProfileForm.email,
-                    onChange: e => setEditingProfileForm({
-                      ...editingProfileForm,
-                      email: e.target.value
-                    }),
-                    className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm"
-                  })]
-                }), /*#__PURE__*/_jsxs("div", {
-                  children: [/*#__PURE__*/_jsx("label", {
-                    className: "block text-xs font-bold mb-1",
-                    children: "Localisation"
-                  }), /*#__PURE__*/_jsx("input", {
-                    type: "text",
-                    value: editingProfileForm.location,
-                    onChange: e => setEditingProfileForm({
-                      ...editingProfileForm,
-                      location: e.target.value
-                    }),
-                    className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm"
-                  })]
-                })]
-              }), /*#__PURE__*/_jsxs("div", {
-                children: [/*#__PURE__*/_jsx("label", {
-                  className: "block text-xs font-bold mb-1",
-                  children: "Bio / Résumé de Présentation"
-                }), /*#__PURE__*/_jsx("textarea", {
-                  rows: 4,
-                  value: editingProfileForm.bio,
-                  onChange: e => setEditingProfileForm({
-                    ...editingProfileForm,
-                    bio: e.target.value
-                  }),
-                  className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm"
-                })]
-              }), /*#__PURE__*/_jsxs("button", {
-                type: "submit",
-                className: "px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold bg-amber-500 hover:bg-amber-600 text-white shadow-md shadow-amber-500/25 flex items-center gap-2",
-                children: [/*#__PURE__*/_jsx("i", {
-                  "data-lucide": "save",
-                  className: "w-4 h-4"
-                }), /*#__PURE__*/_jsx("span", {
-                  children: "Enregistrer les Modifications dans SQLite"
-                })]
-              })]
-            }), adminTab === "projects" && /*#__PURE__*/_jsxs("div", {
-              className: "space-y-4",
-              children: [/*#__PURE__*/_jsxs("div", {
-                className: "flex items-center justify-between pb-2",
-                children: [/*#__PURE__*/_jsxs("h4", {
-                  className: "text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white",
-                  children: ["Catalogue des Projets SQLite (", data.projects.length, ")"]
-                }), /*#__PURE__*/_jsxs("button", {
-                  onClick: openNewProjectForm,
-                  className: "px-3.5 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-1.5 shadow-sm",
-                  children: [/*#__PURE__*/_jsx("i", {
-                    "data-lucide": "plus",
-                    className: "w-3.5 h-3.5"
-                  }), /*#__PURE__*/_jsx("span", {
-                    children: "Ajouter un Projet"
-                  })]
-                })]
-              }), /*#__PURE__*/_jsx("div", {
-                className: "space-y-3",
-                children: data.projects.map((p, idx) => /*#__PURE__*/_jsxs("div", {
-                  className: "p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4",
-                  children: [/*#__PURE__*/_jsxs("div", {
-                    className: "flex items-center gap-3 min-w-0",
-                    children: [/*#__PURE__*/_jsx("img", {
-                      src: p.image,
-                      className: "w-12 h-12 rounded-xl object-cover shrink-0",
-                      alt: ""
-                    }), /*#__PURE__*/_jsxs("div", {
-                      className: "min-w-0",
-                      children: [/*#__PURE__*/_jsx("h5", {
-                        className: "text-sm font-bold text-slate-900 dark:text-white truncate",
-                        children: p.title
-                      }), /*#__PURE__*/_jsx("span", {
-                        className: "text-xs text-blue-600 dark:text-blue-400 font-semibold",
-                        children: p.category_label || p.category
-                      })]
-                    })]
-                  }), /*#__PURE__*/_jsxs("div", {
-                    className: "flex items-center gap-2 shrink-0",
-                    children: [/*#__PURE__*/_jsxs("button", {
-                      onClick: () => openEditProjectForm(p),
-                      className: "px-3 py-1.5 rounded-xl text-xs font-bold glass hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center gap-1",
-                      children: [/*#__PURE__*/_jsx("i", {
-                        "data-lucide": "edit-3",
-                        className: "w-3 h-3"
-                      }), /*#__PURE__*/_jsx("span", {
-                        children: "Modifier"
-                      })]
-                    }), /*#__PURE__*/_jsxs("button", {
-                      onClick: () => handleDeleteProject(p.id, p.title),
-                      className: "px-3 py-1.5 rounded-xl text-xs font-bold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/50 flex items-center gap-1",
-                      children: [/*#__PURE__*/_jsx("i", {
-                        "data-lucide": "trash-2",
-                        className: "w-3 h-3"
-                      }), /*#__PURE__*/_jsx("span", {
-                        children: "Supprimer"
-                      })]
-                    })]
-                  })]
-                }, p.id || idx))
-              })]
-            })]
-          })]
-        })]
-      })
-    }), projectFormModalOpen && /*#__PURE__*/_jsx("div", {
-      className: "fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in no-print",
-      children: /*#__PURE__*/_jsxs("div", {
-        className: "w-full max-w-2xl bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[90vh] flex flex-col",
-        children: [/*#__PURE__*/_jsxs("div", {
-          className: "flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 mb-4 shrink-0",
-          children: [/*#__PURE__*/_jsx("h4", {
-            className: "text-base font-bold text-slate-900 dark:text-white",
-            children: editingProject ? `Modifier le Projet : ${editingProject.title}` : "Ajouter un Nouveau Projet"
-          }), /*#__PURE__*/_jsx("button", {
-            onClick: () => setProjectFormModalOpen(false),
-            className: "w-8 h-8 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300",
-            children: /*#__PURE__*/_jsx("i", {
-              "data-lucide": "x",
-              className: "w-4 h-4"
-            })
-          })]
-        }), /*#__PURE__*/_jsxs("form", {
-          onSubmit: handleSaveProjectForm,
-          className: "flex-1 overflow-y-auto pr-1 space-y-4 text-xs sm:text-sm",
-          children: [/*#__PURE__*/_jsxs("div", {
-            children: [/*#__PURE__*/_jsx("label", {
-              className: "block text-xs font-bold mb-1",
-              children: "Titre du Projet *"
-            }), /*#__PURE__*/_jsx("input", {
-              type: "text",
-              required: true,
-              value: projectFormData.title,
-              onChange: e => setProjectFormData({
-                ...projectFormData,
-                title: e.target.value
-              }),
-              className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            className: "grid grid-cols-1 sm:grid-cols-2 gap-3",
-            children: [/*#__PURE__*/_jsxs("div", {
-              children: [/*#__PURE__*/_jsx("label", {
-                className: "block text-xs font-bold mb-1",
-                children: "Catégorie"
-              }), /*#__PURE__*/_jsxs("select", {
-                value: projectFormData.category,
-                onChange: e => setProjectFormData({
-                  ...projectFormData,
-                  category: e.target.value
-                }),
-                className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700",
-                children: [/*#__PURE__*/_jsx("option", {
-                  value: "software",
-                  children: "software (Full-Stack)"
-                }), /*#__PURE__*/_jsx("option", {
-                  value: "sap",
-                  children: "sap (SAP & Infra)"
-                }), /*#__PURE__*/_jsx("option", {
-                  value: "data",
-                  children: "data (Python & IA)"
-                }), /*#__PURE__*/_jsx("option", {
-                  value: "react",
-                  children: "react (React & UI)"
-                })]
-              })]
-            }), /*#__PURE__*/_jsxs("div", {
-              children: [/*#__PURE__*/_jsx("label", {
-                className: "block text-xs font-bold mb-1",
-                children: "Label Catégorie"
-              }), /*#__PURE__*/_jsx("input", {
-                type: "text",
-                value: projectFormData.category_label,
-                onChange: e => setProjectFormData({
-                  ...projectFormData,
-                  category_label: e.target.value
-                }),
-                placeholder: "Ex: Full-Stack & IT Management",
-                className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
-              })]
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            children: [/*#__PURE__*/_jsx("label", {
-              className: "block text-xs font-bold mb-1",
-              children: "Phrase d'accroche (Tagline)"
-            }), /*#__PURE__*/_jsx("input", {
-              type: "text",
-              value: projectFormData.tagline,
-              onChange: e => setProjectFormData({
-                ...projectFormData,
-                tagline: e.target.value
-              }),
-              placeholder: "Une phrase résumant l'impact du projet...",
-              className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            children: [/*#__PURE__*/_jsx("label", {
-              className: "block text-xs font-bold mb-1",
-              children: "Description"
-            }), /*#__PURE__*/_jsx("textarea", {
-              rows: 2,
-              value: projectFormData.description,
-              onChange: e => setProjectFormData({
-                ...projectFormData,
-                description: e.target.value
-              }),
-              className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            children: [/*#__PURE__*/_jsx("label", {
-              className: "block text-xs font-bold mb-1",
-              children: "Image URL"
-            }), /*#__PURE__*/_jsx("input", {
-              type: "text",
-              value: projectFormData.image,
-              onChange: e => setProjectFormData({
-                ...projectFormData,
-                image: e.target.value
-              }),
-              className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            className: "grid grid-cols-1 sm:grid-cols-2 gap-3",
-            children: [/*#__PURE__*/_jsxs("div", {
-              children: [/*#__PURE__*/_jsx("label", {
-                className: "block text-xs font-bold mb-1",
-                children: "Lien GitHub"
-              }), /*#__PURE__*/_jsx("input", {
-                type: "text",
-                value: projectFormData.github_url,
-                onChange: e => setProjectFormData({
-                  ...projectFormData,
-                  github_url: e.target.value
-                }),
-                className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
-              })]
-            }), /*#__PURE__*/_jsxs("div", {
-              children: [/*#__PURE__*/_jsx("label", {
-                className: "block text-xs font-bold mb-1",
-                children: "Lien Démo"
-              }), /*#__PURE__*/_jsx("input", {
-                type: "text",
-                value: projectFormData.demo_url,
-                onChange: e => setProjectFormData({
-                  ...projectFormData,
-                  demo_url: e.target.value
-                }),
-                className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
-              })]
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            children: [/*#__PURE__*/_jsx("label", {
-              className: "block text-xs font-bold mb-1",
-              children: "Technologies (séparées par virgule)"
-            }), /*#__PURE__*/_jsx("input", {
-              type: "text",
-              value: projectFormData.tags,
-              onChange: e => setProjectFormData({
-                ...projectFormData,
-                tags: e.target.value
-              }),
-              placeholder: "React, Node.js, SQLite, Tailwind CSS",
-              className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            children: [/*#__PURE__*/_jsx("label", {
-              className: "block text-xs font-bold mb-1",
-              children: "Fonctionnalités clés (1 par ligne)"
-            }), /*#__PURE__*/_jsx("textarea", {
-              rows: 3,
-              value: projectFormData.features,
-              onChange: e => setProjectFormData({
-                ...projectFormData,
-                features: e.target.value
-              }),
-              placeholder: "Fonctionnalité 1\nFonctionnalité 2",
-              className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            className: "pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-end gap-2",
-            children: [/*#__PURE__*/_jsx("button", {
-              type: "button",
-              onClick: () => setProjectFormModalOpen(false),
-              className: "px-4 py-2 rounded-xl font-bold glass",
-              children: "Annuler"
-            }), /*#__PURE__*/_jsx("button", {
-              type: "submit",
-              className: "px-5 py-2 rounded-xl font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/25",
-              children: "Enregistrer dans SQLite"
-            })]
-          })]
-        })]
-      })
-    }), cvModalOpen && /*#__PURE__*/_jsx("div", {
-      className: "fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in no-print",
-      children: /*#__PURE__*/_jsxs("div", {
-        className: "w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[92vh] flex flex-col",
-        children: [/*#__PURE__*/_jsxs("div", {
-          className: "flex items-center justify-between pb-5 border-b border-slate-200 dark:border-slate-800 mb-6 shrink-0",
-          children: [/*#__PURE__*/_jsxs("div", {
-            className: "flex items-center gap-3",
-            children: [/*#__PURE__*/_jsx("span", {
-              className: "w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-extrabold text-sm shadow-md shadow-blue-500/25",
-              children: "CV"
-            }), /*#__PURE__*/_jsxs("div", {
-              children: [/*#__PURE__*/_jsxs("h3", {
-                className: "text-xl font-extrabold text-slate-900 dark:text-white",
-                children: ["Curriculum Vitae — ", data.profile.name]
-              }), /*#__PURE__*/_jsx("p", {
-                className: "text-xs text-slate-500 dark:text-slate-400",
-                children: "Format professionnel prêt à l'impression ou sauvegarde PDF"
-              })]
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            className: "flex items-center gap-2",
-            children: [/*#__PURE__*/_jsxs("button", {
-              onClick: () => window.print(),
-              className: "px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 flex items-center gap-1.5 transition-all",
-              children: [/*#__PURE__*/_jsx("i", {
-                "data-lucide": "printer",
-                className: "w-4 h-4"
-              }), /*#__PURE__*/_jsx("span", {
-                children: "Imprimer / PDF"
-              })]
-            }), /*#__PURE__*/_jsx("button", {
-              onClick: () => setCvModalOpen(false),
-              className: "w-9 h-9 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-600 dark:text-slate-300",
-              children: /*#__PURE__*/_jsx("i", {
-                "data-lucide": "x",
-                className: "w-4 h-4"
-              })
-            })]
-          })]
-        }), /*#__PURE__*/_jsxs("div", {
-          className: "flex-1 overflow-y-auto pr-2 space-y-6 text-slate-800 dark:text-slate-200 text-sm cv-print-container",
-          children: [/*#__PURE__*/_jsxs("div", {
-            className: "p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4",
-            children: [/*#__PURE__*/_jsxs("div", {
-              children: [/*#__PURE__*/_jsx("h2", {
-                className: "text-2xl font-black text-slate-900 dark:text-white",
-                children: data.profile.name
-              }), /*#__PURE__*/_jsx("p", {
-                className: "text-sm font-bold text-blue-600 dark:text-blue-400 mt-1",
-                children: data.profile.title
-              }), /*#__PURE__*/_jsxs("p", {
-                className: "text-xs text-slate-500 dark:text-slate-400 mt-1",
-                children: [data.profile.location, " • ", data.profile.phone, " • ", data.profile.email]
-              })]
-            }), /*#__PURE__*/_jsxs("div", {
-              className: "flex flex-col gap-1.5 text-xs",
-              children: [/*#__PURE__*/_jsxs("a", {
-                href: data.profile.linkedin,
-                target: "_blank",
-                rel: "noopener noreferrer",
-                className: "text-[#0A66C2] dark:text-blue-400 hover:underline flex items-center gap-1 font-semibold",
-                children: [/*#__PURE__*/_jsx("i", {
-                  "data-lucide": "linkedin",
-                  className: "w-3.5 h-3.5"
-                }), /*#__PURE__*/_jsx("span", {
-                  children: "linkedin.com/in/waliddjellali"
-                })]
-              }), /*#__PURE__*/_jsxs("a", {
-                href: data.profile.github,
-                target: "_blank",
-                rel: "noopener noreferrer",
-                className: "text-slate-700 dark:text-slate-300 hover:underline flex items-center gap-1 font-semibold",
-                children: [/*#__PURE__*/_jsx("i", {
-                  "data-lucide": "github",
-                  className: "w-3.5 h-3.5"
-                }), /*#__PURE__*/_jsx("span", {
-                  children: "github.com/Waliddjla"
-                })]
-              })]
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            children: [/*#__PURE__*/_jsx("h4", {
-              className: "text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2",
-              children: "Synthèse Professionnelle"
-            }), /*#__PURE__*/_jsx("p", {
-              className: "text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-300",
-              children: data.profile.bio
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            children: [/*#__PURE__*/_jsx("h4", {
-              className: "text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3",
-              children: "Parcours Professionnel"
-            }), /*#__PURE__*/_jsx("div", {
-              className: "space-y-4",
-              children: data.experiences.map((exp, idx) => /*#__PURE__*/_jsxs("div", {
-                className: "border-l-2 border-blue-500 pl-4 py-0.5",
-                children: [/*#__PURE__*/_jsxs("div", {
-                  className: "flex flex-col sm:flex-row sm:items-center justify-between text-xs sm:text-sm",
-                  children: [/*#__PURE__*/_jsxs("span", {
-                    className: "font-bold text-slate-900 dark:text-white",
-                    children: [exp.role, " — ", /*#__PURE__*/_jsx("span", {
-                      className: "text-blue-600 dark:text-blue-400",
-                      children: exp.company
-                    })]
-                  }), /*#__PURE__*/_jsx("span", {
-                    className: "text-xs font-semibold text-slate-500",
-                    children: exp.period
-                  })]
-                }), /*#__PURE__*/_jsx("p", {
-                  className: "text-xs text-slate-600 dark:text-slate-400 italic mt-0.5 mb-1.5",
-                  children: exp.description
-                }), /*#__PURE__*/_jsx("ul", {
-                  className: "list-disc pl-4 space-y-1 text-xs text-slate-600 dark:text-slate-300",
-                  children: exp.bullets.map((b, bIdx) => /*#__PURE__*/_jsx("li", {
-                    children: b
-                  }, bIdx))
-                })]
-              }, idx))
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            children: [/*#__PURE__*/_jsx("h4", {
-              className: "text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2",
-              children: "Compétences & Outils"
-            }), /*#__PURE__*/_jsx("div", {
-              className: "flex flex-wrap gap-1.5 text-xs",
-              children: data.skills.map((s, idx) => /*#__PURE__*/_jsx("span", {
-                className: "px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium",
-                children: s.name
-              }, idx))
-            })]
-          }), /*#__PURE__*/_jsxs("div", {
-            children: [/*#__PURE__*/_jsx("h4", {
-              className: "text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2",
-              children: "Formations & Certifications"
-            }), /*#__PURE__*/_jsx("div", {
-              className: "grid grid-cols-1 sm:grid-cols-3 gap-3",
-              children: data.education.map((edu, idx) => /*#__PURE__*/_jsxs("div", {
-                className: "p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 text-xs",
-                children: [/*#__PURE__*/_jsx("span", {
-                  className: "font-bold text-blue-600 dark:text-blue-400 block",
-                  children: edu.period
-                }), /*#__PURE__*/_jsx("strong", {
-                  className: "text-slate-900 dark:text-white block mt-0.5",
-                  children: edu.degree
-                }), /*#__PURE__*/_jsx("span", {
-                  className: "text-slate-500 block",
-                  children: edu.institution
-                })]
-              }, idx))
-            })]
-          })]
-        }), /*#__PURE__*/_jsxs("div", {
-          className: "pt-4 border-t border-slate-200 dark:border-slate-800 mt-4 flex items-center justify-between text-xs text-slate-500 shrink-0",
-          children: [/*#__PURE__*/_jsxs("div", {
-            className: "flex items-center gap-3",
-            children: [/*#__PURE__*/_jsxs("a", {
-              href: data.profile.linkedin,
-              target: "_blank",
-              rel: "noopener noreferrer",
-              className: "text-[#0A66C2] hover:underline flex items-center gap-1 font-semibold",
-              children: [/*#__PURE__*/_jsx("i", {
-                "data-lucide": "linkedin",
-                className: "w-3.5 h-3.5"
-              }), /*#__PURE__*/_jsx("span", {
-                children: "Profil LinkedIn"
-              })]
-            }), /*#__PURE__*/_jsx("span", {
-              children: "•"
-            }), /*#__PURE__*/_jsxs("a", {
-              href: data.profile.github,
-              target: "_blank",
-              rel: "noopener noreferrer",
-              className: "hover:underline flex items-center gap-1 font-semibold text-slate-700 dark:text-slate-300",
-              children: [/*#__PURE__*/_jsx("i", {
-                "data-lucide": "github",
-                className: "w-3.5 h-3.5"
-              }), /*#__PURE__*/_jsx("span", {
-                children: "GitHub @Waliddjla"
-              })]
-            })]
-          }), /*#__PURE__*/_jsx("button", {
-            onClick: () => setCvModalOpen(false),
-            className: "px-5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-200 transition-all",
-            children: "Fermer"
-          })]
-        })]
-      })
-    }), toastMessage && /*#__PURE__*/_jsxs("div", {
-      className: "fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-4 rounded-2xl bg-emerald-600 text-white shadow-xl shadow-emerald-600/30 animate-fade-in pointer-events-none",
-      children: [/*#__PURE__*/_jsx("i", {
-        "data-lucide": "check-circle",
-        className: "w-5 h-5 shrink-0"
-      }), /*#__PURE__*/_jsx("span", {
-        className: "text-sm font-semibold",
-        children: toastMessage
-      })]
-    })]
-  });
+        if (res.status === 401 && sessionStorage.getItem("portfolio_admin_token") === adminToken) {
+            clearAdminSession();
+            setAdminPinError("session_expired");
+        }
+        if (!res.ok)
+            throw new Error(res.status);
+        return res;
+    };
+    const fetchAdminData = () => {
+        adminFetch("/api/admin/stats")
+            .then(res => res.json())
+            .then(stats => setAdminStats(stats))
+            .catch(() => { });
+        adminFetch("/api/messages")
+            .then(res => res.json())
+            .then(msgs => setMessagesList(msgs || []))
+            .catch(() => { });
+    };
+    useEffect(() => {
+        if (adminModalOpen && adminToken)
+            fetchAdminData();
+    }, [adminModalOpen, adminToken]);
+    const handleAdminLogin = async (e) => {
+        e.preventDefault();
+        setAdminPinError("");
+        try {
+            const res = await fetch("/api/admin/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ pin: adminPinInput })
+            });
+            if (!res.ok) {
+                setAdminPinError(res.status === 429 ? "login_limit" : res.status === 401 ? "invalid_pin" : "login_error");
+                return;
+            }
+            const { token } = await res.json();
+            if (typeof token !== "string" || !token)
+                throw new Error("Missing admin token");
+            sessionStorage.setItem("portfolio_admin_token", token);
+            setAdminToken(token);
+            setAdminPinInput("");
+            showToast("login");
+        }
+        catch (error) {
+            setAdminPinError("login_error");
+        }
+    };
+    const handleAdminLogout = () => {
+        clearAdminSession();
+        setAdminPinError("");
+        showToast("logout");
+    };
+    const openAdminModal = () => {
+        setAdminModalOpen(true);
+    };
+    // Actions d'administration : Suppression de message
+    const handleDeleteMessage = async (id) => {
+        if (!confirm(t.toasts.confirm_message(id)))
+            return;
+        try {
+            const res = await adminFetch(`/api/messages/${id}`, { method: "DELETE" });
+            if (res.ok) {
+                setMessagesList(prev => prev.filter(m => m.id !== id));
+                fetchAdminData();
+                showToast("message_deleted", id);
+            }
+        }
+        catch (err) {
+            showToast("message_error");
+        }
+    };
+    // Marquer un message comme lu
+    const handleToggleMessageRead = async (id, currentRead) => {
+        try {
+            const nextState = currentRead ? 0 : 1;
+            const res = await adminFetch(`/api/messages/${id}/read`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ read: nextState })
+            });
+            if (res.ok) {
+                setMessagesList(prev => prev.map(m => m.id === id ? { ...m, read: nextState } : m));
+                fetchAdminData();
+            }
+        }
+        catch (err) { }
+    };
+    // Mettre à jour le profil
+    const handleSaveProfile = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await adminFetch("/api/admin/profile", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(editingProfileForm)
+            });
+            const resData = await res.json();
+            if (resData.success) {
+                fetchPortfolio();
+                fetchAdminData();
+                showToast("profile_saved");
+            }
+        }
+        catch (err) {
+            showToast("profile_error");
+        }
+    };
+    // Changer rapidement la disponibilité
+    const handleQuickAvailabilityChange = async (newStatus) => {
+        try {
+            const res = await adminFetch("/api/admin/profile", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ availability: newStatus.fr, availability_en: newStatus.en })
+            });
+            if (res.ok) {
+                setEditingProfileForm(prev => ({ ...prev, availability: newStatus.fr, availability_en: newStatus.en }));
+                fetchPortfolio();
+                fetchAdminData();
+                showToast("status_saved", newStatus);
+            }
+        }
+        catch (e) { }
+    };
+    // Supprimer un projet
+    const handleDeleteProject = async (id, title) => {
+        if (!confirm(t.toasts.confirm_project(title)))
+            return;
+        try {
+            const res = await adminFetch(`/api/admin/projects/${id}`, { method: "DELETE" });
+            if (res.ok) {
+                fetchPortfolio();
+                fetchAdminData();
+                showToast("project_deleted", title);
+            }
+        }
+        catch (e) {
+            showToast("project_delete_error");
+        }
+    };
+    // Sauvegarder un projet (ajout ou édition)
+    const handleSaveProjectForm = async (e) => {
+        e.preventDefault();
+        try {
+            const isEdit = !!editingProject;
+            const endpoint = isEdit ? `/api/admin/projects/${editingProject.id}` : "/api/admin/projects";
+            const method = isEdit ? "PUT" : "POST";
+            const res = await adminFetch(endpoint, {
+                method,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(projectFormData)
+            });
+            const json = await res.json();
+            if (json.success) {
+                fetchPortfolio();
+                fetchAdminData();
+                setProjectFormModalOpen(false);
+                setEditingProject(null);
+                showToast(isEdit ? "project_updated" : "project_added");
+            }
+        }
+        catch (e) {
+            showToast("project_save_error");
+        }
+    };
+    const openNewProjectForm = () => {
+        setEditingProject(null);
+        setProjectFormData({
+            title: "",
+            title_en: "",
+            category: "software",
+            category_label: "Full-Stack",
+            category_label_en: "Full-Stack",
+            tagline: "",
+            tagline_en: "",
+            description: "",
+            description_en: "",
+            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+            tags: "React, Node.js, SQLite",
+            github_url: "https://github.com/Waliddjla",
+            demo_url: "",
+            features: "",
+            features_en: ""
+        });
+        setProjectFormModalOpen(true);
+    };
+    const openEditProjectForm = (p) => {
+        setEditingProject(p);
+        setProjectFormData({
+            title: p.title || "",
+            title_en: p.title_en || "",
+            category: p.category || "software",
+            category_label: p.category_label || "Full-Stack",
+            category_label_en: p.category_label_en || "Full-Stack",
+            tagline: p.tagline || "",
+            tagline_en: p.tagline_en || "",
+            description: p.description || "",
+            description_en: p.description_en || "",
+            image: p.image || "",
+            tags: Array.isArray(p.tags) ? p.tags.join(", ") : (p.tags || ""),
+            github_url: p.github_url || "",
+            demo_url: p.demo_url || "",
+            features: Array.isArray(p.features) ? p.features.join("\n") : (p.features || ""),
+            features_en: Array.isArray(p.features_en) ? p.features_en.join("\n") : (p.features_en || "")
+        });
+        setProjectFormModalOpen(true);
+    };
+    // Soumission du formulaire de contact public
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formState)
+            });
+            if (res.ok) {
+                showToast("contact_sent");
+                setFormState({ name: "", email: "", subject: "", message: "" });
+            }
+            else {
+                throw new Error();
+            }
+        }
+        catch (err) {
+            showToast("contact_error");
+        }
+        finally {
+            setIsSubmitting(false);
+        }
+    };
+    // Filtrage des projets
+    const filteredProjects = selectedCategory === "all"
+        ? data.projects
+        : data.projects.filter(p => p.category === selectedCategory);
+    // Filtrage des dépôts GitHub réels
+    const repoDescription = (repo) => Object.hasOwn(t.repos.descriptions, repo.name) ? t.repos.descriptions[repo.name] : repo.description;
+    const filteredGithubRepos = githubRepos.filter(repo => {
+        const matchesSearch = repo.name.toLowerCase().includes(repoSearchQuery.toLowerCase()) ||
+            repoDescription(repo)?.toLowerCase().includes(repoSearchQuery.toLowerCase());
+        const matchesLang = repoLanguageFilter === "all" ||
+            (repo.language && repo.language.toLowerCase() === repoLanguageFilter.toLowerCase());
+        return matchesSearch && matchesLang;
+    });
+    return (React.createElement("div", { className: "min-h-screen flex flex-col bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300" },
+        React.createElement("header", { className: "sticky top-0 z-40 glass border-b border-slate-200/60 dark:border-slate-800/80 transition-colors" },
+            React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3" },
+                React.createElement("a", { href: "#hero", className: "flex items-center gap-2.5 sm:gap-3 group shrink-0 py-1" },
+                    React.createElement("span", { className: "w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-pink-500 flex items-center justify-center text-white font-extrabold text-base sm:text-lg shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform shrink-0" }, "WD"),
+                    React.createElement("div", { className: "flex flex-col shrink-0" },
+                        React.createElement("span", { className: "font-extrabold tracking-tight text-base sm:text-lg text-slate-900 dark:text-white leading-tight whitespace-nowrap" }, data.profile.name),
+                        React.createElement("span", { className: "text-[11px] sm:text-xs text-blue-600 dark:text-blue-400 font-semibold whitespace-nowrap" }, t.hero.header_role))),
+                React.createElement("nav", { className: "hidden xl:flex items-center gap-5 2xl:gap-7 text-sm font-medium shrink-0" }, t.nav_items.map(item => (React.createElement("a", { key: item.anchor, href: `#${item.anchor}`, className: item.anchor === "sap-workflow"
+                        ? "flex items-center gap-1.5 text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-all whitespace-nowrap"
+                        : "text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors whitespace-nowrap" },
+                    item.anchor === "sap-workflow" && React.createElement("span", { className: "w-2 h-2 rounded-full bg-blue-600 animate-ping" }),
+                    item.label)))),
+                React.createElement("div", { className: "flex items-center gap-1.5 sm:gap-2 shrink-0" },
+                    React.createElement("a", { href: data.profile.linkedin, target: "_blank", rel: "noopener noreferrer", title: t.navigation.linkedin, className: "w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-blue-50 dark:bg-blue-950/60 text-[#0A66C2] dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all shrink-0" },
+                        React.createElement(LinkedInIcon, { className: "w-4 h-4 sm:w-4.5 sm:h-4.5" })),
+                    React.createElement("a", { href: data.profile.github, target: "_blank", rel: "noopener noreferrer", title: t.navigation.github, className: "w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:scale-105 transition-all shrink-0" },
+                        React.createElement(GitHubIcon, { className: "w-4 h-4 sm:w-4.5 sm:h-4.5" })),
+                    React.createElement("button", { onClick: () => setCvModalOpen(true), title: t.navigation.resume, className: "hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-100 transition-all shrink-0 whitespace-nowrap" },
+                        React.createElement(Icon, { name: "file-text", className: "w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" }),
+                        React.createElement("span", null, t.nav.resume)),
+                    React.createElement("button", { onClick: openAdminModal, title: t.navigation.admin, className: "inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-bold bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-800 hover:bg-amber-100 dark:hover:bg-amber-900/40 transition-all shrink-0 shadow-sm" },
+                        React.createElement(Icon, { name: "shield", className: "w-3.5 h-3.5 text-amber-600 dark:text-amber-400" }),
+                        React.createElement("span", { className: "hidden md:inline whitespace-nowrap" }, t.nav.admin)),
+                    React.createElement("div", { title: t.navigation.database, className: "hidden lg:inline-flex items-center gap-1.5 px-2.5 py-2 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 shrink-0" },
+                        React.createElement("span", { className: "w-2 h-2 rounded-full bg-emerald-500 animate-pulse" }),
+                        React.createElement("span", { className: "whitespace-nowrap" }, t.nav.sqlite_active)),
+                    React.createElement("button", { onClick: toggleLang, title: t.navigation.language_toggle, className: "inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-black bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-all shrink-0 shadow-sm" },
+                        React.createElement(Icon, { name: "languages", className: "w-3.5 h-3.5 text-blue-600 dark:text-blue-400" }),
+                        React.createElement("span", null, isEn ? "EN" : "FR")),
+                    React.createElement("button", { onClick: toggleTheme, "aria-label": t.navigation.theme, className: "w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shrink-0" },
+                        React.createElement(Icon, { name: isDarkMode ? "sun" : "moon", className: "w-4 h-4" })),
+                    React.createElement("button", { onClick: () => setMobileMenuOpen(!mobileMenuOpen), "aria-label": t.navigation.menu, className: "xl:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shrink-0" },
+                        React.createElement(Icon, { name: mobileMenuOpen ? "x" : "menu", className: "w-5 h-5" })))),
+            mobileMenuOpen && (React.createElement("div", { className: "xl:hidden px-4 pt-3 pb-6 glass border-b border-slate-200 dark:border-slate-800 flex flex-col gap-2 max-h-[calc(100vh-5.5rem)] overflow-y-auto animate-fade-in shadow-2xl" },
+                t.nav_items.map(item => (React.createElement("a", { key: item.anchor, href: `#${item.anchor}`, onClick: () => setMobileMenuOpen(false), className: `px-3.5 py-2.5 rounded-xl text-sm font-semibold flex items-center justify-between ${item.anchor === "sap-workflow"
+                        ? "text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40"
+                        : "hover:bg-slate-100 dark:hover:bg-slate-800"}` },
+                    item.label,
+                    React.createElement(Icon, { name: item.icon, className: "w-4 h-4" })))),
+                React.createElement("button", { onClick: toggleLang, className: "px-3.5 py-2.5 rounded-xl text-xs font-bold bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 flex items-center justify-between" },
+                    React.createElement("span", { className: "flex items-center gap-2" },
+                        React.createElement(Icon, { name: "languages", className: "w-4 h-4 text-blue-500" }),
+                        React.createElement("span", null, t.navigation.language)),
+                    React.createElement("span", { className: "font-black px-2 py-0.5 rounded bg-blue-600 text-white" }, isEn ? "EN" : "FR")),
+                React.createElement("div", { className: "pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-2" },
+                    React.createElement("a", { href: data.profile.linkedin, target: "_blank", rel: "noopener noreferrer", className: "flex-1 py-2.5 text-center rounded-xl text-xs font-bold bg-[#0A66C2] text-white flex items-center justify-center gap-1.5 shadow-sm" },
+                        React.createElement(LinkedInIcon, { className: "w-4 h-4" }),
+                        React.createElement("span", null, t.common.linkedin)),
+                    React.createElement("a", { href: data.profile.github, target: "_blank", rel: "noopener noreferrer", className: "flex-1 py-2.5 text-center rounded-lg text-xs font-bold bg-slate-900 dark:bg-slate-800 text-white flex items-center justify-center gap-1.5 shadow-sm" },
+                        React.createElement(GitHubIcon, { className: "w-4 h-4" }),
+                        React.createElement("span", null, t.common.github)),
+                    React.createElement("button", { onClick: () => { setMobileMenuOpen(false); setCvModalOpen(true); }, className: "flex-1 py-2.5 text-center rounded-xl text-xs font-bold bg-indigo-600 text-white flex items-center justify-center gap-1.5 shadow-sm" },
+                        React.createElement(Icon, { name: "file-text", className: "w-4 h-4" }),
+                        React.createElement("span", null, t.nav.resume))),
+                React.createElement("button", { onClick: () => { setMobileMenuOpen(false); openAdminModal(); }, className: "mt-1 px-3 py-2.5 rounded-xl text-xs font-bold bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800 flex items-center justify-between" },
+                    React.createElement("span", { className: "flex items-center gap-2" },
+                        React.createElement(Icon, { name: "shield", className: "w-4 h-4 text-amber-500" }),
+                        React.createElement("span", null, t.admin.mobile)),
+                    React.createElement(Icon, { name: "lock", className: "w-4 h-4" }))))),
+        React.createElement("section", { id: "hero", className: "relative pt-20 pb-24 md:pt-28 md:pb-32 overflow-hidden" },
+            React.createElement("div", { className: "absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-blue-500/20 via-indigo-500/15 to-purple-500/20 blur-[130px] rounded-full pointer-events-none -z-10" }),
+            React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center" },
+                React.createElement("div", { className: "inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/80 mb-6 animate-float shadow-sm" },
+                    React.createElement("span", { className: "w-2 h-2 rounded-full bg-emerald-500 animate-ping" }),
+                    React.createElement("span", null, tr(data.profile, "availability") || t.hero.badge)),
+                React.createElement("h1", { className: "text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1] mb-5" }, data.profile.name),
+                React.createElement("div", { className: "inline-block px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl bg-gradient-to-r from-blue-100 via-indigo-100 to-purple-100 dark:from-blue-950/60 dark:via-indigo-950/60 dark:to-purple-950/60 text-blue-900 dark:text-blue-200 font-extrabold text-sm sm:text-lg md:text-2xl mb-6 shadow-sm border border-blue-200/50 dark:border-blue-800/50 max-w-full" }, tr(data.profile, "title")),
+                React.createElement("p", { className: "text-sm sm:text-base md:text-lg lg:text-xl font-normal text-slate-600 dark:text-slate-300 max-w-3xl mb-8 leading-relaxed px-2" }, tr(data.profile, "bio")),
+                React.createElement("div", { className: "flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-xs sm:text-sm mb-10 max-w-full px-2" },
+                    React.createElement("div", { className: "flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300" },
+                        React.createElement(Icon, { name: "map-pin", className: "w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-500 shrink-0" }),
+                        React.createElement("span", null, profileLocation)),
+                    React.createElement("a", { href: `tel:${data.profile.phone}`, className: "flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300 hover:text-emerald-600 transition-colors" },
+                        React.createElement(Icon, { name: "phone", className: "w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500 shrink-0" }),
+                        React.createElement("span", null, data.profile.phone)),
+                    React.createElement("a", { href: `mailto:${data.profile.email}`, className: "flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors" },
+                        React.createElement(Icon, { name: "mail", className: "w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-500 shrink-0" }),
+                        React.createElement("span", null, data.profile.email)),
+                    React.createElement("a", { href: data.profile.linkedin, target: "_blank", rel: "noopener noreferrer", className: "flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-[#0A66C2] dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all" },
+                        React.createElement(LinkedInIcon, { className: "w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0A66C2] shrink-0" }),
+                        React.createElement("span", { className: "font-semibold truncate max-w-[170px] sm:max-w-none" }, "linkedin.com/in/waliddjellali")),
+                    React.createElement("a", { href: data.profile.github, target: "_blank", rel: "noopener noreferrer", className: "flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:scale-105 transition-all" },
+                        React.createElement(GitHubIcon, { className: "w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" }),
+                        React.createElement("span", { className: "font-semibold truncate max-w-[130px] sm:max-w-none" }, "github.com/Waliddjla"))),
+                React.createElement("div", { className: "flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-8 w-full max-w-3xl px-2" },
+                    React.createElement("a", { href: data.profile.linkedin, target: "_blank", rel: "noopener noreferrer", className: "w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-[#0A66C2] hover:bg-[#004182] text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-105 transition-all flex items-center justify-center gap-2" },
+                        React.createElement(LinkedInIcon, { className: "w-4 h-4 sm:w-5 sm:h-5" }),
+                        React.createElement("span", null, t.hero.contact_linkedin),
+                        React.createElement(Icon, { name: "external-link", className: "w-3.5 h-3.5 opacity-75" })),
+                    React.createElement("button", { onClick: () => setCvModalOpen(true), className: "w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-105 transition-all flex items-center justify-center gap-2" },
+                        React.createElement(Icon, { name: "file-text", className: "w-4 h-4 sm:w-5 sm:h-5" }),
+                        React.createElement("span", null, t.hero.view_resume)),
+                    React.createElement("a", { href: "#projects", className: "w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all flex items-center justify-center gap-2" },
+                        React.createElement(Icon, { name: "layers", className: "w-4 h-4 sm:w-5 sm:h-5" }),
+                        React.createElement("span", null,
+                            t.hero.explore_projects,
+                            " (",
+                            data.projects.length,
+                            ")")),
+                    React.createElement("a", { href: "#sap-workflow", className: "w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-semibold glass hover:bg-slate-200/60 dark:hover:bg-slate-800/60 text-slate-800 dark:text-slate-100 transition-all flex items-center justify-center gap-2" },
+                        React.createElement(Icon, { name: "layers", className: "w-4 h-4 sm:w-5 sm:h-5" }),
+                        React.createElement("span", null, t.portfolio.sap))))),
+        React.createElement("section", { id: "experience", className: "py-24 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60" },
+            React.createElement("div", { className: "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" },
+                React.createElement("div", { className: "text-center max-w-3xl mx-auto mb-16" },
+                    React.createElement("span", { className: "text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400 mb-2 block" }, t.experience.badge),
+                    React.createElement("h2", { className: "text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight" }, t.experience.title),
+                    React.createElement("p", { className: "mt-3 text-slate-600 dark:text-slate-400" }, t.experience.subtitle)),
+                React.createElement("div", { className: "space-y-8" }, data.experiences.map((exp, idx) => (React.createElement("div", { key: exp.id || idx, className: "p-8 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 card-hover transition-all" },
+                    React.createElement("div", { className: "flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4" },
+                        React.createElement("div", null,
+                            React.createElement("h3", { className: "text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2" },
+                                React.createElement("span", null, tr(exp, "role")),
+                                React.createElement("span", { className: "text-blue-600 dark:text-blue-400 font-extrabold" },
+                                    "@ ",
+                                    exp.company))),
+                        React.createElement("span", { className: "inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-bold bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 w-fit" },
+                            React.createElement(Icon, { name: "calendar", className: "w-3.5 h-3.5" }),
+                            React.createElement("span", null, experiencePeriod(exp)))),
+                    React.createElement("p", { className: "text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-6 leading-relaxed italic" }, tr(exp, "description")),
+                    React.createElement("ul", { className: "space-y-3" }, trList(exp, "bullets").map((bullet, bIdx) => (React.createElement("li", { key: bIdx, className: "flex items-start gap-3 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed" },
+                        React.createElement("span", { className: "w-5 h-5 rounded-lg bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 mt-0.5" },
+                            React.createElement(Icon, { name: "check", className: "w-3.5 h-3.5" })),
+                        React.createElement("span", null, bullet))))))))))),
+        React.createElement("section", { id: "sap-workflow", className: "py-24" },
+            React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
+                React.createElement("div", { className: "text-center max-w-3xl mx-auto mb-14" },
+                    React.createElement("div", { className: "inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-900 mb-3" },
+                        React.createElement(Icon, { name: "layers", className: "w-3.5 h-3.5" }),
+                        React.createElement("span", null, t.sap.badge)),
+                    React.createElement("h2", { className: "text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight" }, t.sap.title),
+                    React.createElement("p", { className: "mt-3 text-slate-600 dark:text-slate-400 text-sm sm:text-base" }, t.sap.subtitle),
+                    React.createElement("div", { className: "flex flex-wrap items-center justify-center gap-2 mt-8" },
+                        React.createElement("button", { onClick: () => setSelectedSapModule("all"), className: `px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${selectedSapModule === "all"
+                                ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-md"
+                                : "glass hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300"}` },
+                            t.sap.all_modules,
+                            " (",
+                            sapModules.length,
+                            ")"),
+                        sapModules.map((m) => {
+                            const isActive = selectedSapModule === m.id;
+                            const mTitle = tr(m, "title");
+                            return (React.createElement("button", { key: m.id, onClick: () => setSelectedSapModule(m.id), className: `px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${isActive
+                                    ? m.color === "blue"
+                                        ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
+                                        : m.color === "indigo"
+                                            ? "bg-indigo-600 text-white shadow-md shadow-indigo-500/20"
+                                            : "bg-emerald-600 text-white shadow-md shadow-emerald-500/20"
+                                    : "glass hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300"}` },
+                                React.createElement(Icon, { name: m.icon, className: "w-3.5 h-3.5" }),
+                                React.createElement("span", null,
+                                    m.code,
+                                    " - ",
+                                    mTitle)));
+                        }))),
+                React.createElement("div", { className: "grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12" }, sapModules
+                    .filter(m => selectedSapModule === "all" || selectedSapModule === m.id)
+                    .map((mod) => {
+                    const isBlue = mod.color === "blue";
+                    const isIndigo = mod.color === "indigo";
+                    const badgeBg = isBlue
+                        ? "bg-blue-600 text-white"
+                        : isIndigo
+                            ? "bg-indigo-600 text-white"
+                            : "bg-emerald-600 text-white";
+                    const cardBorder = isBlue
+                        ? "hover:border-blue-500/50"
+                        : isIndigo
+                            ? "hover:border-indigo-500/50"
+                            : "hover:border-emerald-500/50";
+                    const iconBox = isBlue
+                        ? "bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-900"
+                        : isIndigo
+                            ? "bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900"
+                            : "bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900";
+                    const modTitle = tr(mod, "title");
+                    const modSummary = tr(mod, "summary");
+                    const orionItems = trList(mod, "orion");
+                    const acgItems = trList(mod, "acg");
+                    return (React.createElement("div", { key: mod.id, className: `p-6 sm:p-7 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between transition-all duration-300 shadow-xl shadow-slate-900/5 hover:-translate-y-1 ${cardBorder}` },
+                        React.createElement("div", null,
+                            React.createElement("div", { className: "flex items-center justify-between mb-4" },
+                                React.createElement("div", { className: "flex items-center gap-3" },
+                                    React.createElement("div", { className: `w-11 h-11 rounded-2xl flex items-center justify-center border shrink-0 ${iconBox}` },
+                                        React.createElement(Icon, { name: mod.icon, className: "w-5 h-5" })),
+                                    React.createElement("div", null,
+                                        React.createElement("span", { className: `text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md ${badgeBg}` },
+                                            t.sap.module_prefix,
+                                            " ",
+                                            mod.code),
+                                        React.createElement("h3", { className: "text-lg font-extrabold text-slate-900 dark:text-white mt-1 leading-snug" }, modTitle)))),
+                            React.createElement("p", { className: "text-xs sm:text-sm text-slate-600 dark:text-slate-300 p-3.5 rounded-2xl bg-slate-100/70 dark:bg-slate-900/70 border border-slate-200/60 dark:border-slate-800/80 mb-6 leading-relaxed" }, modSummary),
+                            React.createElement("div", { className: "space-y-2.5 mb-5" },
+                                React.createElement("div", { className: "flex items-center gap-2 text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider" },
+                                    React.createElement("span", { className: "w-2 h-2 rounded-full bg-blue-500" }),
+                                    React.createElement("span", null, t.sap.role_orion)),
+                                React.createElement("ul", { className: "space-y-2 pl-2" }, orionItems.map((item, idx) => (React.createElement("li", { key: idx, className: "flex items-start gap-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed" },
+                                    React.createElement(Icon, { name: "check", className: "w-4 h-4 text-blue-500 shrink-0 mt-0.5" }),
+                                    React.createElement("span", null, item)))))),
+                            React.createElement("div", { className: "space-y-2.5 pt-4 border-t border-slate-200/60 dark:border-slate-800/60" },
+                                React.createElement("div", { className: "flex items-center gap-2 text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider" },
+                                    React.createElement("span", { className: "w-2 h-2 rounded-full bg-emerald-500" }),
+                                    React.createElement("span", null, t.sap.role_acg)),
+                                React.createElement("ul", { className: "space-y-2 pl-2" }, acgItems.map((item, idx) => (React.createElement("li", { key: idx, className: "flex items-start gap-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed" },
+                                    React.createElement(Icon, { name: "check", className: "w-4 h-4 text-emerald-500 shrink-0 mt-0.5" }),
+                                    React.createElement("span", null, item)))))))));
+                })),
+                React.createElement("div", { className: "p-6 sm:p-8 rounded-3xl glass border border-blue-500/30 shadow-2xl space-y-6" },
+                    React.createElement("div", { className: "flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200/70 dark:border-slate-800" },
+                        React.createElement("div", { className: "flex items-center gap-2.5" },
+                            React.createElement("div", { className: "w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0" },
+                                React.createElement(Icon, { name: "git-merge", className: "w-4 h-4" })),
+                            React.createElement("div", null,
+                                React.createElement("h4", { className: "text-sm sm:text-base font-extrabold text-slate-900 dark:text-white" }, t.sap.flow_title),
+                                React.createElement("p", { className: "text-xs text-slate-500 dark:text-slate-400" }, t.sap.flow_subtitle))),
+                        React.createElement("span", { className: "text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-900 self-start sm:self-auto" }, t.sap.flow_badge)),
+                    React.createElement("div", { className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 relative" }, sapFlow.map((step, idx) => {
+                        const stepLabel = tr(step, "label");
+                        const stepNote = tr(step, "note");
+                        const stepNumber = step.step_number || (idx < 9 ? `0${idx + 1}` : `${idx + 1}`);
+                        return (React.createElement("div", { key: step.id || idx, className: "p-4 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between relative group hover:border-blue-500/50 transition-all shadow-sm" },
+                            React.createElement("div", null,
+                                React.createElement("div", { className: "flex items-center justify-between mb-2" },
+                                    React.createElement("span", { className: "text-[11px] font-black px-2 py-0.5 rounded-md bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 font-mono" }, stepNumber),
+                                    idx < sapFlow.length - 1 && (React.createElement(Icon, { name: "arrow-right", className: "w-3.5 h-3.5 text-slate-400 hidden lg:block" }))),
+                                React.createElement("h5", { className: "text-sm font-bold text-slate-900 dark:text-white" }, stepLabel),
+                                React.createElement("p", { className: "text-xs text-slate-600 dark:text-slate-300 mt-1 leading-snug" }, stepNote))));
+                    }))))),
+        React.createElement("section", { id: "skills", className: "py-24 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60" },
+            React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
+                React.createElement("div", { className: "text-center max-w-3xl mx-auto mb-16" },
+                    React.createElement("span", { className: "text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400 mb-2 block" }, t.skills.badge),
+                    React.createElement("h2", { className: "text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight" }, t.skills.title)),
+                React.createElement("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" }, t.skill_groups.map(group => (React.createElement("div", { key: group.category, className: `p-7 rounded-3xl glass border card-hover ${group.frame}` },
+                    React.createElement("div", { className: `w-12 h-12 rounded-2xl flex items-center justify-center mb-5 ${group.badge}` },
+                        React.createElement(Icon, { name: group.icon, className: "w-6 h-6" })),
+                    React.createElement("h3", { className: "text-lg font-bold text-slate-900 dark:text-white mb-4" }, group.label),
+                    React.createElement("div", { className: "flex flex-wrap gap-2" }, data.skills.filter(skill => skill.category === group.category).map(skill => (React.createElement("span", { key: skill.name, className: `px-3 py-1 rounded-xl text-xs font-semibold ${group.pill}` }, skillName(skill))))))))))),
+        React.createElement("section", { id: "projects", className: "py-24" },
+            React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
+                React.createElement("div", { className: "text-center max-w-3xl mx-auto mb-12" },
+                    React.createElement("div", { className: "inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-900 mb-3" },
+                        React.createElement(Icon, { name: "layers", className: "w-3.5 h-3.5" }),
+                        React.createElement("span", null, t.projects.badge)),
+                    React.createElement("h2", { className: "text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight" }, t.projects.title),
+                    React.createElement("p", { className: "mt-3 text-slate-600 dark:text-slate-400" }, t.portfolio.subtitle)),
+                React.createElement("div", { className: "flex flex-wrap justify-center items-center gap-2 mb-12" }, t.project_filters.map(cat => (React.createElement("button", { key: cat.id, onClick: () => setSelectedCategory(cat.id), className: `px-4 py-2 rounded-xl text-sm font-semibold transition-all ${selectedCategory === cat.id
+                        ? "bg-blue-600 text-white shadow-md shadow-blue-500/25"
+                        : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800"}` },
+                    cat.label,
+                    cat.id === "all" && ` (${data.projects.length})`)))),
+                React.createElement("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-8" }, filteredProjects.map((p, idx) => {
+                    const projectCaseStudy = tr(p, "case_study");
+                    return (React.createElement("article", { key: p.id || idx, className: "fade-in card-hover rounded-3xl overflow-hidden glass border border-slate-200/80 dark:border-slate-800 flex flex-col group" },
+                        React.createElement("div", { className: "relative h-60 overflow-hidden bg-slate-900" },
+                            React.createElement("img", { src: p.image, alt: tr(p, "title"), className: "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105", loading: "lazy" }),
+                            React.createElement("div", { className: "absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" }),
+                            React.createElement("div", { className: "absolute top-4 left-4 flex flex-wrap gap-2" },
+                                React.createElement("span", { className: "text-xs font-bold px-3 py-1.5 rounded-xl backdrop-blur-md bg-blue-600/90 text-white shadow-sm" }, tr(p, "category_label") || p.category),
+                                projectCaseStudy && (React.createElement("span", { className: "text-xs font-bold px-2.5 py-1.5 rounded-xl backdrop-blur-md bg-amber-500/90 text-white flex items-center gap-1 shadow-sm" },
+                                    React.createElement(Icon, { name: "sparkles", className: "w-3 h-3" }),
+                                    React.createElement("span", null, t.portfolio.case_study))))),
+                        React.createElement("div", { className: "p-7 flex-1 flex flex-col justify-between" },
+                            React.createElement("div", null,
+                                React.createElement("h3", { className: "text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-500 transition-colors" }, tr(p, "title")),
+                                tr(p, "tagline") && (React.createElement("p", { className: "text-xs font-semibold text-blue-600 dark:text-blue-400 mb-3 italic" },
+                                    "\"",
+                                    tr(p, "tagline"),
+                                    "\"")),
+                                React.createElement("p", { className: "text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6" }, tr(p, "description")),
+                                projectCaseStudy?.kpis?.length > 0 && (React.createElement("div", { className: "grid grid-cols-3 gap-2 mb-6 p-3 rounded-2xl bg-blue-50/70 dark:bg-blue-950/30 border border-blue-200/60 dark:border-blue-900/40" }, projectCaseStudy.kpis.map((kpi, kIdx) => (React.createElement("div", { key: kIdx, className: "text-center" },
+                                    React.createElement("span", { className: "text-xs font-black text-blue-600 dark:text-blue-400 block" }, tr(kpi, "value")),
+                                    React.createElement("span", { className: "text-[10px] text-slate-500 dark:text-slate-400 block truncate" }, tr(kpi, "label"))))))),
+                                React.createElement("div", { className: "flex flex-wrap gap-1.5 mb-6" }, (p.tags || []).slice(0, 6).map((tag, tIdx) => (React.createElement("span", { key: tIdx, className: "text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300" }, tag))))),
+                            React.createElement("div", { className: "flex flex-wrap items-center justify-between gap-3 pt-5 border-t border-slate-200/60 dark:border-slate-800" },
+                                React.createElement("button", { onClick: () => setSelectedProjectModal(p), className: "inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/25 hover:shadow-blue-500/40 transition-all" },
+                                    React.createElement(Icon, { name: "sparkles", className: "w-4 h-4" }),
+                                    React.createElement("span", null, t.portfolio.detail)),
+                                React.createElement("a", { href: p.github_url, target: "_blank", rel: "noopener noreferrer", className: "inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold glass hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 transition-all" },
+                                    React.createElement(GitHubIcon, { className: "w-4 h-4" }),
+                                    React.createElement("span", null, t.portfolio.code),
+                                    React.createElement(Icon, { name: "external-link", className: "w-3 h-3 opacity-60" }))))));
+                })))),
+        React.createElement("section", { id: "github-explorer", className: "py-24 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60" },
+            React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
+                React.createElement("div", { className: "text-center max-w-3xl mx-auto mb-12" },
+                    React.createElement("div", { className: "inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 mb-3" },
+                        React.createElement(GitHubIcon, { className: "w-3.5 h-3.5" }),
+                        React.createElement("span", null, t.repos.badge)),
+                    React.createElement("h2", { className: "text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight" }, t.repos.title),
+                    React.createElement("p", { className: "mt-3 text-slate-600 dark:text-slate-400" }, t.repos.subtitle)),
+                React.createElement("div", { className: "max-w-3xl mx-auto mb-10 flex flex-col md:flex-row gap-3 sm:gap-4 items-stretch md:items-center" },
+                    React.createElement("div", { className: "relative flex-1" },
+                        React.createElement(Icon, { name: "search", className: "w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" }),
+                        React.createElement("input", { type: "text", value: repoSearchQuery, onChange: e => setRepoSearchQuery(e.target.value), placeholder: t.repos.search, className: "w-full pl-11 pr-10 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm" }),
+                        repoSearchQuery && (React.createElement("button", { onClick: () => setRepoSearchQuery(""), className: "absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1" },
+                            React.createElement(Icon, { name: "x", className: "w-4 h-4" })))),
+                    React.createElement("div", { className: "flex flex-wrap gap-1.5 sm:gap-2 justify-center shrink-0" }, t.repo_filters.map(lang => (React.createElement("button", { key: lang.id, onClick: () => setRepoLanguageFilter(lang.id), className: `px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${repoLanguageFilter === lang.id
+                            ? "bg-blue-600 text-white shadow-md shadow-blue-500/25"
+                            : "glass text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50"}` }, lang.label))))),
+                React.createElement("div", { className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" }, filteredGithubRepos.slice(0, 9).map((repo, rIdx) => (React.createElement("a", { key: rIdx, href: repo.html_url || `https://github.com/Waliddjla/${repo.name}`, target: "_blank", rel: "noopener noreferrer", className: "p-6 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 hover:border-blue-500/50 flex flex-col justify-between card-hover group transition-all" },
+                    React.createElement("div", null,
+                        React.createElement("div", { className: "flex items-center justify-between mb-3" },
+                            React.createElement("span", { className: "w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center" },
+                                React.createElement(Icon, { name: "folder-git-2", className: "w-4 h-4" })),
+                            React.createElement("span", { className: "text-xs px-2.5 py-0.5 rounded-full font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400" }, repo.language || t.repos.untagged)),
+                        React.createElement("h4", { className: "text-base font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-2" }, repo.name),
+                        React.createElement("p", { className: "text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2 mb-4" }, repoDescription(repo) || t.repos.description)),
+                    React.createElement("div", { className: "flex items-center justify-between pt-3 border-t border-slate-200/60 dark:border-slate-800/80 text-xs text-slate-500 dark:text-slate-400" },
+                        React.createElement("span", { className: "flex items-center gap-1 font-semibold text-blue-600 dark:text-blue-400" },
+                            React.createElement("span", null, t.repos.open),
+                            React.createElement(Icon, { name: "external-link", className: "w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" })),
+                        React.createElement("span", null, "@Waliddjla")))))),
+                React.createElement("div", { className: "mt-12 text-center" },
+                    React.createElement("a", { href: "https://github.com/Waliddjla", target: "_blank", rel: "noopener noreferrer", className: "inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl text-sm font-bold bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:opacity-95 shadow-md shadow-slate-900/10 hover:scale-105 transition-all" },
+                        React.createElement(GitHubIcon, { className: "w-4 h-4" }),
+                        React.createElement("span", null, t.repos.all),
+                        React.createElement(Icon, { name: "arrow-up-right", className: "w-4 h-4" }))))),
+        React.createElement("section", { id: "education", className: "py-24" },
+            React.createElement("div", { className: "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8" },
+                React.createElement("div", { className: "text-center max-w-3xl mx-auto mb-16" },
+                    React.createElement("span", { className: "text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400 mb-2 block" }, t.education.badge),
+                    React.createElement("h2", { className: "text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight" }, t.education.title)),
+                React.createElement("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-6" }, data.education.map((edu, idx) => (React.createElement("div", { key: edu.id || idx, className: "p-7 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 flex flex-col card-hover" },
+                    React.createElement("div", { className: "w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4" },
+                        React.createElement(Icon, { name: "graduation-cap", className: "w-5 h-5" })),
+                    React.createElement("span", { className: "text-xs font-bold text-blue-600 dark:text-blue-400 mb-1" }, edu.period),
+                    React.createElement("h3", { className: "text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug" }, tr(edu, "degree")),
+                    React.createElement("p", { className: "text-xs font-semibold text-slate-500 dark:text-slate-400 mb-3" }, edu.institution),
+                    React.createElement("p", { className: "text-xs text-slate-600 dark:text-slate-300 mt-auto leading-relaxed" }, tr(edu, "details")))))))),
+        React.createElement("section", { id: "contact", className: "py-24 bg-slate-100/60 dark:bg-slate-900/40 border-t border-slate-200/60 dark:border-slate-800/60" },
+            React.createElement("div", { className: "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8" },
+                React.createElement("div", { className: "text-center max-w-3xl mx-auto mb-16" },
+                    React.createElement("span", { className: "text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400 mb-2 block" }, t.contact.badge),
+                    React.createElement("h2", { className: "text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight" }, t.contact.title),
+                    React.createElement("p", { className: "mt-3 text-slate-600 dark:text-slate-400" }, t.contact.subtitle)),
+                React.createElement("div", { className: "grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" },
+                    React.createElement("div", { className: "lg:col-span-5 space-y-4" },
+                        React.createElement("a", { href: data.profile.linkedin, target: "_blank", rel: "noopener noreferrer", className: "p-6 rounded-3xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/80 flex items-center justify-between card-hover group transition-all" },
+                            React.createElement("div", { className: "flex items-center gap-4" },
+                                React.createElement("div", { className: "w-12 h-12 rounded-2xl bg-[#0A66C2] text-white flex items-center justify-center shrink-0 shadow-md" },
+                                    React.createElement(LinkedInIcon, { className: "w-6 h-6" })),
+                                React.createElement("div", null,
+                                    React.createElement("h4", { className: "text-base font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" }, t.common.linkedin_profile),
+                                    React.createElement("span", { className: "text-xs text-blue-700 dark:text-blue-300 font-medium" }, "/in/waliddjellali"))),
+                            React.createElement(Icon, { name: "arrow-up-right", className: "w-5 h-5 text-blue-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" })),
+                        React.createElement("a", { href: data.profile.github, target: "_blank", rel: "noopener noreferrer", className: "p-6 rounded-3xl bg-slate-200/60 dark:bg-slate-800/60 border border-slate-300 dark:border-slate-700/80 flex items-center justify-between card-hover group transition-all" },
+                            React.createElement("div", { className: "flex items-center gap-4" },
+                                React.createElement("div", { className: "w-12 h-12 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center shrink-0 shadow-md" },
+                                    React.createElement(GitHubIcon, { className: "w-6 h-6" })),
+                                React.createElement("div", null,
+                                    React.createElement("h4", { className: "text-base font-bold text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors" }, t.common.github_repositories),
+                                    React.createElement("span", { className: "text-xs text-slate-600 dark:text-slate-300 font-medium" }, "@Waliddjla"))),
+                            React.createElement(Icon, { name: "arrow-up-right", className: "w-5 h-5 text-slate-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" })),
+                        React.createElement("div", { className: "p-6 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 space-y-3 text-xs sm:text-sm" },
+                            React.createElement("div", { className: "flex items-center gap-3 text-slate-700 dark:text-slate-300" },
+                                React.createElement(Icon, { name: "map-pin", className: "w-4 h-4 text-rose-500 shrink-0" }),
+                                React.createElement("span", null, profileLocation)),
+                            React.createElement("div", { className: "flex items-center gap-3 text-slate-700 dark:text-slate-300" },
+                                React.createElement(Icon, { name: "mail", className: "w-4 h-4 text-blue-500 shrink-0" }),
+                                React.createElement("span", null, data.profile.email)),
+                            React.createElement("div", { className: "flex items-center gap-3 text-slate-700 dark:text-slate-300" },
+                                React.createElement(Icon, { name: "phone", className: "w-4 h-4 text-emerald-500 shrink-0" }),
+                                React.createElement("span", null, data.profile.phone)))),
+                    React.createElement("div", { className: "lg:col-span-7" },
+                        React.createElement("form", { onSubmit: handleFormSubmit, className: "p-8 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 space-y-5" },
+                            React.createElement("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4" },
+                                React.createElement("div", null,
+                                    React.createElement("label", { className: "block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5" }, t.contact.name),
+                                    React.createElement("input", { type: "text", required: true, value: formState.name, onChange: e => setFormState({ ...formState, name: e.target.value }), placeholder: t.contact.name_placeholder, className: "w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" })),
+                                React.createElement("div", null,
+                                    React.createElement("label", { className: "block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5" }, t.contact.email),
+                                    React.createElement("input", { type: "email", required: true, value: formState.email, onChange: e => setFormState({ ...formState, email: e.target.value }), placeholder: t.contact.email_placeholder, className: "w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" }))),
+                            React.createElement("div", null,
+                                React.createElement("label", { className: "block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5" }, t.contact.subject),
+                                React.createElement("input", { type: "text", value: formState.subject, onChange: e => setFormState({ ...formState, subject: e.target.value }), placeholder: t.contact.subject_placeholder, className: "w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" })),
+                            React.createElement("div", null,
+                                React.createElement("label", { className: "block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5" }, t.contact.message),
+                                React.createElement("textarea", { rows: 4, required: true, value: formState.message, onChange: e => setFormState({ ...formState, message: e.target.value }), placeholder: t.contact.message_placeholder, className: "w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" })),
+                            React.createElement("button", { type: "submit", disabled: isSubmitting, className: "w-full py-3.5 rounded-2xl text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/25 transition-all flex items-center justify-center gap-2" },
+                                React.createElement(Icon, { name: "send", className: "w-4 h-4" }),
+                                React.createElement("span", null, isSubmitting ? t.contact.sending : t.contact.send))))))),
+        React.createElement("footer", { className: "border-t border-slate-200 dark:border-slate-800 py-12 bg-white/40 dark:bg-slate-950/40" },
+            React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left" },
+                React.createElement("div", { className: "flex items-center gap-3" },
+                    React.createElement("span", { className: "w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center font-extrabold text-sm shadow-md shadow-blue-500/20" }, "WD"),
+                    React.createElement("div", null,
+                        React.createElement("span", { className: "font-extrabold text-slate-900 dark:text-white block text-sm" }, data.profile.name),
+                        React.createElement("span", { className: "text-xs text-slate-500 dark:text-slate-400" },
+                            "\u00A9 ",
+                            new Date().getFullYear(),
+                            " Walid Djellali. ",
+                            t.common.copyright))),
+                React.createElement("div", { className: "flex flex-wrap items-center justify-center gap-5 text-sm text-slate-600 dark:text-slate-400" },
+                    React.createElement("a", { href: data.profile.linkedin, target: "_blank", rel: "noopener noreferrer", className: "hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1.5 transition-colors font-medium" },
+                        React.createElement(LinkedInIcon, { className: "w-4 h-4 text-[#0A66C2]" }),
+                        React.createElement("span", null, t.common.linkedin)),
+                    React.createElement("a", { href: data.profile.github, target: "_blank", rel: "noopener noreferrer", className: "hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5 transition-colors font-medium" },
+                        React.createElement(GitHubIcon, { className: "w-4 h-4" }),
+                        React.createElement("span", null, t.common.github)),
+                    React.createElement("button", { onClick: () => setCvModalOpen(true), className: "hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1.5 transition-colors font-medium" },
+                        React.createElement(Icon, { name: "file-text", className: "w-4 h-4 text-indigo-500" }),
+                        React.createElement("span", null, t.common.resume)),
+                    React.createElement("button", { onClick: openAdminModal, className: "hover:text-amber-600 dark:hover:text-amber-400 flex items-center gap-1.5 transition-colors font-bold text-amber-600 dark:text-amber-400" },
+                        React.createElement(Icon, { name: "shield", className: "w-4 h-4" }),
+                        React.createElement("span", null, t.admin.title)),
+                    React.createElement("a", { href: "#hero", className: "hover:text-blue-600 flex items-center gap-1 transition-colors font-medium" },
+                        React.createElement(Icon, { name: "arrow-up", className: "w-4 h-4" }),
+                        React.createElement("span", null, t.common.top))))),
+        selectedProjectModal && (React.createElement("div", { className: "fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in no-print" },
+            React.createElement("div", { className: "w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[92vh] flex flex-col" },
+                React.createElement("div", { className: "flex items-start justify-between pb-4 border-b border-slate-200 dark:border-slate-800 shrink-0 gap-4" },
+                    React.createElement("div", null,
+                        React.createElement("div", { className: "flex items-center gap-2 mb-2" },
+                            React.createElement("span", { className: "px-3 py-1 rounded-xl text-xs font-bold bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300" }, tr(selectedProjectModal, "category_label") || selectedProjectModal.category),
+                            caseStudy && (React.createElement("span", { className: "px-2.5 py-1 rounded-xl text-xs font-bold bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 flex items-center gap-1" },
+                                React.createElement(Icon, { name: "award", className: "w-3.5 h-3.5" }),
+                                React.createElement("span", null, t.modal.certified)))),
+                        React.createElement("h3", { className: "text-xl sm:text-2xl font-black text-slate-900 dark:text-white" }, tr(selectedProjectModal, "title")),
+                        tr(selectedProjectModal, "tagline") && (React.createElement("p", { className: "text-xs sm:text-sm text-blue-600 dark:text-blue-400 font-semibold mt-1" }, tr(selectedProjectModal, "tagline")))),
+                    React.createElement("div", { className: "flex items-center gap-2 shrink-0" },
+                        languageToggle,
+                        React.createElement("button", { type: "button", "aria-label": t.common.close, onClick: () => setSelectedProjectModal(null), className: "w-9 h-9 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all shrink-0" },
+                            React.createElement(Icon, { name: "x", className: "w-4 h-4" })))),
+                React.createElement("div", { className: "flex-1 overflow-y-auto pr-1 sm:pr-2 py-4 space-y-6 text-sm text-slate-700 dark:text-slate-300" },
+                    React.createElement("div", { className: "relative h-48 sm:h-64 rounded-2xl overflow-hidden bg-slate-900" },
+                        React.createElement("img", { src: selectedProjectModal.image, alt: tr(selectedProjectModal, "title"), className: "w-full h-full object-cover" }),
+                        React.createElement("div", { className: "absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-5" },
+                            React.createElement("p", { className: "text-xs sm:text-sm text-white font-medium drop-shadow-md" }, selectedProjectModal.description))),
+                    caseStudy && caseStudy.kpis && (React.createElement("div", null,
+                        React.createElement("h4", { className: "text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3 flex items-center gap-1.5" },
+                            React.createElement(Icon, { name: "trending-up", className: "w-4 h-4" }),
+                            React.createElement("span", null, t.modal.kpis)),
+                        React.createElement("div", { className: "grid grid-cols-1 sm:grid-cols-3 gap-3" }, (caseStudy.kpis || []).map((kpi, kIdx) => (React.createElement("div", { key: kIdx, className: "p-4 rounded-2xl bg-blue-50/70 dark:bg-blue-950/40 border border-blue-200/70 dark:border-blue-900/60 flex items-center gap-3" },
+                            React.createElement("div", { className: "w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold shrink-0 shadow-sm" },
+                                React.createElement(Icon, { name: kpi.icon || "activity", className: "w-5 h-5" })),
+                            React.createElement("div", null,
+                                React.createElement("span", { className: "text-lg font-black text-slate-900 dark:text-white block" }, tr(kpi, "value")),
+                                React.createElement("span", { className: "text-xs text-slate-500 dark:text-slate-400" }, tr(kpi, "label"))))))))),
+                    caseStudy && (React.createElement("div", { className: "p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 space-y-2" },
+                        React.createElement("div", { className: "flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400 pb-2 border-b border-slate-200 dark:border-slate-800" },
+                            React.createElement("span", null,
+                                React.createElement("strong", null, t.modal.client),
+                                " ",
+                                caseStudy.client),
+                            React.createElement("span", null,
+                                React.createElement("strong", null, t.modal.role),
+                                " ",
+                                caseStudy.role),
+                            React.createElement("span", null,
+                                React.createElement("strong", null, t.modal.period),
+                                " ",
+                                caseStudy.period)),
+                        React.createElement("h4", { className: "text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white pt-1" }, t.modal.context),
+                        React.createElement("p", { className: "text-xs sm:text-sm leading-relaxed" }, caseStudy.context))),
+                    caseStudy && caseStudy.architecture && (React.createElement("div", { className: "p-5 rounded-2xl bg-blue-50/40 dark:bg-blue-950/20 border border-blue-200/60 dark:border-blue-900/40 space-y-2" },
+                        React.createElement("h4", { className: "text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 flex items-center gap-1.5" },
+                            React.createElement(Icon, { name: "cpu", className: "w-4 h-4" }),
+                            React.createElement("span", null, t.modal.architecture)),
+                        React.createElement("p", { className: "text-xs sm:text-sm leading-relaxed" }, caseStudy.architecture))),
+                    modalFeatures && modalFeatures.length > 0 && (React.createElement("div", null,
+                        React.createElement("h4", { className: "text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white mb-3 flex items-center gap-1.5" },
+                            React.createElement(Icon, { name: "check-circle-2", className: "w-4 h-4 text-emerald-500" }),
+                            React.createElement("span", null, t.modal.features)),
+                        React.createElement("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-2.5" }, modalFeatures.map((feat, fIdx) => (React.createElement("div", { key: fIdx, className: "p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 flex items-start gap-2.5 text-xs sm:text-sm" },
+                            React.createElement(Icon, { name: "chevron-right", className: "w-4 h-4 text-blue-500 shrink-0 mt-0.5" }),
+                            React.createElement("span", null, feat))))))),
+                    caseStudy && caseStudy.challenges && (React.createElement("div", { className: "space-y-3" },
+                        React.createElement("h4", { className: "text-xs font-black uppercase tracking-wider text-amber-600 dark:text-amber-400 flex items-center gap-1.5" },
+                            React.createElement(Icon, { name: "alert-circle", className: "w-4 h-4" }),
+                            React.createElement("span", null, t.modal.challenges)),
+                        React.createElement("div", { className: "space-y-2" }, caseStudy.challenges.map((chal, cIdx) => (React.createElement("div", { key: cIdx, className: "p-3.5 rounded-xl bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40 text-xs sm:text-sm flex items-start gap-2.5" },
+                            React.createElement("span", { className: "w-5 h-5 rounded-full bg-amber-500 text-white font-bold flex items-center justify-center shrink-0 text-[10px] mt-0.5" }, cIdx + 1),
+                            React.createElement("span", null, chal))))),
+                        caseStudy.solution && (React.createElement("div", { className: "p-4 rounded-xl bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/40 text-xs sm:text-sm" },
+                            React.createElement("strong", { className: "text-emerald-800 dark:text-emerald-300 block mb-1" }, t.modal.solution),
+                            React.createElement("p", null, caseStudy.solution))))),
+                    caseStudy && caseStudy.impact && (React.createElement("div", { className: "p-5 rounded-2xl bg-slate-900 text-white dark:bg-slate-800/80 border border-slate-800 space-y-2" },
+                        React.createElement("h4", { className: "text-xs font-black uppercase tracking-wider text-blue-400 flex items-center gap-1.5" },
+                            React.createElement(Icon, { name: "zap", className: "w-4 h-4 text-amber-400" }),
+                            React.createElement("span", null, t.modal.impact)),
+                        React.createElement("p", { className: "text-xs sm:text-sm leading-relaxed text-slate-200" }, caseStudy.impact))),
+                    React.createElement("div", null,
+                        React.createElement("h4", { className: "text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2" }, t.modal.technologies),
+                        React.createElement("div", { className: "flex flex-wrap gap-1.5" }, (selectedProjectModal.tags || []).map((tag, idx) => (React.createElement("span", { key: idx, className: "px-3 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-semibold" }, tag)))))),
+                React.createElement("div", { className: "pt-4 border-t border-slate-200 dark:border-slate-800 shrink-0 flex items-center justify-between gap-3" },
+                    React.createElement("a", { href: selectedProjectModal.github_url, target: "_blank", rel: "noopener noreferrer", className: "inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:opacity-90 transition-all" },
+                        React.createElement(GitHubIcon, { className: "w-4 h-4" }),
+                        React.createElement("span", null, t.modal.source),
+                        React.createElement(Icon, { name: "external-link", className: "w-3.5 h-3.5 opacity-60" })),
+                    React.createElement("button", { onClick: () => setSelectedProjectModal(null), className: "px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all" }, t.common.close))))),
+        adminModalOpen && (React.createElement("div", { className: "fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in no-print" },
+            React.createElement("div", { className: "w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[92vh] flex flex-col" },
+                React.createElement("div", { className: "flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 shrink-0" },
+                    React.createElement("div", { className: "flex items-center gap-3" },
+                        React.createElement("div", { className: "w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center shadow-md shadow-amber-500/25" },
+                            React.createElement(Icon, { name: "shield", className: "w-5 h-5" })),
+                        React.createElement("div", null,
+                            React.createElement("h3", { className: "text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2" },
+                                React.createElement("span", null, t.admin.title),
+                                isAdminAuth && (React.createElement("span", { className: "text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-bold" }, t.admin.online))),
+                            React.createElement("p", { className: "text-xs text-slate-500 dark:text-slate-400" }, t.admin.subtitle))),
+                    React.createElement("div", { className: "flex items-center gap-2" },
+                        isAdminAuth && (React.createElement("button", { onClick: handleAdminLogout, title: t.admin.logout, className: "px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-rose-50 hover:text-rose-600 transition-all flex items-center gap-1.5" },
+                            React.createElement(Icon, { name: "log-out", className: "w-3.5 h-3.5" }),
+                            React.createElement("span", null, t.admin.lock))),
+                        React.createElement("div", { className: "flex items-center gap-2 shrink-0" },
+                            languageToggle,
+                            React.createElement("button", { type: "button", "aria-label": t.common.close, onClick: () => setAdminModalOpen(false), className: "w-9 h-9 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-600 dark:text-slate-300" },
+                                React.createElement(Icon, { name: "x", className: "w-4 h-4" }))))),
+                !isAdminAuth ? (React.createElement("div", { className: "flex-1 flex flex-col items-center justify-center py-10 px-4 text-center max-w-md mx-auto" },
+                    React.createElement("div", { className: "w-16 h-16 rounded-3xl bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-5 shadow-lg shadow-amber-500/10" },
+                        React.createElement(Icon, { name: "lock", className: "w-8 h-8" })),
+                    React.createElement("h4", { className: "text-xl font-bold text-slate-900 dark:text-white mb-2" }, t.admin.private),
+                    React.createElement("p", { className: "text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-6" }, t.admin.instructions),
+                    React.createElement("form", { onSubmit: handleAdminLogin, className: "w-full space-y-4" },
+                        React.createElement("div", null,
+                            React.createElement("input", { type: "password", autoFocus: true, required: true, value: adminPinInput, onChange: e => setAdminPinInput(e.target.value), placeholder: t.admin.pin, className: "w-full text-center px-4 py-3 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-base focus:outline-none focus:ring-2 focus:ring-amber-500 tracking-widest" }),
+                            adminPinError && (React.createElement("p", { role: "alert", className: "text-xs font-semibold text-rose-500 mt-2" }, t.toasts[adminPinError]))),
+                        React.createElement("button", { type: "submit", className: "w-full py-3.5 rounded-2xl text-sm font-bold bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-500/25 transition-all flex items-center justify-center gap-2" },
+                            React.createElement(Icon, { name: "key", className: "w-4 h-4" }),
+                            React.createElement("span", null, t.admin.unlock))))) : (React.createElement("div", { className: "flex-1 flex flex-col min-h-0 pt-4" },
+                    React.createElement("div", { className: "flex flex-wrap gap-2 border-b border-slate-200 dark:border-slate-800 pb-3 shrink-0" }, [
+                        { id: "stats", label: t.admin.overview, icon: "activity" },
+                        { id: "inbox", label: `${t.admin.inbox} (${messagesList.length})`, icon: "mail" },
+                        { id: "profile", label: t.admin.profile_tab, icon: "user-cog" },
+                        { id: "projects", label: `${t.admin.projects_tab} (${data.projects.length})`, icon: "folder-plus" }
+                    ].map(tab => (React.createElement("button", { key: tab.id, onClick: () => setAdminTab(tab.id), className: `px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${adminTab === tab.id
+                            ? "bg-amber-500 text-white shadow-md shadow-amber-500/25"
+                            : "glass text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"}` },
+                        React.createElement(Icon, { name: tab.icon, className: "w-3.5 h-3.5" }),
+                        React.createElement("span", null, tab.label))))),
+                    React.createElement("div", { className: "flex-1 overflow-y-auto py-5 pr-1 space-y-6" },
+                        adminTab === "stats" && (React.createElement("div", { className: "space-y-6" },
+                            React.createElement("div", { className: "grid grid-cols-2 sm:grid-cols-4 gap-3" },
+                                React.createElement("div", { className: "p-4 rounded-2xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60" },
+                                    React.createElement("span", { className: "text-xs text-blue-600 dark:text-blue-400 font-bold block" }, t.admin.messages),
+                                    React.createElement("span", { className: "text-2xl font-black text-slate-900 dark:text-white mt-1 block" }, adminStats ? adminStats.messagesCount : messagesList.length)),
+                                React.createElement("div", { className: "p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/60" },
+                                    React.createElement("span", { className: "text-xs text-emerald-600 dark:text-emerald-400 font-bold block" }, t.admin.projects),
+                                    React.createElement("span", { className: "text-2xl font-black text-slate-900 dark:text-white mt-1 block" }, adminStats ? adminStats.projectsCount : data.projects.length)),
+                                React.createElement("div", { className: "p-4 rounded-2xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-900/60" },
+                                    React.createElement("span", { className: "text-xs text-purple-600 dark:text-purple-400 font-bold block" }, t.admin.db_size),
+                                    React.createElement("span", { className: "text-2xl font-black text-slate-900 dark:text-white mt-1 block" }, adminStats ? `${adminStats.dbSizeKb} ${t.admin.size_unit}` : "—")),
+                                React.createElement("div", { className: "p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60" },
+                                    React.createElement("span", { className: "text-xs text-amber-600 dark:text-amber-400 font-bold block" }, t.admin.runtime),
+                                    React.createElement("span", { className: "text-2xl font-black text-slate-900 dark:text-white mt-1 block" }, adminStats ? adminStats.nodeVersion : "v24"))),
+                            React.createElement("div", { className: "p-5 rounded-2xl glass border border-slate-200 dark:border-slate-800 space-y-3" },
+                                React.createElement("h4", { className: "text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5" },
+                                    React.createElement(Icon, { name: "radio", className: "w-4 h-4 text-emerald-500 animate-pulse" }),
+                                    React.createElement("span", null, t.admin.quick)),
+                                React.createElement("p", { className: "text-xs text-slate-500" },
+                                    t.admin.current,
+                                    " ",
+                                    React.createElement("strong", { className: "text-blue-600 dark:text-blue-400" }, tr(data.profile, "availability"))),
+                                React.createElement("div", { className: "flex flex-wrap gap-2 pt-1" }, availabilityOptions.map(st => (React.createElement("button", { key: st.fr, onClick: () => handleQuickAvailabilityChange(st), className: "px-3.5 py-2 rounded-xl text-xs font-bold glass hover:bg-emerald-50 dark:hover:bg-emerald-950/50 hover:text-emerald-600 transition-all" }, st[lang]))))))),
+                        adminTab === "inbox" && (React.createElement("div", { className: "space-y-4" },
+                            React.createElement("div", { className: "flex items-center justify-between pb-2" },
+                                React.createElement("h4", { className: "text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white" },
+                                    t.admin.inbox,
+                                    " (",
+                                    messagesList.length,
+                                    " ",
+                                    t.admin.db_messages,
+                                    ")"),
+                                React.createElement("button", { onClick: fetchAdminData, className: "px-3 py-1.5 rounded-xl text-xs font-bold glass hover:bg-slate-200 dark:hover:bg-slate-800 flex items-center gap-1" },
+                                    React.createElement(Icon, { name: "refresh-cw", className: "w-3 h-3" }),
+                                    React.createElement("span", null, t.admin.refresh))),
+                            messagesList.length === 0 ? (React.createElement("div", { className: "p-8 text-center text-slate-500 text-xs" }, t.admin.empty_inbox)) : (messagesList.map(msg => (React.createElement("div", { key: msg.id, className: `p-4 rounded-2xl border transition-all ${msg.read
+                                    ? "bg-slate-50/70 dark:bg-slate-800/40 border-slate-200 dark:border-slate-800"
+                                    : "bg-blue-50/80 dark:bg-blue-950/30 border-blue-300 dark:border-blue-900/60 shadow-sm"}` },
+                                React.createElement("div", { className: "flex items-center justify-between text-xs mb-2" },
+                                    React.createElement("span", { className: "font-bold text-slate-900 dark:text-white" },
+                                        msg.name,
+                                        " \u2022 ",
+                                        React.createElement("span", { className: "text-blue-600 dark:text-blue-400" }, msg.email)),
+                                    React.createElement("span", { className: "text-slate-400" }, msg.created_at || t.admin.recent)),
+                                React.createElement("h5", { className: "text-sm font-bold text-slate-800 dark:text-slate-100 mb-1" }, msg.subject),
+                                React.createElement("p", { className: "text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-3 whitespace-pre-wrap" }, msg.message),
+                                React.createElement("div", { className: "flex items-center justify-between pt-2 border-t border-slate-200/60 dark:border-slate-800 text-xs" },
+                                    React.createElement("div", { className: "flex items-center gap-2" },
+                                        React.createElement("a", { href: `mailto:${msg.email}?subject=Re: ${encodeURIComponent(msg.subject || t.admin.reply_subject)}`, className: "px-3 py-1 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold flex items-center gap-1" },
+                                            React.createElement(Icon, { name: "reply", className: "w-3 h-3" }),
+                                            React.createElement("span", null, t.admin.reply)),
+                                        React.createElement("button", { onClick: () => handleToggleMessageRead(msg.id, msg.read), className: "px-3 py-1 rounded-lg glass text-slate-700 dark:text-slate-300 hover:bg-slate-200 font-semibold" }, msg.read ? t.admin.mark_unread : t.admin.mark_read)),
+                                    React.createElement("button", { onClick: () => handleDeleteMessage(msg.id), className: "px-3 py-1 rounded-lg text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/50 font-bold flex items-center gap-1" },
+                                        React.createElement(Icon, { name: "trash-2", className: "w-3 h-3" }),
+                                        React.createElement("span", null, t.common.delete))))))))),
+                        adminTab === "profile" && (React.createElement("form", { onSubmit: handleSaveProfile, className: "space-y-4" },
+                            React.createElement("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4" },
+                                React.createElement("div", null,
+                                    React.createElement("label", { htmlFor: "editingProfileForm-title-fr", className: "block text-xs font-bold mb-1" },
+                                        t.admin.profile_title,
+                                        " (FR)"),
+                                    React.createElement("input", { id: "editingProfileForm-title-fr", lang: "fr", type: "text", value: editingProfileForm.title, onChange: e => setEditingProfileForm({ ...editingProfileForm, title: e.target.value }), className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm" })),
+                                React.createElement("div", null,
+                                    React.createElement("label", { htmlFor: "editingProfileForm-title-en", className: "block text-xs font-bold mb-1" },
+                                        t.admin.profile_title,
+                                        " (EN)"),
+                                    React.createElement("input", { id: "editingProfileForm-title-en", lang: "en", type: "text", value: editingProfileForm.title_en, onChange: e => setEditingProfileForm({ ...editingProfileForm, title_en: e.target.value }), className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm" })),
+                                React.createElement("div", null,
+                                    React.createElement("label", { htmlFor: "editingProfileForm-availability-fr", className: "block text-xs font-bold mb-1" },
+                                        t.admin.availability,
+                                        " (FR)"),
+                                    React.createElement("input", { id: "editingProfileForm-availability-fr", lang: "fr", type: "text", value: editingProfileForm.availability, onChange: e => setEditingProfileForm({ ...editingProfileForm, availability: e.target.value }), className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm" })),
+                                React.createElement("div", null,
+                                    React.createElement("label", { htmlFor: "editingProfileForm-availability-en", className: "block text-xs font-bold mb-1" },
+                                        t.admin.availability,
+                                        " (EN)"),
+                                    React.createElement("input", { id: "editingProfileForm-availability-en", lang: "en", type: "text", value: editingProfileForm.availability_en, onChange: e => setEditingProfileForm({ ...editingProfileForm, availability_en: e.target.value }), className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm" }))),
+                            React.createElement("div", { className: "grid grid-cols-1 sm:grid-cols-3 gap-4" },
+                                React.createElement("div", null,
+                                    React.createElement("label", { className: "block text-xs font-bold mb-1" }, t.admin.phone),
+                                    React.createElement("input", { type: "text", value: editingProfileForm.phone, onChange: e => setEditingProfileForm({ ...editingProfileForm, phone: e.target.value }), className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm" })),
+                                React.createElement("div", null,
+                                    React.createElement("label", { className: "block text-xs font-bold mb-1" }, t.admin.email),
+                                    React.createElement("input", { type: "email", value: editingProfileForm.email, onChange: e => setEditingProfileForm({ ...editingProfileForm, email: e.target.value }), className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm" })),
+                                React.createElement("div", null,
+                                    React.createElement("label", { htmlFor: "editingProfileForm-location-fr", className: "block text-xs font-bold mb-1" },
+                                        t.admin.location,
+                                        " (FR)"),
+                                    React.createElement("input", { id: "editingProfileForm-location-fr", lang: "fr", type: "text", value: editingProfileForm.location, onChange: e => setEditingProfileForm({ ...editingProfileForm, location: e.target.value }), className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm" })),
+                                React.createElement("div", null,
+                                    React.createElement("label", { htmlFor: "editingProfileForm-location-en", className: "block text-xs font-bold mb-1" },
+                                        t.admin.location,
+                                        " (EN)"),
+                                    React.createElement("input", { id: "editingProfileForm-location-en", lang: "en", type: "text", value: editingProfileForm.location_en, onChange: e => setEditingProfileForm({ ...editingProfileForm, location_en: e.target.value }), className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm" }))),
+                            React.createElement("div", null,
+                                React.createElement("label", { htmlFor: "editingProfileForm-bio-fr", className: "block text-xs font-bold mb-1" },
+                                    t.admin.bio,
+                                    " (FR)"),
+                                React.createElement("textarea", { id: "editingProfileForm-bio-fr", lang: "fr", rows: 4, value: editingProfileForm.bio, onChange: e => setEditingProfileForm({ ...editingProfileForm, bio: e.target.value }), className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm" })),
+                            React.createElement("div", null,
+                                React.createElement("label", { htmlFor: "editingProfileForm-bio-en", className: "block text-xs font-bold mb-1" },
+                                    t.admin.bio,
+                                    " (EN)"),
+                                React.createElement("textarea", { id: "editingProfileForm-bio-en", lang: "en", rows: 4, value: editingProfileForm.bio_en, onChange: e => setEditingProfileForm({ ...editingProfileForm, bio_en: e.target.value }), className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm" })),
+                            React.createElement("button", { type: "submit", className: "px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold bg-amber-500 hover:bg-amber-600 text-white shadow-md shadow-amber-500/25 flex items-center gap-2" },
+                                React.createElement(Icon, { name: "save", className: "w-4 h-4" }),
+                                React.createElement("span", null, t.admin.save_profile)))),
+                        adminTab === "projects" && (React.createElement("div", { className: "space-y-4" },
+                            React.createElement("div", { className: "flex items-center justify-between pb-2" },
+                                React.createElement("h4", { className: "text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white" },
+                                    t.admin.catalog,
+                                    " (",
+                                    data.projects.length,
+                                    ")"),
+                                React.createElement("button", { onClick: openNewProjectForm, className: "px-3.5 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-1.5 shadow-sm" },
+                                    React.createElement(Icon, { name: "plus", className: "w-3.5 h-3.5" }),
+                                    React.createElement("span", null, t.admin.add_project))),
+                            React.createElement("div", { className: "space-y-3" }, data.projects.map((p, idx) => (React.createElement("div", { key: p.id || idx, className: "p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4" },
+                                React.createElement("div", { className: "flex items-center gap-3 min-w-0" },
+                                    React.createElement("img", { src: p.image, className: "w-12 h-12 rounded-xl object-cover shrink-0", alt: "" }),
+                                    React.createElement("div", { className: "min-w-0" },
+                                        React.createElement("h5", { className: "text-sm font-bold text-slate-900 dark:text-white truncate" }, tr(p, "title")),
+                                        React.createElement("span", { className: "text-xs text-blue-600 dark:text-blue-400 font-semibold" }, tr(p, "category_label") || p.category))),
+                                React.createElement("div", { className: "flex items-center gap-2 shrink-0" },
+                                    React.createElement("button", { onClick: () => openEditProjectForm(p), className: "px-3 py-1.5 rounded-xl text-xs font-bold glass hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center gap-1" },
+                                        React.createElement(Icon, { name: "edit-3", className: "w-3 h-3" }),
+                                        React.createElement("span", null, t.common.edit)),
+                                    React.createElement("button", { onClick: () => handleDeleteProject(p.id, tr(p, "title")), className: "px-3 py-1.5 rounded-xl text-xs font-bold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/50 flex items-center gap-1" },
+                                        React.createElement(Icon, { name: "trash-2", className: "w-3 h-3" }),
+                                        React.createElement("span", null, t.common.delete))))))))))))))),
+        projectFormModalOpen && (React.createElement("div", { className: "fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in no-print" },
+            React.createElement("div", { className: "w-full max-w-2xl bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[90vh] flex flex-col" },
+                React.createElement("div", { className: "flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 mb-4 shrink-0" },
+                    React.createElement("h4", { className: "text-base font-bold text-slate-900 dark:text-white" }, editingProject ? `${t.admin.edit_project}: ${tr(editingProject, "title")}` : t.admin.new_project),
+                    React.createElement("div", { className: "flex items-center gap-2 shrink-0" },
+                        languageToggle,
+                        React.createElement("button", { type: "button", "aria-label": t.common.close, onClick: () => setProjectFormModalOpen(false), className: "w-8 h-8 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300" },
+                            React.createElement(Icon, { name: "x", className: "w-4 h-4" })))),
+                React.createElement("form", { onSubmit: handleSaveProjectForm, className: "flex-1 overflow-y-auto pr-1 space-y-4 text-xs sm:text-sm" },
+                    React.createElement("div", null,
+                        React.createElement("label", { htmlFor: "projectFormData-title-fr", className: "block text-xs font-bold mb-1" },
+                            t.admin.project_title,
+                            " (FR) *"),
+                        React.createElement("input", { id: "projectFormData-title-fr", lang: "fr", type: "text", required: true, value: projectFormData.title, onChange: e => setProjectFormData({ ...projectFormData, title: e.target.value }), className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" })),
+                    React.createElement("div", null,
+                        React.createElement("label", { htmlFor: "projectFormData-title-en", className: "block text-xs font-bold mb-1" },
+                            t.admin.project_title,
+                            " (EN)"),
+                        React.createElement("input", { id: "projectFormData-title-en", lang: "en", type: "text", value: projectFormData.title_en, onChange: e => setProjectFormData({ ...projectFormData, title_en: e.target.value }), className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" })),
+                    React.createElement("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-3" },
+                        React.createElement("div", null,
+                            React.createElement("label", { className: "block text-xs font-bold mb-1" }, t.admin.category),
+                            React.createElement("select", { value: projectFormData.category, onChange: e => setProjectFormData({ ...projectFormData, category: e.target.value }), className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" }, t.project_filters.filter(category => category.id !== "all").map(category => (React.createElement("option", { key: category.id, value: category.id }, category.label))))),
+                        React.createElement("div", null,
+                            React.createElement("label", { htmlFor: "projectFormData-category_label-fr", className: "block text-xs font-bold mb-1" },
+                                t.admin.category_label,
+                                " (FR)"),
+                            React.createElement("input", { id: "projectFormData-category_label-fr", lang: "fr", type: "text", value: projectFormData.category_label, onChange: e => setProjectFormData({ ...projectFormData, category_label: e.target.value }), placeholder: t.admin.category_example, className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" })),
+                        React.createElement("div", null,
+                            React.createElement("label", { htmlFor: "projectFormData-category_label-en", className: "block text-xs font-bold mb-1" },
+                                t.admin.category_label,
+                                " (EN)"),
+                            React.createElement("input", { id: "projectFormData-category_label-en", lang: "en", type: "text", value: projectFormData.category_label_en, onChange: e => setProjectFormData({ ...projectFormData, category_label_en: e.target.value }), placeholder: t.admin.category_example, className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" }))),
+                    React.createElement("div", null,
+                        React.createElement("label", { htmlFor: "projectFormData-tagline-fr", className: "block text-xs font-bold mb-1" },
+                            t.admin.tagline,
+                            " (FR)"),
+                        React.createElement("input", { id: "projectFormData-tagline-fr", lang: "fr", type: "text", value: projectFormData.tagline, onChange: e => setProjectFormData({ ...projectFormData, tagline: e.target.value }), placeholder: t.admin.tagline_example, className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" })),
+                    React.createElement("div", null,
+                        React.createElement("label", { htmlFor: "projectFormData-tagline-en", className: "block text-xs font-bold mb-1" },
+                            t.admin.tagline,
+                            " (EN)"),
+                        React.createElement("input", { id: "projectFormData-tagline-en", lang: "en", type: "text", value: projectFormData.tagline_en, onChange: e => setProjectFormData({ ...projectFormData, tagline_en: e.target.value }), placeholder: t.admin.tagline_example, className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" })),
+                    React.createElement("div", null,
+                        React.createElement("label", { htmlFor: "projectFormData-description-fr", className: "block text-xs font-bold mb-1" },
+                            t.admin.description,
+                            " (FR)"),
+                        React.createElement("textarea", { id: "projectFormData-description-fr", lang: "fr", rows: 2, value: projectFormData.description, onChange: e => setProjectFormData({ ...projectFormData, description: e.target.value }), className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" })),
+                    React.createElement("div", null,
+                        React.createElement("label", { htmlFor: "projectFormData-description-en", className: "block text-xs font-bold mb-1" },
+                            t.admin.description,
+                            " (EN)"),
+                        React.createElement("textarea", { id: "projectFormData-description-en", lang: "en", rows: 2, value: projectFormData.description_en, onChange: e => setProjectFormData({ ...projectFormData, description_en: e.target.value }), className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" })),
+                    React.createElement("div", null,
+                        React.createElement("label", { className: "block text-xs font-bold mb-1" }, t.admin.image),
+                        React.createElement("input", { type: "text", value: projectFormData.image, onChange: e => setProjectFormData({ ...projectFormData, image: e.target.value }), className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" })),
+                    React.createElement("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-3" },
+                        React.createElement("div", null,
+                            React.createElement("label", { className: "block text-xs font-bold mb-1" }, t.admin.github_link),
+                            React.createElement("input", { type: "text", value: projectFormData.github_url, onChange: e => setProjectFormData({ ...projectFormData, github_url: e.target.value }), className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" })),
+                        React.createElement("div", null,
+                            React.createElement("label", { className: "block text-xs font-bold mb-1" }, t.admin.demo_link),
+                            React.createElement("input", { type: "text", value: projectFormData.demo_url, onChange: e => setProjectFormData({ ...projectFormData, demo_url: e.target.value }), className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" }))),
+                    React.createElement("div", null,
+                        React.createElement("label", { className: "block text-xs font-bold mb-1" }, t.admin.tags),
+                        React.createElement("input", { type: "text", value: projectFormData.tags, onChange: e => setProjectFormData({ ...projectFormData, tags: e.target.value }), placeholder: "React, Node.js, SQLite, Tailwind CSS", className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" })),
+                    React.createElement("div", null,
+                        React.createElement("label", { htmlFor: "projectFormData-features-fr", className: "block text-xs font-bold mb-1" },
+                            t.admin.features,
+                            " (FR)"),
+                        React.createElement("textarea", { id: "projectFormData-features-fr", lang: "fr", rows: 3, value: projectFormData.features, onChange: e => setProjectFormData({ ...projectFormData, features: e.target.value }), placeholder: t.admin.features_example, className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" })),
+                    React.createElement("div", null,
+                        React.createElement("label", { htmlFor: "projectFormData-features-en", className: "block text-xs font-bold mb-1" },
+                            t.admin.features,
+                            " (EN)"),
+                        React.createElement("textarea", { id: "projectFormData-features-en", lang: "en", rows: 3, value: projectFormData.features_en, onChange: e => setProjectFormData({ ...projectFormData, features_en: e.target.value }), placeholder: t.admin.features_example, className: "w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" })),
+                    React.createElement("div", { className: "pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-end gap-2" },
+                        React.createElement("button", { type: "button", onClick: () => setProjectFormModalOpen(false), className: "px-4 py-2 rounded-xl font-bold glass" }, t.common.cancel),
+                        React.createElement("button", { type: "submit", className: "px-5 py-2 rounded-xl font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/25" }, t.admin.save)))))),
+        cvModalOpen && (React.createElement("div", { className: "fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in no-print" },
+            React.createElement("div", { className: "w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[92vh] flex flex-col" },
+                React.createElement("div", { className: "flex items-center justify-between pb-5 border-b border-slate-200 dark:border-slate-800 mb-6 shrink-0" },
+                    React.createElement("div", { className: "flex items-center gap-3" },
+                        React.createElement("span", { className: "w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-extrabold text-sm shadow-md shadow-blue-500/25" }, "CV"),
+                        React.createElement("div", null,
+                            React.createElement("h3", { className: "text-xl font-extrabold text-slate-900 dark:text-white" },
+                                t.cv.title,
+                                " \u2014 ",
+                                data.profile.name),
+                            React.createElement("p", { className: "text-xs text-slate-500 dark:text-slate-400" }, t.cv.subtitle))),
+                    React.createElement("div", { className: "flex items-center gap-2" },
+                        React.createElement("button", { onClick: () => window.print(), className: "px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 flex items-center gap-1.5 transition-all" },
+                            React.createElement(Icon, { name: "printer", className: "w-4 h-4" }),
+                            React.createElement("span", null, t.cv.print)),
+                        React.createElement("div", { className: "flex items-center gap-2 shrink-0" },
+                            languageToggle,
+                            React.createElement("button", { type: "button", "aria-label": t.common.close, onClick: () => setCvModalOpen(false), className: "w-9 h-9 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-600 dark:text-slate-300" },
+                                React.createElement(Icon, { name: "x", className: "w-4 h-4" }))))),
+                React.createElement("div", { className: "flex-1 overflow-y-auto pr-2 space-y-6 text-slate-800 dark:text-slate-200 text-sm cv-print-container" },
+                    React.createElement("div", { className: "p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4" },
+                        React.createElement("div", null,
+                            React.createElement("h2", { className: "text-2xl font-black text-slate-900 dark:text-white" }, data.profile.name),
+                            React.createElement("p", { className: "text-sm font-bold text-blue-600 dark:text-blue-400 mt-1" }, tr(data.profile, "title")),
+                            React.createElement("p", { className: "text-xs text-slate-500 dark:text-slate-400 mt-1" },
+                                profileLocation,
+                                " \u2022 ",
+                                data.profile.phone,
+                                " \u2022 ",
+                                data.profile.email)),
+                        React.createElement("div", { className: "flex flex-col gap-1.5 text-xs" },
+                            React.createElement("a", { href: data.profile.linkedin, target: "_blank", rel: "noopener noreferrer", className: "text-[#0A66C2] dark:text-blue-400 hover:underline flex items-center gap-1 font-semibold" },
+                                React.createElement(LinkedInIcon, { className: "w-3.5 h-3.5" }),
+                                React.createElement("span", null, "linkedin.com/in/waliddjellali")),
+                            React.createElement("a", { href: data.profile.github, target: "_blank", rel: "noopener noreferrer", className: "text-slate-700 dark:text-slate-300 hover:underline flex items-center gap-1 font-semibold" },
+                                React.createElement(GitHubIcon, { className: "w-3.5 h-3.5" }),
+                                React.createElement("span", null, "github.com/Waliddjla")))),
+                    React.createElement("div", null,
+                        React.createElement("h4", { className: "text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2" }, t.cv.summary),
+                        React.createElement("p", { className: "text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-300" }, tr(data.profile, "bio"))),
+                    React.createElement("div", null,
+                        React.createElement("h4", { className: "text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3" }, t.cv.experience),
+                        React.createElement("div", { className: "space-y-4" }, data.experiences.map((exp, idx) => (React.createElement("div", { key: idx, className: "border-l-2 border-blue-500 pl-4 py-0.5" },
+                            React.createElement("div", { className: "flex flex-col sm:flex-row sm:items-center justify-between text-xs sm:text-sm" },
+                                React.createElement("span", { className: "font-bold text-slate-900 dark:text-white" },
+                                    tr(exp, "role"),
+                                    " \u2014 ",
+                                    React.createElement("span", { className: "text-blue-600 dark:text-blue-400" }, exp.company)),
+                                React.createElement("span", { className: "text-xs font-semibold text-slate-500" }, experiencePeriod(exp))),
+                            React.createElement("p", { className: "text-xs text-slate-600 dark:text-slate-400 italic mt-0.5 mb-1.5" }, tr(exp, "description")),
+                            React.createElement("ul", { className: "list-disc pl-4 space-y-1 text-xs text-slate-600 dark:text-slate-300" }, trList(exp, "bullets").map((b, bIdx) => React.createElement("li", { key: bIdx }, b)))))))),
+                    React.createElement("div", null,
+                        React.createElement("h4", { className: "text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2" }, t.cv.skills),
+                        React.createElement("div", { className: "flex flex-wrap gap-1.5 text-xs" }, data.skills.map((s, idx) => (React.createElement("span", { key: idx, className: "px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium" }, skillName(s)))))),
+                    React.createElement("div", null,
+                        React.createElement("h4", { className: "text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2" }, t.cv.education),
+                        React.createElement("div", { className: "grid grid-cols-1 sm:grid-cols-3 gap-3" }, data.education.map((edu, idx) => (React.createElement("div", { key: idx, className: "p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 text-xs" },
+                            React.createElement("span", { className: "font-bold text-blue-600 dark:text-blue-400 block" }, edu.period),
+                            React.createElement("strong", { className: "text-slate-900 dark:text-white block mt-0.5" }, tr(edu, "degree")),
+                            React.createElement("span", { className: "text-slate-500 block" }, edu.institution))))))),
+                React.createElement("div", { className: "pt-4 border-t border-slate-200 dark:border-slate-800 mt-4 flex items-center justify-between text-xs text-slate-500 shrink-0" },
+                    React.createElement("div", { className: "flex items-center gap-3" },
+                        React.createElement("a", { href: data.profile.linkedin, target: "_blank", rel: "noopener noreferrer", className: "text-[#0A66C2] hover:underline flex items-center gap-1 font-semibold" },
+                            React.createElement(LinkedInIcon, { className: "w-3.5 h-3.5" }),
+                            React.createElement("span", null, t.common.linkedin_profile)),
+                        React.createElement("span", null, "\u2022"),
+                        React.createElement("a", { href: data.profile.github, target: "_blank", rel: "noopener noreferrer", className: "hover:underline flex items-center gap-1 font-semibold text-slate-700 dark:text-slate-300" },
+                            React.createElement(GitHubIcon, { className: "w-3.5 h-3.5" }),
+                            React.createElement("span", null, "GitHub @Waliddjla"))),
+                    React.createElement("button", { onClick: () => setCvModalOpen(false), className: "px-5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-200 transition-all" }, t.common.close))))),
+        toastLabel && (React.createElement("div", { className: "fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-4 rounded-2xl bg-emerald-600 text-white shadow-xl shadow-emerald-600/30 animate-fade-in pointer-events-none" },
+            React.createElement(Icon, { name: "check-circle", className: "w-5 h-5 shrink-0" }),
+            React.createElement("span", { role: "status", className: "text-sm font-semibold" }, typeof toastLabel === "function" ? toastLabel(...toastMessage.args) : toastLabel)))));
 }
-ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/_jsx(App, {}));
+ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App, null));

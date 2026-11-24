@@ -34,13 +34,24 @@ node server.js
 ```
 Puis ouvrez votre navigateur à l'adresse : **`http://localhost:3000`**
 
+Pour activer la connexion administrateur, définissez un code d’accès privé dans
+`ADMIN_PIN` avant de lancer le serveur. Dans PowerShell, remplacez la valeur
+d’exemple par votre code personnel.
+
+```powershell
+$env:ADMIN_PIN = '<votre code privé>'
+node server.js
+```
+
+La session administrateur expire après deux heures ou au redémarrage du serveur.
+
 > **Ce que permet ce mode :**
 > - Les données sont chargées dynamiquement depuis la base **SQLite** (`portfolio.db`).
 > - Chaque message envoyé via le formulaire de contact est immédiatement persisté dans la table `messages`.
-> - Vous pouvez cliquer sur le badge **"SQLite Connecté"** ou **"Boîte SQLite"** en haut à droite pour consulter tous les messages reçus en direct !
+> - Ouvrez **Admin**, connectez-vous et sélectionnez l’onglet **Boîte de réception** pour consulter les messages.
 
 ### Option 2 : Mode Autonome Direct (Sans serveur)
-Faites simplement un **double-clic sur [index.html](file:///c:/Users/walid.djellali/Desktop/test/index.html)**. L'application React démarre instantanément en utilisant les données de secours synchronisées avec votre CV.
+Ouvrez `index.html` dans votre navigateur. Le portfolio public affiche les données de secours intégrées. La messagerie et l’administration utilisent le serveur Node.
 
 ---
 

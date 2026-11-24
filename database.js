@@ -10,8 +10,48 @@ const fs = require('node:fs');
 const path = require('node:path');
 const featuredProjects = require('./js/featured-projects.js');
 
-const DB_PATH = path.join(__dirname, 'portfolio.db');
+const DB_PATH = process.env.PORTFOLIO_DB_PATH || path.join(__dirname, 'portfolio.db');
 const db = new DatabaseSync(DB_PATH);
+
+const projectTranslationFields = [
+  'title_en', 'tagline_en', 'description_en', 'category_label_en', 'features_en', 'case_study_en'
+];
+
+function addTranslationColumns(table, fields) {
+  const existing = new Set(db.prepare(`PRAGMA table_info(${table})`).all().map(column => column.name));
+  for (const field of fields) {
+    if (!existing.has(field)) db.exec(`ALTER TABLE ${table} ADD COLUMN ${field} TEXT`);
+  }
+}
+
+function parseJson(value, fallback) {
+  try {
+    return value ? JSON.parse(value) ?? fallback : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function serializeList(value, delimiter) {
+  if (value == null) return null;
+  const items = Array.isArray(value) ? value : value.split(delimiter).map(item => item.trim()).filter(Boolean);
+  return JSON.stringify(items);
+}
+
+function serializeCaseStudy(value) {
+  return typeof value === 'string' ? value : value == null ? null : JSON.stringify(value);
+}
+
+function translatedProjectValues(project) {
+  return [
+    project.title_en ?? null,
+    project.tagline_en ?? null,
+    project.description_en ?? null,
+    project.category_label_en ?? null,
+    serializeList(project.features_en, '\n'),
+    serializeCaseStudy(project.case_study_en)
+  ];
+}
 
 // Initialisation et migration des tables
 function initDatabase() {
@@ -71,6 +111,11 @@ function initDatabase() {
       order_index INTEGER DEFAULT 0
     );
 
+    CREATE TABLE IF NOT EXISTS featured_project_sync (
+      catalog_id INTEGER PRIMARY KEY,
+      project_id INTEGER NOT NULL
+    );
+
     CREATE TABLE IF NOT EXISTS messages (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
@@ -80,6 +125,32 @@ function initDatabase() {
       read INTEGER DEFAULT 0,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
+
+    CREATE TABLE IF NOT EXISTS sap_modules (
+      id TEXT PRIMARY KEY,
+      code TEXT NOT NULL,
+      title TEXT NOT NULL,
+      title_en TEXT,
+      icon TEXT NOT NULL,
+      color TEXT NOT NULL,
+      summary TEXT NOT NULL,
+      summary_en TEXT,
+      orion_bullets TEXT NOT NULL,
+      orion_bullets_en TEXT,
+      acg_bullets TEXT NOT NULL,
+      acg_bullets_en TEXT,
+      order_index INTEGER DEFAULT 0
+    );
+
+    CREATE TABLE IF NOT EXISTS sap_flow (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      step_number TEXT NOT NULL,
+      label TEXT NOT NULL,
+      label_en TEXT NOT NULL,
+      note TEXT NOT NULL,
+      note_en TEXT NOT NULL,
+      order_index INTEGER DEFAULT 0
+    );
   `);
 
   // Migrations douces pour les tables existantes
@@ -87,11 +158,21 @@ function initDatabase() {
   try { db.exec("ALTER TABLE projects ADD COLUMN features TEXT;"); } catch (e) {}
   try { db.exec("ALTER TABLE projects ADD COLUMN case_study TEXT;"); } catch (e) {}
   try { db.exec("ALTER TABLE messages ADD COLUMN read INTEGER DEFAULT 0;"); } catch (e) {}
+  addTranslationColumns('profile', ['title_en', 'bio_en', 'availability_en', 'location_en']);
+  addTranslationColumns('experiences', ['role_en', 'description_en', 'bullets_en', 'period_en']);
+  addTranslationColumns('education', ['degree_en', 'details_en']);
+  addTranslationColumns('projects', projectTranslationFields);
 
   // Seeder le profil s'il n'existe pas
   const profileCount = db.prepare('SELECT COUNT(*) as count FROM profile').get().count;
   if (profileCount === 0) {
     seedData();
+  }
+
+  // Seeder les modules SAP et le flux s'ils n'existent pas
+  const sapModulesCount = db.prepare('SELECT COUNT(*) as count FROM sap_modules').get().count;
+  if (sapModulesCount === 0) {
+    seedSapData();
   }
 
   // Garantir que les URLs officielles LinkedIn et GitHub sont toujours à jour
@@ -104,28 +185,125 @@ function initDatabase() {
     `).run();
   } catch (e) {}
 
+  backfillTranslations();
   syncFeaturedProjects();
+}
+
+function backfillTranslations() {
+  db.prepare(`
+    UPDATE profile SET
+      title_en = COALESCE(title_en, title),
+      bio_en = COALESCE(bio_en, ?),
+      availability_en = COALESCE(availability_en, ?),
+      location_en = COALESCE(location_en, CASE WHEN location = 'Oran, Algérie' THEN 'Oran, Algeria' ELSE location END)
+    WHERE id = 1
+  `).run(
+    'SAP Functional Analyst and Software Engineer with a Master’s degree in Computer Science. Experienced in SAP S/4HANA deployments (PM and MM), IT systems administration and full-stack development (Node.js, TypeScript, React). Combines business analysis with technical expertise to design maintainable digital solutions.',
+    'Available for SAP and full-stack development opportunities'
+  );
+
+  const experienceTranslations = [
+    ['Orionlab', 'Support and integration of SAP S/4HANA 2023 processes, with a focus on Plant Maintenance (PM) and Materials Management (MM).', [
+      'Handle SAP S/4HANA functional activities, lead the PM module and support users across MM workflows.',
+      'Work with engineering, validation and the SAP implementation partner to clarify specifications and review the PM Business Blueprint (BBP).',
+      'Validate and cleanse equipment and functional location master data before migration, correcting formats, hierarchies and references.',
+      'Manage preventive maintenance, calibration, qualifications, task lists and work order scheduling.',
+      'Coordinate maintenance order forms and integrate QM inspection characteristics with business teams.',
+      'Administer user authorizations and Fiori roles, and develop internal applications to digitize workflows.'
+    ]],
+    ['ACG SIM SPA', 'IT systems management and security, with contributions to an SAP ERP rollout.', [
+      'Administered and maintained IT systems, managed backups and ensured infrastructure integrity and security.',
+      'Contributed to SAP ERP implementation and support, aligning business needs with system capabilities.',
+      'Diagnosed hardware and software issues, optimized infrastructure and developed internal software solutions.'
+    ]],
+    ['SARL Ide-Net Géolocalisation', 'Designed and developed IoT tracking and fleet telematics platforms.', [
+      'Designed and developed geolocation and fleet tracking platforms using Node.js and TypeScript REST APIs.',
+      'Integrated GPS devices and CAN units into tracking systems, and optimized backend algorithms and queries.',
+      'Worked closely with cross-functional teams to translate operational requirements into reliable software features.'
+    ]],
+    ['SARL Gesco Climatisation', 'Network infrastructure administration, user support and IT deployments.', [
+      'Administered and monitored network infrastructure, resolved system and network incidents, and provided help desk support.',
+      'Contributed to infrastructure improvements and strategic IT deployments.'
+    ]]
+  ];
+  const translateExperience = db.prepare(`
+    UPDATE experiences SET
+      role_en = COALESCE(role_en, role),
+      description_en = COALESCE(description_en, ?),
+      bullets_en = COALESCE(bullets_en, ?),
+      period_en = COALESCE(period_en, CASE WHEN period = 'Poste actuel' THEN 'Current role' ELSE period END)
+    WHERE company = ?
+  `);
+  for (const [company, description, bullets] of experienceTranslations) {
+    translateExperience.run(description, JSON.stringify(bullets), company);
+  }
+
+  const educationTranslations = [
+    ['Master en Informatique (Informatique Parallèle et Embarquée)', 'Master’s Degree in Computer Science (Parallel and Embedded Computing)', 'Distributed systems, parallel processing, high-performance computing and embedded systems.'],
+    ['Licence en Systèmes Informatiques', 'Bachelor’s Degree in Computer Systems', 'Algorithms, software engineering, computer networks, databases and modeling.'],
+    ['Certification Cisco CCNA v7 (Réseaux & Routage)', 'Cisco CCNA v7 Certification (Networking and Routing)', 'Switch and router configuration, IP protocols, VLANs, OSPF routing and network security.']
+  ];
+  const translateEducation = db.prepare(`
+    UPDATE education SET degree_en = COALESCE(degree_en, ?), details_en = COALESCE(details_en, ?)
+    WHERE degree = ?
+  `);
+  for (const [degree, title, details] of educationTranslations) {
+    translateEducation.run(title, details, degree);
+  }
+
+  // Older databases also contain projects outside the featured catalog.
+  const legacyTranslations = [
+    ['walid-store', 'Walid Store — E-Commerce Application', 'An online store with a product catalog, a dynamic cart, advanced filters and persistent orders.', 'Full-Stack Web'],
+    ['the-github-reherche', 'The GitHub Recherche — API Explorer', 'An interactive search application that uses the GitHub API to explore developer profiles, statistics, repositories and activity.', 'JavaScript & API'],
+    ['connect-walid', 'Connect Walid — Interactive React Game', 'A React implementation of Connect Four with state management via useState and useEffect, win detection and an interactive interface.', 'React Game'],
+    ['infinite-gallery', 'Infinite Gallery — Infinite-Scroll Image Gallery', 'A responsive image gallery with progressive asynchronous loading, DOM manipulation and caching.', 'JavaScript UI'],
+    ['meteo-js', 'Météo-JS — Live Weather Application', 'A responsive weather app with a live weather API, automatic geolocation and forecasts.', 'JavaScript API'],
+    ['Multi-langues-react', 'Multilingual React Component Suite', 'A suite of React modules covering internationalization (Multi-langues-react), a stopwatch (Chrono-React) and a carousel (Slider-react).', 'React & i18n'],
+    ['SIMswitch_react', 'SIMswitch — IT Asset Management', 'An application for managing switches, computers, printers, servers, displays and time clocks. Its React interface uses the Datta Able template and includes a dashboard, user management, installation procedures and asset handover records.', 'React & IT Inventory'],
+    ['best-employe', 'Best Employe — Employee Voting', 'A full-stack employee recognition voting application with a React and TypeScript interface, an Express server and MySQL. It uses libraries for JWT authentication, results visualization and animation.', 'React & HR Application']
+  ];
+  const translateLegacyProject = db.prepare(`
+    UPDATE projects SET title_en = COALESCE(title_en, ?), description_en = COALESCE(description_en, ?),
+      category_label_en = COALESCE(category_label_en, ?)
+    WHERE github_url = ?
+  `);
+  for (const [repo, title, description, category] of legacyTranslations) {
+    translateLegacyProject.run(title, description, category, `https://github.com/Waliddjla/${repo}`);
+  }
 }
 
 // Synchroniser les projets enrichis dans la base SQLite
 function syncFeaturedProjects() {
-  const find = db.prepare('SELECT id FROM projects WHERE github_url = ?');
+  const synced = db.prepare('SELECT project_id FROM featured_project_sync WHERE catalog_id = ?');
+  const record = db.prepare('INSERT INTO featured_project_sync (catalog_id, project_id) VALUES (?, ?)');
+  const find = db.prepare('SELECT id FROM projects WHERE github_url = ? AND title = ? ORDER BY id');
+  const englishColumns = projectTranslationFields.join(', ');
+  const preserveTranslations = projectTranslationFields.map(field => `${field} = COALESCE(${field}, ?)`).join(', ');
   const insert = db.prepare(`
     INSERT INTO projects
-    (title, category, category_label, description, image, tags, demo_url, github_url, tagline, features, case_study, order_index)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    (title, category, category_label, description, image, tags, demo_url, tagline, features, case_study, github_url, order_index, ${englishColumns})
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
   const update = db.prepare(`
-    UPDATE projects 
-    SET title = ?, category = ?, category_label = ?, description = ?, image = ?, 
-        tags = ?, demo_url = ?, tagline = ?, features = ?, case_study = ?, order_index = ? 
+    UPDATE projects
+    SET tagline = COALESCE(tagline, ?), features = COALESCE(features, ?),
+        case_study = COALESCE(case_study, ?), ${preserveTranslations}
     WHERE id = ?
   `);
 
-  db.exec('BEGIN');
+  db.exec('BEGIN IMMEDIATE');
   try {
     featuredProjects.forEach((p, index) => {
-      const rows = find.all(p.github_url);
+      // Remember seeded records even if an administrator later edits their URL or deletes them.
+      const translations = translatedProjectValues(p);
+      const details = [p.tagline || '', serializeList(p.features, '\n'), serializeCaseStudy(p.case_study)];
+      const existing = synced.get(p.id);
+      if (existing) {
+        update.run(...details, ...translations, existing.project_id);
+        return;
+      }
+
+      const rows = find.all(p.github_url, p.title);
       const fields = [
         p.title,
         p.category,
@@ -134,23 +312,23 @@ function syncFeaturedProjects() {
         p.image,
         JSON.stringify(p.tags || []),
         p.demo_url || null,
-        p.tagline || '',
-        JSON.stringify(p.features || []),
-        JSON.stringify(p.case_study || null)
+        ...details
       ];
 
       if (rows.length) {
         for (const row of rows) {
-          update.run(...fields, index - featuredProjects.length, row.id);
+          update.run(...details, ...translations, row.id);
         }
+        record.run(p.id, rows[0].id);
       } else {
-        insert.run(...fields, p.github_url, index - featuredProjects.length);
+        const { lastInsertRowid } = insert.run(...fields, p.github_url, index - featuredProjects.length, ...translations);
+        record.run(p.id, lastInsertRowid);
       }
     });
     db.exec('COMMIT');
   } catch (error) {
     db.exec('ROLLBACK');
-    console.error('Erreur synchronisation projets enrichis:', error);
+    throw error;
   }
 }
 
@@ -315,51 +493,189 @@ function seedData() {
   console.log('✅ Base de données SQLite amorcée avec le profil de Walid Djellali !');
 }
 
+// Seeder les modules SAP et leur flux d'intégration
+function seedSapData() {
+  const insertModule = db.prepare(`
+    INSERT INTO sap_modules
+    (id, code, title, title_en, icon, color, summary, summary_en, orion_bullets, orion_bullets_en, acg_bullets, acg_bullets_en, order_index)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+
+  const modules = [
+    {
+      id: "pm",
+      code: "PM",
+      title: "Plant Maintenance",
+      title_en: "Plant Maintenance",
+      icon: "wrench",
+      color: "blue",
+      summary: "Maintenance des équipements : avis, ordres de travail, plans préventifs, gammes.",
+      summary_en: "Equipment maintenance: notifications, work orders, preventive plans, task lists.",
+      orion: [
+        "Revue du Business Blueprint (BBP) PM avec l'intégrateur SAP",
+        "Validation des données de base (Equipment, Functional Locations) avant migration",
+        "Planification préventive, calibration, Task Lists et ordonnancement des OT",
+        "Modèle d'impression des avis et ordres de maintenance"
+      ],
+      orion_en: [
+        "Review of the PM Business Blueprint (BBP) with the SAP integrator",
+        "Validation of master data (Equipment, Functional Locations) prior to migration",
+        "Preventive scheduling, calibration, Task Lists and work order dispatching",
+        "Print layout design for maintenance notifications and orders"
+      ],
+      acg: [
+        "Support au déploiement SAP S/4HANA dans les processus de maintenance",
+        "Gestion des utilisateurs, rôles et accès Fiori"
+      ],
+      acg_en: [
+        "Support for SAP S/4HANA rollout across maintenance business processes",
+        "User administration, role authorisations and Fiori launchpad access"
+      ],
+      order: 1
+    },
+    {
+      id: "mm",
+      code: "MM",
+      title: "Materials Management",
+      title_en: "Materials Management",
+      icon: "package",
+      color: "indigo",
+      summary: "Articles, stocks, réservations, demandes d'achat et commandes.",
+      summary_en: "Materials, inventory, reservations, purchase requisitions, and orders.",
+      orion: [
+        "Support utilisateurs sur les flux MM (pièces de rechange, réservations)",
+        "Lien entre ordres PM et disponibilité des pièces en magasin"
+      ],
+      orion_en: [
+        "End-user support on MM procurement flows (spare parts, warehouse reservations)",
+        "Bridging PM work orders with real-time warehouse spare parts availability"
+      ],
+      acg: [
+        "Contribution à l'implémentation de l'ERP SAP côté approvisionnement",
+        "Tableau de bord achats (SAPAN / DA Analyse) alimenté par OData SAP"
+      ],
+      acg_en: [
+        "Contribution to SAP ERP implementation on the procurement & supply side",
+        "Purchasing analytics dashboard (SAPAN / PR Analysis) powered by SAP OData"
+      ],
+      order: 2
+    },
+    {
+      id: "qm",
+      code: "QM",
+      title: "Quality Management",
+      title_en: "Quality Management",
+      icon: "gauge",
+      color: "emerald",
+      summary: "Lots de contrôle, caractéristiques, étalonnage et décision d'utilisation.",
+      summary_en: "Inspection lots, master characteristics, calibration, and usage decision.",
+      orion: [
+        "Coordination des caractéristiques QM avec les équipes métier",
+        "Articulation calibration / métrologie avec les plans d'entretien PM"
+      ],
+      orion_en: [
+        "Coordination of QM inspection characteristics with cross-functional teams",
+        "Integration of calibration & metrology with PM preventive maintenance plans"
+      ],
+      acg: [
+        "Alignement des besoins qualité avec les processus SAP"
+      ],
+      acg_en: [
+        "Alignment of operational quality requirements with SAP ERP processes"
+      ],
+      order: 3
+    }
+  ];
+
+  for (const m of modules) {
+    insertModule.run(
+      m.id,
+      m.code,
+      m.title,
+      m.title_en,
+      m.icon,
+      m.color,
+      m.summary,
+      m.summary_en,
+      JSON.stringify(m.orion),
+      JSON.stringify(m.orion_en),
+      JSON.stringify(m.acg),
+      JSON.stringify(m.acg_en),
+      m.order
+    );
+  }
+
+  const insertFlow = db.prepare(`
+    INSERT INTO sap_flow (step_number, label, label_en, note, note_en, order_index)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `);
+
+  const flow = [
+    { step: "01", label: "Avis PM", label_en: "PM Notification", note: "Panne ou besoin signalé", note_en: "Breakdown or need reported", order: 1 },
+    { step: "02", label: "Ordre PM", label_en: "PM Work Order", note: "Réservation / achat de pièces (MM)", note_en: "Spare parts reservation / purchase (MM)", order: 2 },
+    { step: "03", label: "Plan préventif PM", label_en: "PM Preventive Plan", note: "Déclenche les lots de contrôle (QM)", note_en: "Triggers inspection lots (QM)", order: 3 },
+    { step: "04", label: "Exécution", label_en: "Execution", note: "Sortie de pièces (MM) + mesures (QM)", note_en: "Goods issue (MM) + measurements (QM)", order: 4 },
+    { step: "05", label: "Clôture TECO", label_en: "TECO Completion", note: "Décision d'utilisation (QM)", note_en: "Usage decision (QM)", order: 5 }
+  ];
+
+  for (const f of flow) {
+    insertFlow.run(f.step, f.label, f.label_en, f.note, f.note_en, f.order);
+  }
+
+  console.log('✅ Base de données SQLite amorcée avec les modules SAP S/4HANA (PM • MM • QM) !');
+}
+
 // Récupération complète des données du portfolio
 function getPortfolioData() {
   const profile = db.prepare('SELECT * FROM profile WHERE id = 1').get() || {};
   const experiences = db.prepare('SELECT * FROM experiences ORDER BY order_index ASC').all().map(exp => ({
     ...exp,
-    bullets: JSON.parse(exp.bullets || '[]')
+    bullets: parseJson(exp.bullets, []),
+    bullets_en: parseJson(exp.bullets_en, [])
   }));
   const skills = db.prepare('SELECT * FROM skills ORDER BY order_index ASC').all();
   
-  const rawProjects = db.prepare('SELECT * FROM projects ORDER BY order_index ASC').all();
-  const projects = rawProjects.map(p => {
-    let parsedTags = [];
-    let parsedFeatures = [];
-    let parsedCaseStudy = null;
-    try { parsedTags = JSON.parse(p.tags || '[]'); } catch (e) { parsedTags = []; }
-    try { parsedFeatures = JSON.parse(p.features || '[]'); } catch (e) { parsedFeatures = []; }
-    try { parsedCaseStudy = JSON.parse(p.case_study || 'null'); } catch (e) { parsedCaseStudy = null; }
-
-    // Fallback dynamique sur featuredProjects si les colonnes SQLite étaient vides
-    const catalogMatch = featuredProjects.find(fp => fp.github_url === p.github_url || fp.title === p.title);
-    if (!parsedCaseStudy && catalogMatch && catalogMatch.case_study) {
-      parsedCaseStudy = catalogMatch.case_study;
-    }
-    if ((!parsedFeatures || parsedFeatures.length === 0) && catalogMatch && catalogMatch.features) {
-      parsedFeatures = catalogMatch.features;
-    }
-    const tagline = p.tagline || (catalogMatch ? catalogMatch.tagline : "");
-
-    return {
-      ...p,
-      tagline,
-      tags: parsedTags,
-      features: parsedFeatures,
-      case_study: parsedCaseStudy
-    };
-  });
+  const projects = db.prepare('SELECT * FROM projects ORDER BY order_index ASC').all().map(p => ({
+    ...p,
+    tagline: p.tagline ?? '',
+    tags: parseJson(p.tags, []),
+    features: parseJson(p.features, []),
+    features_en: parseJson(p.features_en, []),
+    case_study: parseJson(p.case_study, null),
+    case_study_en: parseJson(p.case_study_en, null)
+  }));
 
   const education = db.prepare('SELECT * FROM education ORDER BY order_index ASC').all();
+
+  // Modules SAP et flux d'intégration depuis SQLite
+  let sap_modules = [];
+  try {
+    sap_modules = db.prepare('SELECT * FROM sap_modules ORDER BY order_index ASC').all().map(m => ({
+      ...m,
+      orion: JSON.parse(m.orion_bullets || '[]'),
+      orion_en: JSON.parse(m.orion_bullets_en || '[]'),
+      acg: JSON.parse(m.acg_bullets || '[]'),
+      acg_en: JSON.parse(m.acg_bullets_en || '[]')
+    }));
+  } catch (e) {
+    sap_modules = [];
+  }
+
+  let sap_flow = [];
+  try {
+    sap_flow = db.prepare('SELECT * FROM sap_flow ORDER BY order_index ASC').all();
+  } catch (e) {
+    sap_flow = [];
+  }
 
   return {
     profile,
     experiences,
     skills,
     projects,
-    education
+    education,
+    sap_modules,
+    sap_flow
   };
 }
 
@@ -390,31 +706,23 @@ function deleteMessage(id) {
 
 // Mise à jour des informations du profil (Administration)
 function updateProfile(fields) {
-  const { title, location, email, phone, bio, availability } = fields;
-  const stmt = db.prepare(`
-    UPDATE profile
-    SET title = COALESCE(?, title),
-        location = COALESCE(?, location),
-        email = COALESCE(?, email),
-        phone = COALESCE(?, phone),
-        bio = COALESCE(?, bio),
-        availability = COALESCE(?, availability)
-    WHERE id = 1
-  `);
-  stmt.run(title, location, email, phone, bio, availability);
+  const editable = [
+    'title', 'location', 'email', 'phone', 'bio', 'availability',
+    'title_en', 'location_en', 'bio_en', 'availability_en'
+  ];
+  const assignments = editable.map(field => `${field} = COALESCE(?, ${field})`).join(', ');
+  db.prepare(`UPDATE profile SET ${assignments} WHERE id = 1`)
+    .run(...editable.map(field => fields[field] ?? null));
   return db.prepare('SELECT * FROM profile WHERE id = 1').get();
 }
 
 // Ajouter un nouveau projet via l'Administration
 function addProject(project) {
+  const englishColumns = projectTranslationFields.join(', ');
   const stmt = db.prepare(`
-    INSERT INTO projects (title, category, category_label, description, image, tags, demo_url, github_url, tagline, features, case_study, order_index)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO projects (title, category, category_label, description, image, tags, demo_url, github_url, tagline, features, case_study, order_index, ${englishColumns})
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
-
-  const tags = JSON.stringify(Array.isArray(project.tags) ? project.tags : (project.tags || '').split(',').map(s => s.trim()).filter(Boolean));
-  const features = JSON.stringify(Array.isArray(project.features) ? project.features : (project.features || '').split('\n').map(s => s.trim()).filter(Boolean));
-  const caseStudy = typeof project.case_study === 'object' ? JSON.stringify(project.case_study) : (project.case_study || null);
 
   const result = stmt.run(
     project.title,
@@ -422,13 +730,14 @@ function addProject(project) {
     project.category_label || 'Full-Stack',
     project.description || '',
     project.image || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
-    tags,
+    serializeList(project.tags ?? [], ','),
     project.demo_url || null,
     project.github_url || 'https://github.com/Waliddjla',
     project.tagline || '',
-    features,
-    caseStudy,
-    project.order_index || 0
+    serializeList(project.features ?? [], '\n'),
+    serializeCaseStudy(project.case_study),
+    project.order_index || 0,
+    ...translatedProjectValues(project)
   );
 
   return { success: true, id: result.lastInsertRowid };
@@ -436,40 +745,22 @@ function addProject(project) {
 
 // Modifier un projet
 function updateProject(id, project) {
-  const stmt = db.prepare(`
-    UPDATE projects
-    SET title = ?,
-        category = ?,
-        category_label = ?,
-        description = ?,
-        image = ?,
-        tags = ?,
-        demo_url = ?,
-        github_url = ?,
-        tagline = ?,
-        features = ?,
-        case_study = ?
-    WHERE id = ?
-  `);
-
-  const tags = JSON.stringify(Array.isArray(project.tags) ? project.tags : (project.tags || '').split(',').map(s => s.trim()).filter(Boolean));
-  const features = JSON.stringify(Array.isArray(project.features) ? project.features : (project.features || '').split('\n').map(s => s.trim()).filter(Boolean));
-  const caseStudy = typeof project.case_study === 'object' ? JSON.stringify(project.case_study) : (project.case_study || null);
-
-  stmt.run(
-    project.title,
-    project.category,
-    project.category_label,
-    project.description,
-    project.image,
-    tags,
-    project.demo_url,
-    project.github_url,
-    project.tagline || '',
-    features,
-    caseStudy,
-    id
-  );
+  const editable = [
+    'title', 'category', 'category_label', 'description', 'image', 'tags', 'demo_url',
+    'github_url', 'tagline', 'features', 'case_study', ...projectTranslationFields
+  ];
+  const fields = editable.filter(field => Object.hasOwn(project, field));
+  if (fields.length) {
+    const values = fields.map(field => {
+      const value = project[field];
+      if (field === 'tags') return serializeList(value ?? [], ',');
+      if (field === 'features' || field === 'features_en') return serializeList(value ?? [], '\n');
+      if (field === 'case_study' || field === 'case_study_en') return serializeCaseStudy(value);
+      return value;
+    });
+    const assignments = fields.map(field => `${field} = ?`).join(', ');
+    db.prepare(`UPDATE projects SET ${assignments} WHERE id = ?`).run(...values, id);
+  }
 
   return { success: true };
 }
@@ -486,7 +777,7 @@ function getAdminStats() {
   const projectsCount = db.prepare('SELECT COUNT(*) as count FROM projects').get().count;
   const skillsCount = db.prepare('SELECT COUNT(*) as count FROM skills').get().count;
   const experiencesCount = db.prepare('SELECT COUNT(*) as count FROM experiences').get().count;
-  const profile = db.prepare('SELECT availability, title FROM profile WHERE id = 1').get() || {};
+  const profile = db.prepare('SELECT availability, availability_en, title, title_en FROM profile WHERE id = 1').get() || {};
 
   let dbSizeKb = 0;
   try {
@@ -501,7 +792,9 @@ function getAdminStats() {
     skillsCount,
     experiencesCount,
     availability: profile.availability,
+    availability_en: profile.availability_en,
     title: profile.title,
+    title_en: profile.title_en,
     dbSizeKb,
     uptimeSeconds: Math.round(process.uptime()),
     nodeVersion: process.version

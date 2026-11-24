@@ -8,8 +8,8 @@
 const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
+const { createHash, createHmac, randomBytes, timingSafeEqual } = require('node:crypto');
 const {
-  initDatabase,
   getPortfolioData,
   saveContactMessage,
   getMessages,
@@ -22,13 +22,77 @@ const {
   getAdminStats
 } = require('./database.js');
 
-// Initialiser la base SQLite
-initDatabase();
-
 const PORT = process.env.PORT || 3000;
 
-// Mot de passe / Code PIN d'administration
-const ADMIN_SECRET_PIN = process.env.ADMIN_PIN || 'walid2025';
+const adminPin = process.env.ADMIN_PIN;
+const signingKey = randomBytes(32);
+const jwtHeader = Buffer.from(JSON.stringify({ alg: 'HS256', typ: 'JWT' })).toString('base64url');
+const loginWindow = 15 * 60 * 1000;
+const loginAttempts = new Map();
+
+function sign(input) {
+  return createHmac('sha256', signingKey).update(input).digest();
+}
+
+function createAdminToken() {
+  const issuedAt = Math.floor(Date.now() / 1000);
+  const payload = Buffer.from(JSON.stringify({
+    sub: 'admin',
+    iat: issuedAt,
+    exp: issuedAt + 2 * 60 * 60
+  })).toString('base64url');
+  const input = `${jwtHeader}.${payload}`;
+  return `${input}.${sign(input).toString('base64url')}`;
+}
+
+function requireAuth(req, res) {
+  const match = /^Bearer ([\w-]+)\.([\w-]+)\.([\w-]+)$/i.exec(req.headers.authorization || '');
+  if (match && match[1] === jwtHeader) {
+    const received = Buffer.from(match[3], 'base64url');
+    const expected = sign(`${match[1]}.${match[2]}`);
+    if (received.length === expected.length && timingSafeEqual(received, expected)) {
+      const { sub, exp } = JSON.parse(Buffer.from(match[2], 'base64url').toString('utf8'));
+      if (sub === 'admin' && exp > Math.floor(Date.now() / 1000)) return true;
+    }
+  }
+
+  res.writeHead(401, {
+    'Content-Type': 'application/json',
+    'WWW-Authenticate': 'Bearer',
+    'Cache-Control': 'no-store'
+  });
+  res.end(JSON.stringify({ error: 'Authentication required' }));
+  return false;
+}
+
+setInterval(() => {
+  const cutoff = Date.now() - loginWindow;
+  for (const [ip, attempts] of loginAttempts) {
+    if (attempts[attempts.length - 1] <= cutoff) loginAttempts.delete(ip);
+  }
+}, loginWindow).unref();
+
+function checkLoginLimit(req, res) {
+  const ip = req.socket.remoteAddress;
+  const now = Date.now();
+  const recent = (loginAttempts.get(ip) || []).filter(time => time > now - loginWindow);
+  if (recent.length >= 5) {
+    res.writeHead(429, {
+      'Content-Type': 'application/json',
+      'Retry-After': Math.ceil((recent[0] + loginWindow - now) / 1000)
+    });
+    res.end(JSON.stringify({ error: 'Too many login attempts' }));
+    return false;
+  }
+
+  recent.push(now);
+  loginAttempts.set(ip, recent);
+  return true;
+}
+
+function digest(value) {
+  return createHash('sha256').update(value).digest();
+}
 
 // Types MIME pour les fichiers statiques
 const MIME_TYPES = {
@@ -68,7 +132,7 @@ const server = http.createServer(async (req, res) => {
   // En-têtes CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Admin-Pin');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') {
     res.writeHead(204);
@@ -143,26 +207,38 @@ const server = http.createServer(async (req, res) => {
 
   // Connexion Admin (Vérification du code PIN / Mot de passe)
   if (req.method === 'POST' && pathname === '/api/admin/login') {
+    res.setHeader('Cache-Control', 'no-store');
+    if (!checkLoginLimit(req, res)) return;
+    if (!adminPin) {
+      res.writeHead(503, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Admin login is not configured' }));
+      return;
+    }
     try {
       const { pin } = await parseJsonBody(req);
-      if (pin === ADMIN_SECRET_PIN || pin === 'walid' || pin === 'admin' || pin === '2025') {
+      if (typeof pin === 'string' && timingSafeEqual(digest(pin), digest(adminPin))) {
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({
           success: true,
           authenticated: true,
-          token: 'walid-session-token-' + Date.now(),
+          token: createAdminToken(),
           user: 'Walid Djellali',
           message: 'Authentification administrateur réussie.'
         }));
       } else {
         res.writeHead(401, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ success: false, error: 'Code d’accès invalide. Utilisez "walid2025".' }));
+        res.end(JSON.stringify({ success: false, error: 'Invalid access code' }));
       }
     } catch (err) {
       res.writeHead(500, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: 'Erreur serveur lors de la connexion' }));
     }
     return;
+  }
+
+  if (/^\/api\/(?:admin|messages)(?:\/|$)/.test(pathname)) {
+    res.setHeader('Cache-Control', 'no-store');
+    if (!requireAuth(req, res)) return;
   }
 
   // Statistiques en direct pour l'administration
@@ -301,17 +377,19 @@ const server = http.createServer(async (req, res) => {
   // ==========================================
   // SERVEUR DE FICHIERS STATIQUES (Frontend)
   // ==========================================
-  let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
-  
-  if (!filePath.startsWith(__dirname)) {
-    res.writeHead(403);
-    res.end('Accès interdit');
+  const publicPath = pathname === '/' ? '/index.html' : pathname;
+  if (publicPath !== '/index.html' && !/^\/(?:css|js)\/[\w.-]+\.(?:css|js|jsx)$/.test(publicPath)) {
+    res.writeHead(404);
+    res.end();
     return;
   }
+  const filePath = path.join(__dirname, publicPath);
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
-      filePath = path.join(__dirname, 'index.html');
+      res.writeHead(404);
+      res.end();
+      return;
     }
 
     const ext = path.extname(filePath).toLowerCase();
@@ -335,6 +413,6 @@ server.listen(PORT, () => {
   console.log(`🚀 Portfolio Dynamique de Walid Djellali démarré !`);
   console.log(`🔗 Accès Web : http://localhost:${PORT}`);
   console.log(`🗄️  Base de données : SQLite native (portfolio.db)`);
-  console.log(`🛡️  Espace Administration activé (PIN par défaut: walid2025)`);
+  console.log(adminPin ? '🛡️  Espace Administration activé' : '🛡️  Définissez ADMIN_PIN pour activer la connexion administrateur');
   console.log(`======================================================\n`);
 });
