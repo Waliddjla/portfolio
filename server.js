@@ -144,6 +144,15 @@ const server = http.createServer(async (req, res) => {
   const pathname = parsedUrl.pathname;
 
   // ==========================================
+  // HEALTH CHECK (Render / Docker)
+  // ==========================================
+  if (req.method === 'GET' && pathname === '/health') {
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(JSON.stringify({ status: 'ok', uptime: Math.round(process.uptime()) }));
+    return;
+  }
+
+  // ==========================================
   // ROUTES D'API PUBLIQUES
   // ==========================================
 
@@ -172,8 +181,24 @@ const server = http.createServer(async (req, res) => {
       }
 
       const result = saveContactMessage(payload.name, payload.email, payload.subject, payload.message);
+
+      // Notification email optionnelle (recommandée sur hébergement gratuit sans disque persistant)
+      if (process.env.WEB3FORMS_ACCESS_KEY) {
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: process.env.WEB3FORMS_ACCESS_KEY,
+            subject: `[Portfolio] ${payload.subject || 'Nouveau message'} — ${payload.name}`,
+            from_name: payload.name,
+            email: payload.email,
+            message: payload.message
+          })
+        }).catch(err => console.error('Erreur notification Web3Forms:', err));
+      }
+
       res.writeHead(201, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(JSON.stringify({ success: true, message: 'Message enregistré dans SQLite avec succès !', id: result.id }));
+      res.end(JSON.stringify({ success: true, message: 'Message envoyé avec succès !', id: result.id }));
     } catch (err) {
       console.error('Erreur enregistrement message:', err);
       res.writeHead(500, { 'Content-Type': 'application/json' });

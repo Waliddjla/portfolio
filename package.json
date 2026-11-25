@@ -1,0 +1,14 @@
+{
+  "name": "walid-djellali-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio dynamique SAP S/4HANA & Full-Stack de Walid Djellali",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "author": "Walid Djellali",
+  "license": "MIT"
+}

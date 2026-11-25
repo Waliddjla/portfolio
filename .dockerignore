@@ -1,0 +1,12 @@
+.git
+.gitignore
+*.db
+*.sqlite
+*.sqlite3
+*.log
+.env
+.env.local
+node_modules
+scripts
+out.txt
+git_*.txt
