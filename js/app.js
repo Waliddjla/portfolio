@@ -78,7 +78,28 @@ const translations = {
       badge: "Disponible pour opportunités SAP & Développement Full-Stack",
       contact_linkedin: "Me contacter sur LinkedIn",
       view_resume: "Consulter mon CV (PDF)",
-      explore_projects: "Explorer mes Projets"
+      explore_projects: "Explorer mes Projets",
+      highlights: [{
+        icon: "layers",
+        value: "SAP S/4HANA",
+        label: "Modules PM • MM • QM",
+        color: "text-blue-600 dark:text-blue-400"
+      }, {
+        icon: "code-2",
+        value: "Full-Stack",
+        label: "Node.js • TypeScript • React",
+        color: "text-indigo-600 dark:text-indigo-400"
+      }, {
+        icon: "briefcase",
+        value: "Orionlab & ACG",
+        label: "Intégration ERP & Systèmes IT",
+        color: "text-emerald-600 dark:text-emerald-400"
+      }, {
+        icon: "graduation-cap",
+        value: "Master Info",
+        label: "& Certification Cisco CCNA v7",
+        color: "text-purple-600 dark:text-purple-400"
+      }]
     },
     sap: {
       badge: "Intégration ERP SAP S/4HANA",
@@ -178,7 +199,7 @@ const translations = {
       email_placeholder: "nom@entreprise.com",
       subject_placeholder: "Opportunité SAP S/4HANA / Projet Full-Stack...",
       message_placeholder: "Présentez brièvement vos besoins ou le poste envisagé...",
-      sending: "Enregistrement dans SQLite...",
+      sending: "Envoi en cours...",
       send: "Envoyer le message"
     },
     modal: {
@@ -250,7 +271,9 @@ const translations = {
       size_unit: "Ko",
       overview: "Vue d'ensemble",
       profile_tab: "Profil & Disponibilité",
-      projects_tab: "Gestion des Projets"
+      projects_tab: "Gestion des Projets",
+      avatar_url: "Photo de profil (URL)",
+      session_badge: "Mode Admin actif"
     },
     cv: {
       title: "Curriculum Vitae",
@@ -271,6 +294,7 @@ const translations = {
       logout: "Verrouillage de l'espace administration.",
       session_expired: "Session expirée. Reconnectez-vous.",
       invalid_pin: "Code PIN incorrect.",
+      admin_unconfigured: "ADMIN_PIN non configuré côté serveur (définissez la variable d'environnement ADMIN_PIN).",
       login_limit: "Trop de tentatives. Réessayez plus tard.",
       login_error: "Erreur de connexion au serveur.",
       message_error: "Erreur lors de la suppression du message.",
@@ -280,7 +304,7 @@ const translations = {
       project_save_error: "Erreur lors de l'enregistrement du projet.",
       project_updated: "✅ Projet modifié dans SQLite.",
       project_added: "✅ Projet ajouté dans SQLite.",
-      contact_sent: "✅ Message enregistré dans la base SQLite ! Walid vous répondra sous 24h.",
+      contact_sent: "✅ Message envoyé avec succès ! Walid vous répondra sous 24h.",
       contact_error: "Impossible d’envoyer le message. Réessayez."
     },
     nav_items: [{
@@ -321,25 +345,39 @@ const translations = {
       pill: "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300"
     }, {
       category: "Frontend",
-      label: "Frontend & React",
+      label: "Frontend, React & Desktop",
       icon: "layout",
       frame: "border-indigo-500/20",
       badge: "bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400",
       pill: "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300"
     }, {
       category: "Backend & Languages",
-      label: "Backend & APIs",
+      label: "Backend, NestJS, Fastify & APIs",
       icon: "server",
       frame: "border-purple-500/20",
       badge: "bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400",
       pill: "bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300"
     }, {
-      category: "Databases & Systems",
-      label: "Bases de Données & Réseau",
+      category: "Databases & Storage",
+      label: "Bases de Données & Stockage",
       icon: "database",
       frame: "border-emerald-500/20",
       badge: "bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400",
       pill: "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300"
+    }, {
+      category: "Systems & Infrastructure",
+      label: "Systèmes, AD, Synology & Réseau",
+      icon: "hard-drive",
+      frame: "border-sky-500/20",
+      badge: "bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-400",
+      pill: "bg-sky-50 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300"
+    }, {
+      category: "DevOps & Deployment",
+      label: "Déploiement, PM2, Nginx & SSL",
+      icon: "terminal",
+      frame: "border-amber-500/20",
+      badge: "bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400",
+      pill: "bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300"
     }],
     project_filters: [{
       id: "all",
@@ -389,7 +427,28 @@ const translations = {
       badge: "Available for SAP & Full-Stack Development opportunities",
       contact_linkedin: "Contact me on LinkedIn",
       view_resume: "View my Resume (PDF)",
-      explore_projects: "Explore my Projects"
+      explore_projects: "Explore my Projects",
+      highlights: [{
+        icon: "layers",
+        value: "SAP S/4HANA",
+        label: "PM • MM • QM Modules",
+        color: "text-blue-600 dark:text-blue-400"
+      }, {
+        icon: "code-2",
+        value: "Full-Stack",
+        label: "Node.js • TypeScript • React",
+        color: "text-indigo-600 dark:text-indigo-400"
+      }, {
+        icon: "briefcase",
+        value: "Orionlab & ACG",
+        label: "ERP Rollout & IT Systems",
+        color: "text-emerald-600 dark:text-emerald-400"
+      }, {
+        icon: "graduation-cap",
+        value: "M.Sc. CS",
+        label: "& Cisco CCNA v7 Certified",
+        color: "text-purple-600 dark:text-purple-400"
+      }]
     },
     sap: {
       badge: "SAP S/4HANA ERP Integration",
@@ -559,7 +618,9 @@ const translations = {
       size_unit: "KB",
       overview: "Overview",
       profile_tab: "Profile & Availability",
-      projects_tab: "Project Management"
+      projects_tab: "Project Management",
+      avatar_url: "Profile photo (URL)",
+      session_badge: "Admin mode active"
     },
     cv: {
       title: "Résumé",
@@ -580,6 +641,7 @@ const translations = {
       logout: "Administration console locked.",
       session_expired: "Session expired. Please sign in again.",
       invalid_pin: "Incorrect PIN.",
+      admin_unconfigured: "ADMIN_PIN is not configured on the server (set the ADMIN_PIN environment variable).",
       login_limit: "Too many attempts. Try again later.",
       login_error: "Unable to connect to the server.",
       message_error: "Could not delete the message.",
@@ -630,25 +692,39 @@ const translations = {
       pill: "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300"
     }, {
       category: "Frontend",
-      label: "Frontend & React",
+      label: "Frontend, React & Desktop",
       icon: "layout",
       frame: "border-indigo-500/20",
       badge: "bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400",
       pill: "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300"
     }, {
       category: "Backend & Languages",
-      label: "Backend & APIs",
+      label: "Backend, NestJS, Fastify & APIs",
       icon: "server",
       frame: "border-purple-500/20",
       badge: "bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400",
       pill: "bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300"
     }, {
-      category: "Databases & Systems",
-      label: "Databases & Networking",
+      category: "Databases & Storage",
+      label: "Databases & Storage",
       icon: "database",
       frame: "border-emerald-500/20",
       badge: "bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400",
       pill: "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300"
+    }, {
+      category: "Systems & Infrastructure",
+      label: "Systems, AD, Synology & Networking",
+      icon: "hard-drive",
+      frame: "border-sky-500/20",
+      badge: "bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-400",
+      pill: "bg-sky-50 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300"
+    }, {
+      category: "DevOps & Deployment",
+      label: "Deployment, PM2, Nginx & SSL",
+      icon: "terminal",
+      frame: "border-amber-500/20",
+      badge: "bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400",
+      pill: "bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300"
     }],
     project_filters: [{
       id: "all",
@@ -823,7 +899,9 @@ function App() {
   };
   const profileLocation = tr(data.profile, "location");
   const skillName = skill => {
-    return Object.hasOwn(t.skills.names, skill.name) ? t.skills.names[skill.name] : skill.name;
+    const dbTranslated = tr(skill, "name");
+    if (isEn && skill?.name_en) return skill.name_en;
+    return Object.hasOwn(t.skills.names, dbTranslated) ? t.skills.names[dbTranslated] : dbTranslated;
   };
   const experiencePeriod = exp => tr(exp, "period");
   useEffect(() => {
@@ -846,8 +924,21 @@ function App() {
   const [repoLanguageFilter, setRepoLanguageFilter] = useState("all");
   const [selectedSapModule, setSelectedSapModule] = useState("all");
 
-  // Espace d'Administration SQLite
-  const [adminModalOpen, setAdminModalOpen] = useState(false);
+  // Scroll progress & Back-to-top
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  // Espace d'Administration (accès dédié via /admin, #admin ou Ctrl+Shift+A)
+  const [adminModalOpen, setAdminModalOpen] = useState(() => {
+    try {
+      const path = window.location.pathname;
+      const hash = window.location.hash;
+      const search = window.location.search;
+      return path === "/admin" || path === "/admin/" || hash === "#admin" || search.includes("admin=1");
+    } catch (e) {
+      return false;
+    }
+  });
   const [adminToken, setAdminToken] = useState(() => sessionStorage.getItem("portfolio_admin_token"));
   const isAdminAuth = Boolean(adminToken);
   const [adminPinInput, setAdminPinInput] = useState("");
@@ -865,7 +956,8 @@ function App() {
     phone: "",
     email: "",
     location: "",
-    location_en: ""
+    location_en: "",
+    avatar: ""
   });
   const [projectFormModalOpen, setProjectFormModalOpen] = useState(false);
   const [editingProject, setEditingProject] = useState(null);
@@ -923,7 +1015,8 @@ function App() {
           phone: apiData.profile.phone || "",
           email: apiData.profile.email || "",
           location: apiData.profile.location || "",
-          location_en: apiData.profile.location_en || ""
+          location_en: apiData.profile.location_en || "",
+          avatar: apiData.profile.avatar || "/img/walid.jpg"
         });
       }
     }).catch(() => {
@@ -960,13 +1053,45 @@ function App() {
         }
       });
     }, {
-      threshold: 0.10,
-      rootMargin: '0px 0px -48px 0px'
+      threshold: 0.08,
+      rootMargin: '0px 0px -30px 0px'
     });
     const targets = document.querySelectorAll('.reveal, .reveal-left, .reveal-scale');
-    targets.forEach(el => observer.observe(el));
+    targets.forEach(el => {
+      if (!el.classList.contains('visible')) {
+        observer.observe(el);
+      }
+    });
     return () => observer.disconnect();
-  }, [data]);
+  }, [data, selectedCategory, selectedSapModule, repoSearchQuery, repoLanguageFilter, githubRepos]);
+
+  // ── Barre de progression de scroll + Back to Top ─────────────────
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(100, Math.round(scrollTop / docHeight * 100)) : 0;
+      setScrollProgress(progress);
+      setShowBackToTop(scrollTop > 420);
+    };
+    window.addEventListener("scroll", handleScroll, {
+      passive: true
+    });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // ── Raccourci clavier privé pour la Console Admin (Ctrl+Shift+A ou Alt+Shift+A) ──
+  useEffect(() => {
+    const handleKeyDown = e => {
+      if ((e.ctrlKey || e.altKey) && e.shiftKey && e.key.toLowerCase() === "a") {
+        e.preventDefault();
+        setAdminModalOpen(prev => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
   const toastTimeout = useRef(null);
   useEffect(() => () => clearTimeout(toastTimeout.current), []);
   const showToast = (key, ...args) => {
@@ -1026,7 +1151,7 @@ function App() {
         })
       });
       if (!res.ok) {
-        setAdminPinError(res.status === 429 ? "login_limit" : res.status === 401 ? "invalid_pin" : "login_error");
+        setAdminPinError(res.status === 503 ? "admin_unconfigured" : res.status === 429 ? "login_limit" : res.status === 401 ? "invalid_pin" : "login_error");
         return;
       }
       const {
@@ -1048,6 +1173,16 @@ function App() {
   };
   const openAdminModal = () => {
     setAdminModalOpen(true);
+  };
+  const closeAdminModal = () => {
+    setAdminModalOpen(false);
+    try {
+      if (window.location.pathname === "/admin" || window.location.pathname === "/admin/") {
+        window.history.replaceState({}, "", "/");
+      } else if (window.location.hash === "#admin") {
+        window.history.replaceState({}, "", window.location.pathname + window.location.search);
+      }
+    } catch (e) {}
   };
 
   // Actions d'administration : Suppression de message
@@ -1286,7 +1421,7 @@ function App() {
   }, data.profile.name), /*#__PURE__*/React.createElement("span", {
     className: "text-[11px] sm:text-xs text-blue-600 dark:text-blue-400 font-semibold whitespace-nowrap"
   }, t.hero.header_role))), /*#__PURE__*/React.createElement("nav", {
-    className: "hidden xl:flex items-center gap-5 2xl:gap-7 text-sm font-medium shrink-0"
+    className: "hidden lg:flex items-center gap-4 xl:gap-6 text-sm font-medium shrink-0"
   }, t.nav_items.map(item => /*#__PURE__*/React.createElement("a", {
     key: item.anchor,
     href: `#${item.anchor}`,
@@ -1314,27 +1449,11 @@ function App() {
   })), /*#__PURE__*/React.createElement("button", {
     onClick: () => setCvModalOpen(true),
     title: t.navigation.resume,
-    className: "hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-100 transition-all shrink-0 whitespace-nowrap"
+    className: "hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-sm shadow-blue-500/25 hover:opacity-95 hover:scale-105 transition-all shrink-0 whitespace-nowrap"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "file-text",
-    className: "w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400"
+    className: "w-3.5 h-3.5"
   }), /*#__PURE__*/React.createElement("span", null, t.nav.resume)), /*#__PURE__*/React.createElement("button", {
-    onClick: openAdminModal,
-    title: t.navigation.admin,
-    className: "inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-bold bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-800 hover:bg-amber-100 dark:hover:bg-amber-900/40 transition-all shrink-0 shadow-sm"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "shield",
-    className: "w-3.5 h-3.5 text-amber-600 dark:text-amber-400"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "hidden md:inline whitespace-nowrap"
-  }, t.nav.admin)), /*#__PURE__*/React.createElement("div", {
-    title: t.navigation.database,
-    className: "hidden lg:inline-flex items-center gap-1.5 px-2.5 py-2 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 shrink-0"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "whitespace-nowrap"
-  }, t.nav.sqlite_active)), /*#__PURE__*/React.createElement("button", {
     onClick: toggleLang,
     title: t.navigation.language_toggle,
     className: "inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-black bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-all shrink-0 shadow-sm"
@@ -1351,12 +1470,19 @@ function App() {
   })), /*#__PURE__*/React.createElement("button", {
     onClick: () => setMobileMenuOpen(!mobileMenuOpen),
     "aria-label": t.navigation.menu,
-    className: "xl:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shrink-0"
+    className: "lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shrink-0"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: mobileMenuOpen ? "x" : "menu",
     className: "w-5 h-5"
-  })))), mobileMenuOpen && /*#__PURE__*/React.createElement("div", {
-    className: "xl:hidden px-4 pt-3 pb-6 glass border-b border-slate-200 dark:border-slate-800 flex flex-col gap-2 max-h-[calc(100vh-5.5rem)] overflow-y-auto animate-fade-in shadow-2xl"
+  })))), /*#__PURE__*/React.createElement("div", {
+    className: "h-[2px] w-full bg-transparent overflow-hidden"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "h-full bg-gradient-to-r from-blue-600 via-indigo-500 to-pink-500 transition-[width] duration-150 ease-out",
+    style: {
+      width: `${scrollProgress}%`
+    }
+  })), mobileMenuOpen && /*#__PURE__*/React.createElement("div", {
+    className: "lg:hidden px-4 pt-3 pb-6 glass border-b border-slate-200 dark:border-slate-800 flex flex-col gap-2 max-h-[calc(100vh-5.5rem)] overflow-y-auto animate-fade-in shadow-2xl"
   }, t.nav_items.map(item => /*#__PURE__*/React.createElement("a", {
     key: item.anchor,
     href: `#${item.anchor}`,
@@ -1388,7 +1514,7 @@ function App() {
     href: data.profile.github,
     target: "_blank",
     rel: "noopener noreferrer",
-    className: "flex-1 py-2.5 text-center rounded-lg text-xs font-bold bg-slate-900 dark:bg-slate-800 text-white flex items-center justify-center gap-1.5 shadow-sm"
+    className: "flex-1 py-2.5 text-center rounded-xl text-xs font-bold bg-slate-900 dark:bg-slate-800 text-white flex items-center justify-center gap-1.5 shadow-sm"
   }, /*#__PURE__*/React.createElement(GitHubIcon, {
     className: "w-4 h-4"
   }), /*#__PURE__*/React.createElement("span", null, t.common.github)), /*#__PURE__*/React.createElement("button", {
@@ -1400,120 +1526,119 @@ function App() {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "file-text",
     className: "w-4 h-4"
-  }), /*#__PURE__*/React.createElement("span", null, t.nav.resume))), /*#__PURE__*/React.createElement("button", {
-    onClick: () => {
-      setMobileMenuOpen(false);
-      openAdminModal();
-    },
-    className: "mt-1 px-3 py-2.5 rounded-xl text-xs font-bold bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800 flex items-center justify-between"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "flex items-center gap-2"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "shield",
-    className: "w-4 h-4 text-amber-500"
-  }), /*#__PURE__*/React.createElement("span", null, t.admin.mobile)), /*#__PURE__*/React.createElement(Icon, {
-    name: "lock",
-    className: "w-4 h-4"
-  })))), /*#__PURE__*/React.createElement("section", {
+  }), /*#__PURE__*/React.createElement("span", null, t.nav.resume))))), /*#__PURE__*/React.createElement("section", {
     id: "hero",
-    className: "relative pt-20 pb-24 md:pt-28 md:pb-32 overflow-hidden"
+    className: "relative pt-14 pb-20 md:pt-20 md:pb-24 overflow-hidden bg-grid-pattern"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-blue-500/20 via-indigo-500/15 to-purple-500/20 blur-[130px] rounded-full pointer-events-none -z-10"
+    className: "absolute -top-40 left-1/2 -translate-x-1/2 w-[780px] h-[440px] bg-gradient-to-tr from-blue-500/20 via-indigo-500/15 to-purple-500/20 blur-[130px] rounded-full pointer-events-none -z-10"
   }), /*#__PURE__*/React.createElement("div", {
-    className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center"
+    className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/80 mb-6 animate-float shadow-sm"
+    className: "grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/80 mb-5 animate-float shadow-sm"
   }, /*#__PURE__*/React.createElement("span", {
     className: "w-2 h-2 rounded-full bg-emerald-500 animate-ping"
-  }), /*#__PURE__*/React.createElement("span", null, tr(data.profile, "availability") || t.hero.badge)), /*#__PURE__*/React.createElement("div", {
-    className: "relative mb-6 group"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "absolute -inset-1.5 bg-gradient-to-tr from-blue-600 via-indigo-600 to-pink-500 rounded-full blur-lg opacity-70 group-hover:opacity-100 transition duration-500 animate-pulse-glow"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "relative w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 rounded-full p-1.5 bg-white dark:bg-slate-900 shadow-2xl ring-4 ring-blue-500/20 overflow-hidden"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: data.profile.avatar || "/img/walid.jpg",
-    alt: data.profile.name,
-    className: "w-full h-full object-cover object-top rounded-full group-hover:scale-105 transition-transform duration-500"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "absolute bottom-2 right-3 w-5 h-5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full shadow-md",
-    title: "Disponible pour opportunités"
-  })), /*#__PURE__*/React.createElement("h1", {
-    className: "text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-5"
+  }), /*#__PURE__*/React.createElement("span", null, tr(data.profile, "availability") || t.hero.badge)), /*#__PURE__*/React.createElement("h1", {
+    className: "text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.08] mb-4"
   }, /*#__PURE__*/React.createElement("span", {
     className: "name-shimmer"
   }, data.profile.name)), /*#__PURE__*/React.createElement("div", {
-    className: "inline-block px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl bg-gradient-to-r from-blue-100 via-indigo-100 to-purple-100 dark:from-blue-950/60 dark:via-indigo-950/60 dark:to-purple-950/60 text-blue-900 dark:text-blue-200 font-extrabold text-sm sm:text-lg md:text-2xl mb-6 shadow-sm border border-blue-200/50 dark:border-blue-800/50 max-w-full"
+    className: "inline-block px-4 sm:px-5 py-2 rounded-2xl bg-gradient-to-r from-blue-100 via-indigo-100 to-purple-100 dark:from-blue-950/60 dark:via-indigo-950/60 dark:to-purple-950/60 text-blue-900 dark:text-blue-200 font-extrabold text-sm sm:text-base md:text-xl mb-5 shadow-sm border border-blue-200/50 dark:border-blue-800/50 max-w-full"
   }, tr(data.profile, "title")), /*#__PURE__*/React.createElement("p", {
-    className: "text-sm sm:text-base md:text-lg lg:text-xl font-normal text-slate-600 dark:text-slate-300 max-w-3xl mb-8 leading-relaxed px-2"
+    className: "text-sm sm:text-base md:text-lg font-normal text-slate-600 dark:text-slate-300 max-w-2xl mb-6 leading-relaxed"
   }, tr(data.profile, "bio")), /*#__PURE__*/React.createElement("div", {
-    className: "flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-xs sm:text-sm mb-10 max-w-full px-2"
+    className: "flex flex-wrap items-center justify-center lg:justify-start gap-2.5 text-xs sm:text-sm mb-8"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "map-pin",
-    className: "w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-500 shrink-0"
+    className: "w-3.5 h-3.5 text-rose-500 shrink-0"
   }), /*#__PURE__*/React.createElement("span", null, profileLocation)), /*#__PURE__*/React.createElement("a", {
     href: `tel:${data.profile.phone}`,
     className: "flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300 hover:text-emerald-600 transition-colors"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "phone",
-    className: "w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500 shrink-0"
+    className: "w-3.5 h-3.5 text-emerald-500 shrink-0"
   }), /*#__PURE__*/React.createElement("span", null, data.profile.phone)), /*#__PURE__*/React.createElement("a", {
     href: `mailto:${data.profile.email}`,
     className: "flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "mail",
-    className: "w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-500 shrink-0"
-  }), /*#__PURE__*/React.createElement("span", null, data.profile.email)), /*#__PURE__*/React.createElement("a", {
-    href: data.profile.linkedin,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    className: "flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-[#0A66C2] dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all"
-  }, /*#__PURE__*/React.createElement(LinkedInIcon, {
-    className: "w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0A66C2] shrink-0"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "font-semibold truncate max-w-[170px] sm:max-w-none"
-  }, "linkedin.com/in/waliddjellali")), /*#__PURE__*/React.createElement("a", {
-    href: data.profile.github,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    className: "flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:scale-105 transition-all"
-  }, /*#__PURE__*/React.createElement(GitHubIcon, {
-    className: "w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "font-semibold truncate max-w-[130px] sm:max-w-none"
-  }, "github.com/Waliddjla"))), /*#__PURE__*/React.createElement("div", {
-    className: "flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-8 w-full max-w-3xl px-2"
-  }, /*#__PURE__*/React.createElement("a", {
-    href: data.profile.linkedin,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    className: "w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-[#0A66C2] hover:bg-[#004182] text-white shadow-lg shadow-blue-500/25 btn-magnetic flex items-center justify-center gap-2"
-  }, /*#__PURE__*/React.createElement(LinkedInIcon, {
-    className: "w-4 h-4 sm:w-5 sm:h-5"
-  }), /*#__PURE__*/React.createElement("span", null, t.hero.contact_linkedin), /*#__PURE__*/React.createElement(Icon, {
-    name: "external-link",
-    className: "w-3.5 h-3.5 opacity-75"
-  })), /*#__PURE__*/React.createElement("button", {
+    className: "w-3.5 h-3.5 text-blue-500 shrink-0"
+  }), /*#__PURE__*/React.createElement("span", null, data.profile.email))), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-3 w-full"
+  }, /*#__PURE__*/React.createElement("button", {
     onClick: () => setCvModalOpen(true),
-    className: "w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-indigo-500/25 btn-magnetic flex items-center justify-center gap-2"
+    className: "w-full sm:w-auto px-6 py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-indigo-500/25 btn-magnetic flex items-center justify-center gap-2"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "file-text",
     className: "w-4 h-4 sm:w-5 sm:h-5"
   }), /*#__PURE__*/React.createElement("span", null, t.hero.view_resume)), /*#__PURE__*/React.createElement("a", {
     href: "#projects",
-    className: "w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all flex items-center justify-center gap-2"
+    className: "w-full sm:w-auto px-6 py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all flex items-center justify-center gap-2"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "layers",
     className: "w-4 h-4 sm:w-5 sm:h-5"
   }), /*#__PURE__*/React.createElement("span", null, t.hero.explore_projects, " (", data.projects.length, ")")), /*#__PURE__*/React.createElement("a", {
-    href: "#sap-workflow",
-    className: "w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-semibold glass hover:bg-slate-200/60 dark:hover:bg-slate-800/60 text-slate-800 dark:text-slate-100 transition-all flex items-center justify-center gap-2"
+    href: "#contact",
+    className: "w-full sm:w-auto px-5 py-3.5 rounded-2xl text-sm sm:text-base font-semibold glass hover:bg-slate-200/60 dark:hover:bg-slate-800/60 text-slate-800 dark:text-slate-100 transition-all flex items-center justify-center gap-2"
   }, /*#__PURE__*/React.createElement(Icon, {
-    name: "layers",
-    className: "w-4 h-4 sm:w-5 sm:h-5"
-  }), /*#__PURE__*/React.createElement("span", null, t.portfolio.sap))))), /*#__PURE__*/React.createElement("section", {
+    name: "mail",
+    className: "w-4 h-4 sm:w-5 sm:h-5 text-blue-500"
+  }), /*#__PURE__*/React.createElement("span", null, t.nav.contact)))), /*#__PURE__*/React.createElement("div", {
+    className: "lg:col-span-5 flex flex-col items-center justify-center order-1 lg:order-2"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "relative group"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "absolute -inset-2 bg-gradient-to-tr from-blue-600 via-indigo-600 to-pink-500 rounded-full blur-xl opacity-65 group-hover:opacity-95 transition duration-500 animate-pulse-glow"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full p-2 bg-white dark:bg-slate-900 shadow-2xl ring-4 ring-blue-500/20 overflow-hidden"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: data.profile.avatar || "/img/walid.jpg",
+    alt: data.profile.name,
+    className: "w-full h-full object-cover object-top rounded-full group-hover:scale-105 transition-transform duration-500"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "absolute bottom-3 right-5 w-5 h-5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full shadow-md",
+    title: tr(data.profile, "availability") || t.hero.badge
+  }), /*#__PURE__*/React.createElement("a", {
+    href: "#sap-workflow",
+    className: "hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-2xl glass border border-blue-200/80 dark:border-blue-800/80 shadow-xl absolute -left-8 top-8 animate-float text-xs font-extrabold text-slate-900 dark:text-white hover:scale-105 transition-transform"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "w-6 h-6 rounded-lg bg-blue-600 text-white flex items-center justify-center"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "wrench",
+    className: "w-3.5 h-3.5"
+  })), /*#__PURE__*/React.createElement("span", null, "SAP S/4HANA")), /*#__PURE__*/React.createElement("a", {
+    href: "#skills",
+    className: "hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-2xl glass border border-indigo-200/80 dark:border-indigo-800/80 shadow-xl absolute -right-6 bottom-12 animate-float text-xs font-extrabold text-slate-900 dark:text-white hover:scale-105 transition-transform",
+    style: {
+      animationDelay: "1.2s"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "w-6 h-6 rounded-lg bg-indigo-600 text-white flex items-center justify-center"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "code-2",
+    className: "w-3.5 h-3.5"
+  })), /*#__PURE__*/React.createElement("span", null, "Full-Stack"))))), /*#__PURE__*/React.createElement("div", {
+    className: "grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-14 stagger-children"
+  }, (t.hero.highlights || []).map((item, idx) => /*#__PURE__*/React.createElement("div", {
+    key: idx,
+    className: "reveal p-4 sm:p-5 rounded-2xl glass border border-slate-200/70 dark:border-slate-800/80 flex items-center gap-3.5 card-hover"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-slate-100 dark:bg-slate-800/80 flex items-center justify-center shrink-0"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: item.icon,
+    className: `w-5 h-5 ${item.color}`
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "min-w-0"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "block text-sm sm:text-base font-extrabold text-slate-900 dark:text-white truncate"
+  }, item.value), /*#__PURE__*/React.createElement("span", {
+    className: "block text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 truncate"
+  }, item.label))))))), /*#__PURE__*/React.createElement("section", {
     id: "experience",
     className: "py-24 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60"
   }, /*#__PURE__*/React.createElement("div", {
@@ -1527,11 +1652,15 @@ function App() {
   }, t.experience.title), /*#__PURE__*/React.createElement("p", {
     className: "mt-3 text-slate-600 dark:text-slate-400"
   }, t.experience.subtitle)), /*#__PURE__*/React.createElement("div", {
-    className: "space-y-8 stagger-children"
-  }, data.experiences.map((exp, idx) => /*#__PURE__*/React.createElement("div", {
-    key: exp.id || idx,
-    className: "reveal-left p-8 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 card-hover transition-all"
+    className: "relative md:pl-8 space-y-8 stagger-children"
   }, /*#__PURE__*/React.createElement("div", {
+    className: "hidden md:block absolute left-3 top-4 bottom-4 w-0.5 bg-gradient-to-b from-blue-500 via-indigo-500/50 to-transparent"
+  }), data.experiences.map((exp, idx) => /*#__PURE__*/React.createElement("div", {
+    key: exp.id || idx,
+    className: "reveal-left relative p-7 sm:p-8 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 card-hover transition-all"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: `hidden md:block absolute -left-[26px] top-9 w-3.5 h-3.5 rounded-full border-2 border-white dark:border-slate-900 shadow-sm ${idx === 0 ? "bg-blue-600 timeline-dot-ping" : "bg-slate-400 dark:bg-slate-600"}`
+  }), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
     className: "text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2"
@@ -1600,7 +1729,7 @@ function App() {
     const acgItems = trList(mod, "acg");
     return /*#__PURE__*/React.createElement("div", {
       key: mod.id,
-      className: `reveal-scale p-6 sm:p-7 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between transition-all duration-300 shadow-xl shadow-slate-900/5 hover:-translate-y-1 ${cardBorder}`
+      className: `fade-in p-6 sm:p-7 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between transition-all duration-300 shadow-xl shadow-slate-900/5 hover:-translate-y-1 ${cardBorder}`
     }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       className: "flex items-center justify-between mb-4"
     }, /*#__PURE__*/React.createElement("div", {
@@ -1695,23 +1824,30 @@ function App() {
   }, t.skills.badge), /*#__PURE__*/React.createElement("h2", {
     className: "text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight"
   }, t.skills.title)), /*#__PURE__*/React.createElement("div", {
-    className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children"
-  }, t.skill_groups.map(group => /*#__PURE__*/React.createElement("div", {
-    key: group.category,
-    className: `reveal-scale p-7 rounded-3xl glass border card-hover ${group.frame}`
-  }, /*#__PURE__*/React.createElement("div", {
-    className: `w-12 h-12 rounded-2xl flex items-center justify-center mb-5 ${group.badge}`
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: group.icon,
-    className: "w-6 h-6"
-  })), /*#__PURE__*/React.createElement("h3", {
-    className: "text-lg font-bold text-slate-900 dark:text-white mb-4"
-  }, group.label), /*#__PURE__*/React.createElement("div", {
-    className: "flex flex-wrap gap-2"
-  }, data.skills.filter(skill => skill.category === group.category).map(skill => /*#__PURE__*/React.createElement("span", {
-    key: skill.name,
-    className: `px-3 py-1 rounded-xl text-xs font-semibold ${group.pill}`
-  }, skillName(skill))))))))), /*#__PURE__*/React.createElement("section", {
+    className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children"
+  }, t.skill_groups.map(group => {
+    const items = data.skills.filter(skill => skill.category === group.category);
+    return /*#__PURE__*/React.createElement("div", {
+      key: group.category,
+      className: `reveal-scale p-7 rounded-3xl glass border card-hover flex flex-col ${group.frame}`
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "flex items-center justify-between mb-5"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: `w-12 h-12 rounded-2xl flex items-center justify-center ${group.badge}`
+    }, /*#__PURE__*/React.createElement(Icon, {
+      name: group.icon,
+      className: "w-6 h-6"
+    })), /*#__PURE__*/React.createElement("span", {
+      className: "text-[11px] font-bold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
+    }, items.length)), /*#__PURE__*/React.createElement("h3", {
+      className: "text-lg font-bold text-slate-900 dark:text-white mb-4"
+    }, group.label), /*#__PURE__*/React.createElement("div", {
+      className: "flex flex-wrap gap-2"
+    }, items.map(skill => /*#__PURE__*/React.createElement("span", {
+      key: skill.name,
+      className: `px-3 py-1.5 rounded-xl text-xs font-semibold transition-transform hover:scale-105 ${group.pill}`
+    }, skillName(skill)))));
+  })))), /*#__PURE__*/React.createElement("section", {
     id: "projects",
     className: "py-24"
   }, /*#__PURE__*/React.createElement("div", {
@@ -1739,10 +1875,7 @@ function App() {
     const projectCaseStudy = tr(p, "case_study");
     return /*#__PURE__*/React.createElement("article", {
       key: p.id || idx,
-      style: {
-        transitionDelay: `${idx * 90}ms`
-      },
-      className: "reveal card-hover rounded-3xl overflow-hidden glass border border-slate-200/80 dark:border-slate-800 flex flex-col group"
+      className: "fade-in card-hover rounded-3xl overflow-hidden glass border border-slate-200/80 dark:border-slate-800 flex flex-col group"
     }, /*#__PURE__*/React.createElement("div", {
       className: "relative h-60 overflow-hidden bg-slate-900"
     }, /*#__PURE__*/React.createElement("img", {
@@ -1849,7 +1982,7 @@ function App() {
     href: repo.html_url || `https://github.com/Waliddjla/${repo.name}`,
     target: "_blank",
     rel: "noopener noreferrer",
-    className: "reveal p-6 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 hover:border-blue-500/50 flex flex-col justify-between card-hover group transition-all"
+    className: "fade-in p-6 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 hover:border-blue-500/50 flex flex-col justify-between card-hover group transition-all"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "flex items-center justify-between mb-3"
   }, /*#__PURE__*/React.createElement("span", {
@@ -2080,13 +2213,7 @@ function App() {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "file-text",
     className: "w-4 h-4 text-indigo-500"
-  }), /*#__PURE__*/React.createElement("span", null, t.common.resume)), /*#__PURE__*/React.createElement("button", {
-    onClick: openAdminModal,
-    className: "hover:text-amber-600 dark:hover:text-amber-400 flex items-center gap-1.5 transition-colors font-bold text-amber-600 dark:text-amber-400"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "shield",
-    className: "w-4 h-4"
-  }), /*#__PURE__*/React.createElement("span", null, t.admin.title)), /*#__PURE__*/React.createElement("a", {
+  }), /*#__PURE__*/React.createElement("span", null, t.common.resume)), /*#__PURE__*/React.createElement("a", {
     href: "#hero",
     className: "hover:text-blue-600 flex items-center gap-1 transition-colors font-medium"
   }, /*#__PURE__*/React.createElement(Icon, {
@@ -2133,7 +2260,7 @@ function App() {
     className: "absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-5"
   }, /*#__PURE__*/React.createElement("p", {
     className: "text-xs sm:text-sm text-white font-medium drop-shadow-md"
-  }, selectedProjectModal.description))), caseStudy && caseStudy.kpis && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
+  }, tr(selectedProjectModal, "description")))), caseStudy && caseStudy.kpis && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
     className: "text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3 flex items-center gap-1.5"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "trending-up",
@@ -2264,7 +2391,7 @@ function App() {
   }, languageToggle, /*#__PURE__*/React.createElement("button", {
     type: "button",
     "aria-label": t.common.close,
-    onClick: () => setAdminModalOpen(false),
+    onClick: closeAdminModal,
     className: "w-9 h-9 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-600 dark:text-slate-300"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "x",
@@ -2531,6 +2658,19 @@ function App() {
     }),
     className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm"
   }))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+    htmlFor: "editingProfileForm-avatar",
+    className: "block text-xs font-bold mb-1"
+  }, t.admin.avatar_url), /*#__PURE__*/React.createElement("input", {
+    id: "editingProfileForm-avatar",
+    type: "text",
+    value: editingProfileForm.avatar,
+    onChange: e => setEditingProfileForm({
+      ...editingProfileForm,
+      avatar: e.target.value
+    }),
+    placeholder: "/img/walid.jpg",
+    className: "w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm"
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
     htmlFor: "editingProfileForm-bio-fr",
     className: "block text-xs font-bold mb-1"
   }, t.admin.bio, " (FR)"), /*#__PURE__*/React.createElement("textarea", {
@@ -2961,8 +3101,33 @@ function App() {
   }), /*#__PURE__*/React.createElement("span", null, "GitHub @Waliddjla"))), /*#__PURE__*/React.createElement("button", {
     onClick: () => setCvModalOpen(false),
     className: "px-5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-200 transition-all"
-  }, t.common.close)))), toastLabel && /*#__PURE__*/React.createElement("div", {
-    className: "fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-4 rounded-2xl bg-emerald-600 text-white shadow-xl shadow-emerald-600/30 animate-fade-in pointer-events-none"
+  }, t.common.close)))), showBackToTop && /*#__PURE__*/React.createElement("a", {
+    href: "#hero",
+    "aria-label": t.common.top,
+    title: t.common.top,
+    className: "fixed bottom-6 right-6 z-30 w-11 h-11 rounded-2xl glass border border-slate-200 dark:border-slate-700 shadow-lg flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:-translate-y-1 transition-all no-print"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "arrow-up",
+    className: "w-5 h-5"
+  })), isAdminAuth && !adminModalOpen && /*#__PURE__*/React.createElement("div", {
+    className: "fixed bottom-6 left-6 z-40 flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-slate-900/95 dark:bg-slate-800/95 text-white border border-amber-500/40 shadow-xl backdrop-blur-md no-print animate-fade-in"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "w-2 h-2 rounded-full bg-emerald-400 animate-pulse"
+  }), /*#__PURE__*/React.createElement("button", {
+    onClick: openAdminModal,
+    className: "text-xs font-bold hover:text-amber-300 transition-colors flex items-center gap-1.5"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "shield",
+    className: "w-3.5 h-3.5 text-amber-400"
+  }), /*#__PURE__*/React.createElement("span", null, t.admin.session_badge)), /*#__PURE__*/React.createElement("button", {
+    onClick: handleAdminLogout,
+    title: t.admin.logout,
+    className: "ml-1 p-1 rounded-lg hover:bg-slate-700 text-slate-400 hover:text-rose-400 transition-colors"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "log-out",
+    className: "w-3.5 h-3.5"
+  }))), toastLabel && /*#__PURE__*/React.createElement("div", {
+    className: "fixed bottom-20 right-6 z-50 flex items-center gap-3 px-5 py-4 rounded-2xl bg-emerald-600 text-white shadow-xl shadow-emerald-600/30 animate-fade-in pointer-events-none"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "check-circle",
     className: "w-5 h-5 shrink-0"

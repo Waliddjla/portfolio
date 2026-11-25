@@ -133,8 +133,24 @@ body {
   }
 }
 
-.pulse-glow {
+.pulse-glow,
+.animate-pulse-glow {
   animation: pulseGlow 2.5s infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Subtle engineering dot/grid background for hero */
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(59, 130, 246, 0.14) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+.dark .bg-grid-pattern {
+  background-image: radial-gradient(rgba(96, 165, 250, 0.12) 1px, transparent 1px);
+  background-size: 26px 26px;
 }
 
 /* ════════════════════════════════════════════════

@@ -56,7 +56,13 @@ const translations = {
       badge: "Disponible pour opportunités SAP & Développement Full-Stack",
       contact_linkedin: "Me contacter sur LinkedIn",
       view_resume: "Consulter mon CV (PDF)",
-      explore_projects: "Explorer mes Projets"
+      explore_projects: "Explorer mes Projets",
+      highlights: [
+        { icon: "layers", value: "SAP S/4HANA", label: "Modules PM • MM • QM", color: "text-blue-600 dark:text-blue-400" },
+        { icon: "code-2", value: "Full-Stack", label: "Node.js • TypeScript • React", color: "text-indigo-600 dark:text-indigo-400" },
+        { icon: "briefcase", value: "Orionlab & ACG", label: "Intégration ERP & Systèmes IT", color: "text-emerald-600 dark:text-emerald-400" },
+        { icon: "graduation-cap", value: "Master Info", label: "& Certification Cisco CCNA v7", color: "text-purple-600 dark:text-purple-400" }
+      ]
     },
     sap: {
       badge: "Intégration ERP SAP S/4HANA",
@@ -156,7 +162,7 @@ const translations = {
       email_placeholder: "nom@entreprise.com",
       subject_placeholder: "Opportunité SAP S/4HANA / Projet Full-Stack...",
       message_placeholder: "Présentez brièvement vos besoins ou le poste envisagé...",
-      sending: "Enregistrement dans SQLite...",
+      sending: "Envoi en cours...",
       send: "Envoyer le message"
     },
     modal: {
@@ -228,7 +234,9 @@ const translations = {
       size_unit: "Ko",
       overview: "Vue d'ensemble",
       profile_tab: "Profil & Disponibilité",
-      projects_tab: "Gestion des Projets"
+      projects_tab: "Gestion des Projets",
+      avatar_url: "Photo de profil (URL)",
+      session_badge: "Mode Admin actif"
     },
     cv: {
       title: "Curriculum Vitae",
@@ -249,6 +257,7 @@ const translations = {
       logout: "Verrouillage de l'espace administration.",
       session_expired: "Session expirée. Reconnectez-vous.",
       invalid_pin: "Code PIN incorrect.",
+      admin_unconfigured: "ADMIN_PIN non configuré côté serveur (définissez la variable d'environnement ADMIN_PIN).",
       login_limit: "Trop de tentatives. Réessayez plus tard.",
       login_error: "Erreur de connexion au serveur.",
       message_error: "Erreur lors de la suppression du message.",
@@ -258,7 +267,7 @@ const translations = {
       project_save_error: "Erreur lors de l'enregistrement du projet.",
       project_updated: "✅ Projet modifié dans SQLite.",
       project_added: "✅ Projet ajouté dans SQLite.",
-      contact_sent: "✅ Message enregistré dans la base SQLite ! Walid vous répondra sous 24h.",
+      contact_sent: "✅ Message envoyé avec succès ! Walid vous répondra sous 24h.",
       contact_error: "Impossible d’envoyer le message. Réessayez."
     },
     nav_items: [
@@ -309,7 +318,7 @@ const translations = {
       },
       {
         category: "Frontend",
-        label: "Frontend & React",
+        label: "Frontend, React & Desktop",
         icon: "layout",
         frame: "border-indigo-500/20",
         badge: "bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400",
@@ -317,19 +326,35 @@ const translations = {
       },
       {
         category: "Backend & Languages",
-        label: "Backend & APIs",
+        label: "Backend, NestJS, Fastify & APIs",
         icon: "server",
         frame: "border-purple-500/20",
         badge: "bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400",
         pill: "bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300"
       },
       {
-        category: "Databases & Systems",
-        label: "Bases de Données & Réseau",
+        category: "Databases & Storage",
+        label: "Bases de Données & Stockage",
         icon: "database",
         frame: "border-emerald-500/20",
         badge: "bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400",
         pill: "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300"
+      },
+      {
+        category: "Systems & Infrastructure",
+        label: "Systèmes, AD, Synology & Réseau",
+        icon: "hard-drive",
+        frame: "border-sky-500/20",
+        badge: "bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-400",
+        pill: "bg-sky-50 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300"
+      },
+      {
+        category: "DevOps & Deployment",
+        label: "Déploiement, PM2, Nginx & SSL",
+        icon: "terminal",
+        frame: "border-amber-500/20",
+        badge: "bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400",
+        pill: "bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300"
       }
     ],
     project_filters: [
@@ -391,7 +416,13 @@ const translations = {
       badge: "Available for SAP & Full-Stack Development opportunities",
       contact_linkedin: "Contact me on LinkedIn",
       view_resume: "View my Resume (PDF)",
-      explore_projects: "Explore my Projects"
+      explore_projects: "Explore my Projects",
+      highlights: [
+        { icon: "layers", value: "SAP S/4HANA", label: "PM • MM • QM Modules", color: "text-blue-600 dark:text-blue-400" },
+        { icon: "code-2", value: "Full-Stack", label: "Node.js • TypeScript • React", color: "text-indigo-600 dark:text-indigo-400" },
+        { icon: "briefcase", value: "Orionlab & ACG", label: "ERP Rollout & IT Systems", color: "text-emerald-600 dark:text-emerald-400" },
+        { icon: "graduation-cap", value: "M.Sc. CS", label: "& Cisco CCNA v7 Certified", color: "text-purple-600 dark:text-purple-400" }
+      ]
     },
     sap: {
       badge: "SAP S/4HANA ERP Integration",
@@ -561,7 +592,9 @@ const translations = {
       size_unit: "KB",
       overview: "Overview",
       profile_tab: "Profile & Availability",
-      projects_tab: "Project Management"
+      projects_tab: "Project Management",
+      avatar_url: "Profile photo (URL)",
+      session_badge: "Admin mode active"
     },
     cv: {
       title: "Résumé",
@@ -582,6 +615,7 @@ const translations = {
       logout: "Administration console locked.",
       session_expired: "Session expired. Please sign in again.",
       invalid_pin: "Incorrect PIN.",
+      admin_unconfigured: "ADMIN_PIN is not configured on the server (set the ADMIN_PIN environment variable).",
       login_limit: "Too many attempts. Try again later.",
       login_error: "Unable to connect to the server.",
       message_error: "Could not delete the message.",
@@ -642,7 +676,7 @@ const translations = {
       },
       {
         category: "Frontend",
-        label: "Frontend & React",
+        label: "Frontend, React & Desktop",
         icon: "layout",
         frame: "border-indigo-500/20",
         badge: "bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400",
@@ -650,19 +684,35 @@ const translations = {
       },
       {
         category: "Backend & Languages",
-        label: "Backend & APIs",
+        label: "Backend, NestJS, Fastify & APIs",
         icon: "server",
         frame: "border-purple-500/20",
         badge: "bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400",
         pill: "bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300"
       },
       {
-        category: "Databases & Systems",
-        label: "Databases & Networking",
+        category: "Databases & Storage",
+        label: "Databases & Storage",
         icon: "database",
         frame: "border-emerald-500/20",
         badge: "bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400",
         pill: "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300"
+      },
+      {
+        category: "Systems & Infrastructure",
+        label: "Systems, AD, Synology & Networking",
+        icon: "hard-drive",
+        frame: "border-sky-500/20",
+        badge: "bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-400",
+        pill: "bg-sky-50 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300"
+      },
+      {
+        category: "DevOps & Deployment",
+        label: "Deployment, PM2, Nginx & SSL",
+        icon: "terminal",
+        frame: "border-amber-500/20",
+        badge: "bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400",
+        pill: "bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300"
       }
     ],
     project_filters: [
@@ -875,7 +925,9 @@ function App() {
   };
   const profileLocation = tr(data.profile, "location");
   const skillName = (skill) => {
-    return Object.hasOwn(t.skills.names, skill.name) ? t.skills.names[skill.name] : skill.name;
+    const dbTranslated = tr(skill, "name");
+    if (isEn && skill?.name_en) return skill.name_en;
+    return Object.hasOwn(t.skills.names, dbTranslated) ? t.skills.names[dbTranslated] : dbTranslated;
   };
   const experiencePeriod = (exp) => tr(exp, "period");
 
@@ -904,8 +956,21 @@ function App() {
   const [repoLanguageFilter, setRepoLanguageFilter] = useState("all");
   const [selectedSapModule, setSelectedSapModule] = useState("all");
 
-  // Espace d'Administration SQLite
-  const [adminModalOpen, setAdminModalOpen] = useState(false);
+  // Scroll progress & Back-to-top
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  // Espace d'Administration (accès dédié via /admin, #admin ou Ctrl+Shift+A)
+  const [adminModalOpen, setAdminModalOpen] = useState(() => {
+    try {
+      const path = window.location.pathname;
+      const hash = window.location.hash;
+      const search = window.location.search;
+      return path === "/admin" || path === "/admin/" || hash === "#admin" || search.includes("admin=1");
+    } catch (e) {
+      return false;
+    }
+  });
   const [adminToken, setAdminToken] = useState(() => sessionStorage.getItem("portfolio_admin_token"));
   const isAdminAuth = Boolean(adminToken);
   const [adminPinInput, setAdminPinInput] = useState("");
@@ -923,7 +988,8 @@ function App() {
     phone: "",
     email: "",
     location: "",
-    location_en: ""
+    location_en: "",
+    avatar: ""
   });
   const [projectFormModalOpen, setProjectFormModalOpen] = useState(false);
   const [editingProject, setEditingProject] = useState(null);
@@ -980,7 +1046,8 @@ function App() {
             phone: apiData.profile.phone || "",
             email: apiData.profile.email || "",
             location: apiData.profile.location || "",
-            location_en: apiData.profile.location_en || ""
+            location_en: apiData.profile.location_en || "",
+            avatar: apiData.profile.avatar || "/img/walid.jpg"
           });
         }
       })
@@ -1023,12 +1090,42 @@ function App() {
           }
         });
       },
-      { threshold: 0.10, rootMargin: '0px 0px -48px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
     );
     const targets = document.querySelectorAll('.reveal, .reveal-left, .reveal-scale');
-    targets.forEach(el => observer.observe(el));
+    targets.forEach(el => {
+      if (!el.classList.contains('visible')) {
+        observer.observe(el);
+      }
+    });
     return () => observer.disconnect();
-  }, [data]);
+  }, [data, selectedCategory, selectedSapModule, repoSearchQuery, repoLanguageFilter, githubRepos]);
+
+  // ── Barre de progression de scroll + Back to Top ─────────────────
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(100, Math.round((scrollTop / docHeight) * 100)) : 0;
+      setScrollProgress(progress);
+      setShowBackToTop(scrollTop > 420);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // ── Raccourci clavier privé pour la Console Admin (Ctrl+Shift+A ou Alt+Shift+A) ──
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.altKey) && e.shiftKey && e.key.toLowerCase() === "a") {
+        e.preventDefault();
+        setAdminModalOpen(prev => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const toastTimeout = useRef(null);
   useEffect(() => () => clearTimeout(toastTimeout.current), []);
@@ -1091,7 +1188,15 @@ function App() {
         body: JSON.stringify({ pin: adminPinInput })
       });
       if (!res.ok) {
-        setAdminPinError(res.status === 429 ? "login_limit" : res.status === 401 ? "invalid_pin" : "login_error");
+        setAdminPinError(
+          res.status === 503
+            ? "admin_unconfigured"
+            : res.status === 429
+            ? "login_limit"
+            : res.status === 401
+            ? "invalid_pin"
+            : "login_error"
+        );
         return;
       }
       const { token } = await res.json();
@@ -1114,6 +1219,17 @@ function App() {
 
   const openAdminModal = () => {
     setAdminModalOpen(true);
+  };
+
+  const closeAdminModal = () => {
+    setAdminModalOpen(false);
+    try {
+      if (window.location.pathname === "/admin" || window.location.pathname === "/admin/") {
+        window.history.replaceState({}, "", "/");
+      } else if (window.location.hash === "#admin") {
+        window.history.replaceState({}, "", window.location.pathname + window.location.search);
+      }
+    } catch (e) {}
   };
 
   // Actions d'administration : Suppression de message
@@ -1338,7 +1454,7 @@ function App() {
           </a>
 
           {/* Navigation Desktop */}
-          <nav className="hidden xl:flex items-center gap-5 2xl:gap-7 text-sm font-medium shrink-0">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6 text-sm font-medium shrink-0">
             {t.nav_items.map(item => (
               <a key={item.anchor} href={`#${item.anchor}`} className={item.anchor === "sap-workflow"
                 ? "flex items-center gap-1.5 text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-all whitespace-nowrap"
@@ -1349,7 +1465,7 @@ function App() {
             ))}
           </nav>
 
-          {/* Actions : LinkedIn, GitHub, CV, Admin, SQLite, Theme */}
+          {/* Actions : LinkedIn, GitHub, CV, Langue, Theme */}
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
 
             {/* LinkedIn */}
@@ -1376,27 +1492,10 @@ function App() {
             <button
               onClick={() => setCvModalOpen(true)}
               title={t.navigation.resume}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-100 transition-all shrink-0 whitespace-nowrap">
-              <Icon name="file-text" className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-sm shadow-blue-500/25 hover:opacity-95 hover:scale-105 transition-all shrink-0 whitespace-nowrap">
+              <Icon name="file-text" className="w-3.5 h-3.5" />
               <span>{t.nav.resume}</span>
             </button>
-
-            {/* Bouton Espace Administration SQLite */}
-            <button
-              onClick={openAdminModal}
-              title={t.navigation.admin}
-              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-bold bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-800 hover:bg-amber-100 dark:hover:bg-amber-900/40 transition-all shrink-0 shadow-sm">
-              <Icon name="shield" className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-              <span className="hidden md:inline whitespace-nowrap">{t.nav.admin}</span>
-            </button>
-
-            {/* Statut SQLite */}
-            <div
-              title={t.navigation.database}
-              className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-2 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 shrink-0">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span className="whitespace-nowrap">{t.nav.sqlite_active}</span>
-            </div>
 
             {/* Sélecteur de Langue FR / EN */}
             <button
@@ -1420,16 +1519,24 @@ function App() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={t.navigation.menu}
-              className="xl:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shrink-0">
+              className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shrink-0">
               <Icon name={mobileMenuOpen ? "x" : "menu"} className="w-5 h-5" />
             </button>
           </div>
 
         </div>
 
+        {/* Barre de progression de lecture */}
+        <div className="h-[2px] w-full bg-transparent overflow-hidden">
+          <div
+            className="h-full bg-gradient-to-r from-blue-600 via-indigo-500 to-pink-500 transition-[width] duration-150 ease-out"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
+
         {/* Menu Mobile */}
         {mobileMenuOpen && (
-          <div className="xl:hidden px-4 pt-3 pb-6 glass border-b border-slate-200 dark:border-slate-800 flex flex-col gap-2 max-h-[calc(100vh-5.5rem)] overflow-y-auto animate-fade-in shadow-2xl">
+          <div className="lg:hidden px-4 pt-3 pb-6 glass border-b border-slate-200 dark:border-slate-800 flex flex-col gap-2 max-h-[calc(100vh-5.5rem)] overflow-y-auto animate-fade-in shadow-2xl">
             {t.nav_items.map(item => (
               <a key={item.anchor} href={`#${item.anchor}`} onClick={() => setMobileMenuOpen(false)}
                 className={`px-3.5 py-2.5 rounded-xl text-sm font-semibold flex items-center justify-between ${item.anchor === "sap-workflow"
@@ -1454,7 +1561,7 @@ function App() {
                 <LinkedInIcon className="w-4 h-4" />
                 <span>{t.common.linkedin}</span>
               </a>
-              <a href={data.profile.github} target="_blank" rel="noopener noreferrer" className="flex-1 py-2.5 text-center rounded-lg text-xs font-bold bg-slate-900 dark:bg-slate-800 text-white flex items-center justify-center gap-1.5 shadow-sm">
+              <a href={data.profile.github} target="_blank" rel="noopener noreferrer" className="flex-1 py-2.5 text-center rounded-xl text-xs font-bold bg-slate-900 dark:bg-slate-800 text-white flex items-center justify-center gap-1.5 shadow-sm">
                 <GitHubIcon className="w-4 h-4" />
                 <span>{t.common.github}</span>
               </a>
@@ -1463,13 +1570,6 @@ function App() {
                 <span>{t.nav.resume}</span>
               </button>
             </div>
-            <button onClick={() => { setMobileMenuOpen(false); openAdminModal(); }} className="mt-1 px-3 py-2.5 rounded-xl text-xs font-bold bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800 flex items-center justify-between">
-              <span className="flex items-center gap-2">
-                <Icon name="shield" className="w-4 h-4 text-amber-500" />
-                <span>{t.admin.mobile}</span>
-              </span>
-              <Icon name="lock" className="w-4 h-4" />
-            </button>
           </div>
         )}
       </header>
@@ -1477,101 +1577,122 @@ function App() {
       {/* ======================================================== */}
       {/* HERO SECTION                                             */}
       {/* ======================================================== */}
-      <section id="hero" className="relative pt-20 pb-24 md:pt-28 md:pb-32 overflow-hidden">
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-blue-500/20 via-indigo-500/15 to-purple-500/20 blur-[130px] rounded-full pointer-events-none -z-10"></div>
+      <section id="hero" className="relative pt-14 pb-20 md:pt-20 md:pb-24 overflow-hidden bg-grid-pattern">
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[780px] h-[440px] bg-gradient-to-tr from-blue-500/20 via-indigo-500/15 to-purple-500/20 blur-[130px] rounded-full pointer-events-none -z-10"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
-          {/* Badge disponibilité */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/80 mb-6 animate-float shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-            <span>{tr(data.profile, "availability") || t.hero.badge}</span>
-          </div>
+            {/* Colonne Gauche : Identité, Titre, Bio, CTA */}
+            <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1">
+              {/* Badge disponibilité */}
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/80 mb-5 animate-float shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                <span>{tr(data.profile, "availability") || t.hero.badge}</span>
+              </div>
 
-          {/* Photo de Profil */}
-          <div className="relative mb-6 group">
-            <div className="absolute -inset-1.5 bg-gradient-to-tr from-blue-600 via-indigo-600 to-pink-500 rounded-full blur-lg opacity-70 group-hover:opacity-100 transition duration-500 animate-pulse-glow"></div>
-            <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 rounded-full p-1.5 bg-white dark:bg-slate-900 shadow-2xl ring-4 ring-blue-500/20 overflow-hidden">
-              <img
-                src={data.profile.avatar || "/img/walid.jpg"}
-                alt={data.profile.name}
-                className="w-full h-full object-cover object-top rounded-full group-hover:scale-105 transition-transform duration-500"
-              />
+              {/* Titre Principal */}
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.08] mb-4">
+                <span className="name-shimmer">{data.profile.name}</span>
+              </h1>
+
+              {/* Double Compétence */}
+              <div className="inline-block px-4 sm:px-5 py-2 rounded-2xl bg-gradient-to-r from-blue-100 via-indigo-100 to-purple-100 dark:from-blue-950/60 dark:via-indigo-950/60 dark:to-purple-950/60 text-blue-900 dark:text-blue-200 font-extrabold text-sm sm:text-base md:text-xl mb-5 shadow-sm border border-blue-200/50 dark:border-blue-800/50 max-w-full">
+                {tr(data.profile, "title")}
+              </div>
+
+              {/* Bio */}
+              <p className="text-sm sm:text-base md:text-lg font-normal text-slate-600 dark:text-slate-300 max-w-2xl mb-6 leading-relaxed">
+                {tr(data.profile, "bio")}
+              </p>
+
+              {/* Coordonnées directes */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 text-xs sm:text-sm mb-8">
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300">
+                  <Icon name="map-pin" className="w-3.5 h-3.5 text-rose-500 shrink-0" />
+                  <span>{profileLocation}</span>
+                </div>
+                <a href={`tel:${data.profile.phone}`} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300 hover:text-emerald-600 transition-colors">
+                  <Icon name="phone" className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                  <span>{data.profile.phone}</span>
+                </a>
+                <a href={`mailto:${data.profile.email}`} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                  <Icon name="mail" className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                  <span>{data.profile.email}</span>
+                </a>
+              </div>
+
+              {/* Boutons d'action principaux */}
+              <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-3 w-full">
+                <button
+                  onClick={() => setCvModalOpen(true)}
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-indigo-500/25 btn-magnetic flex items-center justify-center gap-2">
+                  <Icon name="file-text" className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span>{t.hero.view_resume}</span>
+                </button>
+
+                <a
+                  href="#projects"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all flex items-center justify-center gap-2">
+                  <Icon name="layers" className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span>{t.hero.explore_projects} ({data.projects.length})</span>
+                </a>
+
+                <a
+                  href="#contact"
+                  className="w-full sm:w-auto px-5 py-3.5 rounded-2xl text-sm sm:text-base font-semibold glass hover:bg-slate-200/60 dark:hover:bg-slate-800/60 text-slate-800 dark:text-slate-100 transition-all flex items-center justify-center gap-2">
+                  <Icon name="mail" className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" />
+                  <span>{t.nav.contact}</span>
+                </a>
+              </div>
             </div>
-            <div className="absolute bottom-2 right-3 w-5 h-5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full shadow-md" title="Disponible pour opportunités"></div>
-          </div>
 
-          {/* Titre Principal */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-5">
-            <span className="name-shimmer">{data.profile.name}</span>
-          </h1>
+            {/* Colonne Droite : Photo Portrait + Badges d'expertise */}
+            <div className="lg:col-span-5 flex flex-col items-center justify-center order-1 lg:order-2">
+              <div className="relative group">
+                <div className="absolute -inset-2 bg-gradient-to-tr from-blue-600 via-indigo-600 to-pink-500 rounded-full blur-xl opacity-65 group-hover:opacity-95 transition duration-500 animate-pulse-glow"></div>
+                <div className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full p-2 bg-white dark:bg-slate-900 shadow-2xl ring-4 ring-blue-500/20 overflow-hidden">
+                  <img
+                    src={data.profile.avatar || "/img/walid.jpg"}
+                    alt={data.profile.name}
+                    className="w-full h-full object-cover object-top rounded-full group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                {/* Pastille en ligne */}
+                <div className="absolute bottom-3 right-5 w-5 h-5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full shadow-md" title={tr(data.profile, "availability") || t.hero.badge}></div>
 
-          {/* Double Compétence */}
-          <div className="inline-block px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl bg-gradient-to-r from-blue-100 via-indigo-100 to-purple-100 dark:from-blue-950/60 dark:via-indigo-950/60 dark:to-purple-950/60 text-blue-900 dark:text-blue-200 font-extrabold text-sm sm:text-lg md:text-2xl mb-6 shadow-sm border border-blue-200/50 dark:border-blue-800/50 max-w-full">
-            {tr(data.profile, "title")}
-          </div>
+                {/* Badges flottants autour du portrait */}
+                <a href="#sap-workflow" className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-2xl glass border border-blue-200/80 dark:border-blue-800/80 shadow-xl absolute -left-8 top-8 animate-float text-xs font-extrabold text-slate-900 dark:text-white hover:scale-105 transition-transform">
+                  <span className="w-6 h-6 rounded-lg bg-blue-600 text-white flex items-center justify-center">
+                    <Icon name="wrench" className="w-3.5 h-3.5" />
+                  </span>
+                  <span>SAP S/4HANA</span>
+                </a>
 
-          {/* Bio */}
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl font-normal text-slate-600 dark:text-slate-300 max-w-3xl mb-8 leading-relaxed px-2">
-            {tr(data.profile, "bio")}
-          </p>
-
-          {/* Coordonnées & Liens directs */}
-          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-xs sm:text-sm mb-10 max-w-full px-2">
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300">
-              <Icon name="map-pin" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-500 shrink-0" />
-              <span>{profileLocation}</span>
+                <a href="#skills" className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-2xl glass border border-indigo-200/80 dark:border-indigo-800/80 shadow-xl absolute -right-6 bottom-12 animate-float text-xs font-extrabold text-slate-900 dark:text-white hover:scale-105 transition-transform" style={{ animationDelay: "1.2s" }}>
+                  <span className="w-6 h-6 rounded-lg bg-indigo-600 text-white flex items-center justify-center">
+                    <Icon name="code-2" className="w-3.5 h-3.5" />
+                  </span>
+                  <span>Full-Stack</span>
+                </a>
+              </div>
             </div>
-            <a href={`tel:${data.profile.phone}`} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300 hover:text-emerald-600 transition-colors">
-              <Icon name="phone" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500 shrink-0" />
-              <span>{data.profile.phone}</span>
-            </a>
-            <a href={`mailto:${data.profile.email}`} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
-              <Icon name="mail" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-500 shrink-0" />
-              <span>{data.profile.email}</span>
-            </a>
-            <a href={data.profile.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-[#0A66C2] dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all">
-              <LinkedInIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0A66C2] shrink-0" />
-              <span className="font-semibold truncate max-w-[170px] sm:max-w-none">linkedin.com/in/waliddjellali</span>
-            </a>
-            <a href={data.profile.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:scale-105 transition-all">
-              <GitHubIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-              <span className="font-semibold truncate max-w-[130px] sm:max-w-none">github.com/Waliddjla</span>
-            </a>
+
           </div>
 
-          {/* Boutons d'action */}
-          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-8 w-full max-w-3xl px-2">
-            <a
-              href={data.profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-[#0A66C2] hover:bg-[#004182] text-white shadow-lg shadow-blue-500/25 btn-magnetic flex items-center justify-center gap-2">
-              <LinkedInIcon className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span>{t.hero.contact_linkedin}</span>
-              <Icon name="external-link" className="w-3.5 h-3.5 opacity-75" />
-            </a>
-
-            <button
-              onClick={() => setCvModalOpen(true)}
-              className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-indigo-500/25 btn-magnetic flex items-center justify-center gap-2">
-              <Icon name="file-text" className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span>{t.hero.view_resume}</span>
-            </button>
-
-            <a
-              href="#projects"
-              className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all flex items-center justify-center gap-2">
-              <Icon name="layers" className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span>{t.hero.explore_projects} ({data.projects.length})</span>
-            </a>
-
-            <a
-              href="#sap-workflow"
-              className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-semibold glass hover:bg-slate-200/60 dark:hover:bg-slate-800/60 text-slate-800 dark:text-slate-100 transition-all flex items-center justify-center gap-2">
-              <Icon name="layers" className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span>{t.portfolio.sap}</span>
-            </a>
+          {/* Bandeau Highlights Clés */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-14 stagger-children">
+            {(t.hero.highlights || []).map((item, idx) => (
+              <div key={idx} className="reveal p-4 sm:p-5 rounded-2xl glass border border-slate-200/70 dark:border-slate-800/80 flex items-center gap-3.5 card-hover">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-slate-100 dark:bg-slate-800/80 flex items-center justify-center shrink-0">
+                  <Icon name={item.icon} className={`w-5 h-5 ${item.color}`} />
+                </div>
+                <div className="min-w-0">
+                  <span className="block text-sm sm:text-base font-extrabold text-slate-900 dark:text-white truncate">{item.value}</span>
+                  <span className="block text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 truncate">{item.label}</span>
+                </div>
+              </div>
+            ))}
           </div>
 
         </div>
@@ -1595,11 +1716,13 @@ function App() {
             </p>
           </div>
 
-          <div className="space-y-8 stagger-children">
+          <div className="relative md:pl-8 space-y-8 stagger-children">
+            <div className="hidden md:block absolute left-3 top-4 bottom-4 w-0.5 bg-gradient-to-b from-blue-500 via-indigo-500/50 to-transparent"></div>
             {data.experiences.map((exp, idx) => (
               <div
                 key={exp.id || idx}
-                className="reveal-left p-8 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 card-hover transition-all">
+                className="reveal-left relative p-7 sm:p-8 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 card-hover transition-all">
+                <span className={`hidden md:block absolute -left-[26px] top-9 w-3.5 h-3.5 rounded-full border-2 border-white dark:border-slate-900 shadow-sm ${idx === 0 ? "bg-blue-600 timeline-dot-ping" : "bg-slate-400 dark:bg-slate-600"}`}></span>
 
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                   <div>
@@ -1726,7 +1849,7 @@ function App() {
                 return (
                   <div
                     key={mod.id}
-                    className={`reveal-scale p-6 sm:p-7 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between transition-all duration-300 shadow-xl shadow-slate-900/5 hover:-translate-y-1 ${cardBorder}`}
+                    className={`fade-in p-6 sm:p-7 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between transition-all duration-300 shadow-xl shadow-slate-900/5 hover:-translate-y-1 ${cardBorder}`}
                   >
                     <div>
                       {/* En-tête de la carte */}
@@ -1862,23 +1985,31 @@ function App() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
 
-            {t.skill_groups.map(group => (
-              <div key={group.category} className={`reveal-scale p-7 rounded-3xl glass border card-hover ${group.frame}`}>
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 ${group.badge}`}>
-                  <Icon name={group.icon} className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{group.label}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {data.skills.filter(skill => skill.category === group.category).map(skill => (
-                    <span key={skill.name} className={`px-3 py-1 rounded-xl text-xs font-semibold ${group.pill}`}>
-                      {skillName(skill)}
+            {t.skill_groups.map(group => {
+              const items = data.skills.filter(skill => skill.category === group.category);
+              return (
+                <div key={group.category} className={`reveal-scale p-7 rounded-3xl glass border card-hover flex flex-col ${group.frame}`}>
+                  <div className="flex items-center justify-between mb-5">
+                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${group.badge}`}>
+                      <Icon name={group.icon} className="w-6 h-6" />
+                    </div>
+                    <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">
+                      {items.length}
                     </span>
-                  ))}
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{group.label}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {items.map(skill => (
+                      <span key={skill.name} className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-transform hover:scale-105 ${group.pill}`}>
+                        {skillName(skill)}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
 
           </div>
 
@@ -1926,8 +2057,7 @@ function App() {
               return (
                 <article
                   key={p.id || idx}
-                  style={{ transitionDelay: `${idx * 90}ms` }}
-                  className="reveal card-hover rounded-3xl overflow-hidden glass border border-slate-200/80 dark:border-slate-800 flex flex-col group">
+                  className="fade-in card-hover rounded-3xl overflow-hidden glass border border-slate-200/80 dark:border-slate-800 flex flex-col group">
 
                   {/* Image & Badge */}
                   <div className="relative h-60 overflow-hidden bg-slate-900">
@@ -2085,7 +2215,7 @@ function App() {
                 href={repo.html_url || `https://github.com/Waliddjla/${repo.name}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="reveal p-6 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 hover:border-blue-500/50 flex flex-col justify-between card-hover group transition-all">
+                className="fade-in p-6 rounded-3xl glass border border-slate-200/80 dark:border-slate-800 hover:border-blue-500/50 flex flex-col justify-between card-hover group transition-all">
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <span className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
@@ -2343,10 +2473,6 @@ function App() {
               <Icon name="file-text" className="w-4 h-4 text-indigo-500" />
               <span>{t.common.resume}</span>
             </button>
-            <button onClick={openAdminModal} className="hover:text-amber-600 dark:hover:text-amber-400 flex items-center gap-1.5 transition-colors font-bold text-amber-600 dark:text-amber-400">
-              <Icon name="shield" className="w-4 h-4" />
-              <span>{t.admin.title}</span>
-            </button>
             <a href="#hero" className="hover:text-blue-600 flex items-center gap-1 transition-colors font-medium">
               <Icon name="arrow-up" className="w-4 h-4" />
               <span>{t.common.top}</span>
@@ -2408,7 +2534,7 @@ function App() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-5">
                   <p className="text-xs sm:text-sm text-white font-medium drop-shadow-md">
-                    {selectedProjectModal.description}
+                    {tr(selectedProjectModal, "description")}
                   </p>
                 </div>
               </div>
@@ -2604,7 +2730,7 @@ function App() {
                 <div className="flex items-center gap-2 shrink-0">
                   {languageToggle}
                   <button type="button" aria-label={t.common.close}
-                    onClick={() => setAdminModalOpen(false)}
+                    onClick={closeAdminModal}
                     className="w-9 h-9 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-600 dark:text-slate-300">
                     <Icon name="x" className="w-4 h-4" />
                   </button>
@@ -2872,6 +2998,17 @@ function App() {
                             className="w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm"
                           />
                         </div>
+                      </div>
+
+                      <div>
+                        <label htmlFor="editingProfileForm-avatar" className="block text-xs font-bold mb-1">{t.admin.avatar_url}</label>
+                        <input id="editingProfileForm-avatar"
+                          type="text"
+                          value={editingProfileForm.avatar}
+                          onChange={e => setEditingProfileForm({ ...editingProfileForm, avatar: e.target.value })}
+                          placeholder="/img/walid.jpg"
+                          className="w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm"
+                        />
                       </div>
 
                       <div>
@@ -3314,9 +3451,39 @@ function App() {
         </div>
       )}
 
+      {/* BOUTON RETOUR EN HAUT FLOTTANT */}
+      {showBackToTop && (
+        <a
+          href="#hero"
+          aria-label={t.common.top}
+          title={t.common.top}
+          className="fixed bottom-6 right-6 z-30 w-11 h-11 rounded-2xl glass border border-slate-200 dark:border-slate-700 shadow-lg flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:-translate-y-1 transition-all no-print">
+          <Icon name="arrow-up" className="w-5 h-5" />
+        </a>
+      )}
+
+      {/* BARRE DISCRÈTE SESSION ADMIN ACTIVE (Visible uniquement une fois connecté) */}
+      {isAdminAuth && !adminModalOpen && (
+        <div className="fixed bottom-6 left-6 z-40 flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-slate-900/95 dark:bg-slate-800/95 text-white border border-amber-500/40 shadow-xl backdrop-blur-md no-print animate-fade-in">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <button
+            onClick={openAdminModal}
+            className="text-xs font-bold hover:text-amber-300 transition-colors flex items-center gap-1.5">
+            <Icon name="shield" className="w-3.5 h-3.5 text-amber-400" />
+            <span>{t.admin.session_badge}</span>
+          </button>
+          <button
+            onClick={handleAdminLogout}
+            title={t.admin.logout}
+            className="ml-1 p-1 rounded-lg hover:bg-slate-700 text-slate-400 hover:text-rose-400 transition-colors">
+            <Icon name="log-out" className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+
       {/* TOAST NOTIFICATION */}
       {toastLabel && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-4 rounded-2xl bg-emerald-600 text-white shadow-xl shadow-emerald-600/30 animate-fade-in pointer-events-none">
+        <div className="fixed bottom-20 right-6 z-50 flex items-center gap-3 px-5 py-4 rounded-2xl bg-emerald-600 text-white shadow-xl shadow-emerald-600/30 animate-fade-in pointer-events-none">
           <Icon name="check-circle" className="w-5 h-5 shrink-0" />
           <span role="status" className="text-sm font-semibold">
             {typeof toastLabel === "function" ? toastLabel(...toastMessage.args) : toastLabel}

@@ -160,6 +160,7 @@ function initDatabase() {
   try { db.exec("ALTER TABLE messages ADD COLUMN read INTEGER DEFAULT 0;"); } catch (e) {}
   addTranslationColumns('profile', ['title_en', 'bio_en', 'availability_en', 'location_en', 'avatar']);
   addTranslationColumns('experiences', ['role_en', 'description_en', 'bullets_en', 'period_en']);
+  addTranslationColumns('skills', ['name_en']);
   addTranslationColumns('education', ['degree_en', 'details_en']);
   addTranslationColumns('projects', projectTranslationFields);
 
@@ -191,7 +192,96 @@ function initDatabase() {
   } catch (e) {}
 
   backfillTranslations();
+  syncSkills();
   syncFeaturedProjects();
+}
+
+const curatedSkills = [
+  // 1. SAP & ERP
+  { cat: 'SAP & ERP', name: 'SAP S/4HANA 2023', name_en: 'SAP S/4HANA 2023', order: 1 },
+  { cat: 'SAP & ERP', name: 'SAP PM (Plant Maintenance)', name_en: 'SAP PM (Plant Maintenance)', order: 2 },
+  { cat: 'SAP & ERP', name: 'SAP MM (Materials Management)', name_en: 'SAP MM (Materials Management)', order: 3 },
+  { cat: 'SAP & ERP', name: 'SAP QM (Quality Management)', name_en: 'SAP QM (Quality Management)', order: 4 },
+  { cat: 'SAP & ERP', name: 'SAP Fiori', name_en: 'SAP Fiori', order: 5 },
+  { cat: 'SAP & ERP', name: 'OData Services & Intégration', name_en: 'OData Services & Integration', order: 6 },
+  { cat: 'SAP & ERP', name: 'Business Blueprint (BBP)', name_en: 'Business Blueprint (BBP)', order: 7 },
+  { cat: 'SAP & ERP', name: 'Maintenance Préventive & Étalonnage', name_en: 'Preventive Maintenance & Calibration', order: 8 },
+  { cat: 'SAP & ERP', name: 'Migration & Données de Base', name_en: 'Master Data Migration', order: 9 },
+
+  // 2. Frontend & Desktop
+  { cat: 'Frontend', name: 'React', name_en: 'React', order: 1 },
+  { cat: 'Frontend', name: 'Next.js', name_en: 'Next.js', order: 2 },
+  { cat: 'Frontend', name: 'TypeScript', name_en: 'TypeScript', order: 3 },
+  { cat: 'Frontend', name: 'JavaScript (ES6+)', name_en: 'JavaScript (ES6+)', order: 4 },
+  { cat: 'Frontend', name: 'Electron (Desktop Apps)', name_en: 'Electron (Desktop Apps)', order: 5 },
+  { cat: 'Frontend', name: 'Tailwind CSS', name_en: 'Tailwind CSS', order: 6 },
+  { cat: 'Frontend', name: 'HTML5 & CSS3', name_en: 'HTML5 & CSS3', order: 7 },
+  { cat: 'Frontend', name: 'Bootstrap', name_en: 'Bootstrap', order: 8 },
+
+  // 3. Backend & APIs
+  { cat: 'Backend & Languages', name: 'Node.js', name_en: 'Node.js', order: 1 },
+  { cat: 'Backend & Languages', name: 'NestJS', name_en: 'NestJS', order: 2 },
+  { cat: 'Backend & Languages', name: 'Fastify', name_en: 'Fastify', order: 3 },
+  { cat: 'Backend & Languages', name: 'Express.js', name_en: 'Express.js', order: 4 },
+  { cat: 'Backend & Languages', name: 'RESTful APIs', name_en: 'RESTful APIs', order: 5 },
+  { cat: 'Backend & Languages', name: 'PHP & Laravel', name_en: 'PHP & Laravel', order: 6 },
+  { cat: 'Backend & Languages', name: 'Python & Django', name_en: 'Python & Django', order: 7 },
+  { cat: 'Backend & Languages', name: 'Java', name_en: 'Java', order: 8 },
+
+  // 4. Databases & Storage
+  { cat: 'Databases & Storage', name: 'SQLite', name_en: 'SQLite', order: 1 },
+  { cat: 'Databases & Storage', name: 'MySQL', name_en: 'MySQL', order: 2 },
+  { cat: 'Databases & Storage', name: 'SQL Server', name_en: 'SQL Server', order: 3 },
+  { cat: 'Databases & Storage', name: 'MongoDB', name_en: 'MongoDB', order: 4 },
+  { cat: 'Databases & Storage', name: 'Firebase', name_en: 'Firebase', order: 5 },
+
+  // 5. Systems, AD, Synology & Networking
+  { cat: 'Systems & Infrastructure', name: 'Active Directory (AD / GPO / DNS)', name_en: 'Active Directory (AD / GPO / DNS)', order: 1 },
+  { cat: 'Systems & Infrastructure', name: 'Windows Server', name_en: 'Windows Server', order: 2 },
+  { cat: 'Systems & Infrastructure', name: 'Synology NAS (DSM / RAID / Backups)', name_en: 'Synology NAS (DSM / RAID / Backups)', order: 3 },
+  { cat: 'Systems & Infrastructure', name: 'IT Troubleshooting (Systèmes & Réseau)', name_en: 'IT Troubleshooting (Systems & Network)', order: 4 },
+  { cat: 'Systems & Infrastructure', name: 'Linux Ubuntu', name_en: 'Linux Ubuntu', order: 5 },
+  { cat: 'Systems & Infrastructure', name: 'Cisco Networking (CCNA)', name_en: 'Cisco Networking (CCNA)', order: 6 },
+
+  // 6. DevOps & Deployment
+  { cat: 'DevOps & Deployment', name: 'PM2 (Process Manager)', name_en: 'PM2 (Process Manager)', order: 1 },
+  { cat: 'DevOps & Deployment', name: 'Nginx (Reverse Proxy)', name_en: 'Nginx (Reverse Proxy)', order: 2 },
+  { cat: 'DevOps & Deployment', name: 'SSL / TLS (HTTPS & Certbot)', name_en: 'SSL / TLS (HTTPS & Certbot)', order: 3 },
+  { cat: 'DevOps & Deployment', name: 'Docker', name_en: 'Docker', order: 4 },
+  { cat: 'DevOps & Deployment', name: 'Git & GitHub', name_en: 'Git & GitHub', order: 5 }
+];
+
+function syncSkills() {
+  const renames = [
+    ['Express / REST APIs', 'Express.js'],
+    ['Maintenance Préventive & Ordres de Travail', 'Maintenance Préventive & Étalonnage'],
+    ['Migration & Master Data', 'Migration & Données de Base']
+  ];
+  const renameStmt = db.prepare('UPDATE skills SET name = ? WHERE name = ?');
+  const findSkill = db.prepare('SELECT id FROM skills WHERE name = ? ORDER BY id');
+  const updateSkill = db.prepare('UPDATE skills SET category = ?, name_en = ?, order_index = ? WHERE id = ?');
+  const insertSkill = db.prepare('INSERT INTO skills (category, name, name_en, order_index) VALUES (?, ?, ?, ?)');
+
+  db.exec('BEGIN IMMEDIATE');
+  try {
+    for (const [oldName, newName] of renames) {
+      if (!findSkill.get(newName)) {
+        renameStmt.run(newName, oldName);
+      }
+    }
+    for (const s of curatedSkills) {
+      const existing = findSkill.get(s.name);
+      if (existing) {
+        updateSkill.run(s.cat, s.name_en, s.order, existing.id);
+      } else {
+        insertSkill.run(s.cat, s.name, s.name_en, s.order);
+      }
+    }
+    db.exec('COMMIT');
+  } catch (err) {
+    db.exec('ROLLBACK');
+    throw err;
+  }
 }
 
 function backfillTranslations() {
@@ -421,44 +511,12 @@ function seedData() {
 
   // 3. Compétences (Skills)
   const insertSkill = db.prepare(`
-    INSERT INTO skills (category, name, order_index)
-    VALUES (?, ?, ?)
+    INSERT INTO skills (category, name, name_en, order_index)
+    VALUES (?, ?, ?, ?)
   `);
 
-  const skillsList = [
-    { cat: 'SAP & ERP', name: 'SAP S/4HANA 2023', order: 1 },
-    { cat: 'SAP & ERP', name: 'SAP PM (Plant Maintenance)', order: 2 },
-    { cat: 'SAP & ERP', name: 'SAP MM (Materials Management)', order: 3 },
-    { cat: 'SAP & ERP', name: 'SAP Fiori', order: 4 },
-    { cat: 'SAP & ERP', name: 'Business Blueprint (BBP)', order: 5 },
-    { cat: 'SAP & ERP', name: 'Maintenance Préventive & Ordres de Travail', order: 6 },
-    { cat: 'SAP & ERP', name: 'Migration & Master Data', order: 7 },
-    { cat: 'Frontend', name: 'React', order: 1 },
-    { cat: 'Frontend', name: 'Next.js', order: 2 },
-    { cat: 'Frontend', name: 'TypeScript', order: 3 },
-    { cat: 'Frontend', name: 'JavaScript (ES6+)', order: 4 },
-    { cat: 'Frontend', name: 'Tailwind CSS', order: 5 },
-    { cat: 'Frontend', name: 'HTML5 & CSS3', order: 6 },
-    { cat: 'Frontend', name: 'Bootstrap', order: 7 },
-    { cat: 'Backend & Languages', name: 'Node.js', order: 1 },
-    { cat: 'Backend & Languages', name: 'Express / REST APIs', order: 2 },
-    { cat: 'Backend & Languages', name: 'PHP & Laravel', order: 3 },
-    { cat: 'Backend & Languages', name: 'Python & Django', order: 4 },
-    { cat: 'Backend & Languages', name: 'Java', order: 5 },
-    { cat: 'Databases & Systems', name: 'SQLite', order: 1 },
-    { cat: 'Databases & Systems', name: 'MySQL', order: 2 },
-    { cat: 'Databases & Systems', name: 'SQL Server', order: 3 },
-    { cat: 'Databases & Systems', name: 'MongoDB', order: 4 },
-    { cat: 'Databases & Systems', name: 'Firebase', order: 5 },
-    { cat: 'Databases & Systems', name: 'Docker', order: 6 },
-    { cat: 'Databases & Systems', name: 'Linux Ubuntu', order: 7 },
-    { cat: 'Databases & Systems', name: 'Windows Server', order: 8 },
-    { cat: 'Databases & Systems', name: 'Git & GitHub', order: 9 },
-    { cat: 'Databases & Systems', name: 'Cisco Networking (CCNA)', order: 10 }
-  ];
-
-  for (const s of skillsList) {
-    insertSkill.run(s.cat, s.name, s.order);
+  for (const s of curatedSkills) {
+    insertSkill.run(s.cat, s.name, s.name_en, s.order);
   }
 
   // 4. Éducation & Certifications
