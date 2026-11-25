@@ -165,11 +165,6 @@ function initDatabase() {
   addTranslationColumns('education', ['degree_en', 'details_en']);
   addTranslationColumns('projects', ['repository_note', ...projectTranslationFields]);
 
-  // Mettre à jour l'avatar de profil
-  try {
-    db.prepare(`UPDATE profile SET avatar = COALESCE(avatar, '/img/walid.jpg') WHERE id = 1`).run();
-  } catch (e) {}
-
   // Seeder le profil s'il n'existe pas
   const profileCount = db.prepare('SELECT COUNT(*) as count FROM profile').get().count;
   if (profileCount === 0) {
@@ -182,12 +177,13 @@ function initDatabase() {
     seedSapData();
   }
 
-  // Garantir que les URLs officielles LinkedIn et GitHub sont toujours à jour
+  // Garantir que les URLs officielles LinkedIn, GitHub et avatar sont toujours à jour
   try {
     db.prepare(`
       UPDATE profile 
       SET linkedin = 'https://www.linkedin.com/in/waliddjellali/',
-          github = 'https://github.com/Waliddjla'
+          github = 'https://github.com/Waliddjla',
+          avatar = COALESCE(avatar, '/img/walid.jpg')
       WHERE id = 1
     `).run();
   } catch (e) {}
