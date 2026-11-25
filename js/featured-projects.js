@@ -1,7 +1,7 @@
 /**
  * featured-projects.js
- * Catalogue enrichi de projets d'ingénierie et de réalisations professionnelles de Walid Djellali
- * Inclut les études de cas approfondies : contexte industriel, architecture technique, défis, métriques d'impact.
+ * Catalogue enrichi de 11 projets d'ingénierie et réalisations professionnelles de Walid Djellali
+ * Inclut pour chaque projet : identification (client, rôle, période), fonctionnalités, et étude de cas complète FR/EN.
  */
 
 const featuredProjects = [
@@ -12,11 +12,11 @@ const featuredProjects = [
     category_label: "Full-Stack & IT Management",
     tagline: "Système centralisé de gouvernance IT, suivi des incidents SAP S/4HANA et traçabilité du parc d'équipements industriels.",
     description: "Plateforme d'entreprise centralisant la gestion des tickets IT et flux SAP PM/MM, la planification Kanban des tâches d'ingénierie, la cartographie du parc informatique et le suivi des achats/ventes avec traçabilité complète.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
     tags: ["React 18", "TypeScript", "Ant Design", "Node.js", "Express", "Sequelize", "MySQL", "PowerShell", "SAP BAPI"],
     github_url: "https://github.com/youcefsenouci/my-orion",
     demo_url: "https://github.com/youcefsenouci/my-orion",
-    repository_note: "Projet d'entreprise — architecture de production et modules opérationnels.",
+    repository_note: "Projet d'entreprise — architecture de production et modules opérationnels chez Orionlab.",
     features: [
       "Gestion centralisée des tickets IT & incidents SAP PM/MM avec SLA et priorisation dynamique",
       "Tableau de bord Kanban temps réel pour la planification des interventions et sprints techniques",
@@ -28,7 +28,7 @@ const featuredProjects = [
     case_study: {
       client: "Orionlab / Industrie Pharmaceutique & IT",
       role: "Lead Full-Stack Developer & SAP Business Analyst",
-      period: "2024 - 2025",
+      period: "2024 – 2025",
       kpis: [
         { label: "Temps de résolution incidents", value: "-42%", icon: "clock" },
         { label: "Équipements tracés", value: "650+", icon: "hard-drive" },
@@ -43,6 +43,83 @@ const featuredProjects = [
       ],
       solution: "Conception d'un middleware d'indexation et de mise en cache, normalisation des schémas de données relationnels avec clés étrangères strictes, et intégration d'une interface utilisateur bilingue (FR/EN) favorisant une adoption immédiate par les équipes terrain et administratives.",
       impact: "Suppression totale des demandes informelles par messagerie, traçabilité exhaustive à 100% des postes informatiques attribués, et accélération de la coordination entre équipes techniques et gestionnaires SAP."
+    }
+  },
+  {
+    id: 107,
+    title: "SAP-Tools — Suite d'Automatisation & Audit du Parc Windows",
+    category: "sap",
+    category_label: "SAP, DevOps & Infrastructure IT",
+    tagline: "Plateforme d'automatisation des déploiements SAP GUI, inventaire matériel à chaud et sécurisation Active Directory.",
+    description: "Boîte à outils d'administration système distribuée utilisant Ansible, WinRM et PowerShell. Permet l'audit matériel/logiciel exhaustif à distance, le déploiement silencieux des clients SAP GUI et le durcissement Active Directory sans interruption utilisateur.",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+    tags: ["Ansible", "PowerShell", "WinRM", "SAP GUI", "Python", "Docker", "Windows Server", "Active Directory"],
+    github_url: "https://github.com/Waliddjla/SAP-Tools",
+    demo_url: "https://github.com/Waliddjla/SAP-Tools",
+    repository_note: "Outil d'administration conçu pour les environnements industriels et postes SAP.",
+    features: [
+      "Inventaire matériel et logiciel automatisé sans installation d'agent lourd (Agentless via WinRM)",
+      "Déploiement massif et silencieux des suites logicielles, certificats et clients SAP GUI",
+      "Génération de rapports d'audit de conformité sécurité et détection des versions obsolètes",
+      "Exécution de playbooks Ansible avec menus de pilotage interactifs pour techniciens support",
+      "Gestion centralisée des correctifs système, GPO et conformité des postes de travail d'usine"
+    ],
+    case_study: {
+      client: "Orionlab / Infrastructures Industrielles & Postes SAP",
+      role: "Ingénieur Systèmes & Automatisation",
+      period: "2024 – 2025",
+      kpis: [
+        { label: "Temps d'audit parc", value: "-80%", icon: "timer" },
+        { label: "Postes administrés", value: "200+", icon: "monitor" },
+        { label: "Taux de conformité", value: "100%", icon: "check-circle-2" }
+      ],
+      context: "La maintenance manuelle d'un parc informatique distribué connecté aux postes de fabrication et terminaux SAP engendrait des retards et des risques de disparité logicielle. Un outil d'orchestration rapide et non intrusif était requis.",
+      architecture: "Conteneur Docker maître sous Linux hébergeant les playbooks Ansible et scripts d'orchestration Python. Communication sécurisée HTTPS/TLS via WinRM (Windows Remote Management) avec les serveurs et stations de travail Windows cibles.",
+      challenges: [
+        "Traversée des pare-feux et gestion des autorisations Kerberos / Active Directory sans compromettre la sécurité.",
+        "Prise en charge de versions hétérogènes de Windows (Windows 10, 11, Windows Server 2016 à 2022).",
+        "Garantie de non-régression et exécution sans redémarrage intempestif des machines de production."
+      ],
+      solution: "Scripts PowerShell idempotents validant l'état cible avant chaque modification, gestion centralisée des inventaires dynamiques et génération automatique de rapports HTML/CSV exploitables par la direction IT.",
+      impact: "Réduction drastique du temps d'inventaire de 3 jours à moins de 20 minutes, élimination des failles de sécurité liées aux logiciels non mis à jour et standardisation totale du parc SAP."
+    }
+  },
+  {
+    id: 111,
+    title: "SAPAN / DA Analyse — Pilotage Achats SAP MM via OData",
+    category: "sap",
+    category_label: "SAP MM & OData Analytics",
+    tagline: "Tableau de bord décisionnel connecté en temps réel aux services OData SAP pour le suivi des demandes et commandes d'achat.",
+    description: "Application analytique développée pour les équipes approvisionnement et direction chez ACG SIM : extraction temps réel des Demandes d'Achat (DA) et Commandes (MM) via API OData SAP, détection des goulots d'étranglement et analyse des délais fournisseurs.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    tags: ["SAP MM", "SAP OData", "React", "TypeScript", "Node.js", "REST API", "Analytics", "Procurement"],
+    github_url: null,
+    demo_url: null,
+    repository_note: "Application métier interne développée en environnement de production SAP chez ACG SIM SPA.",
+    features: [
+      "Consommation directe des flux SAP OData pour synchroniser Demandes d'Achat (PR) et Commandes (PO)",
+      "Suivi du cycle de validation hiérarchique (Release Strategy) et alertes sur dossiers bloqués",
+      "Calcul automatique des délais moyens entre création DA, approbation et réception marchandise (MIGO)",
+      "Filtres dynamiques par groupe d'acheteurs, division, fournisseur et statut de livraison",
+      "Export instantané des indicateurs achats pour les comités de pilotage direction"
+    ],
+    case_study: {
+      client: "ACG SIM SPA — Direction Achats & Supply Chain",
+      role: "SAP Functional Support & Full-Stack Developer",
+      period: "2024",
+      kpis: [
+        { label: "Visibilité flux achats", value: "Temps réel", icon: "activity" },
+        { label: "Dossiers DA suivis", value: "1 500+", icon: "package" },
+        { label: "Délai validation réduit", value: "-35%", icon: "clock" }
+      ],
+      context: "Les responsables achats et demandeurs manquaient de visibilité consolidée sur l'état d'avancement des Demandes d'Achat (ME51N/ME5A) dans SAP MM sans multiplier les extractions Excel manuelles.",
+      architecture: "Passerelle Node.js sécurisée interrogeant les services OData exposés par SAP, avec mise en cache intelligente et normalisation JSON vers une interface analytique React interactive.",
+      challenges: [
+        "Authentification sécurisée et pagination efficace des volumes importants d'entités OData SAP.",
+        "Modélisation claire des statuts de validation multi-niveaux et des écarts entre quantités commandées et réceptionnées."
+      ],
+      solution: "Création d'un connecteur OData modulaire avec agrégation côté serveur et vue consolidée par étape du workflow d'approvisionnement SAP MM.",
+      impact: "Suppression des extractions manuelles quotidiennes, identification immédiate des retards d'approbation et meilleure coordination entre maintenance, magasin et acheteurs."
     }
   },
   {
@@ -86,42 +163,81 @@ const featuredProjects = [
     }
   },
   {
-    id: 107,
-    title: "SAP-Tools — Suite d'Automatisation & Audit du Parc Windows",
-    category: "sap",
-    category_label: "DevOps & Infrastructure IT",
-    tagline: "Plateforme d'automatisation des déploiements, inventaire matériel à chaud et sécurisation de parcs industriels Windows.",
-    description: "Boîte à outils d'administration système distribuée utilisant Ansible, WinRM et PowerShell. Permet l'audit matériel/logiciel exhaustif à distance, le déploiement silencieux d'applications métier et le durcissement de la sécurité sans interruption utilisateur.",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
-    tags: ["Ansible", "PowerShell", "WinRM", "Python", "Bash", "Docker", "Windows Server", "Active Directory"],
-    github_url: "https://github.com/Waliddjla/SAP-Tools",
-    demo_url: "https://github.com/Waliddjla/SAP-Tools",
-    repository_note: "Outil d'administration conçu pour les environnements industriels et pharmaceutiques.",
+    id: 108,
+    title: "Plateforme IoT de Géolocalisation & Télématique Flotte",
+    category: "software",
+    category_label: "Node.js, IoT & Télématique",
+    tagline: "Ingestion temps réel de données GPS et boîtiers CAN industriels pour le suivi et l'éco-conduite de flottes de véhicules.",
+    description: "Système télématique de haute précision développé chez Ide-Net : écoute de flux de paquets télématiques de centaines de boîtiers GPS/CAN, détection de consommation de carburant, freinages brusques, géofencing et restitution cartographique temps réel.",
+    image: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1200&q=80",
+    tags: ["Node.js", "TypeScript", "TCP/UDP Sockets", "GPS & CAN Bus", "PostgreSQL", "GIS / Leaflet", "Docker", "REST API"],
+    github_url: null,
+    demo_url: null,
+    repository_note: "Plateforme propriétaire développée en environnement industriel chez SARL Ide-Net Géolocalisation.",
     features: [
-      "Inventaire matériel et logiciel automatisé sans installation d'agent lourd (Agentless via WinRM)",
-      "Déploiement massif et silencieux des suites logicielles, certificats et clients SAP GUI",
-      "Génération de rapports d'audit de conformité sécurité et détection des versions obsolètes",
-      "Exécution de playbooks Ansible avec menus de pilotage interactifs pour techniciens support",
-      "Gestion centralisée des correctifs système et conformité des postes de travail d'usine"
+      "Serveur d'ingestion TCP/UDP haut débit traitant les trames binaires GPS et signaux du bus CAN",
+      "Décodage en microsecondes des paramètres véhicule (vitesse, régime moteur, jauge carburant, température)",
+      "Moteur de géofencing spatial avec déclenchement d'alertes instantanées (sorties de zone, excès de vitesse)",
+      "Cartographie interactive temps réel avec affichage de l'historique précis des trajets parcourus",
+      "Rapports automatisés de consommation, score d'éco-conduite et temps d'arrêt moteur allumé",
+      "Architecture distribuée conteneurisée prête pour la montée en charge multi-clients"
     ],
     case_study: {
-      client: "Infrastructures Industrielles & Postes SAP",
-      role: "Ingénieur Systèmes & Automatisation",
+      client: "SARL Ide-Net Géolocalisation / Flottes Logistiques",
+      role: "Ingénieur Logiciel Full-Stack & Systèmes IoT",
+      period: "2023 – 2024",
+      kpis: [
+        { label: "Fréquence ingestion données", value: "10 000+ trames/min", icon: "activity" },
+        { label: "Économie carburant client", value: "-18%", icon: "fuel" },
+        { label: "Latence affichage carte", value: "< 250ms", icon: "map-pin" }
+      ],
+      context: "Les transporteurs et gestionnaires de flotte avaient besoin d'une vue continue et sans faille sur la localisation, l'état mécanique et la consommation de carburant de leurs véhicules pour réduire les coûts et sécuriser les marchandises.",
+      architecture: "Pipeline d'ingestion Node.js asynchrone écoutant sur des sockets réseau bas niveau, parseur binaire écrit en TypeScript, stockage optimisé time-series dans PostgreSQL, et API REST alimentant une interface cartographique interactive Leaflet.",
+      challenges: [
+        "Gestion des déconnexions réseau en zones blanches et bufferisation des trames sur le boîtier embarqué.",
+        "Parsing sans blocage d'un flux massif de messages de protocoles variés (Teltonika, Ruptela, Queclink).",
+        "Calcul géométrique performant d'inclusion dans des polygones complexes pour les alertes de zones."
+      ],
+      solution: "Traitement par flux asynchrones (Node.js Streams), indexation spatiale avec requêtes géographiques optimisées, et mise en file d'attente résiliente assurant zéro perte de télémétrie.",
+      impact: "Suivi fiable de plusieurs centaines de véhicules 24h/24, réduction prouvée de 18% des dépenses de carburant grâce à l'éco-conduite et gain précieux de réactivité lors des incidents de livraison."
+    }
+  },
+  {
+    id: 112,
+    title: "SIMswitch — Gestion du Parc Informatique & Infrastructure",
+    category: "sap",
+    category_label: "Infrastructure IT & CMDB",
+    tagline: "Inventaire centralisé des équipements réseau, serveurs, postes utilisateurs et suivi des décharges matérielles.",
+    description: "Application complète de gestion du parc IT développée pour ACG SIM SPA : cartographie des switchs, serveurs, imprimantes, postes et pointeuses, suivi des procédures d'installation et génération des fiches de décharge matériel.",
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80",
+    tags: ["React", "JavaScript", "Datta Able UI", "Node.js", "MySQL", "IT Inventory", "Networking", "CMDB"],
+    github_url: "https://github.com/Waliddjla/SIMswitch_react",
+    demo_url: "https://github.com/Waliddjla/SIMswitch_react",
+    repository_note: "Application CMDB & gestion d'actifs IT déployée pour l'infrastructure d'ACG SIM SPA.",
+    features: [
+      "Inventaire exhaustif des équipements IT (Switchs Cisco, Serveurs, PC, Imprimantes, Écrans, Pointeuses)",
+      "Affectation nominative aux collaborateurs avec génération et traçabilité des fiches de décharge",
+      "Base de procédures techniques d'installation, plan d'adressage IP et affectation des ports switch",
+      "Tableau de bord global de santé et répartition du parc par site et catégorie d'équipement",
+      "Gestion des accès utilisateurs et historique complet des mouvements et maintenances matérielles"
+    ],
+    case_study: {
+      client: "ACG SIM SPA — Département Systèmes & Réseaux",
+      role: "IT Systems Engineer & Full-Stack Developer",
       period: "2024",
       kpis: [
-        { label: "Temps d'audit parc", value: "-80%", icon: "timer" },
-        { label: "Postes administrés", value: "200+", icon: "monitor" },
-        { label: "Taux de conformité", value: "100%", icon: "check-circle-2" }
+        { label: "Actifs IT tracés", value: "400+", icon: "server" },
+        { label: "Précision inventaire", value: "100%", icon: "check-circle-2" },
+        { label: "Temps recherche panne", value: "-50%", icon: "zap" }
       ],
-      context: "La maintenance manuelle d'un parc informatique distribué connecté aux postes de fabrication et terminaux SAP engendrait des retards et des risques de disparité logicielle. Un outil d'orchestration rapide et non intrusif était requis.",
-      architecture: "Conteneur Docker maître sous Linux hébergeant les playbooks Ansible et scripts d'orchestration Python. Communication sécurisée HTTPS/TLS via WinRM (Windows Remote Management) avec les serveurs et stations de travail Windows cibles.",
+      context: "L'inventaire du parc informatique et des baies de brassage reposait sur des fichiers dispersés, compliquant le diagnostic réseau, le suivi des attributions de matériel et les audits annuels d'actifs.",
+      architecture: "Interface React construite autour d'une ergonomie modulaire type Datta Able, couplée à une API REST et une base relationnelle structurant les équipements, affectations employés, ports réseau et procédures.",
       challenges: [
-        "Traversée des pare-feux et gestion des autorisations Kerberos / Active Directory sans compromettre la sécurité.",
-        "Prise en charge de versions hétérogènes de Windows (Windows 10, 11, Windows Server 2016 à 2022).",
-        "Garantie de non-régression et exécution sans redémarrage intempestif des machines de production."
+        "Modéliser fidèlement les liens entre équipements réseau (switchs/VLAN), serveurs et postes finaux.",
+        "Centraliser la traçabilité juridique des remises et restitutions d'équipements (décharges signées)."
       ],
-      solution: "Scripts PowerShell idempotents validant l'état cible avant chaque modification, gestion centralisée des inventaires dynamiques et génération automatique de rapports HTML/CSV exploitables par la direction IT.",
-      impact: "Réduction drastique du temps d'inventaire de 3 jours à moins de 20 minutes, élimination des failles de sécurité liées aux logiciels non mis à jour et standardisation totale du parc."
+      solution: "Création d'un référentiel CMDB unifié avec fiches équipements détaillées, historique d'attribution et accès rapide aux procédures de configuration.",
+      impact: "Visibilité immédiate sur l'ensemble du parc matériel, réduction de moitié du temps de diagnostic d'incidents réseau et fiabilisation des décharges de matériel."
     }
   },
   {
@@ -135,7 +251,7 @@ const featuredProjects = [
     tags: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Express", "MySQL", "i18next", "Recharts", "ExcelJS"],
     github_url: "https://github.com/Waliddjla/hse-platform",
     demo_url: "https://github.com/Waliddjla/hse-platform",
-    repository_note: "Solution métier industrielle pour la conformité et la prévention des risques.",
+    repository_note: "Solution métier industrielle pour la conformité ISO 14001 / 45001 et la prévention des risques.",
     features: [
       "Formulaire d'enregistrement des incidents et déclarations de presqu'accidents avec preuves photo",
       "Matrice d'évaluation des risques professionnels et criticité selon les normes ISO 14001 / 45001",
@@ -147,7 +263,7 @@ const featuredProjects = [
     case_study: {
       client: "Sites Industriels & Unités de Production",
       role: "Développeur Full-Stack & Modélisateur Métier",
-      period: "2023 - 2024",
+      period: "2023 – 2024",
       kpis: [
         { label: "Délai de déclaration incident", value: "< 2 min", icon: "alert-triangle" },
         { label: "Actions CAPA clôturées", value: "96%", icon: "target" },
@@ -185,7 +301,7 @@ const featuredProjects = [
       "Statistiques épidémiologiques et analyse des postes à risque pour la médecine préventive"
     ],
     case_study: {
-      client: "Service Médical & Direction des Ressources Humaines",
+      client: "ACG SIM SPA — Service Médical & DRH",
       role: "Lead Developer Full-Stack",
       period: "2024",
       kpis: [
@@ -205,43 +321,40 @@ const featuredProjects = [
     }
   },
   {
-    id: 108,
-    title: "Plateforme IoT de Géolocalisation & Télématique Flotte",
-    category: "software",
-    category_label: "Node.js, IoT & Télématique",
-    tagline: "Ingestion temps réel de données GPS et boîtiers CAN industriels pour le suivi et l'éco-conduite de flottes de véhicules.",
-    description: "Système télématique de haute précision développé chez Ide-Net : écoute de flux de paquets télématiques de centaines de boîtiers GPS/CAN, détection de consommation de carburant, freinages brusques, géofencing et restitution cartographique temps réel.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-    tags: ["Node.js", "TypeScript", "TCP/UDP Sockets", "GPS & CAN Bus", "PostgreSQL", "GIS / Leaflet", "Docker", "REST API"],
-    github_url: "https://github.com/Waliddjla",
-    demo_url: "https://github.com/Waliddjla",
-    repository_note: "Développé en environnement industriel chez SARL Ide-Net Géolocalisation.",
+    id: 113,
+    title: "Best Employe — Plateforme de Vote & Reconnaissance RH",
+    category: "react",
+    category_label: "React, TypeScript & App RH",
+    tagline: "Application full-stack sécurisée pour l'élection du collaborateur du mois avec authentification JWT et analytique temps réel.",
+    description: "Application d'entreprise associant une interface React + TypeScript animée à un backend Express et MySQL. Intègre le vote sécurisé par jetons JWT, la prévention des votes multiples, et la visualisation en direct des classements par département.",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
+    tags: ["React", "TypeScript", "Express.js", "MySQL", "JWT Auth", "Charts", "Animations UI"],
+    github_url: "https://github.com/Waliddjla/best-employe",
+    demo_url: "https://github.com/Waliddjla/best-employe",
+    repository_note: "Projet Full-Stack React/TypeScript + Node.js/MySQL disponible sur @Waliddjla.",
     features: [
-      "Serveur d'ingestion TCP/UDP haut débit traitant les trames binaires GPS et signaux du bus CAN",
-      "Décodage en microsecondes des paramètres véhicule (vitesse, régime moteur, jauge carburant, température)",
-      "Moteur de géofencing spatial avec déclenchement d'alertes instantanées (sorties de zone, excès de vitesse)",
-      "Cartographie interactive temps réel avec affichage de l'historique précis des trajets parcourus",
-      "Rapports automatisés de consommation, score d'éco-conduite et temps d'arrêt moteur allumé",
-      "Architecture distribuée conteneurisée prête pour la montée en charge multi-clients"
+      "Authentification sécurisée des collaborateurs par JWT avec gestion stricte d'unicité de vote par campagne",
+      "Interface React + TypeScript fluide avec animations de transition et feedback visuel immédiat",
+      "Tableau de bord administrateur pour lancer/clôturer les campagnes et consulter les résultats par service",
+      "Graphiques dynamiques de répartition des votes et export des classements de fin de période"
     ],
     case_study: {
-      client: "SARL Ide-Net Géolocalisation / Flottes Logistiques",
-      role: "Ingénieur Logiciel Full-Stack & Systèmes IoT",
-      period: "2023 - 2024",
+      client: "Direction des Ressources Humaines / Engagement Interne",
+      role: "Full-Stack Developer",
+      period: "2024",
       kpis: [
-        { label: "Fréquence ingestion données", value: "10 000+ trames/min", icon: "activity" },
-        { label: "Économie carburant client", value: "-18%", icon: "fuel" },
-        { label: "Latence affichage carte", value: "< 250ms", icon: "map-pin" }
+        { label: "Unicité & Intégrité vote", value: "100%", icon: "shield-check" },
+        { label: "Stack typée", value: "React + TS", icon: "code-2" },
+        { label: "Restitution résultats", value: "Temps réel", icon: "bar-chart-2" }
       ],
-      context: "Les transporteurs et gestionnaires de flotte avaient besoin d'une vue continue et sans faille sur la localisation, l'état mécanique et la consommation de carburant de leurs véhicules pour réduire les coûts et sécuriser les marchandises.",
-      architecture: "Pipeline d'ingestion Node.js asynchrone écoutant sur des sockets réseau bas niveau, parseur binaire écrit en TypeScript, stockage optimisé time-series dans PostgreSQL, et API REST alimentant une interface cartographique interactive Leaflet.",
+      context: "Digitaliser les campagnes internes de reconnaissance des collaborateurs pour remplacer les urnes papier ou formulaires non sécurisés et offrir une expérience engageante aux équipes.",
+      architecture: "Frontend React typé en TypeScript communiquant avec une API REST Express.js sécurisée par middleware JWT et persistée sous MySQL avec contraintes d'unicité par session de vote.",
       challenges: [
-        "Gestion des déconnexions réseau en zones blanches et bufferisation des trames sur le boîtier embarqué.",
-        "Parsing sans blocage d'un flux massif de messages de protocoles variés (Teltonika, Ruptela, Queclink).",
-        "Calcul géométrique performant d'inclusion dans des polygones complexes pour les alertes de zones."
+        "Garantir l'anonymat des votants tout en empêchant techniquement tout double vote.",
+        "Proposer une interface dynamique et ludique tout en respectant la confidentialité des résultats jusqu'à clôture."
       ],
-      solution: "Traitement par flux asynchrones (Node.js Streams), indexation spatiale avec requêtes géographiques optimisées, et mise en file d'attente résiliente assurant zéro perte de télémétrie.",
-      impact: "Suivi fiable de plusieurs centaines de véhicules 24h/24, réduction prouvée de 18% des dépenses de carburant grâce à l'éco-conduite et gain précieux de réactivité lors des incidents de livraison."
+      solution: "Validation transactionnelle côté MySQL liée au jeton JWT utilisateur, séparation des rôles Votant / Admin RH et restitution graphique dynamique.",
+      impact: "Participation accrue des équipes aux campagnes trimestrielles et automatisation complète du dépouillement RH."
     }
   },
   {
@@ -290,7 +403,7 @@ const featuredProjects = [
     category_label: "React & Analytics UI",
     tagline: "Tableau de bord de gestion d'entreprise responsive avec graphiques dynamiques, widgets KPI et gestion d'état moderne.",
     description: "Application web d'administration développée avec React et Tailwind CSS. Intègre des graphiques de performance temps réel, un système de filtres multicritères, la gestion de profil utilisateur et des tables de données triables et paginées.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1200&q=80",
     tags: ["React 18", "JavaScript ES6+", "Tailwind CSS", "Recharts", "Lucide Icons", "Responsive UI"],
     github_url: "https://github.com/Waliddjla/walid-dashboard",
     demo_url: "https://github.com/Waliddjla/walid-dashboard",
@@ -325,7 +438,7 @@ const englishProjects = {
     tagline_en: "Centralized IT governance, SAP S/4HANA incident tracking, and traceability for industrial equipment.",
     description_en: "Enterprise platform for IT tickets and SAP PM/MM workflows, Kanban planning for engineering tasks, IT asset mapping, and purchasing and sales tracking with full traceability.",
     category_label_en: "Full-Stack & IT Management",
-    repository_note_en: "Enterprise project covering production architecture and operational modules.",
+    repository_note_en: "Enterprise project covering production architecture and operational modules at Orionlab.",
     features_en: [
       "Centralized tracking of IT tickets and SAP PM/MM incidents with SLAs and dynamic prioritization",
       "Real-time Kanban board for scheduling interventions and technical sprints",
@@ -337,7 +450,7 @@ const englishProjects = {
     case_study_en: {
       client: "Orionlab / Pharmaceutical Manufacturing & IT",
       role: "Lead Full-Stack Developer & SAP Business Analyst",
-      period: "2024 - 2025",
+      period: "2024 – 2025",
       kpis: [
         { label_en: "Incident resolution time" },
         { label_en: "Tracked assets" },
@@ -352,6 +465,71 @@ const englishProjects = {
       ],
       solution: "Implemented indexing and caching middleware, normalized relational schemas with strict foreign keys, and provided a bilingual FR/EN interface for field and administrative teams.",
       impact: "Eliminated informal requests via messaging, achieved 100% traceability of assigned workstations, and accelerated coordination between technical teams and SAP administrators."
+    }
+  },
+  107: {
+    title_en: "SAP-Tools — Windows Fleet Automation & Auditing Suite",
+    tagline_en: "Deployment automation for SAP GUI, live hardware inventory, and Active Directory security hardening.",
+    description_en: "Distributed administration toolkit built with Ansible, WinRM, and PowerShell for comprehensive remote hardware and software audits, silent SAP GUI deployments, and Active Directory hardening without end-user interruption.",
+    category_label_en: "SAP, DevOps & IT Infrastructure",
+    repository_note_en: "Administration toolkit designed for industrial and SAP workstation environments.",
+    features_en: [
+      "Automated agentless hardware and software inventory via WinRM",
+      "Silent bulk deployment of software suites, certificates, and SAP GUI clients",
+      "Security compliance audit reports and detection of outdated software versions",
+      "Ansible playbook execution via interactive operator menus for support technicians",
+      "Centralized patch management, GPO enforcement, and compliance monitoring for factory workstations"
+    ],
+    case_study_en: {
+      client: "Orionlab / Industrial Infrastructure & SAP Workstations",
+      role: "Systems & Automation Engineer",
+      period: "2024 – 2025",
+      kpis: [
+        { label_en: "Fleet audit time" },
+        { label_en: "Managed workstations" },
+        { label_en: "Compliance rate" }
+      ],
+      context: "Manual maintenance of a distributed fleet connected to manufacturing stations and SAP terminals caused delays and inconsistent software versions. The team needed fast orchestration with minimal disruption.",
+      architecture: "A Linux Docker controller hosts Ansible playbooks and Python orchestration scripts. WinRM uses HTTPS/TLS to communicate with Windows servers and workstations.",
+      challenges: [
+        "Handle firewall traversal and Kerberos / Active Directory permissions while maintaining security.",
+        "Support Windows 10, Windows 11, and Windows Server 2016 through 2022.",
+        "Prevent regressions and avoid unexpected restarts on production machines."
+      ],
+      solution: "Used idempotent PowerShell scripts that validate target state before changes, centralized dynamic inventories, and generated HTML and CSV reports for IT management.",
+      impact: "Reduced inventory time from 3 days to under 20 minutes, eliminated security gaps linked to outdated software, and standardized the SAP workstation fleet."
+    }
+  },
+  111: {
+    title_en: "SAPAN / PR Analysis — SAP MM Purchasing Dashboard via OData",
+    tagline_en: "Real-time procurement analytics dashboard powered by SAP OData services for Purchase Requisitions and Orders.",
+    description_en: "Analytics application built for procurement teams and management at ACG SIM: real-time SAP OData extraction of Purchase Requisitions (PR) and Purchase Orders (PO) in SAP MM, bottleneck tracking, and supplier lead-time analysis.",
+    category_label_en: "SAP MM & OData Analytics",
+    repository_note_en: "Internal business application built for production SAP workflows at ACG SIM SPA.",
+    features_en: [
+      "Direct SAP OData consumption synchronizing Purchase Requisitions (PR) and Purchase Orders (PO)",
+      "Approval workflow tracking (Release Strategy) with alerts on stalled requisitions",
+      "Automated lead-time calculations from PR creation to approval and goods receipt (MIGO)",
+      "Dynamic filtering by purchasing group, plant, vendor, and delivery status",
+      "One-click export of procurement KPIs for executive review meetings"
+    ],
+    case_study_en: {
+      client: "ACG SIM SPA — Procurement & Supply Chain",
+      role: "SAP Functional Support & Full-Stack Developer",
+      period: "2024",
+      kpis: [
+        { label_en: "Procurement visibility", value_en: "Real-time" },
+        { label_en: "Tracked requisitions" },
+        { label_en: "Approval lead time" }
+      ],
+      context: "Procurement officers and requesters lacked consolidated visibility into SAP MM Purchase Requisition status (ME51N/ME5A) without running repetitive manual Excel exports.",
+      architecture: "Secure Node.js gateway querying SAP OData services, applying caching and JSON normalization before feeding an interactive React analytics dashboard.",
+      challenges: [
+        "Authenticated SAP OData integration with efficient pagination across large requisition datasets.",
+        "Clear modeling of multi-level release strategies and open quantities between POs and goods receipts."
+      ],
+      solution: "Built a modular OData connector with server-side aggregation and a step-by-step view of the SAP MM procurement cycle.",
+      impact: "Eliminated daily manual exports, exposed approval bottlenecks immediately, and aligned maintenance, warehouse, and purchasing teams."
     }
   },
   102: {
@@ -388,37 +566,70 @@ const englishProjects = {
       impact: "Recorded zero service interruptions during network outages, improved checkout speed by 35% at peak times, and provided consolidated real-time financial reporting for owners."
     }
   },
-  107: {
-    title_en: "SAP-Tools — Windows Fleet Automation & Auditing Suite",
-    tagline_en: "Deployment automation, live hardware inventory, and security hardening for industrial Windows fleets.",
-    description_en: "Distributed administration toolkit built with Ansible, WinRM, and PowerShell for comprehensive remote hardware and software audits, silent deployment of business applications, and security hardening without end-user interruption.",
-    category_label_en: "DevOps & IT Infrastructure",
-    repository_note_en: "Administration toolkit designed for industrial and pharmaceutical environments.",
+  108: {
+    title_en: "IoT Platform for Fleet Tracking & Telematics",
+    tagline_en: "Real-time ingestion from GPS devices and industrial CAN modules for vehicle tracking and fuel-efficient driving.",
+    description_en: "High-precision telematics system developed at Ide-Net. Processes packet streams from hundreds of GPS/CAN devices, monitors fuel consumption and harsh braking, and provides geofencing and real-time mapping.",
+    category_label_en: "Node.js, IoT & Telematics",
+    repository_note_en: "Proprietary enterprise platform developed at SARL Ide-Net Géolocalisation.",
     features_en: [
-      "Automated agentless hardware and software inventory via WinRM",
-      "Silent bulk deployment of software suites, certificates, and SAP GUI clients",
-      "Security compliance audit reports and detection of outdated software versions",
-      "Ansible playbook execution via interactive operator menus for support technicians",
-      "Centralized patch management and compliance monitoring for factory workstations"
+      "High-throughput TCP/UDP ingestion server for binary GPS frames and CAN bus signals",
+      "Microsecond decoding of vehicle parameters including speed, RPM, fuel level, and temperature",
+      "Geofencing with immediate alerts for zone exits and speeding",
+      "Real-time interactive maps with detailed trip history",
+      "Automated fuel consumption, eco-driving score, and engine idling reports",
+      "Containerized distributed architecture built to scale across customers"
     ],
     case_study_en: {
-      client: "Industrial Infrastructure & SAP Workstations",
-      role: "Systems & Automation Engineer",
+      client: "SARL Ide-Net Géolocalisation / Logistics Fleets",
+      role: "Full-Stack Software & IoT Systems Engineer",
+      period: "2023 – 2024",
+      kpis: [
+        { label_en: "Data ingestion throughput", value_en: "10,000+ frames/min" },
+        { label_en: "Customer fuel savings" },
+        { label_en: "Map display latency" }
+      ],
+      context: "Carriers and fleet managers needed continuous visibility into vehicle locations, mechanical condition, and fuel consumption to reduce costs and protect cargo.",
+      architecture: "An asynchronous Node.js ingestion pipeline listens on low-level network sockets. A TypeScript binary parser and optimized PostgreSQL time-series storage back the REST API used by an interactive Leaflet map.",
+      challenges: [
+        "Handle network outages in coverage gaps by buffering frames on the onboard device.",
+        "Parse high-volume traffic from Teltonika, Ruptela, and Queclink devices without blocking ingestion.",
+        "Run efficient point-in-polygon calculations for complex geofence alerts."
+      ],
+      solution: "Used asynchronous Node.js Streams, spatial indexes and optimized geographic queries, and durable queues to prevent telemetry loss.",
+      impact: "Tracked hundreds of vehicles around the clock, demonstrated an 18% reduction in fuel spending through eco-driving, and shortened response times to delivery incidents."
+    }
+  },
+  112: {
+    title_en: "SIMswitch — IT Asset & Network Infrastructure Management",
+    tagline_en: "Centralized inventory for network switches, servers, workstations, and signed employee asset handover records.",
+    description_en: "IT infrastructure management platform developed at ACG SIM SPA covering switches, servers, printers, workstations, and time clocks, complete with installation procedures and hardware handover tracking.",
+    category_label_en: "IT Infrastructure & CMDB",
+    repository_note_en: "CMDB & IT asset management application built for ACG SIM SPA.",
+    features_en: [
+      "Full hardware inventory covering Cisco switches, servers, PCs, printers, displays, and time clocks",
+      "Employee equipment assignments with printable and traceable handover records",
+      "Technical knowledge base with installation procedures, IP plans, and switch port mappings",
+      "Live infrastructure dashboard summarizing equipment health and site distribution",
+      "Role-based user administration and complete hardware lifecycle audit trail"
+    ],
+    case_study_en: {
+      client: "ACG SIM SPA — Systems & Networking Department",
+      role: "IT Systems Engineer & Full-Stack Developer",
       period: "2024",
       kpis: [
-        { label_en: "Fleet audit time" },
-        { label_en: "Managed workstations" },
-        { label_en: "Compliance rate" }
+        { label_en: "Tracked IT assets" },
+        { label_en: "Inventory accuracy" },
+        { label_en: "Fault lookup time" }
       ],
-      context: "Manual maintenance of a distributed fleet connected to manufacturing stations and SAP terminals caused delays and inconsistent software versions. The team needed fast orchestration with minimal disruption.",
-      architecture: "A Linux Docker controller hosts Ansible playbooks and Python orchestration scripts. WinRM uses HTTPS/TLS to communicate with Windows servers and workstations.",
+      context: "Tracking network switches, servers, and employee workstations across spreadsheets slowed down incident diagnosis and annual IT asset audits.",
+      architecture: "React frontend built on a modular Datta Able layout connected to a REST API and relational database structuring assets, employee assignments, switch ports, and procedures.",
       challenges: [
-        "Handle firewall traversal and Kerberos / Active Directory permissions while maintaining security.",
-        "Support Windows 10, Windows 11, and Windows Server 2016 through 2022.",
-        "Prevent regressions and avoid unexpected restarts on production machines."
+        "Accurately map dependencies between network switches, VLANs, servers, and end-user devices.",
+        "Keep signed employee handover and return records centralized and easy to audit."
       ],
-      solution: "Used idempotent PowerShell scripts that validate target state before changes, centralized dynamic inventories, and generated HTML and CSV reports for IT management.",
-      impact: "Reduced inventory time from 3 days to under 20 minutes, eliminated security gaps linked to outdated software, and standardized the fleet."
+      solution: "Built a unified CMDB repository with detailed asset views, assignment histories, and linked technical setup guides.",
+      impact: "Delivered immediate visibility across the IT estate, cut network troubleshooting lookup time in half, and standardized asset accountability."
     }
   },
   103: {
@@ -426,7 +637,7 @@ const englishProjects = {
     tagline_en: "Web platform for digitizing industrial safety protocols, managing risks, and conducting environmental audits.",
     description_en: "Enterprise application for submitting incident and near-miss reports, tracking corrective actions (CAPA), maintaining regulatory compliance matrices, and generating management reports automatically.",
     category_label_en: "HSE Business Application",
-    repository_note_en: "Industrial compliance and risk prevention solution.",
+    repository_note_en: "Industrial ISO 14001 / 45001 compliance and risk prevention solution.",
     features_en: [
       "Incident and near-miss reporting with photographic evidence",
       "Occupational risk and severity assessment matrix aligned with ISO 14001 / 45001",
@@ -438,7 +649,7 @@ const englishProjects = {
     case_study_en: {
       client: "Industrial Sites & Production Units",
       role: "Full-Stack Developer & Business Process Modeler",
-      period: "2023 - 2024",
+      period: "2023 – 2024",
       kpis: [
         { label_en: "Incident reporting time" },
         { label_en: "CAPA closure rate" },
@@ -470,7 +681,7 @@ const englishProjects = {
       "Epidemiological statistics and analysis of high-risk roles for preventive care"
     ],
     case_study_en: {
-      client: "Occupational Health Service & Human Resources",
+      client: "ACG SIM SPA — Occupational Health & HR",
       role: "Lead Full-Stack Developer",
       period: "2024",
       kpis: [
@@ -489,38 +700,35 @@ const englishProjects = {
       impact: "Eliminated overdue examinations, made emergency care fully traceable, and eased labor inspection reviews."
     }
   },
-  108: {
-    title_en: "IoT Platform for Fleet Tracking & Telematics",
-    tagline_en: "Real-time ingestion from GPS devices and industrial CAN modules for vehicle tracking and fuel-efficient driving.",
-    description_en: "High-precision telematics system developed at Ide-Net. Processes packet streams from hundreds of GPS/CAN devices, monitors fuel consumption and harsh braking, and provides geofencing and real-time mapping.",
-    category_label_en: "Node.js, IoT & Telematics",
-    repository_note_en: "Developed in an industrial setting at SARL Ide-Net Géolocalisation.",
+  113: {
+    title_en: "Best Employe — Employee Voting & HR Recognition Platform",
+    tagline_en: "Full-stack React & TypeScript voting platform with JWT authentication and real-time department analytics.",
+    description_en: "Enterprise recognition web app combining an animated React and TypeScript interface with an Express and MySQL backend, JWT authentication, duplicate-vote protection, and live ranking charts.",
+    category_label_en: "React, TypeScript & HR App",
+    repository_note_en: "Full-stack React/TypeScript + Node.js/MySQL project available on @Waliddjla.",
     features_en: [
-      "High-throughput TCP/UDP ingestion server for binary GPS frames and CAN bus signals",
-      "Microsecond decoding of vehicle parameters including speed, RPM, fuel level, and temperature",
-      "Geofencing with immediate alerts for zone exits and speeding",
-      "Real-time interactive maps with detailed trip history",
-      "Automated fuel consumption, eco-driving score, and engine idling reports",
-      "Containerized distributed architecture built to scale across customers"
+      "JWT-authenticated employee voting with strict single-vote enforcement per campaign",
+      "Smooth React and TypeScript UI featuring interactive animations and instant feedback",
+      "Admin panel to launch or close voting campaigns and review department breakdowns",
+      "Live ranking charts and period-end result exports for HR teams"
     ],
     case_study_en: {
-      client: "SARL Ide-Net Géolocalisation / Logistics Fleets",
-      role: "Full-Stack Software & IoT Systems Engineer",
-      period: "2023 - 2024",
+      client: "Human Resources / Employee Engagement",
+      role: "Full-Stack Developer",
+      period: "2024",
       kpis: [
-        { label_en: "Data ingestion throughput", value_en: "10 000+ frames/min" },
-        { label_en: "Customer fuel savings" },
-        { label_en: "Map display latency" }
+        { label_en: "Vote integrity & uniqueness" },
+        { label_en: "Typed stack" },
+        { label_en: "Result reporting", value_en: "Real-time" }
       ],
-      context: "Carriers and fleet managers needed continuous visibility into vehicle locations, mechanical condition, and fuel consumption to reduce costs and protect cargo.",
-      architecture: "An asynchronous Node.js ingestion pipeline listens on low-level network sockets. A TypeScript binary parser and optimized PostgreSQL time-series storage back the REST API used by an interactive Leaflet map.",
+      context: "Digitize internal employee-of-the-month campaigns to replace paper ballots and deliver a transparent, engaging experience across departments.",
+      architecture: "TypeScript React frontend paired with an Express.js REST API using JWT verification and MySQL uniqueness constraints per voting cycle.",
       challenges: [
-        "Handle network outages in coverage gaps by buffering frames on the onboard device.",
-        "Parse high-volume traffic from Teltonika, Ruptela, and Queclink devices without blocking ingestion.",
-        "Run efficient point-in-polygon calculations for complex geofence alerts."
+        "Guarantee ballot secrecy while strictly preventing duplicate votes from any account.",
+        "Keep the voting UI engaging while withholding final rankings until campaign closure."
       ],
-      solution: "Used asynchronous Node.js Streams, spatial indexes and optimized geographic queries, and durable queues to prevent telemetry loss.",
-      impact: "Tracked hundreds of vehicles around the clock, demonstrated an 18% reduction in fuel spending through eco-driving, and shortened response times to delivery incidents."
+      solution: "Transactional vote recording in MySQL tied to authenticated JWT claims, separated Voter/HR Admin roles, and animated chart views.",
+      impact: "Boosted employee participation in quarterly recognition campaigns and eliminated manual vote counting."
     }
   },
   109: {
@@ -590,7 +798,7 @@ for (const project of featuredProjects) {
   const translation = englishProjects[project.id];
   translation.case_study_en.kpis = translation.case_study_en.kpis.map((kpi, index) => {
     const { value, icon } = project.case_study.kpis[index];
-    return { ...kpi, value, icon };
+    return { value, ...kpi, icon };
   });
   Object.assign(project, translation);
 }

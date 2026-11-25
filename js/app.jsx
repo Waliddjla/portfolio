@@ -127,19 +127,38 @@ const translations = {
       case_study: "Étude de cas",
       detail: "Détails & Architecture",
       code: "Code source",
+      private_repo: "Projet Entreprise",
       sap: "Modules SAP Intégrés"
     },
     repos: {
       descriptions: {
-        "Waliddjla": "README de profil",
-        "portfolio": "Portfolio de Walid Djellali",
-        "connect-walid": "Jeu de connexion réalisé en React",
-        "quizz": "Quiz simple en HTML et CSS",
+        "Waliddjla": "README & présentation de profil GitHub",
+        "portfolio": "Portfolio dynamique Full-Stack Node.js / SQLite / React",
+        "SAP-Tools": "Suite d'automatisation Ansible, WinRM & PowerShell pour parcs Windows & SAP",
+        "restaurant-pos-v2": "Caisse tactiles Offline-First Electron + API Cloud Fastify & sync SQLite/PostgreSQL",
+        "hse-platform": "Plateforme web Hygiène, Sécurité & Environnement (CAPA, risques, ISO 14001/45001)",
+        "DoctorSIM": "Dossier médical du travail, visites d'aptitude & infirmerie d'entreprise",
+        "SIMswitch_react": "Gestion du parc IT, switchs, serveurs et décharges matériel (ACG SIM)",
+        "best-employe": "Application de vote et reconnaissance RH (React, TypeScript, Express, MySQL, JWT)",
+        "walid-dashboard": "Tableau de bord analytique React & Tailwind CSS avec widgets KPI",
+        "master-project": "Prévision d’un plan d’irrigation par IA à partir de l’évapotranspiration (ET0)",
+        "walid-store": "Boutique e-commerce JavaScript avec panier dynamique et filtres",
+        "the-github-reherche": "Explorateur interactif de profils et dépôts via l'API REST GitHub",
+        "infinite-gallery": "Galerie d’images performante avec chargement asynchrone (infinite scroll)",
+        "meteo-js": "Application météo live avec géolocalisation et prévisions",
+        "Multi-langues-react": "Module React d'internationalisation (i18n FR/EN/AR)",
+        "Chrono-React": "Chronomètre de précision modulaire développé en React",
+        "React-animation": "Expérimentations d'animations fluides et transitions UI en React",
+        "Multi-step-validation": "Formulaire multi-étapes React avec validation dynamique des champs",
+        "Slider-react": "Composant carrousel responsive réutilisable en React",
+        "my-movie-app": "Catalogue de films interactif avec recherche et fiches détaillées",
+        "to-do-list": "Gestionnaire de tâches réactif en JavaScript",
+        "connect-walid": "Jeu Puissance 4 interactif réalisé en React",
+        "quizz": "Quiz interactif en HTML5 et CSS3",
         "walid": "Application web d’information sur la connexion Wi-Fi",
-        "brookly": "Conception UX pour une librairie",
-        "master-project": "Prévision d’un plan d’irrigation par intelligence artificielle à partir de l’évapotranspiration",
-        "authentification": "Projet d’authentification en JavaScript, HTML et CSS",
-        "mpi-matrix-multiplication": "Multiplication de matrices avec MPI"
+        "brookly": "Conception UX pour une librairie en ligne",
+        "authentification": "Module d’authentification client en JavaScript, HTML et CSS",
+        "mpi-matrix-multiplication": "Multiplication parallèle de matrices avec MPI (Calcul Haute Performance)"
       },
       badge: "Écosystème Open Source",
       title: "Explorateur de Code GitHub (@Waliddjla)",
@@ -485,19 +504,38 @@ const translations = {
       case_study: "Case study",
       detail: "Details & Architecture",
       code: "Source code",
+      private_repo: "Enterprise Project",
       sap: "Integrated SAP Modules"
     },
     repos: {
       descriptions: {
-        "Waliddjla": "Profile README",
-        "portfolio": "Walid Djellali’s portfolio",
-        "connect-walid": "Connect game built with React",
-        "quizz": "Simple quiz built with HTML and CSS",
+        "Waliddjla": "GitHub profile README & overview",
+        "portfolio": "Walid Djellali’s full-stack Node.js, SQLite & React portfolio",
+        "SAP-Tools": "Ansible, WinRM & PowerShell automation suite for Windows & SAP workstation fleets",
+        "restaurant-pos-v2": "Offline-first Electron POS & Fastify Cloud API with SQLite/PostgreSQL sync",
+        "hse-platform": "Health, Safety & Environment platform (CAPA tracking, risk matrix, ISO 14001/45001)",
+        "DoctorSIM": "Occupational health records, fitness-for-work exams & clinic management system",
+        "SIMswitch_react": "IT asset, switch & infrastructure CMDB with handover tracking (ACG SIM)",
+        "best-employe": "Full-stack employee voting & HR recognition app (React, TS, Express, MySQL, JWT)",
+        "walid-dashboard": "Responsive analytics & KPI admin dashboard built with React and Tailwind CSS",
+        "master-project": "AI-based irrigation scheduling using Penman-Monteith evapotranspiration (ET0)",
+        "walid-store": "JavaScript e-commerce storefront with dynamic cart and catalog filtering",
+        "the-github-reherche": "Interactive developer & repository explorer powered by GitHub REST API",
+        "infinite-gallery": "High-performance image gallery with asynchronous infinite scrolling",
+        "meteo-js": "Live weather forecast web app with geolocation",
+        "Multi-langues-react": "Modular React internationalization (i18n) component",
+        "Chrono-React": "Precision stopwatch component built with React",
+        "React-animation": "Smooth UI transitions and motion experiments in React",
+        "Multi-step-validation": "Multi-step React form with schema validation",
+        "Slider-react": "Reusable responsive React carousel component",
+        "my-movie-app": "Interactive movie catalog interface with search and detail views",
+        "to-do-list": "Reactive task manager built with JavaScript",
+        "connect-walid": "Connect Four game built with React",
+        "quizz": "Interactive quiz built with HTML5 and CSS3",
         "walid": "Web app for Wi-Fi connection information",
-        "brookly": "UX design for a bookstore",
-        "master-project": "AI-based irrigation scheduling using evapotranspiration",
+        "brookly": "UX design for an online bookstore",
         "authentification": "Authentication project using JavaScript, HTML and CSS",
-        "mpi-matrix-multiplication": "Matrix multiplication using MPI"
+        "mpi-matrix-multiplication": "Parallel matrix multiplication using MPI (HPC)"
       },
       badge: "Open Source Ecosystem",
       title: "GitHub Code Explorer (@Waliddjla)",
@@ -2037,29 +2075,36 @@ function App() {
 
           {/* Filtres de catégorie */}
           <div className="flex flex-wrap justify-center items-center gap-2 mb-12">
-            {t.project_filters.map(cat => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${selectedCategory === cat.id
-                  ? "bg-blue-600 text-white shadow-md shadow-blue-500/25"
-                  : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800"
-                  }`}>
-                {cat.label}{cat.id === "all" && ` (${data.projects.length})`}
-              </button>
-            ))}
+            {t.project_filters.map(cat => {
+              const count = cat.id === "all"
+                ? data.projects.length
+                : data.projects.filter(p => p.category === cat.id).length;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${selectedCategory === cat.id
+                    ? "bg-blue-600 text-white shadow-md shadow-blue-500/25"
+                    : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800"
+                    }`}>
+                  {cat.label} ({count})
+                </button>
+              );
+            })}
           </div>
 
           {/* Grille des cartes projets */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {filteredProjects.map((p, idx) => {
               const projectCaseStudy = tr(p, "case_study");
+              const hasRepo = Boolean(p.github_url && p.github_url !== "https://github.com/Waliddjla");
+              const projectNumber = idx < 9 ? `0${idx + 1}` : `${idx + 1}`;
               return (
                 <article
                   key={p.id || idx}
                   className="fade-in card-hover rounded-3xl overflow-hidden glass border border-slate-200/80 dark:border-slate-800 flex flex-col group">
 
-                  {/* Image & Badge */}
+                  {/* Image & Badges d'identification */}
                   <div className="relative h-60 overflow-hidden bg-slate-900">
                     <img
                       src={p.image}
@@ -2067,23 +2112,51 @@ function App() {
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
-                    <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                      <span className="text-xs font-bold px-3 py-1.5 rounded-xl backdrop-blur-md bg-blue-600/90 text-white shadow-sm">
-                        {tr(p, "category_label") || p.category}
-                      </span>
-                      {projectCaseStudy && (
-                        <span className="text-xs font-bold px-2.5 py-1.5 rounded-xl backdrop-blur-md bg-amber-500/90 text-white flex items-center gap-1 shadow-sm">
-                          <Icon name="sparkles" className="w-3 h-3" />
-                          <span>{t.portfolio.case_study}</span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/35 to-transparent"></div>
+                    <div className="absolute top-4 left-4 right-4 flex items-start justify-between gap-2">
+                      <div className="flex flex-wrap gap-2">
+                        <span className="text-xs font-bold px-3 py-1.5 rounded-xl backdrop-blur-md bg-blue-600/90 text-white shadow-sm">
+                          {tr(p, "category_label") || p.category}
                         </span>
-                      )}
+                        {projectCaseStudy && (
+                          <span className="text-xs font-bold px-2.5 py-1.5 rounded-xl backdrop-blur-md bg-amber-500/90 text-white flex items-center gap-1 shadow-sm">
+                            <Icon name="sparkles" className="w-3 h-3" />
+                            <span>{t.portfolio.case_study}</span>
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-[11px] font-black font-mono px-2.5 py-1 rounded-lg backdrop-blur-md bg-slate-950/75 text-white border border-white/15 shrink-0">
+                        #{projectNumber}
+                      </span>
                     </div>
+
+                    {/* Barre Identification Client & Période sur l'image */}
+                    {projectCaseStudy && (
+                      <div className="absolute bottom-3 left-4 right-4 flex flex-wrap items-center justify-between gap-2 text-[11px] font-semibold text-slate-100">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-950/70 backdrop-blur-md border border-white/10 truncate max-w-[70%]">
+                          <Icon name="building-2" className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                          <span className="truncate">{projectCaseStudy.client}</span>
+                        </span>
+                        {projectCaseStudy.period && (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-950/70 backdrop-blur-md border border-white/10 shrink-0">
+                            <Icon name="calendar" className="w-3 h-3 text-emerald-400" />
+                            <span>{projectCaseStudy.period}</span>
+                          </span>
+                        )}
+                      </div>
+                    )}
                   </div>
 
                   {/* Contenu */}
                   <div className="p-7 flex-1 flex flex-col justify-between">
                     <div>
+                      {projectCaseStudy?.role && (
+                        <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+                          <Icon name="user-check" className="w-3.5 h-3.5" />
+                          <span>{projectCaseStudy.role}</span>
+                        </div>
+                      )}
+
                       <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-500 transition-colors">
                         {tr(p, "title")}
                       </h3>
@@ -2131,16 +2204,23 @@ function App() {
                         <span>{t.portfolio.detail}</span>
                       </button>
 
-                      {/* Lien GitHub */}
-                      <a
-                        href={p.github_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold glass hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 transition-all">
-                        <GitHubIcon className="w-4 h-4" />
-                        <span>{t.portfolio.code}</span>
-                        <Icon name="external-link" className="w-3 h-3 opacity-60" />
-                      </a>
+                      {/* Lien GitHub ou Badge Projet Entreprise */}
+                      {hasRepo ? (
+                        <a
+                          href={p.github_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold glass hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 transition-all">
+                          <GitHubIcon className="w-4 h-4" />
+                          <span>{t.portfolio.code}</span>
+                          <Icon name="external-link" className="w-3 h-3 opacity-60" />
+                        </a>
+                      ) : (
+                        <span className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                          <Icon name="lock" className="w-3.5 h-3.5 text-amber-500" />
+                          <span>{t.portfolio.private_repo}</span>
+                        </span>
+                      )}
 
                     </div>
                   </div>
@@ -2667,16 +2747,25 @@ function App() {
             </div>
 
             {/* Footer du modal */}
-            <div className="pt-4 border-t border-slate-200 dark:border-slate-800 shrink-0 flex items-center justify-between gap-3">
-              <a
-                href={selectedProjectModal.github_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:opacity-90 transition-all">
-                <GitHubIcon className="w-4 h-4" />
-                <span>{t.modal.source}</span>
-                <Icon name="external-link" className="w-3.5 h-3.5 opacity-60" />
-              </a>
+            <div className="pt-4 border-t border-slate-200 dark:border-slate-800 shrink-0 flex flex-wrap items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center gap-3">
+                {selectedProjectModal.github_url && selectedProjectModal.github_url !== "https://github.com/Waliddjla" ? (
+                  <a
+                    href={selectedProjectModal.github_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:opacity-90 transition-all">
+                    <GitHubIcon className="w-4 h-4" />
+                    <span>{t.modal.source}</span>
+                    <Icon name="external-link" className="w-3.5 h-3.5 opacity-60" />
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                    <Icon name="lock" className="w-3.5 h-3.5 text-amber-500" />
+                    <span>{tr(selectedProjectModal, "repository_note") || t.portfolio.private_repo}</span>
+                  </span>
+                )}
+              </div>
 
               <button
                 onClick={() => setSelectedProjectModal(null)}

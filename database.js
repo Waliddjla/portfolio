@@ -14,7 +14,7 @@ const DB_PATH = process.env.PORTFOLIO_DB_PATH || path.join(__dirname, 'portfolio
 const db = new DatabaseSync(DB_PATH);
 
 const projectTranslationFields = [
-  'title_en', 'tagline_en', 'description_en', 'category_label_en', 'features_en', 'case_study_en'
+  'title_en', 'tagline_en', 'description_en', 'category_label_en', 'features_en', 'case_study_en', 'repository_note_en'
 ];
 
 function addTranslationColumns(table, fields) {
@@ -49,7 +49,8 @@ function translatedProjectValues(project) {
     project.description_en ?? null,
     project.category_label_en ?? null,
     serializeList(project.features_en, '\n'),
-    serializeCaseStudy(project.case_study_en)
+    serializeCaseStudy(project.case_study_en),
+    project.repository_note_en ?? null
   ];
 }
 
@@ -162,7 +163,7 @@ function initDatabase() {
   addTranslationColumns('experiences', ['role_en', 'description_en', 'bullets_en', 'period_en']);
   addTranslationColumns('skills', ['name_en']);
   addTranslationColumns('education', ['degree_en', 'details_en']);
-  addTranslationColumns('projects', projectTranslationFields);
+  addTranslationColumns('projects', ['repository_note', ...projectTranslationFields]);
 
   // Mettre à jour l'avatar de profil
   try {
@@ -370,35 +371,43 @@ function backfillTranslations() {
 // Synchroniser les projets enrichis dans la base SQLite
 function syncFeaturedProjects() {
   const synced = db.prepare('SELECT project_id FROM featured_project_sync WHERE catalog_id = ?');
-  const record = db.prepare('INSERT INTO featured_project_sync (catalog_id, project_id) VALUES (?, ?)');
-  const find = db.prepare('SELECT id FROM projects WHERE github_url = ? AND title = ? ORDER BY id');
+  const record = db.prepare('INSERT OR REPLACE INTO featured_project_sync (catalog_id, project_id) VALUES (?, ?)');
+  const findByUrl = db.prepare('SELECT id FROM projects WHERE github_url = ? ORDER BY id');
+  const findByTitle = db.prepare('SELECT id FROM projects WHERE title = ? ORDER BY id');
+  const existsById = db.prepare('SELECT id FROM projects WHERE id = ?');
   const englishColumns = projectTranslationFields.join(', ');
-  const preserveTranslations = projectTranslationFields.map(field => `${field} = COALESCE(${field}, ?)`).join(', ');
+  const englishPlaceholders = projectTranslationFields.map(() => '?').join(', ');
+  const englishAssignments = projectTranslationFields.map(field => `${field} = ?`).join(', ');
+
   const insert = db.prepare(`
     INSERT INTO projects
-    (title, category, category_label, description, image, tags, demo_url, tagline, features, case_study, github_url, order_index, ${englishColumns})
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    (title, category, category_label, description, image, tags, demo_url, tagline, features, case_study, repository_note, github_url, order_index, ${englishColumns})
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ${englishPlaceholders})
   `);
   const update = db.prepare(`
     UPDATE projects
-    SET tagline = COALESCE(tagline, ?), features = COALESCE(features, ?),
-        case_study = COALESCE(case_study, ?), ${preserveTranslations}
+    SET title = ?, category = ?, category_label = ?, description = ?, image = ?, tags = ?,
+        demo_url = ?, tagline = ?, features = ?, case_study = ?, repository_note = ?,
+        github_url = ?, order_index = ?, ${englishAssignments}
     WHERE id = ?
   `);
 
   db.exec('BEGIN IMMEDIATE');
   try {
-    featuredProjects.forEach((p, index) => {
-      // Remember seeded records even if an administrator later edits their URL or deletes them.
-      const translations = translatedProjectValues(p);
-      const details = [p.tagline || '', serializeList(p.features, '\n'), serializeCaseStudy(p.case_study)];
-      const existing = synced.get(p.id);
-      if (existing) {
-        update.run(...details, ...translations, existing.project_id);
-        return;
-      }
+    // 1. Nettoyage des doublons IoT et des anciens exercices sans étude de cas (déjà présents dans le Hub GitHub)
+    const syncedIoT = synced.get(108);
+    if (syncedIoT) {
+      db.prepare('DELETE FROM projects WHERE title LIKE ? AND id != ?').run('%Plateforme IoT%', syncedIoT.project_id);
+    }
+    const deprecatedExercises = ['walid-store', 'the-github-reherche', 'connect-walid', 'infinite-gallery', 'meteo-js', 'Multi-langues-react'];
+    const deleteDeprecated = db.prepare('DELETE FROM projects WHERE github_url = ? AND case_study IS NULL');
+    for (const repo of deprecatedExercises) {
+      deleteDeprecated.run(`https://github.com/Waliddjla/${repo}`);
+    }
 
-      const rows = find.all(p.github_url, p.title);
+    // 2. Synchronisation du catalogue pro
+    featuredProjects.forEach((p, index) => {
+      const translations = translatedProjectValues(p);
       const fields = [
         p.title,
         p.category,
@@ -407,16 +416,27 @@ function syncFeaturedProjects() {
         p.image,
         JSON.stringify(p.tags || []),
         p.demo_url || null,
-        ...details
+        p.tagline || '',
+        serializeList(p.features, '\n'),
+        serializeCaseStudy(p.case_study),
+        p.repository_note || null
       ];
+      const orderIndex = index + 1;
 
-      if (rows.length) {
-        for (const row of rows) {
-          update.run(...details, ...translations, row.id);
-        }
-        record.run(p.id, rows[0].id);
+      const existing = synced.get(p.id);
+      if (existing && existsById.get(existing.project_id)) {
+        update.run(...fields, p.github_url || null, orderIndex, ...translations, existing.project_id);
+        return;
+      }
+
+      const rows = (p.github_url ? findByUrl.all(p.github_url) : []).concat(findByTitle.all(p.title));
+      const matchedId = rows.length ? rows[0].id : null;
+
+      if (matchedId) {
+        update.run(...fields, p.github_url || null, orderIndex, ...translations, matchedId);
+        record.run(p.id, matchedId);
       } else {
-        const { lastInsertRowid } = insert.run(...fields, p.github_url, index - featuredProjects.length, ...translations);
+        const { lastInsertRowid } = insert.run(...fields, p.github_url || null, orderIndex, ...translations);
         record.run(p.id, lastInsertRowid);
       }
     });
@@ -782,9 +802,10 @@ function updateProfile(fields) {
 // Ajouter un nouveau projet via l'Administration
 function addProject(project) {
   const englishColumns = projectTranslationFields.join(', ');
+  const englishPlaceholders = projectTranslationFields.map(() => '?').join(', ');
   const stmt = db.prepare(`
-    INSERT INTO projects (title, category, category_label, description, image, tags, demo_url, github_url, tagline, features, case_study, order_index, ${englishColumns})
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO projects (title, category, category_label, description, image, tags, demo_url, github_url, tagline, features, case_study, repository_note, order_index, ${englishColumns})
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ${englishPlaceholders})
   `);
 
   const result = stmt.run(
@@ -795,10 +816,11 @@ function addProject(project) {
     project.image || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
     serializeList(project.tags ?? [], ','),
     project.demo_url || null,
-    project.github_url || 'https://github.com/Waliddjla',
+    project.github_url || null,
     project.tagline || '',
     serializeList(project.features ?? [], '\n'),
     serializeCaseStudy(project.case_study),
+    project.repository_note || null,
     project.order_index || 0,
     ...translatedProjectValues(project)
   );
@@ -810,7 +832,7 @@ function addProject(project) {
 function updateProject(id, project) {
   const editable = [
     'title', 'category', 'category_label', 'description', 'image', 'tags', 'demo_url',
-    'github_url', 'tagline', 'features', 'case_study', ...projectTranslationFields
+    'github_url', 'tagline', 'features', 'case_study', 'repository_note', ...projectTranslationFields
   ];
   const fields = editable.filter(field => Object.hasOwn(project, field));
   if (fields.length) {
