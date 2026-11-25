@@ -1438,42 +1438,46 @@ function App() {
     return matchesSearch && matchesLang;
   });
   return /*#__PURE__*/React.createElement("div", {
-    className: "min-h-screen flex flex-col bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300"
+    className: "min-h-screen flex flex-col bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 overflow-x-clip"
   }, /*#__PURE__*/React.createElement("header", {
-    className: "sticky top-0 z-40 glass border-b border-slate-200/60 dark:border-slate-800/80 transition-colors"
+    className: "sticky top-0 z-40 glass border-b border-slate-200/60 dark:border-slate-800/80 transition-colors w-full"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3"
+    className: "max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-3"
   }, /*#__PURE__*/React.createElement("a", {
     href: "#hero",
-    className: "flex items-center gap-2.5 sm:gap-3 group shrink-0 py-1"
+    className: "flex items-center gap-2 sm:gap-3 group min-w-0 flex-1 lg:flex-initial py-1"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden ring-2 ring-blue-500/40 shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform shrink-0 bg-slate-200 dark:bg-slate-800"
+    className: "relative w-9 h-9 sm:w-11 sm:h-11 rounded-xl overflow-hidden ring-2 ring-blue-500/40 shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform shrink-0 bg-slate-200 dark:bg-slate-800"
   }, /*#__PURE__*/React.createElement("img", {
     src: data.profile.avatar || "/img/walid.jpg",
     alt: data.profile.name,
     className: "w-full h-full object-cover object-top"
   })), /*#__PURE__*/React.createElement("div", {
-    className: "flex flex-col shrink-0"
+    className: "flex flex-col min-w-0"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "font-extrabold tracking-tight text-base sm:text-lg text-slate-900 dark:text-white leading-tight whitespace-nowrap"
+    className: "font-extrabold tracking-tight text-sm sm:text-lg text-slate-900 dark:text-white leading-tight truncate"
   }, data.profile.name), /*#__PURE__*/React.createElement("span", {
-    className: "text-[11px] sm:text-xs text-blue-600 dark:text-blue-400 font-semibold whitespace-nowrap"
+    className: "text-[10px] sm:text-xs text-blue-600 dark:text-blue-400 font-semibold truncate"
   }, t.hero.header_role))), /*#__PURE__*/React.createElement("nav", {
-    className: "hidden lg:flex items-center gap-4 xl:gap-6 text-sm font-medium shrink-0"
+    className: "hidden lg:flex items-center gap-3 xl:gap-6 text-xs xl:text-sm font-medium shrink-0"
   }, t.nav_items.map(item => /*#__PURE__*/React.createElement("a", {
     key: item.anchor,
     href: `#${item.anchor}`,
     className: item.anchor === "sap-workflow" ? "flex items-center gap-1.5 text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-all whitespace-nowrap" : "text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors whitespace-nowrap"
   }, item.anchor === "sap-workflow" && /*#__PURE__*/React.createElement("span", {
-    className: "w-2 h-2 rounded-full bg-blue-600 animate-ping"
-  }), item.label))), /*#__PURE__*/React.createElement("div", {
+    className: "relative flex h-2 w-2 shrink-0"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "relative inline-flex rounded-full h-2 w-2 bg-blue-600"
+  })), item.label))), /*#__PURE__*/React.createElement("div", {
     className: "flex items-center gap-1.5 sm:gap-2 shrink-0"
   }, /*#__PURE__*/React.createElement("a", {
     href: data.profile.linkedin,
     target: "_blank",
     rel: "noopener noreferrer",
     title: t.navigation.linkedin,
-    className: "w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-blue-50 dark:bg-blue-950/60 text-[#0A66C2] dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all shrink-0"
+    className: "hidden sm:flex w-9 h-9 sm:w-10 sm:h-10 rounded-xl items-center justify-center bg-blue-50 dark:bg-blue-950/60 text-[#0A66C2] dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all shrink-0"
   }, /*#__PURE__*/React.createElement(LinkedInIcon, {
     className: "w-4 h-4 sm:w-4.5 sm:h-4.5"
   })), /*#__PURE__*/React.createElement("a", {
@@ -1481,20 +1485,20 @@ function App() {
     target: "_blank",
     rel: "noopener noreferrer",
     title: t.navigation.github,
-    className: "w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:scale-105 transition-all shrink-0"
+    className: "hidden sm:flex w-9 h-9 sm:w-10 sm:h-10 rounded-xl items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:scale-105 transition-all shrink-0"
   }, /*#__PURE__*/React.createElement(GitHubIcon, {
     className: "w-4 h-4 sm:w-4.5 sm:h-4.5"
   })), /*#__PURE__*/React.createElement("button", {
     onClick: () => setCvModalOpen(true),
     title: t.navigation.resume,
-    className: "hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-sm shadow-blue-500/25 hover:opacity-95 hover:scale-105 transition-all shrink-0 whitespace-nowrap"
+    className: "hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-sm shadow-blue-500/25 hover:opacity-95 hover:scale-105 transition-all shrink-0 whitespace-nowrap"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "file-text",
     className: "w-3.5 h-3.5"
   }), /*#__PURE__*/React.createElement("span", null, t.nav.resume)), /*#__PURE__*/React.createElement("button", {
     onClick: toggleLang,
     title: t.navigation.language_toggle,
-    className: "inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-black bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-all shrink-0 shadow-sm"
+    className: "inline-flex items-center gap-1 px-2 sm:px-3 py-2 rounded-xl text-[11px] sm:text-xs font-black bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-all shrink-0 shadow-sm"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "languages",
     className: "w-3.5 h-3.5 text-blue-600 dark:text-blue-400"
@@ -1508,7 +1512,7 @@ function App() {
   })), /*#__PURE__*/React.createElement("button", {
     onClick: () => setMobileMenuOpen(!mobileMenuOpen),
     "aria-label": t.navigation.menu,
-    className: "lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shrink-0"
+    className: "lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shrink-0 border border-slate-200/70 dark:border-slate-700/70"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: mobileMenuOpen ? "x" : "menu",
     className: "w-5 h-5"
@@ -1520,13 +1524,13 @@ function App() {
       width: `${scrollProgress}%`
     }
   })), mobileMenuOpen && /*#__PURE__*/React.createElement("div", {
-    className: "lg:hidden px-4 pt-3 pb-6 glass border-b border-slate-200 dark:border-slate-800 flex flex-col gap-2 max-h-[calc(100vh-5.5rem)] overflow-y-auto animate-fade-in shadow-2xl"
+    className: "lg:hidden px-4 pt-3 pb-6 glass border-b border-slate-200 dark:border-slate-800 flex flex-col gap-2 max-h-[calc(100vh-4.5rem)] overflow-y-auto animate-fade-in shadow-2xl"
   }, t.nav_items.map(item => /*#__PURE__*/React.createElement("a", {
     key: item.anchor,
     href: `#${item.anchor}`,
     onClick: () => setMobileMenuOpen(false),
-    className: `px-3.5 py-2.5 rounded-xl text-sm font-semibold flex items-center justify-between ${item.anchor === "sap-workflow" ? "text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40" : "hover:bg-slate-100 dark:hover:bg-slate-800"}`
-  }, item.label, /*#__PURE__*/React.createElement(Icon, {
+    className: `px-3.5 py-2.5 rounded-xl text-sm font-semibold flex items-center justify-between ${item.anchor === "sap-workflow" ? "text-blue-600 dark:text-blue-400 bg-blue-50/70 dark:bg-blue-950/40" : "hover:bg-slate-100 dark:hover:bg-slate-800"}`
+  }, /*#__PURE__*/React.createElement("span", null, item.label), /*#__PURE__*/React.createElement(Icon, {
     name: item.icon,
     className: "w-4 h-4"
   }))), /*#__PURE__*/React.createElement("button", {
@@ -1540,19 +1544,19 @@ function App() {
   }), /*#__PURE__*/React.createElement("span", null, t.navigation.language)), /*#__PURE__*/React.createElement("span", {
     className: "font-black px-2 py-0.5 rounded bg-blue-600 text-white"
   }, isEn ? "EN" : "FR")), /*#__PURE__*/React.createElement("div", {
-    className: "pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-2"
+    className: "pt-3 border-t border-slate-200 dark:border-slate-800 grid grid-cols-3 gap-2"
   }, /*#__PURE__*/React.createElement("a", {
     href: data.profile.linkedin,
     target: "_blank",
     rel: "noopener noreferrer",
-    className: "flex-1 py-2.5 text-center rounded-xl text-xs font-bold bg-[#0A66C2] text-white flex items-center justify-center gap-1.5 shadow-sm"
+    className: "py-2.5 text-center rounded-xl text-xs font-bold bg-[#0A66C2] text-white flex items-center justify-center gap-1.5 shadow-sm"
   }, /*#__PURE__*/React.createElement(LinkedInIcon, {
     className: "w-4 h-4"
   }), /*#__PURE__*/React.createElement("span", null, t.common.linkedin)), /*#__PURE__*/React.createElement("a", {
     href: data.profile.github,
     target: "_blank",
     rel: "noopener noreferrer",
-    className: "flex-1 py-2.5 text-center rounded-xl text-xs font-bold bg-slate-900 dark:bg-slate-800 text-white flex items-center justify-center gap-1.5 shadow-sm"
+    className: "py-2.5 text-center rounded-xl text-xs font-bold bg-slate-900 dark:bg-slate-800 text-white flex items-center justify-center gap-1.5 shadow-sm"
   }, /*#__PURE__*/React.createElement(GitHubIcon, {
     className: "w-4 h-4"
   }), /*#__PURE__*/React.createElement("span", null, t.common.github)), /*#__PURE__*/React.createElement("button", {
@@ -1560,27 +1564,33 @@ function App() {
       setMobileMenuOpen(false);
       setCvModalOpen(true);
     },
-    className: "flex-1 py-2.5 text-center rounded-xl text-xs font-bold bg-indigo-600 text-white flex items-center justify-center gap-1.5 shadow-sm"
+    className: "py-2.5 text-center rounded-xl text-xs font-bold bg-indigo-600 text-white flex items-center justify-center gap-1.5 shadow-sm"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "file-text",
     className: "w-4 h-4"
   }), /*#__PURE__*/React.createElement("span", null, t.nav.resume))))), /*#__PURE__*/React.createElement("section", {
     id: "hero",
-    className: "relative pt-14 pb-20 md:pt-20 md:pb-24 overflow-hidden bg-grid-pattern"
+    className: "relative pt-8 pb-16 sm:pt-14 sm:pb-20 md:pt-20 md:pb-24 overflow-hidden bg-grid-pattern"
   }, /*#__PURE__*/React.createElement("div", {
     className: "absolute -top-40 left-1/2 -translate-x-1/2 w-[780px] h-[440px] bg-gradient-to-tr from-blue-500/20 via-indigo-500/15 to-purple-500/20 blur-[130px] rounded-full pointer-events-none -z-10"
   }), /*#__PURE__*/React.createElement("div", {
     className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center"
+    className: "grid grid-cols-1 lg:grid-cols-12 gap-7 sm:gap-10 lg:gap-12 items-center"
   }, /*#__PURE__*/React.createElement("div", {
     className: "lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/80 mb-5 animate-float shadow-sm"
+    className: "inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/80 mb-4 sm:mb-5 animate-float shadow-sm max-w-full"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "w-2 h-2 rounded-full bg-emerald-500 animate-ping"
-  }), /*#__PURE__*/React.createElement("span", null, tr(data.profile, "availability") || t.hero.badge)), /*#__PURE__*/React.createElement("h1", {
-    className: "text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.08] mb-4"
+    className: "relative flex h-2 w-2 shrink-0"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "relative inline-flex rounded-full h-2 w-2 bg-emerald-500"
+  })), /*#__PURE__*/React.createElement("span", {
+    className: "leading-snug"
+  }, tr(data.profile, "availability") || t.hero.badge)), /*#__PURE__*/React.createElement("h1", {
+    className: "text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.08] mb-3.5 sm:mb-4"
   }, /*#__PURE__*/React.createElement("span", {
     className: "name-shimmer"
   }, data.profile.name)), /*#__PURE__*/React.createElement("div", {
@@ -1633,13 +1643,13 @@ function App() {
   }, /*#__PURE__*/React.createElement("div", {
     className: "absolute -inset-2 bg-gradient-to-tr from-blue-600 via-indigo-600 to-pink-500 rounded-full blur-xl opacity-65 group-hover:opacity-95 transition duration-500 animate-pulse-glow"
   }), /*#__PURE__*/React.createElement("div", {
-    className: "relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full p-2 bg-white dark:bg-slate-900 shadow-2xl ring-4 ring-blue-500/20 overflow-hidden"
+    className: "relative w-36 h-36 sm:w-52 sm:h-52 md:w-64 md:h-64 rounded-full p-1.5 sm:p-2 bg-white dark:bg-slate-900 shadow-2xl ring-4 ring-blue-500/20 overflow-hidden"
   }, /*#__PURE__*/React.createElement("img", {
     src: data.profile.avatar || "/img/walid.jpg",
     alt: data.profile.name,
     className: "w-full h-full object-cover object-top rounded-full group-hover:scale-105 transition-transform duration-500"
   })), /*#__PURE__*/React.createElement("div", {
-    className: "absolute bottom-3 right-5 w-5 h-5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full shadow-md",
+    className: "absolute bottom-2 right-3 sm:bottom-3 sm:right-5 w-4 h-4 sm:w-5 sm:h-5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full shadow-md",
     title: tr(data.profile, "availability") || t.hero.badge
   }), /*#__PURE__*/React.createElement("a", {
     href: "#sap-workflow",
@@ -1661,7 +1671,7 @@ function App() {
     name: "code-2",
     className: "w-3.5 h-3.5"
   })), /*#__PURE__*/React.createElement("span", null, "Full-Stack"))))), /*#__PURE__*/React.createElement("div", {
-    className: "grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-14 stagger-children"
+    className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-10 sm:mt-14 stagger-children"
   }, (t.hero.highlights || []).map((item, idx) => /*#__PURE__*/React.createElement("div", {
     key: idx,
     className: "reveal p-4 sm:p-5 rounded-2xl glass border border-slate-200/70 dark:border-slate-800/80 flex items-center gap-3.5 card-hover"
